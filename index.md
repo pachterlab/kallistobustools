@@ -5,4 +5,4 @@ tagline:
 ---
 {% include JB/setup %}
 
-[<img src = "BUSprism.png">](about.html)
+[<img src = "kallisto_bus_overview.png">](about.html)
