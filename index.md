@@ -4,12 +4,11 @@ title:
 tagline: 
 ---
 {% include JB/setup %}
-<link rel="shortcut icon" type="image/png" href="/favicon.png">
+<link rel="icon" href="favicon.ico" type="image/x-icon">
 
-
 favicon
 favicon
 favicon
-## eeeeeee
+## fffffffffff
 
 [<img src = "kallisto_bus_overview.png">](about.html)
