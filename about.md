@@ -6,6 +6,8 @@ group: navigation
 
 {% include JB/setup %}
 
+
+kallisto bus workflow 
 __BUS__ format is a file format for single-cell RNA-seq data designed to facilitate the development of modular workflows for data processing. It consists of a binary representation of barcode and UMI sequences from scRNA-seq reads, along with sets of equivalence classes obtained by pseudoalignment of reads to a reference transcriptome (hence the acronym Barcode, UMI, Set). __BUS__ files are a convenient and useful checkpoint during single-cell RNA-seq processing. The format is described in detail in the [__BUStools__ __BUS__ format repository](https://github.com/BUStools/BUS-format) and in the preprint
 
 [P. Melsted, V. Ntranos and L. Pachter, The Barcode, UMI, Set format and BUStools, bioRxiv, 2018](https://www.biorxiv.org/content/10.1101/472571v2).
