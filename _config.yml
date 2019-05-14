@@ -8,8 +8,8 @@ highlighter: rouge
 # Themes are encouraged to use these universal variables
 # so be sure to set them if your theme uses them.
 #
-title : bustools
-tagline: ultrafast (seriously) abundance estimation
+title : kallisto_bus_workflow
+tagline: kallisto bus workflow
 author :
   name : Pachter Lab
   email : blah@email.test
