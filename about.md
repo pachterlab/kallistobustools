@@ -7,11 +7,10 @@ group: navigation
 {% include JB/setup %}
 
 
-kallisto bus workflow 
-__BUS__ format is a file format for single-cell RNA-seq data designed to facilitate the development of modular workflows for data processing. It consists of a binary representation of barcode and UMI sequences from scRNA-seq reads, along with sets of equivalence classes obtained by pseudoalignment of reads to a reference transcriptome (hence the acronym Barcode, UMI, Set). __BUS__ files are a convenient and useful checkpoint during single-cell RNA-seq processing. The format is described in detail in the [__BUStools__ __BUS__ format repository](https://github.com/BUStools/BUS-format) and in the preprint
+# kallisto | bus 
 
-[P. Melsted, V. Ntranos and L. Pachter, The Barcode, UMI, Set format and BUStools, bioRxiv, 2018](https://www.biorxiv.org/content/10.1101/472571v2).
+The analysis of single-cell RNA-Seq data involves a series of steps that include: (1) pre-processing of reads to associate them with their cells of origin, (2) possible collapsing of reads according to unique molecular identifiers (UMIs), (3) generation of feature counts from the reads to generate a feature-cell matrix and (4) analysis of the matrix to compare and contrast cells.
 
-We have implemented a new [feature in __kallisto__](https://pachterlab.github.io/kallisto/singlecell.html) that can be used to generate __BUS__ format files from a variety of different technologies. Once __BUS__ files have been produced, they can be manipulated with [__bustools__](https://github.com/BUStools/bustools). The __bustools__ programs can be used to perform tasks such as sorting __BUS__ files, which makes them easier to process into meaningful single-cell information in higher-level languages such as R or python. The end results are easy to develop, fast, and accurate workflows for a variety of single-cell RNA-seq and multimodal technologies.
+We have recently introduced the __BUS__ file format for single-cell RNA-seq data designed to facilitate the development of modular workflows for data processing. It consists of a binary representation of barcode and UMI sequences from scRNA-seq reads, along with sets of equivalence classes obtained by pseudoalignment of reads to a reference transcriptome (hence the acronym Barcode, UMI, Set). We have implemented a command in __kallisto__ version [0.45.0](http://pachterlab.github.io/kallisto//releases/2018/11/17/v0.45.0) called `bus` that allows for the efficient generation of BUS format from any single-cell RNA-seq technology. Tools for manipulating BUS files are provided as part of the [__bustools__](https://bustools.github.io/) package. 
 
-To learn how to use the __BUStools__ suite of programs to perform single-cell RNA-seq analysis we suggested beginning with the [Getting Started](getting_started.html) page.
+This website provides tutorials and workflows to learn how to use the __kallisto__ and __BUStools__ programs to perform single-cell RNA-seq analysis. We suggested beginning with the [Getting Started](getting_started.html) page.
