@@ -1,6 +1,6 @@
 ---
 layout: page
-title: "Downloads"
+title: "Download"
 group: navigation
 ---
 
