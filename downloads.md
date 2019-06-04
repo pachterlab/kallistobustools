@@ -6,12 +6,9 @@ group: navigation
 
 {% include JB/setup %}
 
-# Downloading and installing kallisto
-~ Future explanations go here ~
+The kallisto bus single cell workflow requires two programs to be installed: `kallisto` and `bustools`
 
-https://pachterlab.github.io/kallisto/download
+To download and install `kallisto` go to: https://pachterlab.github.io/kallisto/download
 
-# Downloading and installing bustools
-~ Future explanations go here ~
-https://bustools.github.io/
+To download and installing `bustools` go to: https://bustools.github.io/download
 
