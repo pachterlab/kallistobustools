@@ -125,6 +125,21 @@ $ kallisto index -i Mus_musculus.GRCm38.cdna.all.idx -k 31 Mus_musculus.GRCm38.c
 ### Gene map
 Insert steps here
 
+__tl;dr/Summary:__ Build the kallisto index from the reference fasta file, build the transcripts to genes map. Type `$ ls -1` and you should see
+
+```
+$ ls -1
+
+whitelist.txt
+transcripts_to_genes.txt
+Mus_musculus.GRCm38.96.gtf.gz
+Mus_musculus.GRCm38.cdna.all.idx
+Mus_musculus.GRCm38.cdna.all.fa.gz
+SRR8599150_S1_L001_I1_001.fastq.gz
+SRR8599150_S1_L001_R1_001.fastq.gz
+SRR8599150_S1_L001_R2_001.fastq.gz
+```
+
 ## 3. Pseudoalign the reads with ```kallisto bus```
 The 10x Chromium V2 chemistry was used to generate the data we downloaded above. The technology dictates the Barcode/UMI structure and the whitelist used for barcode error correction. We have to specify the technology in the __kallisto bus__ command and the whitelist in the __bustools__ command. Now we pseudo align the reads
 
