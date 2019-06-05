@@ -59,24 +59,25 @@ If you don't see this, then you have either not installed the programs correctly
 ## 1. Downloading a dataset & index
 ### Index
 The kallisto | bustools workflow uses standard ensembl transcriptome fasta file to build an index. This index makes it easy (and fast!) to pseudoalign RNA sequencing reads. Navigate to the ensembl website:
-`http://uswest.ensembl.org/` and select your species of interest. For getting started, select `Mouse (Mus Musculus)`.
+```http://uswest.ensembl.org/``` and select your species of interest. For getting started, select ```Mouse (Mus Musculus)```.
 
-Once on this page `http://uswest.ensembl.org/Mus_musculus/Info/Index` select `Download Fasta` under the __Gene annotation__ section. This will take you to `ftp://ftp.ensembl.org/pub/release-96/fasta/mus_musculus/`. Select `cdna`. Right-click on `Mus_musculus.GRCm38.cdna.all.fa.gz` and select `Copy Link Address`.
+Once on this page ```http://uswest.ensembl.org/Mus_musculus/Info/Index``` select `Download Fasta` under the __Gene annotation__ section. This will take you to ```ftp://ftp.ensembl.org/pub/release-96/fasta/mus_musculus/```. Select `cdna`. Right-click on ```Mus_musculus.GRCm38.cdna.all.fa.gz``` and select ```Copy Link Address```.
 
-On your terminal navigate to a folder where you want to download your index and data.
+On your terminal make a folder where you want to download your index and data.
 
 ```
-$ cd <destination_folder/>
+$ mkdir kallisto_bustools_getting_started
+$ cd kallisto_bustools_getting_started
 ```
 
-Then download your index where the link is one that you copied.
+Then download the fasta reference using the link is one that you copied.
 
 ```
 [Linux/Mac]$ wget ftp://ftp.ensembl.org/pub/release-96/fasta/mus_musculus/cdna/Mus_musculus.GRCm38.cdna.all.fa.gz
 [Windows]$ curl ftp://ftp.ensembl.org/pub/release-96/fasta/mus_musculus/cdna/Mus_musculus.GRCm38.cdna.all.fa.gz
 ```
 
-Now do the exact same as above but instead of clicking `Download Fasta` click `Download GTF`. Right-click on `Mus_musculus.GRCm38.96.gtf` select `Copy Link Address` and download this file on your terminal.
+Now download the GTF file. Do the exact same as above but instead of clicking ```Download Fasta``` click ```Download GTF``` under the __Gene annotation__ section. Right-click on ```Mus_musculus.GRCm38.96.gtf``` select ```Copy Link Address``` and download this file on your terminal.
 
 ### Dataset
 Steps to download the data 
@@ -88,6 +89,7 @@ __tl;dr/Summary:__ Download the transcriptome reference and GTF file from ensemb
 
 ```
 $ ls -1
+whitelist.txt
 Mus_musculus.GRCm38.96.gtf.gz
 Mus_musculus.GRCm38.cdna.all.fa.gz
 SRR8599150_S1_L001_I1_001.fastq.gz
@@ -103,10 +105,10 @@ We first need to decompress (unzip) the reference fasta file we downloaded.
 $ gunzip Mus_musculus.GRCm38.cdna.all.fa.gz
 ```
 
-Now we can build the kallisto index. I recommend naming the index `Mus_musculus.GRCm38.cdna.all.idx` and using a kmer size of `31`. Note that a kmer size of 31 is default, and always must be odd.
+Now we can build the kallisto index. I recommend naming the index ```Mus_musculus.GRCm38.cdna.all.idx``` and using a kmer size of `31`. Note that a kmer size of 31 is default, and always must be odd.
 
 ```
-$ kallisto index -i <index_name.idx> -k <kmer_size> Mus_musculus.GRCm38.cdna.all.fa
+$ kallisto index -i Mus_musculus.GRCm38.cdna.all.idx -k 31 Mus_musculus.GRCm38.cdna.all.fa
 
 [build] loading fasta file Mus_musculus.GRCm38.cdna.all.fa
 [build] k-mer length: 31
@@ -127,7 +129,7 @@ Insert steps here
 The 10x Chromium V2 chemistry was used to generate the data we downloaded above. The technology dictates the Barcode/UMI structure and the whitelist used for barcode error correction. We have to specify the technology in the __kallisto bus__ command and the whitelist in the __bustools__ command. Now we pseudo align the reads
 
 ```
-$ kallisto bus -i <your_index.idx> -o <bus_output_folder/> -x 10xv2 -t 10 SRR8599150_S1_L001_R1_001.fastq.gz SRR8599150_S1_L001_R2_001.fastq.gz
+$ kallisto bus -i Mus_musculus.GRCm38.cdna.all.idx -o bus_output/ -x 10xv2 -t 10 SRR8599150_S1_L001_R1_001.fastq.gz SRR8599150_S1_L001_R2_001.fastq.gz
 
 [index] k-mer length: 31
 [index] number of targets: 118,489
@@ -138,7 +140,7 @@ $ kallisto bus -i <your_index.idx> -o <bus_output_folder/> -x 10xv2 -t 10 SRR859
 [quant] finding pseudoalignments for the reads ... done
 [quant] processed 8,860,361 reads, 3,431,849 reads pseudoaligned
 ```
-__Note:__ For single cell sequencing you always need at least two fastq files and the order of the `.fastq` files is important, `R1` comes first then `R2` goes second. Please see the __Tutorials__ page if you want to know how to process more than one set of fastq files in one go.
+__Note:__ For single cell sequencing you always need at least two fastq files and the order of the ```.fastq``` files is important, ```R1``` comes first then ```R2``` goes second. Please see the __Tutorials__ page if you want to know how to process more than one set of fastq files in one go.
 
 ## Processing BUS file with ```bustools```
 ```bustools``` allows us to go from a __BUS__ file, to a equivalence-class-UMI count matrix or a gene-UMI count matrix that can be loaded directly into python for analysis. We will use __bustools__ to do the following: 
@@ -149,7 +151,7 @@ __Note:__ For single cell sequencing you always need at least two fastq files an
 
 First navigate to your bus output directory. Your folder should contain the following items:
 ```
-$ cd <bus_outut_folder/>
+$ cd bus_output/
 $ ls -1
 matrix.ec
 output.bus
@@ -157,9 +159,9 @@ run_info.json
 transcripts.txt
 ```
 
-Second correct the barcodes using the `whitelist.txt`
+Second correct the barcodes using the `whitelist.txt`. This makes a corrected bus file ```output.correct.bus```
 ```
-$ bustools correct -w <whitelist.txt> -o <name_of_corrected_bus_file.bus> output.bus
+$ bustools correct -w ../whitelist.txt -o output.correct.bus output.bus
 Found 737280 barcodes in the whitelist
 Number of hamming dist 1 barcodes = 20550336
 Processed 3431849 bus records
@@ -168,17 +170,25 @@ Corrected = 36927
 Uncorrected = 113251
 ```
 
-Third sort the busfile
+Third sort the busfile. This makes a sorted bus file ```output.correct.sort.bus```
 ```
-$ bustools sort -t 4 -o <name_of_sorted_bus_file.bus> <name_of_corrected_bus_file.bus>
+$ bustools sort -t 4 -o output.correct.sort.bus output.correct.bus
 Read in 3318598 number of busrecords
 ```
 
-Fourth count the busfile using the `transcripts_to_genes.txt`
+Fourth count the busfile using the `transcripts_to_genes.txt` to make the Equivalence Class Matrix (TCC)
 ```
-$ bustools count -o genes -g ../transcripts_to_genes.txt -e matrix.ec -t transcripts.txt --genecounts output.correct.sort.bus
+$ bustools count -o eqcount/tcc -g ../transcripts_to_genes.txt -e matrix.ec -t transcripts.txt output.correct.sort.bus
 bad counts = 0, rescued  =0, compacted = 0
 ```
+
+or the Gene Count matrix
+```
+$ bustools count -o genecount/genes -g ../transcripts_to_genes.txt -e matrix.ec -t transcripts.txt --genecounts output.correct.sort.bus
+bad counts = 0, rescued  =0, compacted = 0
+```
+
+Now you have your matrices!
 
 
 
