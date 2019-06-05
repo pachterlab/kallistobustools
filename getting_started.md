@@ -12,7 +12,7 @@ Before we begin, make sure that you have
 1. downloaded and installed __kallisto__ from the [__kallisto__ installation page](https://pachterlab.github.io/kallisto/download), and have
 2. downloaded and installed __bustools__ from the [__bustools__ repository](https://github.com/BUStools/bustools).
 
-__Note: for this tutorial, command line arguments are everything after the `$` and user input is required anywhere you see `<user_input>`. So if you see `$ cd <my_folder>` then you would type `cd folder`.__
+__Note:__ for these instructions, command line arguments are everything after the `$`. So if you see `$ cd my_folder` then you would type `cd my_folder` on your terminal.
 
 ## 0. Make sure that __kallisto__ and __bustools__ are installed correctly
 Open up your terminal and run the following commands. This is the expected output. 
