@@ -176,10 +176,16 @@ $ bustools sort -t 4 -o output.correct.sort.bus output.correct.bus
 Read in 3318598 number of busrecords
 ```
 
-Fourth count the busfile using the `transcripts_to_genes.txt` to make the Equivalence Class Matrix (TCC)
+For organization first make the following two folders
+```
+$ mkdir eqclass
+$ mkdir genecount
+```
+
+Fourth count the busfile using the `transcripts_to_genes.txt` to make the Equivalence Class Matrix (TCC). 
 ```
 $ bustools count -o eqcount/tcc -g ../transcripts_to_genes.txt -e matrix.ec -t transcripts.txt output.correct.sort.bus
-bad counts = 0, rescued  =0, compacted = 0
+bad counts = 0, rescued  =38627, compacted = 65899
 ```
 
 or the Gene Count matrix
@@ -190,6 +196,36 @@ bad counts = 0, rescued  =0, compacted = 0
 
 Now you have your matrices!
 
+After all of these steps, your files should be structured like this:
+```
+kallisto_bustools_getting_started/
+├── bus_output
+│   ├── eqclass
+│   │   ├── tcc.barcodes.txt
+│   │   ├── tcc.ec.txt
+│   │   └── tcc.mtx
+│   ├── genecount
+│   │   ├── gene.barcodes.txt
+│   │   ├── gene.genes.txt
+│   │   └── gene.mtx
+│   ├── matrix.ec
+│   ├── output.bus
+│   ├── output.correct.bus
+│   ├── output.correct.sort.bus
+│   ├── run_info.json
+│   └── transcripts.txt
+├── Mus_musculus.GRCm38.96.gtf
+├── Mus_musculus.GRCm38.cdna.all.fa
+├── Mus_musculus.GRCm38.cdna.all.idx
+├── SRR8599150_S1_L001_I1_001.fastq.gz
+├── SRR8599150_S1_L001_R1_001.fastq.gz
+├── SRR8599150_S1_L001_R2_001.fastq.gz
+├── transcripts_to_genes.txt
+└── whitelist.txt
 
+3 directories, 20 files
+```
+
+And now we can load the data into python.
 
 Other useful tutorial notebooks on the __BUStools__ repository include the [10x_hgmm_100 notebook](https://github.com/BUStools/BUS_notebooks_python/blob/master/dataset-notebooks/10x_hgmm_100_python/10x_hgmm_100.ipynb) which details the analysis of a small, and therefore easily downloadable dataset. Links to other tutorial notebooks are posted on the [__BUStools__ python notebook website](https://github.com/BUStools/BUS_notebooks_python) and the [__BUStools__ R notebook website](https://github.com/BUStools/BUS_notebooks_R).
