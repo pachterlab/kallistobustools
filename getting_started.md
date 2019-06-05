@@ -76,11 +76,23 @@ Then download your index where the link is one that you copied.
 [Windows]$ curl ftp://ftp.ensembl.org/pub/release-96/fasta/mus_musculus/cdna/Mus_musculus.GRCm38.cdna.all.fa.gz
 ```
 
+Now do the exact same as above but instead of clicking `Download Fasta` click `Download GTF`. Right-click on `Mus_musculus.GRCm38.96.gtf` select `Copy Link Address` and download this file on your terminal.
+
 ### Dataset
 Steps to Download the data 
 
+__Summary:__ Download the index from ensembl, download the data. Type `$ ls -1` and you should see
 
-## 2. Pre-processing with __kallisto bus__
+```
+$ ls -1
+Mus_musculus.GRCm38.96.gtf.gz
+Mus_musculus.GRCm38.cdna.all.fa.gz
+SRR8599150_S1_L001_I1_001.fastq.gz
+SRR8599150_S1_L001_R1_001.fastq.gz
+SRR8599150_S1_L001_R2_001.fastq.gz
+```
+
+## 2. Setting up the index and gene map
 ### Build the index
 We first need to decompress (unzip) the reference fasta file we downloaded.
 
@@ -91,12 +103,40 @@ $ gunzip Mus_musculus.GRCm38.cdna.all.fa.gz
 Now we can build the kallisto index. I recommend naming the index `Mus_musculus.GRCm38.cdna.all.idx` and using a kmer size of `31`. Note that a kmer size of 31 is default, and always must be odd.
 
 ```
-$ kallisto index Mus_musculus.GRCm38.cdna.all.fa -i <name_of_index.idx> -k <kmer_size> Mus_musculus.GRCm38.cdna.all.fa
+$ kallisto index -i <index_name.idx> -k <kmer_size> Mus_musculus.GRCm38.cdna.all.fa
+
+[build] loading fasta file Mus_musculus.GRCm38.cdna.all.fa
+[build] k-mer length: 31
+[build] warning: clipped off poly-A tail (longer than 10)
+        from 641 target sequences
+[build] warning: replaced 3 non-ACGUT characters in the input sequence
+        with pseudorandom nucleotides
+[build] counting k-mers ... done.
+[build] building target de Bruijn graph ...  done
+[build] creating equivalence classes ...  done
+[build] target de Bruijn graph has 734746 contigs and contains 100614952 k-mers
 
 ```
+### Building the `transcripts_to_genes.txt` map
+Insert steps here
 
-### Pseudoaligning reads
+## 3. Pseudoaligning reads with __kallisto bus__
+First we take note of the technology that was used to generate our library. The 10x Chromium V2 chemistry was used to generate the data we downloaded above. Now we pseudo align the reads
 
+```
+$ kallisto bus -i <your_index.idx> -o <bus_output_folder/> -x 10xv2 -t 10 SRR8599150_S1_L001_R1_001.fastq.gz SRR8599150_S1_L001_R2_001.fastq.gz
 
+[index] k-mer length: 31
+[index] number of targets: 118,489
+[index] number of k-mers: 100,614,952
+[index] number of equivalence classes: 433,624
+[quant] will process sample 1: SRR8599150_S1_L001_R1_001.fastq.gz
+                               SRR8599150_S1_L001_R2_001.fastq.gz
+[quant] finding pseudoalignments for the reads ... done
+[quant] processed 8,860,361 reads, 3,431,849 reads pseudoaligned
+```
+__Note:__ The order of the `.fastq` files is important, `R1` comes first then `R2` goes second. Please see the [__Tutorials__] page.
+
+## Processing BUS file with __bustools__
 
 Other useful tutorial notebooks on the __BUStools__ repository include the [10x_hgmm_100 notebook](https://github.com/BUStools/BUS_notebooks_python/blob/master/dataset-notebooks/10x_hgmm_100_python/10x_hgmm_100.ipynb) which details the analysis of a small, and therefore easily downloadable dataset. Links to other tutorial notebooks are posted on the [__BUStools__ python notebook website](https://github.com/BUStools/BUS_notebooks_python) and the [__BUStools__ R notebook website](https://github.com/BUStools/BUS_notebooks_R).
