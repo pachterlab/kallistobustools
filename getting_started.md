@@ -22,11 +22,15 @@ $ gunzip Mus_musculus.GRCm38.cdna.all.fa.gz
 $ kallisto index -i Mus_musculus.GRCm38.cdna.all.idx -k 31 Mus_musculus.GRCm38.cdna.all.fa
 $ wget ftp://ftp.ensembl.org/pub/release-96/gtf/mus_musculus/Mus_musculus.GRCm38.96.gtf.gz
 $ gunzip Mus_musculus.GRCm38.96.gtf.gz
-$ t2g.py < Mus_musculus.GRCm38.96.gtf > transcripts_to_genes.txt
+$ t2g.py --use_version < Mus_musculus.GRCm38.96.gtf > transcripts_to_genes.txt
 $ kallisto bus -i Mus_musculus.GRCm38.cdna.all.idx -o bus_output/ -x 10xv2 -t 10 SRR8599150_S1_L001_R1_001.fastq.gz SRR8599150_S1_L001_R2_001.fastq.gz
-$ bustools correct -w ../whitelist.txt -o output.correct.bus output.bus
+$ cd bus_output/
+$ bustools correct -w ../10xv2_whitelist.txt -o output.correct.bus output.bus
 $ bustools sort -t 4 -o output.correct.sort.bus output.correct.bus
+$ mkdir eqclass
+$ mkdir genecount
 $ bustools count -o eqcount/tcc -g ../transcripts_to_genes.txt -e matrix.ec -t transcripts.txt output.correct.sort.bus
+$ bustools count -o genecount/gene -g ../transcripts_to_genes.txt -e matrix.ec -t transcripts.txt --genecounts output.correct.sort.bus
 ```
 
 __Note:__ for these instructions, command line arguments are everything after the `$`. So if you see `$ cd my_folder` then you would type `cd my_folder` on your terminal.  
@@ -181,7 +185,7 @@ $ gunzip Mus_musculus.GRCm38.96.gtf.gz
 ```
 Next use ```t2g.py``` to make the gene map
 ```
-$ t2g.py < Mus_musculus.GRCm38.96.gtf > transcripts_to_genes.txt
+$ t2g.py --use_version < Mus_musculus.GRCm38.96.gtf > transcripts_to_genes.txt
 ```
 
 ### tl;dr/Summary
