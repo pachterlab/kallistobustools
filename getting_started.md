@@ -20,6 +20,7 @@ $ cd kallisto_bustools_getting_started
 $ wget ftp://ftp.ensembl.org/pub/release-96/fasta/mus_musculus/cdna/Mus_musculus.GRCm38.cdna.all.fa.gz
 $ gunzip Mus_musculus.GRCm38.cdna.all.fa.gz
 $ kallisto index -i Mus_musculus.GRCm38.cdna.all.idx -k 31 Mus_musculus.GRCm38.cdna.all.fa
+$ wget ftp://ftp.ensembl.org/pub/release-96/gtf/mus_musculus/Mus_musculus.GRCm38.96.gtf.gz
 $ gunzip Mus_musculus.GRCm38.96.gtf.gz
 $ t2g.py < Mus_musculus.GRCm38.96.gtf.gz > transcripts_to_genes.txt
 $ kallisto bus -i Mus_musculus.GRCm38.cdna.all.idx -o bus_output/ -x 10xv2 -t 10 SRR8599150_S1_L001_R1_001.fastq.gz SRR8599150_S1_L001_R2_001.fastq.gz
@@ -118,6 +119,10 @@ $ wget ftp://ftp.ensembl.org/pub/release-96/fasta/mus_musculus/cdna/Mus_musculus
 
 #### Genome annotation GTF
 Next download the GTF file. Do the exact same as above but instead of clicking ```Download Fasta``` click ```Download GTF``` under the __Gene annotation__ section. Right-click on ```Mus_musculus.GRCm38.96.gtf``` select ```Copy Link Address``` and download this file on your terminal.
+
+```
+$ wget ftp://ftp.ensembl.org/pub/release-96/gtf/mus_musculus/Mus_musculus.GRCm38.96.gtf.gz
+```
 
 ### 1b. Barcode whitelist
 Steps to download the barcode whitelist
