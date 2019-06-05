@@ -56,7 +56,7 @@ Running bustools <CMD> without arguments prints usage information for <CMD>
 
 If you don't see this, then you have either not installed the programs correctly, or you have not told your terminal to "point" to the program so that you can use it. See *insert here* for how to correct this.
 
-## 1. Downloading a references, whitelist, and dataset
+## 1. Download a references, whitelist, and dataset
 ### References
 The kallisto | bustools workflow uses standard ensembl transcriptome fasta file reference to build an index. This index makes it easy (and fast!) to pseudoalign RNA sequencing reads. Navigate to the ensembl website:
 ```http://uswest.ensembl.org/``` and select your species of interest. For getting started, select ```Mouse (Mus Musculus)```.
@@ -97,7 +97,7 @@ SRR8599150_S1_L001_R1_001.fastq.gz
 SRR8599150_S1_L001_R2_001.fastq.gz
 ```
 
-## 2. Setting up the index and gene map
+## 2. Set up the index and gene map
 ### Build the index
 We first need to decompress (unzip) the reference fasta file we downloaded.
 
@@ -142,7 +142,7 @@ $ kallisto bus -i Mus_musculus.GRCm38.cdna.all.idx -o bus_output/ -x 10xv2 -t 10
 ```
 __Note:__ For single cell sequencing you always need at least two fastq files and the order of the ```.fastq``` files is important, ```R1``` comes first then ```R2``` goes second. Please see the __Tutorials__ page if you want to know how to process more than one set of fastq files in one go.
 
-## 4. Processing BUS file with ```bustools```
+## 4. Process the BUS file with ```bustools```
 ```bustools``` allows us to go from a __BUS__ file, to a equivalence-class-UMI count matrix or a gene-UMI count matrix that can be loaded directly into python for analysis. We will use __bustools__ to do the following: 
 
 1. Correct the barcodes: fix the barcodes that are within one hamming distance of the barcodes in the whitelist using ```whitelist.txt```
@@ -228,6 +228,6 @@ kallisto_bustools_getting_started/
 
 And now we can load the data into python.
 
-## 5. Loading Matrices into Python
+## 5. Load the matrices with python
 
 Other useful tutorial notebooks on the __BUStools__ repository include the [10x_hgmm_100 notebook](https://github.com/BUStools/BUS_notebooks_python/blob/master/dataset-notebooks/10x_hgmm_100_python/10x_hgmm_100.ipynb) which details the analysis of a small, and therefore easily downloadable dataset. Links to other tutorial notebooks are posted on the [__BUStools__ python notebook website](https://github.com/BUStools/BUS_notebooks_python) and the [__BUStools__ R notebook website](https://github.com/BUStools/BUS_notebooks_R).
