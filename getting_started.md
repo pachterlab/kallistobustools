@@ -34,7 +34,7 @@ __Note:__ for these instructions, command line arguments are everything after th
 &nbsp;
 &nbsp;
 
-## 0. Make sure that ```kallisto``` and ```bustools``` are installed correctly
+## 0. Make sure that ```kallisto```, ```bustools```, and ```t2g.py``` are installed correctly
 Open up your terminal and run the following commands. These are the expected outputs:
 
 ```
@@ -72,6 +72,20 @@ count           Generate count matrices from bus file
 capture         Capture reads mapping to a transcript capture list
 
 Running bustools <CMD> without arguments prints usage information for <CMD>
+```
+
+```
+$ t2g.py -h
+usage: t2g.py [-h] [--use_version] [--skip_gene_names]
+
+Creates transcript to gene info from GTF files reads from standard input and
+writes to standard output
+
+optional arguments:
+  -h, --help            show this help message and exit
+  --use_version, -v     Use version numbers in transcript and gene ids
+  --skip_gene_names, -s
+                        Do not output gene names
 ```
 
 If you don't see this then you have either (a) not installed the programs correctly, or (b) you have not told your terminal to "point" to the program so that you can use it. See *insert here* for how to correct these issues.  
