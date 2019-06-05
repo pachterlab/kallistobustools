@@ -79,9 +79,12 @@ Then download your index where the link is one that you copied.
 Now do the exact same as above but instead of clicking `Download Fasta` click `Download GTF`. Right-click on `Mus_musculus.GRCm38.96.gtf` select `Copy Link Address` and download this file on your terminal.
 
 ### Dataset
-Steps to Download the data 
+Steps to download the data 
 
-__Summary:__ Download the index from ensembl, download the data. Type `$ ls -1` and you should see
+### Barcode whitelist
+Steps to download the barcode whitelist
+
+__tl;dr/Summary:__ Download the transcriptome reference and GTF file from ensembl, download the data, and download the barcode whitelist. Type `$ ls -1` and you should see
 
 ```
 $ ls -1
@@ -120,8 +123,8 @@ $ kallisto index -i <index_name.idx> -k <kmer_size> Mus_musculus.GRCm38.cdna.all
 ### Building the `transcripts_to_genes.txt` map
 Insert steps here
 
-## 3. Pseudoaligning reads with __kallisto bus__
-First we take note of the technology that was used to generate our library. The 10x Chromium V2 chemistry was used to generate the data we downloaded above. Now we pseudo align the reads
+## 3. Pseudoaligning reads with ```kallisto bus```
+The 10x Chromium V2 chemistry was used to generate the data we downloaded above. The technology dictates the Barcode/UMI structure and the whitelist used for barcode error correction. We have to specify the technology in the __kallisto bus__ command and the whitelist in the __bustools__ command. Now we pseudo align the reads
 
 ```
 $ kallisto bus -i <your_index.idx> -o <bus_output_folder/> -x 10xv2 -t 10 SRR8599150_S1_L001_R1_001.fastq.gz SRR8599150_S1_L001_R2_001.fastq.gz
@@ -135,8 +138,48 @@ $ kallisto bus -i <your_index.idx> -o <bus_output_folder/> -x 10xv2 -t 10 SRR859
 [quant] finding pseudoalignments for the reads ... done
 [quant] processed 8,860,361 reads, 3,431,849 reads pseudoaligned
 ```
-__Note:__ The order of the `.fastq` files is important, `R1` comes first then `R2` goes second. Please see the [__Tutorials__] page.
+__Note:__ For single cell sequencing you always need at least two fastq files and the order of the `.fastq` files is important, `R1` comes first then `R2` goes second. Please see the __Tutorials__ page if you want to know how to process more than one set of fastq files in one go.
 
-## Processing BUS file with __bustools__
+## Processing BUS file with ```bustools```
+```bustools``` allows us to go from a __BUS__ file, to a equivalence-class-UMI count matrix or a gene-UMI count matrix that can be loaded directly into python for analysis. We will use __bustools__ to do the following: 
+
+1. Correct the barcodes: fix the barcodes that are within one hamming distance of the barcodes in the whitelist using ```whitelist.txt```
+2. Sort the busfile: organize the busfile by barcode, umi, set, and multiplicity
+3. Count the busfile: generate the umi count matrix using ```transcripts_to_genes.txt```
+
+First navigate to your bus output directory. Your folder should contain the following items:
+```
+$ cd <bus_outut_folder/>
+$ ls -1
+matrix.ec
+output.bus
+run_info.json
+transcripts.txt
+```
+
+Second correct the barcodes using the `whitelist.txt`
+```
+$ bustools correct -w <whitelist.txt> -o <name_of_corrected_bus_file.bus> output.bus
+Found 737280 barcodes in the whitelist
+Number of hamming dist 1 barcodes = 20550336
+Processed 3431849 bus records
+In whitelist = 3281671
+Corrected = 36927
+Uncorrected = 113251
+```
+
+Third sort the busfile
+```
+$ bustools sort -t 4 -o <name_of_sorted_bus_file.bus> <name_of_corrected_bus_file.bus>
+Read in 3318598 number of busrecords
+```
+
+Fourth count the busfile using the `transcripts_to_genes.txt`
+```
+$ bustools count -o genes -g ../transcripts_to_genes.txt -e matrix.ec -t transcripts.txt --genecounts output.correct.sort.bus
+bad counts = 0, rescued  =0, compacted = 0
+```
+
+
 
 Other useful tutorial notebooks on the __BUStools__ repository include the [10x_hgmm_100 notebook](https://github.com/BUStools/BUS_notebooks_python/blob/master/dataset-notebooks/10x_hgmm_100_python/10x_hgmm_100.ipynb) which details the analysis of a small, and therefore easily downloadable dataset. Links to other tutorial notebooks are posted on the [__BUStools__ python notebook website](https://github.com/BUStools/BUS_notebooks_python) and the [__BUStools__ R notebook website](https://github.com/BUStools/BUS_notebooks_R).
