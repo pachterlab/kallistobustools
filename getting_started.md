@@ -56,9 +56,9 @@ Running bustools <CMD> without arguments prints usage information for <CMD>
 
 If you don't see this, then you have either not installed the programs correctly, or you have not told your terminal to "point" to the program so that you can use it. See *insert here* for how to correct this.
 
-## 1. Downloading a dataset & index
-### Index
-The kallisto | bustools workflow uses standard ensembl transcriptome fasta file to build an index. This index makes it easy (and fast!) to pseudoalign RNA sequencing reads. Navigate to the ensembl website:
+## 1. Downloading a references, whitelist, and dataset
+### References
+The kallisto | bustools workflow uses standard ensembl transcriptome fasta file reference to build an index. This index makes it easy (and fast!) to pseudoalign RNA sequencing reads. Navigate to the ensembl website:
 ```http://uswest.ensembl.org/``` and select your species of interest. For getting started, select ```Mouse (Mus Musculus)```.
 
 Once on this page ```http://uswest.ensembl.org/Mus_musculus/Info/Index``` select `Download Fasta` under the __Gene annotation__ section. This will take you to ```ftp://ftp.ensembl.org/pub/release-96/fasta/mus_musculus/```. Select `cdna`. Right-click on ```Mus_musculus.GRCm38.cdna.all.fa.gz``` and select ```Copy Link Address```.
@@ -79,13 +79,13 @@ Then download the fasta reference using the link is one that you copied.
 
 Now download the GTF file. Do the exact same as above but instead of clicking ```Download Fasta``` click ```Download GTF``` under the __Gene annotation__ section. Right-click on ```Mus_musculus.GRCm38.96.gtf``` select ```Copy Link Address``` and download this file on your terminal.
 
-### Dataset
-Steps to download the data 
-
 ### Barcode whitelist
 Steps to download the barcode whitelist
 
-__tl;dr/Summary:__ Download the transcriptome reference and GTF file from ensembl, download the data, and download the barcode whitelist. Type `$ ls -1` and you should see
+### Dataset
+Steps to download the data 
+
+__tl;dr/Summary:__ Download the transcriptome reference and GTF file from ensembl, download the barcode whitelist, and download the data. Type `$ ls -1` and you should see
 
 ```
 $ ls -1
@@ -122,10 +122,10 @@ $ kallisto index -i Mus_musculus.GRCm38.cdna.all.idx -k 31 Mus_musculus.GRCm38.c
 [build] target de Bruijn graph has 734746 contigs and contains 100614952 k-mers
 
 ```
-### Building the `transcripts_to_genes.txt` map
+### Build the `transcripts_to_genes.txt` map
 Insert steps here
 
-## 3. Pseudoaligning reads with ```kallisto bus```
+## 3. Pseudoalig the reads with ```kallisto bus```
 The 10x Chromium V2 chemistry was used to generate the data we downloaded above. The technology dictates the Barcode/UMI structure and the whitelist used for barcode error correction. We have to specify the technology in the __kallisto bus__ command and the whitelist in the __bustools__ command. Now we pseudo align the reads
 
 ```
@@ -142,7 +142,7 @@ $ kallisto bus -i Mus_musculus.GRCm38.cdna.all.idx -o bus_output/ -x 10xv2 -t 10
 ```
 __Note:__ For single cell sequencing you always need at least two fastq files and the order of the ```.fastq``` files is important, ```R1``` comes first then ```R2``` goes second. Please see the __Tutorials__ page if you want to know how to process more than one set of fastq files in one go.
 
-## Processing BUS file with ```bustools```
+## 4. Processing BUS file with ```bustools```
 ```bustools``` allows us to go from a __BUS__ file, to a equivalence-class-UMI count matrix or a gene-UMI count matrix that can be loaded directly into python for analysis. We will use __bustools__ to do the following: 
 
 1. Correct the barcodes: fix the barcodes that are within one hamming distance of the barcodes in the whitelist using ```whitelist.txt```
@@ -227,5 +227,7 @@ kallisto_bustools_getting_started/
 ```
 
 And now we can load the data into python.
+
+## 5. Loading Matrices into Python
 
 Other useful tutorial notebooks on the __BUStools__ repository include the [10x_hgmm_100 notebook](https://github.com/BUStools/BUS_notebooks_python/blob/master/dataset-notebooks/10x_hgmm_100_python/10x_hgmm_100.ipynb) which details the analysis of a small, and therefore easily downloadable dataset. Links to other tutorial notebooks are posted on the [__BUStools__ python notebook website](https://github.com/BUStools/BUS_notebooks_python) and the [__BUStools__ R notebook website](https://github.com/BUStools/BUS_notebooks_R).
