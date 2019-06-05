@@ -14,7 +14,7 @@ Before we begin, make sure that you have
 
 __Note:__ for these instructions, command line arguments are everything after the `$`. So if you see `$ cd my_folder` then you would type `cd my_folder` on your terminal.
 
-## 0. Make sure that __kallisto__ and __bustools__ are installed correctly
+## 0. Make sure that ```kallisto``` and ```bustools``` are installed correctly
 Open up your terminal and run the following commands. This is the expected output. 
 
 ```
@@ -37,7 +37,7 @@ Where <CMD> can be one of:
 
 Running kallisto <CMD> without arguments prints usage information for <CMD>
 ```
-and 
+
 ```
 $ bustools
 Usage: bustools <CMD> [arguments] ..
@@ -85,16 +85,16 @@ Steps to download the barcode whitelist
 Steps to download the data 
 
 ### tl;dr/Summary
-Download the transcriptome reference and GTF file from ensembl, download the barcode whitelist, and download the data. Type `$ ls -1` and you should see
+Download the transcriptome reference and GTF file from ensembl, download the barcode whitelist, and download the data. You should have the following files
 
 ```
-$ ls -1
-whitelist.txt
-Mus_musculus.GRCm38.96.gtf.gz
-Mus_musculus.GRCm38.cdna.all.fa.gz
-SRR8599150_S1_L001_I1_001.fastq.gz
-SRR8599150_S1_L001_R1_001.fastq.gz
-SRR8599150_S1_L001_R2_001.fastq.gz
+kallisto_bustools_getting_started/
+├── Mus_musculus.GRCm38.96.gtf
+├── Mus_musculus.GRCm38.cdna.all.fa
+├── SRR8599150_S1_L001_I1_001.fastq.gz
+├── SRR8599150_S1_L001_R1_001.fastq.gz
+├── SRR8599150_S1_L001_R2_001.fastq.gz
+└── whitelist.txt
 ```
 
 ## 2. Build the index and gene map
@@ -126,19 +126,18 @@ $ kallisto index -i Mus_musculus.GRCm38.cdna.all.idx -k 31 Mus_musculus.GRCm38.c
 Insert steps here
 
 ### tl;dr/Summary
-Build the kallisto index from the reference fasta file, build the transcripts to genes map. Type `$ ls -1` and you should see
+Build the kallisto index from the reference fasta file, build the transcripts to genes map. You should have the following files
 
 ```
-$ ls -1
-
-whitelist.txt
-transcripts_to_genes.txt
-Mus_musculus.GRCm38.96.gtf.gz
-Mus_musculus.GRCm38.cdna.all.idx
-Mus_musculus.GRCm38.cdna.all.fa.gz
-SRR8599150_S1_L001_I1_001.fastq.gz
-SRR8599150_S1_L001_R1_001.fastq.gz
-SRR8599150_S1_L001_R2_001.fastq.gz
+kallisto_bustools_getting_started/
+├── Mus_musculus.GRCm38.96.gtf
+├── Mus_musculus.GRCm38.cdna.all.fa
+├── Mus_musculus.GRCm38.cdna.all.idx
+├── SRR8599150_S1_L001_I1_001.fastq.gz
+├── SRR8599150_S1_L001_R1_001.fastq.gz
+├── SRR8599150_S1_L001_R2_001.fastq.gz
+├── transcripts_to_genes.txt
+└── whitelist.txt
 ```
 
 ## 3. Pseudoalign the reads with ```kallisto bus```
