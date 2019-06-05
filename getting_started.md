@@ -225,13 +225,13 @@ Read in 3318598 number of busrecords
 ```
 
 ### (c) Count the UMIs in the busfile with ```bustools count``` and the ```transcripts_to_genes.txt```
-For organization first make the following two folders
+For organization first make the following two folders:
 ```
 $ mkdir eqclass
 $ mkdir genecount
 ```
 
-Then make the Equivalence Class Matrix (TCC), 
+then make the Equivalence Class Matrix (TCC), 
 ```
 $ bustools count -o eqcount/tcc -g ../transcripts_to_genes.txt -e matrix.ec -t transcripts.txt output.correct.sort.bus
 bad counts = 0, rescued  =38627, compacted = 65899
