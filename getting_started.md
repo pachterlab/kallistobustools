@@ -57,7 +57,7 @@ Running bustools <CMD> without arguments prints usage information for <CMD>
 If you don't see this, then you have either not installed the programs correctly, or you have not told your terminal to "point" to the program so that you can use it. See *insert here* for how to correct this.
 
 ## 1. Download a reference, whitelist, and dataset
-### Reference
+### (a) Reference
 The kallisto | bustools workflow uses standard ensembl transcriptome fasta file reference to build an index. This index makes it easy (and fast!) to pseudoalign RNA sequencing reads. Navigate to the ensembl website:
 ```http://uswest.ensembl.org/``` and select your species of interest. For getting started, select ```Mouse (Mus Musculus)```.
 
@@ -79,13 +79,14 @@ Then download the fasta reference using the link is one that you copied.
 
 Now download the GTF file. Do the exact same as above but instead of clicking ```Download Fasta``` click ```Download GTF``` under the __Gene annotation__ section. Right-click on ```Mus_musculus.GRCm38.96.gtf``` select ```Copy Link Address``` and download this file on your terminal.
 
-### Barcode whitelist
+### (b) Barcode whitelist
 Steps to download the barcode whitelist
 
-### Dataset
+### (c) Dataset
 Steps to download the data 
 
-__tl;dr/Summary:__ Download the transcriptome reference and GTF file from ensembl, download the barcode whitelist, and download the data. Type `$ ls -1` and you should see
+### (d) tl;dr/Summary
+Download the transcriptome reference and GTF file from ensembl, download the barcode whitelist, and download the data. Type `$ ls -1` and you should see
 
 ```
 $ ls -1
@@ -98,7 +99,7 @@ SRR8599150_S1_L001_R2_001.fastq.gz
 ```
 
 ## 2. Build the index and gene map
-### Index
+### (a) Index
 We first need to decompress (unzip) the reference fasta file we downloaded.
 
 ```
@@ -122,10 +123,11 @@ $ kallisto index -i Mus_musculus.GRCm38.cdna.all.idx -k 31 Mus_musculus.GRCm38.c
 [build] target de Bruijn graph has 734746 contigs and contains 100614952 k-mers
 
 ```
-### Gene map
+### (b) Gene map
 Insert steps here
 
-__tl;dr/Summary:__ Build the kallisto index from the reference fasta file, build the transcripts to genes map. Type `$ ls -1` and you should see
+### (c) tl;dr/Summary
+Build the kallisto index from the reference fasta file, build the transcripts to genes map. Type `$ ls -1` and you should see
 
 ```
 $ ls -1
@@ -143,6 +145,7 @@ SRR8599150_S1_L001_R2_001.fastq.gz
 ## 3. Pseudoalign the reads with ```kallisto bus```
 The 10x Chromium V2 chemistry was used to generate the data we downloaded above. The technology dictates the Barcode/UMI structure and the whitelist used for barcode error correction. We have to specify the technology in the __kallisto bus__ command and the whitelist in the __bustools__ command. Now we pseudo align the reads
 
+### (a) Run ```kallisto bus```
 ```
 $ kallisto bus -i Mus_musculus.GRCm38.cdna.all.idx -o bus_output/ -x 10xv2 -t 10 SRR8599150_S1_L001_R1_001.fastq.gz SRR8599150_S1_L001_R2_001.fastq.gz
 
@@ -156,6 +159,26 @@ $ kallisto bus -i Mus_musculus.GRCm38.cdna.all.idx -o bus_output/ -x 10xv2 -t 10
 [quant] processed 8,860,361 reads, 3,431,849 reads pseudoaligned
 ```
 __Note:__ For single cell sequencing you always need at least two fastq files and the order of the ```.fastq``` files is important, ```R1``` comes first then ```R2``` goes second. Please see the __Tutorials__ page if you want to know how to process more than one set of fastq files in one go.
+
+### (b) tl;dr/Summary
+Pseudoalign the single-cell RNA-seq reads using ```kallisto bus```. You should have the following files 
+
+```
+kallisto_bustools_getting_started/
+├── bus_output
+│   ├── matrix.ec
+│   ├── output.bus
+│   ├── run_info.json
+│   └── transcripts.txt
+├── Mus_musculus.GRCm38.96.gtf
+├── Mus_musculus.GRCm38.cdna.all.fa
+├── Mus_musculus.GRCm38.cdna.all.idx
+├── SRR8599150_S1_L001_I1_001.fastq.gz
+├── SRR8599150_S1_L001_R1_001.fastq.gz
+├── SRR8599150_S1_L001_R2_001.fastq.gz
+├── transcripts_to_genes.txt
+└── whitelist.txt
+```
 
 ## 4. Process the BUS file with ```bustools```
 ```bustools``` allows us to go from a __BUS__ file, to a equivalence-class-UMI count matrix or a gene-UMI count matrix that can be loaded directly into python for analysis. We will use __bustools__ to do the following: 
@@ -173,8 +196,8 @@ output.bus
 run_info.json
 transcripts.txt
 ```
-
-Second correct the barcodes using the `whitelist.txt`. This makes a corrected bus file ```output.correct.bus```
+### (a) ```bustools correct```
+Correct the barcodes using the `whitelist.txt`. This makes a corrected bus file ```output.correct.bus```
 ```
 $ bustools correct -w ../whitelist.txt -o output.correct.bus output.bus
 Found 737280 barcodes in the whitelist
@@ -184,13 +207,14 @@ In whitelist = 3281671
 Corrected = 36927
 Uncorrected = 113251
 ```
-
-Third sort the busfile. This makes a sorted bus file ```output.correct.sort.bus```
+### (b) ```bustools sort```
+Sort the busfile. This makes a sorted bus file ```output.correct.sort.bus```
 ```
 $ bustools sort -t 4 -o output.correct.sort.bus output.correct.bus
 Read in 3318598 number of busrecords
 ```
 
+### (c) ```bustools count```
 For organization first make the following two folders
 ```
 $ mkdir eqclass
@@ -210,8 +234,8 @@ bad counts = 0, rescued  =0, compacted = 0
 ```
 
 Now you have your matrices!
-
-After all of these steps, your files should be structured like this:
+### (d) tl;dr/Summary
+Use ```bustools``` to correct the barcodes in the busfile, sort the busfile, and count the busfile. After all of these steps, your files should be structured like this:
 ```
 kallisto_bustools_getting_started/
 ├── bus_output
