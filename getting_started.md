@@ -95,7 +95,7 @@ If you don't see this then you have either (a) not installed the programs correc
 &nbsp;
 
 ## 1. Download a reference, whitelist, and dataset
-### (a) Reference
+### 1a. Reference
 #### Transcriptome FASTA
 The kallisto | bustools workflow uses a standard ensembl transcriptome fasta file reference to build an index. This index makes it easy (and fast!) to pseudoalign RNA sequencing reads. 
 
@@ -119,10 +119,10 @@ $ wget ftp://ftp.ensembl.org/pub/release-96/fasta/mus_musculus/cdna/Mus_musculus
 #### Genome annotation GTF
 Next download the GTF file. Do the exact same as above but instead of clicking ```Download Fasta``` click ```Download GTF``` under the __Gene annotation__ section. Right-click on ```Mus_musculus.GRCm38.96.gtf``` select ```Copy Link Address``` and download this file on your terminal.
 
-### (b) Barcode whitelist
+### 1b. Barcode whitelist
 Steps to download the barcode whitelist
 
-### (c) Dataset
+### 1c. Dataset
 Steps to download the data 
 
 ### tl;dr/Summary
@@ -145,7 +145,7 @@ kallisto_bustools_getting_started/
 &nbsp;
 
 ## 2. Build the index and gene map
-### (a) Index
+### 2a. Index
 We first need to decompress (unzip) the reference fasta file we downloaded.
 
 ```
@@ -169,7 +169,7 @@ $ kallisto index -i Mus_musculus.GRCm38.cdna.all.idx -k 31 Mus_musculus.GRCm38.c
 [build] target de Bruijn graph has 734746 contigs and contains 100614952 k-mers
 ```
 
-### (b) Gene map
+### 2b. Gene map
 As above, decompress (unzip) the genome GTF file we downloaded.
 ```
 $ gunzip Mus_musculus.GRCm38.96.gtf.gz
@@ -203,7 +203,7 @@ kallisto_bustools_getting_started/
 ## 3. Pseudoalign the reads with ```kallisto bus```
 The 10x Chromium V2 technology was used to generate the data we downloaded above. The technology dictates the Barcode/UMI structure and the whitelist used for barcode error correction. We have to specify the technology in the ```kallisto bus``` command and the whitelist in the ```bustools``` command. 
 
-### (a) Run ```kallisto bus``` to pseudoalign the reads
+### 3a. Run ```kallisto bus``` to pseudoalign the reads
 This will create a BUS file which will be located in ```bus_output/```.
 ```
 $ kallisto bus -i Mus_musculus.GRCm38.cdna.all.idx -o bus_output/ -x 10xv2 -t 10 SRR8599150_S1_L001_R1_001.fastq.gz SRR8599150_S1_L001_R2_001.fastq.gz
@@ -261,7 +261,7 @@ output.bus
 run_info.json
 transcripts.txt
 ```
-### (a) Correct the barcodes in the busfile with ```bustools correct``` and the `whitelist.txt`
+### 4a. Correct the barcodes in the busfile with ```bustools correct``` and the `whitelist.txt`
 This makes a corrected bus file ```output.correct.bus```
 ```
 $ bustools correct -w ../whitelist.txt -o output.correct.bus output.bus
@@ -272,14 +272,14 @@ In whitelist = 3281671
 Corrected = 36927
 Uncorrected = 113251
 ```
-### (b) Sort the busfile with ```bustools sort```
+### 4b. Sort the busfile with ```bustools sort```
 This makes a sorted bus file ```output.correct.sort.bus```. This step __cannot__ be skipped. Sorting takes BUS records that are the same and "collapses them" into one BUS record with multiplicity. Note that this is different than UMI collapsing and serves the purpose of making the bus file smaller and making UMI counting more efficient.
 ```
 $ bustools sort -t 4 -o output.correct.sort.bus output.correct.bus
 Read in 3318598 number of busrecords
 ```
 
-### (c) Count the UMIs in the busfile with ```bustools count``` and the ```transcripts_to_genes.txt```
+### 4c. Count the UMIs in the busfile with ```bustools count``` and the ```transcripts_to_genes.txt```
 For organization first make the following two folders:
 ```
 $ mkdir eqclass
