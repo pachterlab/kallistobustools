@@ -6,7 +6,10 @@ group: navigation
 
 {% include JB/setup %}
 
-![image](https://user-images.githubusercontent.com/10369156/58990086-06c81500-879a-11e9-886b-7e4a690c5862.png){ width=50% }
+<p align="center">
+<img src="https://user-images.githubusercontent.com/10369156/58990086-06c81500-879a-11e9-886b-7e4a690c5862.png" width="70%" />
+</p>
+
 
 The analysis of single-cell RNA-Seq data involves a series of steps that include: (1) pre-processing of reads to associate them with their cells of origin, (2) possible collapsing of reads according to unique molecular identifiers (UMIs), (3) generation of feature counts from the reads to generate a feature-cell matrix and (4) analysis of the matrix to compare and contrast cells.
 
