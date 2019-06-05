@@ -218,7 +218,7 @@ Corrected = 36927
 Uncorrected = 113251
 ```
 ### (b) Sort the busfile with ```bustools sort```
-This makes a sorted bus file ```output.correct.sort.bus```
+This makes a sorted bus file ```output.correct.sort.bus```. This step __cannot__ be skipped. Sorting takes BUS records that are the same and "collapses them" into one BUS record with multiplicity. Note that this is different than UMI collapsing and serves the purpose of making the bus file smaller and making UMI counting more efficient.
 ```
 $ bustools sort -t 4 -o output.correct.sort.bus output.correct.bus
 Read in 3318598 number of busrecords
