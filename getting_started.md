@@ -12,7 +12,7 @@ Before we begin, make sure that you have
 1. downloaded and installed __kallisto__ from the [__kallisto__ installation page](https://pachterlab.github.io/kallisto/download), and have
 2. downloaded and installed __bustools__ from the [__bustools__ repository](https://github.com/BUStools/bustools).
 
-*Note: for this tutorial, command line arguments are everything after the '$' and user input is required anywhere you see <user_input>. So if you see `$ cd <my_folder>` then you would type `cd folder`.*
+__Note: for this tutorial, command line arguments are everything after the `$` and user input is required anywhere you see `<user_input>`. So if you see `$ cd <my_folder>` then you would type `cd folder`.__
 
 ## 0. Make sure that __kallisto__ and __bustools__ are installed correctly
 Open up your terminal and run the following commands. This is the expected output. 
@@ -65,7 +65,9 @@ Once on this page `http://uswest.ensembl.org/Mus_musculus/Info/Index` select `Do
 
 On your terminal navigate to a folder where you want to download your index and data.
 
-```$ cd <destination_folder/>```
+```
+$ cd <destination_folder/>
+```
 
 Then download your index where the link is one that you copied.
 
@@ -82,11 +84,16 @@ Steps to Download the data
 ### Build the index
 We first need to decompress (unzip) the reference fasta file we downloaded.
 
-```$ gunzip Mus_musculus.GRCm38.cdna.all.fa.gz```
+```
+$ gunzip Mus_musculus.GRCm38.cdna.all.fa.gz
+```
 
 Now we can build the kallisto index. I recommend naming the index `Mus_musculus.GRCm38.cdna.all.idx` and using a kmer size of `31`. Note that a kmer size of 31 is default, and always must be odd.
 
-```$ kallisto index Mus_musculus.GRCm38.cdna.all.fa -i <name_of_index.idx> -k <kmer_size> Mus_musculus.GRCm38.cdna.all.fa```
+```
+$ kallisto index Mus_musculus.GRCm38.cdna.all.fa -i <name_of_index.idx> -k <kmer_size> Mus_musculus.GRCm38.cdna.all.fa
+
+```
 
 ### Pseudoaligning reads
 
