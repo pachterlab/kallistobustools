@@ -97,8 +97,8 @@ SRR8599150_S1_L001_R1_001.fastq.gz
 SRR8599150_S1_L001_R2_001.fastq.gz
 ```
 
-## 2. Set up the index and gene map
-### Build the index
+## 2. Build the index and gene map
+### Index
 We first need to decompress (unzip) the reference fasta file we downloaded.
 
 ```
@@ -122,10 +122,10 @@ $ kallisto index -i Mus_musculus.GRCm38.cdna.all.idx -k 31 Mus_musculus.GRCm38.c
 [build] target de Bruijn graph has 734746 contigs and contains 100614952 k-mers
 
 ```
-### Build the `transcripts_to_genes.txt` map
+### Gene map
 Insert steps here
 
-## 3. Pseudoalig the reads with ```kallisto bus```
+## 3. Pseudoalign the reads with ```kallisto bus```
 The 10x Chromium V2 chemistry was used to generate the data we downloaded above. The technology dictates the Barcode/UMI structure and the whitelist used for barcode error correction. We have to specify the technology in the __kallisto bus__ command and the whitelist in the __bustools__ command. Now we pseudo align the reads
 
 ```
