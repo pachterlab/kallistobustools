@@ -9,9 +9,9 @@ group: navigation
 In this section we will walk through how to download a dataset, process it with ```kallisto``` and ```bustools```, and load umi count matrices into a jupyter notebook for downstream processing. 
 
 Before we begin, make sure that you have 
-1. downloaded and installed ```kallisto``` from the [__kallisto__ installation page](https://pachterlab.github.io/kallisto/download), and have
-2. downloaded and installed ```bustools``` from the [__bustools__ repository](https://github.com/BUStools/bustools)
-3. downloaded and installed ```t2g.py``` from the [__bustools__ repository](https://github.com/BUStools/bustools)
+1. downloaded and installed ```kallisto``` from the [__kallisto__ installation page](https://pachterlab.github.io/kallisto/download),
+2. downloaded and installed ```bustools``` from the [__bustools__ repository](https://github.com/BUStools/bustools), and have
+3. downloaded and installed ```t2g.py``` from the [__bustools__ repository](https://github.com/BUStools/bustools).
 
 ### These are all of the commands that we will run in this tutorial
 ```
