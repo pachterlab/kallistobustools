@@ -56,8 +56,8 @@ Running bustools <CMD> without arguments prints usage information for <CMD>
 
 If you don't see this, then you have either not installed the programs correctly, or you have not told your terminal to "point" to the program so that you can use it. See *insert here* for how to correct this.
 
-## 1. Download a references, whitelist, and dataset
-### References
+## 1. Download a reference, whitelist, and dataset
+### Reference
 The kallisto | bustools workflow uses standard ensembl transcriptome fasta file reference to build an index. This index makes it easy (and fast!) to pseudoalign RNA sequencing reads. Navigate to the ensembl website:
 ```http://uswest.ensembl.org/``` and select your species of interest. For getting started, select ```Mouse (Mus Musculus)```.
 
