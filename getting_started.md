@@ -12,6 +12,19 @@ Before we begin, make sure that you have
 1. downloaded and installed ```kallisto``` from the [__kallisto__ installation page](https://pachterlab.github.io/kallisto/download), and have
 2. downloaded and installed ```bustools``` from the [__bustools__ repository](https://github.com/BUStools/bustools).
 
+### These are all of the commands that we will run in this tutorial
+```
+$ mkdir kallisto_bustools_getting_started
+$ cd kallisto_bustools_getting_started
+$ wget ftp://ftp.ensembl.org/pub/release-96/fasta/mus_musculus/cdna/Mus_musculus.GRCm38.cdna.all.fa.gz
+$ gunzip Mus_musculus.GRCm38.cdna.all.fa.gz
+$ kallisto index -i Mus_musculus.GRCm38.cdna.all.idx -k 31 Mus_musculus.GRCm38.cdna.all.fa
+$ kallisto bus -i Mus_musculus.GRCm38.cdna.all.idx -o bus_output/ -x 10xv2 -t 10 SRR8599150_S1_L001_R1_001.fastq.gz SRR8599150_S1_L001_R2_001.fastq.gz
+$ bustools correct -w ../whitelist.txt -o output.correct.bus output.bus
+$ bustools sort -t 4 -o output.correct.sort.bus output.correct.bus
+$ bustools count -o eqcount/tcc -g ../transcripts_to_genes.txt -e matrix.ec -t transcripts.txt output.correct.sort.bus
+```
+
 __Note:__ for these instructions, command line arguments are everything after the `$`. So if you see `$ cd my_folder` then you would type `cd my_folder` on your terminal.  
 
 &nbsp;
@@ -85,6 +98,7 @@ Then download the fasta reference using the link is one that you copied.
 ```
 $ wget ftp://ftp.ensembl.org/pub/release-96/fasta/mus_musculus/cdna/Mus_musculus.GRCm38.cdna.all.fa.gz
 ```
+
 #### Genome annotation GTF
 Next download the GTF file. Do the exact same as above but instead of clicking ```Download Fasta``` click ```Download GTF``` under the __Gene annotation__ section. Right-click on ```Mus_musculus.GRCm38.96.gtf``` select ```Copy Link Address``` and download this file on your terminal.
 
@@ -137,8 +151,17 @@ $ kallisto index -i Mus_musculus.GRCm38.cdna.all.idx -k 31 Mus_musculus.GRCm38.c
 [build] creating equivalence classes ...  done
 [build] target de Bruijn graph has 734746 contigs and contains 100614952 k-mers
 ```
+
 ### (b) Gene map
-Insert steps here
+As above, decompress (unzip) the genome GTF file we downloaded.
+```
+$ gunzip Mus_musculus.GRCm38.96.gtf.gz
+```
+__CHANGE!!__
+Next use ```bustools genemap``` to make the gene map
+```
+$ bustools genemap -o transcripts_to_genes.txt Mus_musculus.GRCm38.96.gtf.gz
+```
 
 ### tl;dr/Summary
 Build the kallisto index from the reference fasta file, build the transcripts to genes map. You should have the following files
