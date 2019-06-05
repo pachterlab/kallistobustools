@@ -85,7 +85,7 @@ Steps to download the barcode whitelist
 ### (c) Dataset
 Steps to download the data 
 
-### (d) tl;dr/Summary
+### tl;dr/Summary
 Download the transcriptome reference and GTF file from ensembl, download the barcode whitelist, and download the data. Type `$ ls -1` and you should see
 
 ```
@@ -126,7 +126,7 @@ $ kallisto index -i Mus_musculus.GRCm38.cdna.all.idx -k 31 Mus_musculus.GRCm38.c
 ### (b) Gene map
 Insert steps here
 
-### (c) tl;dr/Summary
+### tl;dr/Summary
 Build the kallisto index from the reference fasta file, build the transcripts to genes map. Type `$ ls -1` and you should see
 
 ```
@@ -160,7 +160,7 @@ $ kallisto bus -i Mus_musculus.GRCm38.cdna.all.idx -o bus_output/ -x 10xv2 -t 10
 ```
 __Note:__ For single cell sequencing you always need at least two fastq files and the order of the ```.fastq``` files is important, ```R1``` comes first then ```R2``` goes second. Please see the __Tutorials__ page if you want to know how to process more than one set of fastq files in one go.
 
-### (b) tl;dr/Summary
+### tl;dr/Summary
 Pseudoalign the single-cell RNA-seq reads using ```kallisto bus```. You should have the following files 
 
 ```
@@ -234,7 +234,8 @@ bad counts = 0, rescued  =0, compacted = 0
 ```
 
 Now you have your matrices!
-### (d) tl;dr/Summary
+
+### tl;dr/Summary
 Use ```bustools``` to correct the barcodes in the busfile, sort the busfile, and count the busfile. After all of these steps, your files should be structured like this:
 ```
 kallisto_bustools_getting_started/
