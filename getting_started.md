@@ -10,7 +10,8 @@ In this section we will walk through how to download a dataset, process it with 
 
 Before we begin, make sure that you have 
 1. downloaded and installed ```kallisto``` from the [__kallisto__ installation page](https://pachterlab.github.io/kallisto/download), and have
-2. downloaded and installed ```bustools``` from the [__bustools__ repository](https://github.com/BUStools/bustools).
+2. downloaded and installed ```bustools``` from the [__bustools__ repository](https://github.com/BUStools/bustools)
+3. downloaded and installed ```t2g.py``` from the [__bustools__ repository](https://github.com/BUStools/bustools)
 
 ### These are all of the commands that we will run in this tutorial
 ```
@@ -19,6 +20,8 @@ $ cd kallisto_bustools_getting_started
 $ wget ftp://ftp.ensembl.org/pub/release-96/fasta/mus_musculus/cdna/Mus_musculus.GRCm38.cdna.all.fa.gz
 $ gunzip Mus_musculus.GRCm38.cdna.all.fa.gz
 $ kallisto index -i Mus_musculus.GRCm38.cdna.all.idx -k 31 Mus_musculus.GRCm38.cdna.all.fa
+$ gunzip Mus_musculus.GRCm38.96.gtf.gz
+$ t2g.py < Mus_musculus.GRCm38.96.gtf.gz > transcripts_to_genes.txt
 $ kallisto bus -i Mus_musculus.GRCm38.cdna.all.idx -o bus_output/ -x 10xv2 -t 10 SRR8599150_S1_L001_R1_001.fastq.gz SRR8599150_S1_L001_R2_001.fastq.gz
 $ bustools correct -w ../whitelist.txt -o output.correct.bus output.bus
 $ bustools sort -t 4 -o output.correct.sort.bus output.correct.bus
@@ -157,10 +160,9 @@ As above, decompress (unzip) the genome GTF file we downloaded.
 ```
 $ gunzip Mus_musculus.GRCm38.96.gtf.gz
 ```
-__CHANGE!!__
-Next use ```bustools genemap``` to make the gene map
+Next use ```t2g.py``` to make the gene map
 ```
-$ bustools genemap -o transcripts_to_genes.txt Mus_musculus.GRCm38.96.gtf.gz
+$ t2g.py < Mus_musculus.GRCm38.96.gtf.gz > transcripts_to_genes.txt
 ```
 
 ### tl;dr/Summary
