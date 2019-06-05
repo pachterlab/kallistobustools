@@ -95,6 +95,8 @@ kallisto_bustools_getting_started/
 ├── SRR8599150_S1_L001_R1_001.fastq.gz
 ├── SRR8599150_S1_L001_R2_001.fastq.gz
 └── whitelist.txt
+
+0 directories, 6 files
 ```
 
 ## 2. Build the index and gene map
@@ -138,6 +140,8 @@ kallisto_bustools_getting_started/
 ├── SRR8599150_S1_L001_R2_001.fastq.gz
 ├── transcripts_to_genes.txt
 └── whitelist.txt
+
+0 directories, 8 files
 ```
 
 ## 3. Pseudoalign the reads with ```kallisto bus```
@@ -176,6 +180,8 @@ kallisto_bustools_getting_started/
 ├── SRR8599150_S1_L001_R2_001.fastq.gz
 ├── transcripts_to_genes.txt
 └── whitelist.txt
+
+1 directories, 12 files
 ```
 
 ## 4. Process the BUS file with ```bustools```
