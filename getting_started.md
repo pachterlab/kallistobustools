@@ -12,8 +12,11 @@ Before we begin, make sure that you have
 1. downloaded and installed ```kallisto``` from the [__kallisto__ installation page](https://pachterlab.github.io/kallisto/download), and have
 2. downloaded and installed ```bustools``` from the [__bustools__ repository](https://github.com/BUStools/bustools).
 
-__Note:__ for these instructions, command line arguments are everything after the `$`. So if you see `$ cd my_folder` then you would type `cd my_folder` on your terminal.
+__Note:__ for these instructions, command line arguments are everything after the `$`. So if you see `$ cd my_folder` then you would type `cd my_folder` on your terminal.  
 
+&nbsp;
+&nbsp;
+&nbsp;
 
 ## 0. Make sure that ```kallisto``` and ```bustools``` are installed correctly
 Open up your terminal and run the following commands. These are the expected outputs:
@@ -55,8 +58,11 @@ capture         Capture reads mapping to a transcript capture list
 Running bustools <CMD> without arguments prints usage information for <CMD>
 ```
 
-If you don't see this then you have either (a) not installed the programs correctly, or (b) you have not told your terminal to "point" to the program so that you can use it. See *insert here* for how to correct these issues.
+If you don't see this then you have either (a) not installed the programs correctly, or (b) you have not told your terminal to "point" to the program so that you can use it. See *insert here* for how to correct these issues.  
 
+&nbsp;
+&nbsp;
+&nbsp;
 
 ## 1. Download a reference, whitelist, and dataset
 ### (a) Reference
@@ -101,8 +107,11 @@ kallisto_bustools_getting_started/
 └── whitelist.txt
 
 0 directories, 6 files
-```
+```  
 
+&nbsp;
+&nbsp;
+&nbsp;
 
 ## 2. Build the index and gene map
 ### (a) Index
@@ -146,8 +155,11 @@ kallisto_bustools_getting_started/
 └── whitelist.txt
 
 0 directories, 8 files
-```
+```  
 
+&nbsp;
+&nbsp;
+&nbsp;
 
 ## 3. Pseudoalign the reads with ```kallisto bus```
 The 10x Chromium V2 technology was used to generate the data we downloaded above. The technology dictates the Barcode/UMI structure and the whitelist used for barcode error correction. We have to specify the technology in the ```kallisto bus``` command and the whitelist in the ```bustools``` command. 
@@ -188,7 +200,11 @@ kallisto_bustools_getting_started/
 └── whitelist.txt
 
 1 directories, 12 files
-```
+```  
+
+&nbsp;
+&nbsp;
+&nbsp;
 
 ## 4. Process the BUS file with ```bustools```
 ```bustools``` allows us to go from a __BUS__ file, to a equivalence-class-UMI count matrix or a gene-UMI count matrix that can be loaded directly into python for analysis. We will use __bustools__ to do the following: 
@@ -276,7 +292,11 @@ kallisto_bustools_getting_started/
 3 directories, 20 files
 ```
 
-And now we can load the data into python.
+And now we can load the data into python.  
+
+&nbsp;
+&nbsp;
+&nbsp;
 
 ## 5. Load the matrices with python
 
