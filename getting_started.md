@@ -294,7 +294,7 @@ bad counts = 0, rescued  =38627, compacted = 65899
 
 or the Gene Count Matrix
 ```
-$ bustools count -o genecount/genes -g ../transcripts_to_genes.txt -e matrix.ec -t transcripts.txt --genecounts output.correct.sort.bus
+$ bustools count -o genecount/gene -g ../transcripts_to_genes.txt -e matrix.ec -t transcripts.txt --genecounts output.correct.sort.bus
 bad counts = 0, rescued  =0, compacted = 0
 ```
 
