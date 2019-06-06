@@ -125,7 +125,7 @@ capture         Capture reads mapping to a transcript capture list
 Running bustools <CMD> without arguments prints usage information for <CMD>
 ```
 
-If you don't see this then you have either (a) not installed the programs correctly, or (b) you have not told your terminal to "point" to the program so that you can use it. See *insert here* for how to correct these issues.  
+If you don't see this then you have either the programs are not installed the programs correctly, or you have not added the location of the binaries to your `$PATH` variable in your `~/.bashrc` file in order to execute from any location. See [here](http://pachterlab.github.io/kallisto/local_build.html) if you need to make a local build without root.  
 
 &nbsp;
 &nbsp;
