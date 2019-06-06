@@ -9,9 +9,8 @@ group: navigation
 In this section we will walk through how to download a dataset, process it with ```kallisto``` and ```bustools```, and load umi count matrices into a jupyter notebook for downstream processing. 
 
 Before we begin, make sure that you have 
-1. downloaded and installed ```kallisto``` from the [__kallisto__ installation page](https://pachterlab.github.io/kallisto/download),
-2. downloaded and installed ```bustools``` from the [__bustools__ repository](https://github.com/BUStools/bustools), and have
-3. downloaded and installed ```t2g.py``` from the [__bustools__ repository](https://github.com/BUStools/bustools).
+1. downloaded and installed ```kallisto``` from the [__kallisto__ installation page](https://pachterlab.github.io/kallisto/download), and have
+2. downloaded and installed ```bustools``` from the [__bustools__ repository](https://github.com/BUStools/bustools).
 
 ### These are all of the commands that we will run in this tutorial
 ```
@@ -35,11 +34,12 @@ $ bustools count -o genecount/gene -g ../transcripts_to_genes.txt -e matrix.ec -
 
 __Note:__ for these instructions, command line arguments are everything after the `$`. So if you see `$ cd my_folder` then you would type `cd my_folder` on your terminal.  
 
+
 &nbsp;
 &nbsp;
 &nbsp;
 
-## 0. Make sure that ```kallisto```, ```bustools```, and ```t2g.py``` are installed correctly
+## 0. Make sure that ```kallisto``` and ```bustools``` are installed correctly
 Open up your terminal and run the following commands. These are the expected outputs:
 
 ```
@@ -79,27 +79,13 @@ capture         Capture reads mapping to a transcript capture list
 Running bustools <CMD> without arguments prints usage information for <CMD>
 ```
 
-```
-$ t2g.py -h
-usage: t2g.py [-h] [--use_version] [--skip_gene_names]
-
-Creates transcript to gene info from GTF files reads from standard input and
-writes to standard output
-
-optional arguments:
-  -h, --help            show this help message and exit
-  --use_version, -v     Use version numbers in transcript and gene ids
-  --skip_gene_names, -s
-                        Do not output gene names
-```
-
 If you don't see this then you have either (a) not installed the programs correctly, or (b) you have not told your terminal to "point" to the program so that you can use it. See *insert here* for how to correct these issues.  
 
 &nbsp;
 &nbsp;
 &nbsp;
 
-## 1. Download a reference, whitelist, and dataset
+## 1. Download a reference, whitelist, gene map utility, and dataset
 ### 1a. Reference
 #### Transcriptome FASTA
 The kallisto | bustools workflow uses a standard ensembl transcriptome fasta file reference to build an index. This index makes it easy (and fast!) to pseudoalign RNA sequencing reads. 
@@ -108,7 +94,7 @@ Navigate to the ensembl website ```http://uswest.ensembl.org/``` and select your
 
 Once on ```http://uswest.ensembl.org/Mus_musculus/Info/Index``` select `Download Fasta` under the __Gene annotation__ section. This will take you to ```ftp://ftp.ensembl.org/pub/release-96/fasta/mus_musculus/```. Select `cdna`. Right-click on ```Mus_musculus.GRCm38.cdna.all.fa.gz``` and select ```Copy Link Address```.
 
-On your terminal make a folder where you want to download your index and data.
+On your terminal make a folder where you want to download your index and data. 
 
 ```
 $ mkdir kallisto_bustools_getting_started
@@ -129,10 +115,31 @@ $ wget ftp://ftp.ensembl.org/pub/release-96/gtf/mus_musculus/Mus_musculus.GRCm38
 ```
 
 ### 1b. Barcode whitelist
-Steps to download the barcode whitelist
+Navigate to https://github.com/pachterlab/kallistobuspaper_2019/releases/tag/getting_started right-click on ```10xv2_whitelist.txt``` select```Copy Link Address``` and download this file on your terminal.
 
-### 1c. Dataset
-Steps to download the data 
+```
+$ wget https://github.com/pachterlab/kallistobuspaper_2019/releases/download/getting_started/10xv2_whitelist.txt
+```
+
+### 1c. Gene map utility
+Navigate to https://github.com/pachterlab/kallistobuspaper_2019/releases/tag/getting_started right-click on ```t2g.py``` select```Copy Link Address``` and download this file on your terminal.
+
+```
+$ wget https://github.com/pachterlab/kallistobuspaper_2019/releases/download/getting_started/t2g.py
+```
+
+and make the script executable
+```
+$ chmod +x t2g.py
+```
+
+### 1d. Dataset
+Navigate to https://github.com/pachterlab/kallistobuspaper_2019/releases/tag/getting_started right-click on ```SRR8599150_S1_L001_R1_001.fastq.gz``` select```Copy Link Address``` and download this file on your terminal, and do the same for ```SRR8599150_S1_L001_R2_001.fastq.gz```.
+
+```
+$ wget https://github.com/pachterlab/kallistobuspaper_2019/releases/download/getting_started/SRR8599150_S1_L001_R1_001.fastq.gz
+$ wget https://github.com/pachterlab/kallistobuspaper_2019/releases/download/getting_started/SRR8599150_S1_L001_R2_001.fastq.gz
+```
 
 ### tl;dr/Summary
 Download the transcriptome reference and GTF file from ensembl, download the barcode whitelist, and download the data. You should have the following files
@@ -155,6 +162,21 @@ kallisto_bustools_getting_started/
 
 ## 2. Build the index and gene map
 ### 2a. Index
+The index only ever needs to be built once. You have the option of downloading the index or building it yourself. 
+
+#### Downloading the index (do this then skip to Step 2b.).
+If you wish to download the index then navigate to https://github.com/pachterlab/kallistobuspaper_2019/releases/tag/getting_started right-click on ```Mus_musculus.GRCm38.cdna.all.idx.gz``` select```Copy Link Address``` and download this file on your terminal.
+
+```
+$ wget https://github.com/pachterlab/kallistobuspaper_2019/releases/download/getting_started/Mus_musculus.GRCm38.cdna.all.idx.gz
+```
+and the decompress (unzip) the index we just downloaded:
+
+```
+$ gunzip Mus_musculus.GRCm38.cdna.all.idx.gz
+```
+
+#### Building the index yourself
 We first need to decompress (unzip) the reference fasta file we downloaded.
 
 ```
@@ -185,7 +207,7 @@ $ gunzip Mus_musculus.GRCm38.96.gtf.gz
 ```
 Next use ```t2g.py``` to make the gene map
 ```
-$ t2g.py --use_version < Mus_musculus.GRCm38.96.gtf > transcripts_to_genes.txt
+$ ./t2g.py --use_version < Mus_musculus.GRCm38.96.gtf > transcripts_to_genes.txt
 ```
 
 ### tl;dr/Summary
