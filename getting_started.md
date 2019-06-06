@@ -14,8 +14,8 @@ In this section we will walk through how to:
 
 Before we begin, make sure that you have downloaded and installed ```kallisto``` from the [__kallisto__ installation page](https://pachterlab.github.io/kallisto/download), and have downloaded and installed ```bustools``` from the [__bustools__ repository](https://github.com/BUStools/bustools).
 
-## Here are all of the commands used in this tutorial. 
-They are explained in detail in the next sections.
+## Below is a quick reference for all the commands used in this tutorial. 
+Each step is explained in detail in the next sections.
 
 ```
 mkdir kallisto_bustools_getting_started
@@ -87,7 +87,7 @@ __Note:__ for these instructions, command line arguments are everything after th
 &nbsp;
 &nbsp;
 
-## 0. Make sure that ```kallisto``` and ```bustools``` are installed correctly
+## 0. Make sure that `kallisto` and `bustools` are installed correctly
 Open up your terminal and run the following commands. These are the expected outputs:
 
 ```
