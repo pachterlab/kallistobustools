@@ -16,19 +16,38 @@ Before we begin, make sure that you have
 ```
 $ mkdir kallisto_bustools_getting_started
 $ cd kallisto_bustools_getting_started
+
+Download files
 $ wget ftp://ftp.ensembl.org/pub/release-96/fasta/mus_musculus/cdna/Mus_musculus.GRCm38.cdna.all.fa.gz
+$ wget ftp://ftp.ensembl.org/pub/release-96/gtf/mus_musculus/Mus_musculus.GRCm38.96.gtf.gz
+$ wget https://github.com/pachterlab/kallistobuspaper_2019/releases/download/getting_started/10xv2_whitelist.txt
+$ wget https://github.com/pachterlab/kallistobuspaper_2019/releases/download/getting_started/t2g.py
+$ chmod +x t2g.py
+$ wget https://github.com/pachterlab/kallistobuspaper_2019/releases/download/getting_started/SRR8599150_S1_L001_R1_001.fastq.gz
+$ wget https://github.com/pachterlab/kallistobuspaper_2019/releases/download/getting_started/SRR8599150_S1_L001_R2_001.fastq.gz
+
+Download index (optional skip Build index) 
+$ wget https://github.com/pachterlab/kallistobuspaper_2019/releases/download/getting_started/Mus_musculus.GRCm38.cdna.all.idx.gz
+$ gunzip Mus_musculus.GRCm38.cdna.all.idx.gz
+
+Build index
 $ gunzip Mus_musculus.GRCm38.cdna.all.fa.gz
 $ kallisto index -i Mus_musculus.GRCm38.cdna.all.idx -k 31 Mus_musculus.GRCm38.cdna.all.fa
-$ wget ftp://ftp.ensembl.org/pub/release-96/gtf/mus_musculus/Mus_musculus.GRCm38.96.gtf.gz
+
+Make Gene map
 $ gunzip Mus_musculus.GRCm38.96.gtf.gz
-$ t2g.py --use_version < Mus_musculus.GRCm38.96.gtf > transcripts_to_genes.txt
+$ ./t2g.py --use_version < Mus_musculus.GRCm38.96.gtf > transcripts_to_genes.txt
+
+Pre-process with kallisto
 $ kallisto bus -i Mus_musculus.GRCm38.cdna.all.idx -o bus_output/ -x 10xv2 -t 10 SRR8599150_S1_L001_R1_001.fastq.gz SRR8599150_S1_L001_R2_001.fastq.gz
+
+Pre-process with bustools
 $ cd bus_output/
 $ bustools correct -w ../10xv2_whitelist.txt -o output.correct.bus output.bus
 $ bustools sort -t 4 -o output.correct.sort.bus output.correct.bus
-$ mkdir eqclass
-$ mkdir genecount
+(Equivalence Class count matrix)
 $ bustools count -o eqcount/tcc -g ../transcripts_to_genes.txt -e matrix.ec -t transcripts.txt output.correct.sort.bus
+(Gene count Matrix)
 $ bustools count -o genecount/gene -g ../transcripts_to_genes.txt -e matrix.ec -t transcripts.txt --genecounts output.correct.sort.bus
 ```
 
@@ -151,7 +170,8 @@ kallisto_bustools_getting_started/
 ├── SRR8599150_S1_L001_I1_001.fastq.gz
 ├── SRR8599150_S1_L001_R1_001.fastq.gz
 ├── SRR8599150_S1_L001_R2_001.fastq.gz
-└── whitelist.txt
+├── t2g.py
+└── 10xv2_whitelist.txt
 
 0 directories, 6 files
 ```  
@@ -221,8 +241,9 @@ kallisto_bustools_getting_started/
 ├── SRR8599150_S1_L001_I1_001.fastq.gz
 ├── SRR8599150_S1_L001_R1_001.fastq.gz
 ├── SRR8599150_S1_L001_R2_001.fastq.gz
+├── t2g.py
 ├── transcripts_to_genes.txt
-└── whitelist.txt
+└── 10xv2_whitelist.txt
 
 0 directories, 8 files
 ```  
@@ -266,8 +287,9 @@ kallisto_bustools_getting_started/
 ├── SRR8599150_S1_L001_I1_001.fastq.gz
 ├── SRR8599150_S1_L001_R1_001.fastq.gz
 ├── SRR8599150_S1_L001_R2_001.fastq.gz
+├── t2g.txt
 ├── transcripts_to_genes.txt
-└── whitelist.txt
+└── 10xv2_whitelist.txt
 
 1 directories, 12 files
 ```  
@@ -295,7 +317,7 @@ transcripts.txt
 ### 4a. Correct the barcodes in the busfile with ```bustools correct``` and the `whitelist.txt`
 This makes a corrected bus file ```output.correct.bus```
 ```
-$ bustools correct -w ../whitelist.txt -o output.correct.bus output.bus
+$ bustools correct -w ../10xv2_whitelist.txt -o output.correct.bus output.bus
 Found 737280 barcodes in the whitelist
 Number of hamming dist 1 barcodes = 20550336
 Processed 3431849 bus records
@@ -356,8 +378,9 @@ kallisto_bustools_getting_started/
 ├── SRR8599150_S1_L001_I1_001.fastq.gz
 ├── SRR8599150_S1_L001_R1_001.fastq.gz
 ├── SRR8599150_S1_L001_R2_001.fastq.gz
+├── t2g.py
 ├── transcripts_to_genes.txt
-└── whitelist.txt
+└── 10xv2_whitelist.txt
 
 3 directories, 20 files
 ```
