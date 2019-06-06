@@ -45,6 +45,8 @@ Pre-process with bustools
 $ cd bus_output/
 $ bustools correct -w ../10xv2_whitelist.txt -o output.correct.bus output.bus
 $ bustools sort -t 4 -o output.correct.sort.bus output.correct.bus
+$ mkdir eqclass
+$ mkdir genecount
 (Equivalence Class count matrix)
 $ bustools count -o eqcount/tcc -g ../transcripts_to_genes.txt -e matrix.ec -t transcripts.txt output.correct.sort.bus
 (Gene count Matrix)
