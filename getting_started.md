@@ -184,6 +184,8 @@ $ chmod +x t2g.py
 ### 1d. Dataset
 Navigate to `https://github.com/pachterlab/kallistobuspaper_2019/releases/tag/getting_started`, right-click on ```SRR8599150_S1_L001_R1_001.fastq.gz``` select```Copy Link Address``` and download this file on your terminal, and do the same for ```SRR8599150_S1_L001_R2_001.fastq.gz```.
 
+This is a single cell experiment on mouse retinal cells. You can find the original data (GSM3612831) deposited here: https://www.ncbi.nlm.nih.gov/sra/?term=GSM3612831
+
 ```
 $ wget https://github.com/pachterlab/kallistobuspaper_2019/releases/download/getting_started/SRR8599150_S1_L001_R1_001.fastq.gz
 $ wget https://github.com/pachterlab/kallistobuspaper_2019/releases/download/getting_started/SRR8599150_S1_L001_R2_001.fastq.gz
@@ -220,7 +222,7 @@ If you wish to download the index then navigate to https://github.com/pachterlab
 ```
 $ wget https://github.com/pachterlab/kallistobuspaper_2019/releases/download/getting_started/Mus_musculus.GRCm38.cdna.all.idx.gz
 ```
-and the decompress (unzip) the index we just downloaded:
+And the decompress (unzip) the index we just downloaded:
 
 ```
 $ gunzip Mus_musculus.GRCm38.cdna.all.idx.gz
@@ -233,7 +235,7 @@ We first need to decompress (unzip) the reference fasta file we downloaded.
 $ gunzip Mus_musculus.GRCm38.cdna.all.fa.gz
 ```
 
-Now we can build the kallisto index. I recommend naming the index ```Mus_musculus.GRCm38.cdna.all.idx``` and using a kmer size of `31`. Note that a kmer size must always be odd and defaults to 31.
+Now we can build the kallisto index. We recommend naming the index `Mus_musculus.GRCm38.cdna.all.idx` and using a kmer size of `31`. Note that a kmer size must always be odd and defaults to `31`.
 
 ```
 $ kallisto index -i Mus_musculus.GRCm38.cdna.all.idx -k 31 Mus_musculus.GRCm38.cdna.all.fa
@@ -255,13 +257,13 @@ As above, decompress (unzip) the genome GTF file we downloaded.
 ```
 $ gunzip Mus_musculus.GRCm38.96.gtf.gz
 ```
-Next use ```t2g.py``` to make the gene map
+Next make transcript to gene map using `t2g.py` script to parse the mouse GTF file
 ```
 $ ./t2g.py --use_version < Mus_musculus.GRCm38.96.gtf > transcripts_to_genes.txt
 ```
 
-### tl;dr/Summary
-Build the kallisto index from the reference fasta file, build the transcripts to genes map. You should have the following files
+### 2c. Results
+After building the kallisto index from the reference fasta file and parting the GTF files to create the transcripts to genes map you should have the following files:
 
 ```
 kallisto_bustools_getting_started/
@@ -282,8 +284,8 @@ kallisto_bustools_getting_started/
 &nbsp;
 &nbsp;
 
-## 3. Pseudoalign the reads with ```kallisto bus```
-The 10x Chromium V2 technology was used to generate the data we downloaded above. The technology dictates the Barcode/UMI structure and the whitelist used for barcode error correction. We have to specify the technology in the ```kallisto bus``` command and the whitelist in the ```bustools``` command. 
+## 3. Pseudoalign the reads with `kallisto bus`
+The 10x Chromium v2 technology was used to generate the data we downloaded above. The technology dictates the Barcode/UMI structure and the whitelist used for barcode error correction. We have to specify the technology in the ```kallisto bus``` command and the whitelist in the ```bustools``` command. 
 
 ### 3a. Run ```kallisto bus``` to pseudoalign the reads
 This will create a BUS file which will be located in ```bus_output/```.
