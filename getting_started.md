@@ -287,7 +287,7 @@ kallisto_bustools_getting_started/
 ## 3. Pseudoalign the reads with `kallisto bus`
 The 10x Chromium v2 technology was used to generate the data we downloaded above. The technology dictates the Barcode/UMI structure and the whitelist used for barcode error correction. We have to specify the technology in the ```kallisto bus``` command and the whitelist in the ```bustools``` command. 
 
-### 3a. Run ```kallisto bus``` to pseudoalign the reads
+### 3a. Run `kallisto bus` to pseudoalign the reads
 This will create a BUS file which will be located in ```bus_output/```.
 ```
 $ kallisto bus -i Mus_musculus.GRCm38.cdna.all.idx -o bus_output/ -x 10xv2 -t 10 SRR8599150_S1_L001_R1_001.fastq.gz SRR8599150_S1_L001_R2_001.fastq.gz
@@ -301,9 +301,9 @@ $ kallisto bus -i Mus_musculus.GRCm38.cdna.all.idx -o bus_output/ -x 10xv2 -t 10
 [quant] finding pseudoalignments for the reads ... done
 [quant] processed 8,860,361 reads, 3,431,849 reads pseudoaligned
 ```
-__Note:__ You always need an even number of fastq files and the order of the ```.fastq``` files is important, ```R1``` comes first then ```R2``` goes second. Please see the __Tutorials__ page if you want to know how to process more than one set of fastq files in one go.
+__Note:__ For running `kallisto bus` you need an even number of fastq files and the order of the ```.fastq``` files is important, ```R1``` comes first then ```R2``` goes second. Please see the __Tutorials__ page if you want to know how to process more than one set of fastq files in one go.
 
-### tl;dr/Summary
+### 3b. Results
 Pseudoalign the single-cell RNA-seq reads using ```kallisto bus```. You should have the following files 
 
 ```
@@ -330,12 +330,12 @@ kallisto_bustools_getting_started/
 &nbsp;
 &nbsp;
 
-## 4. Process the BUS file with ```bustools```
+## 4. Process the BUS file with `bustools`
 ```bustools``` allows us to go from a __BUS__ file, to a equivalence-class-UMI count matrix or a gene-UMI count matrix that can be loaded directly into python for analysis. We will use __bustools__ to do the following: 
 
-1. correct the barcodes: fix the barcodes that are within one hamming distance of the barcodes in the whitelist using ```whitelist.txt```,
-2. sort the busfile: organize the busfile by barcode, umi, set, and multiplicity, and
-3. count the busfile: generate the umi count matrix using ```transcripts_to_genes.txt```.
+1. Correct the barcodes using `bustools correct`: fix the barcodes that are within one hamming distance of the barcodes in the whitelist using ```whitelist.txt```,
+2. Sort the busfile using `bustools sort`: organize the busfile by barcode, UMI, set, and multiplicity, and
+3. Count records in the BUS with `bustools count`: generate the UMI count matrix using ```transcripts_to_genes.txt```.
 
 First navigate to your bus output directory. Your folder should contain the following items:
 ```
@@ -346,7 +346,7 @@ output.bus
 run_info.json
 transcripts.txt
 ```
-### 4a. Correct the barcodes in the busfile with ```bustools correct``` and the `whitelist.txt`
+### 4a. Correct the barcodes in the busfile with `bustools correct` and the `whitelist.txt`
 This makes a corrected bus file ```output.correct.bus```
 ```
 $ bustools correct -w ../10xv2_whitelist.txt -o output.correct.bus output.bus
@@ -357,36 +357,35 @@ In whitelist = 3281671
 Corrected = 36927
 Uncorrected = 113251
 ```
-### 4b. Sort the busfile with ```bustools sort```
-This makes a sorted bus file ```output.correct.sort.bus```. This step __cannot__ be skipped. Sorting takes BUS records that are the same and "collapses them" into one BUS record with multiplicity. Note that this is different than UMI collapsing and serves the purpose of making the bus file smaller and making UMI counting more efficient.
+### 4b. Sort the busfile with `bustools sort`
+This makes a sorted bus file ```output.correct.sort.bus```. This step __cannot__ be skipped. Sorting takes BUS records that are the same and rearranges them into one BUS record with multiplicity column indicating how many times those records were seen. Note that this is different than UMI collapsing and serves the purpose of making the bus file smaller and making UMI counting more efficient.
 ```
 $ bustools sort -t 4 -o output.correct.sort.bus output.correct.bus
 Read in 3318598 number of busrecords
 ```
 
-### 4c. Count the UMIs in the busfile with ```bustools count``` and the ```transcripts_to_genes.txt```
+### 4c. Count the UMIs in the busfile with `bustools count` and the `transcripts_to_genes.txt`
 For organization first make the following two folders:
 ```
 $ mkdir eqclass
 $ mkdir genecount
 ```
 
-then make the Equivalence Class Matrix (TCC), 
+To make the Transcript Compatibility Count (TCC) Matrix we want the default output of `bustools count`
 ```
 $ bustools count -o eqcount/tcc -g ../transcripts_to_genes.txt -e matrix.ec -t transcripts.txt output.correct.sort.bus
 bad counts = 0, rescued  =38627, compacted = 65899
 ```
 
-or the Gene Count Matrix
+To make the Gene Count Matrix we need to give it the `--genecounts ` option
 ```
 $ bustools count -o genecount/gene -g ../transcripts_to_genes.txt -e matrix.ec -t transcripts.txt --genecounts output.correct.sort.bus
 bad counts = 0, rescued  =0, compacted = 0
 ```
+Bustools will output the matrices in `.mtx` format, and gene names in a file ending as `.genes.txt` and barcodes in a file ending with `.barcodes.txt`. These can then be loaded into python or R for further analysis.
 
-Now you have your matrices!
-
-### tl;dr/Summary
-Use ```bustools``` to correct the barcodes in the busfile, sort the busfile, and count the busfile. After all of these steps, your files should be structured like this:
+### Results
+After using ```bustools``` to correct, sort and count the entries in the BUS file, your files should be structured like this:
 ```
 kallisto_bustools_getting_started/
 ├── bus_output
@@ -415,9 +414,7 @@ kallisto_bustools_getting_started/
 └── 10xv2_whitelist.txt
 
 3 directories, 20 files
-```
-
-And now we can load the data into python.  
+```  
 
 &nbsp;
 &nbsp;
