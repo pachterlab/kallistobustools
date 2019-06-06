@@ -75,7 +75,7 @@ bustools count -o genecount/gene -g ../transcripts_to_genes.txt -e matrix.ec -t 
 
 Produce the transcript compatibility count matrix
 ```
-bustools count -o eqcount/tcc -g ../transcripts_to_genes.txt -e matrix.ec -t transcripts.txt output.correct.sort.bus
+bustools count -o eqclass/tcc -g ../transcripts_to_genes.txt -e matrix.ec -t transcripts.txt output.correct.sort.bus
 ```
 
 
@@ -367,7 +367,7 @@ Read in 3318598 number of busrecords
 ### 4c. Count the UMIs in the busfile with `bustools count` and the `transcripts_to_genes.txt`
 For organization first make the following two folders:
 ```
-$ mkdir eqclass
+$ mkdir eqcount
 $ mkdir genecount
 ```
 
