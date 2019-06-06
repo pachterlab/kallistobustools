@@ -182,15 +182,15 @@ $ chmod +x t2g.py
 ```
 
 ### 1d. Dataset
-Navigate to https://github.com/pachterlab/kallistobuspaper_2019/releases/tag/getting_started right-click on ```SRR8599150_S1_L001_R1_001.fastq.gz``` select```Copy Link Address``` and download this file on your terminal, and do the same for ```SRR8599150_S1_L001_R2_001.fastq.gz```.
+Navigate to `https://github.com/pachterlab/kallistobuspaper_2019/releases/tag/getting_started`, right-click on ```SRR8599150_S1_L001_R1_001.fastq.gz``` select```Copy Link Address``` and download this file on your terminal, and do the same for ```SRR8599150_S1_L001_R2_001.fastq.gz```.
 
 ```
 $ wget https://github.com/pachterlab/kallistobuspaper_2019/releases/download/getting_started/SRR8599150_S1_L001_R1_001.fastq.gz
 $ wget https://github.com/pachterlab/kallistobuspaper_2019/releases/download/getting_started/SRR8599150_S1_L001_R2_001.fastq.gz
 ```
 
-### tl;dr/Summary
-Download the transcriptome reference and GTF file from ensembl, download the barcode whitelist, and download the data. You should have the following files
+### 1e. Results
+After downloading the transcriptome reference and GTF file from ensembl, the barcode whitelist and the data you should have the following file structure:
 
 ```
 kallisto_bustools_getting_started/
@@ -211,9 +211,10 @@ kallisto_bustools_getting_started/
 
 ## 2. Build the index and gene map
 ### 2a. Index
-The index only ever needs to be built once. You have the option of downloading the index or building it yourself. 
+The index only needs to be built once for each species transcriptome for a given k-mer size (the default k-mer 31 is suggested). You have the option of downloading the index or building it yourself. 
+Prebuilt indices constructed from [Ensembl reference transcriptomes](https://uswest.ensembl.org/info/data/ftp/index.html) can be download from the [kallisto transcriptome indices](https://github.com/pachterlab/kallisto-transcriptome-indices/releases) site. Building indices with __kallisto index__ will often be faster in practice than downloading index files. For example, the __kallisto__ index for the mouse transcriptome takes between 5--10 minutes to build on a standard desktop or laptop. Transcriptome fasta files for model organisms can be downloaded from the [Ensembl database](https://www.ensembl.org/info/data/ftp/index.html). We recommend using cDNA fasta, specifically the *.cdna.all.fa.gz files. __kallisto__ can build indices directly from gzipped files.
 
-#### Downloading the index (do this then skip to Step 2b.).
+#### Downloading the index ( if downloading the index then skip to Step 2b.).
 If you wish to download the index then navigate to https://github.com/pachterlab/kallistobuspaper_2019/releases/tag/getting_started right-click on ```Mus_musculus.GRCm38.cdna.all.idx.gz``` select```Copy Link Address``` and download this file on your terminal.
 
 ```
