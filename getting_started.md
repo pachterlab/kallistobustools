@@ -6,52 +6,77 @@ group: navigation
 
 {% include JB/setup %}
 
-In this section we will walk through how to download a dataset, process it with ```kallisto``` and ```bustools```, and load umi count matrices into a jupyter notebook for downstream processing. 
+In this section we will walk through how to:
 
-Before we begin, make sure that you have 
-1. downloaded and installed ```kallisto``` from the [__kallisto__ installation page](https://pachterlab.github.io/kallisto/download), and have
-2. downloaded and installed ```bustools``` from the [__bustools__ repository](https://github.com/BUStools/bustools).
+1. Download a single cell RNA-seq dataset
+2. Process it with ```kallisto``` and ```bustools```
+3. Load umi count matrices into a jupyter notebook for downstream analysis. 
+
+Before we begin, make sure that you have downloaded and installed ```kallisto``` from the [__kallisto__ installation page](https://pachterlab.github.io/kallisto/download), and have downloaded and installed ```bustools``` from the [__bustools__ repository](https://github.com/BUStools/bustools).
 
 ### These are all of the commands that we will run in this tutorial
 ```
-$ mkdir kallisto_bustools_getting_started
-$ cd kallisto_bustools_getting_started
-
-Download files
-$ wget ftp://ftp.ensembl.org/pub/release-96/fasta/mus_musculus/cdna/Mus_musculus.GRCm38.cdna.all.fa.gz
-$ wget ftp://ftp.ensembl.org/pub/release-96/gtf/mus_musculus/Mus_musculus.GRCm38.96.gtf.gz
-$ wget https://github.com/pachterlab/kallistobuspaper_2019/releases/download/getting_started/10xv2_whitelist.txt
-$ wget https://github.com/pachterlab/kallistobuspaper_2019/releases/download/getting_started/t2g.py
-$ chmod +x t2g.py
-$ wget https://github.com/pachterlab/kallistobuspaper_2019/releases/download/getting_started/SRR8599150_S1_L001_R1_001.fastq.gz
-$ wget https://github.com/pachterlab/kallistobuspaper_2019/releases/download/getting_started/SRR8599150_S1_L001_R2_001.fastq.gz
-
-Download index (optional skip Build index) 
-$ wget https://github.com/pachterlab/kallistobuspaper_2019/releases/download/getting_started/Mus_musculus.GRCm38.cdna.all.idx.gz
-$ gunzip Mus_musculus.GRCm38.cdna.all.idx.gz
-
-Build index
-$ gunzip Mus_musculus.GRCm38.cdna.all.fa.gz
-$ kallisto index -i Mus_musculus.GRCm38.cdna.all.idx -k 31 Mus_musculus.GRCm38.cdna.all.fa
-
-Make Gene map
-$ gunzip Mus_musculus.GRCm38.96.gtf.gz
-$ ./t2g.py --use_version < Mus_musculus.GRCm38.96.gtf > transcripts_to_genes.txt
-
-Pre-process with kallisto
-$ kallisto bus -i Mus_musculus.GRCm38.cdna.all.idx -o bus_output/ -x 10xv2 -t 10 SRR8599150_S1_L001_R1_001.fastq.gz SRR8599150_S1_L001_R2_001.fastq.gz
-
-Pre-process with bustools
-$ cd bus_output/
-$ bustools correct -w ../10xv2_whitelist.txt -o output.correct.bus output.bus
-$ bustools sort -t 4 -o output.correct.sort.bus output.correct.bus
-$ mkdir eqclass
-$ mkdir genecount
-(Equivalence Class count matrix)
-$ bustools count -o eqcount/tcc -g ../transcripts_to_genes.txt -e matrix.ec -t transcripts.txt output.correct.sort.bus
-(Gene count Matrix)
-$ bustools count -o genecount/gene -g ../transcripts_to_genes.txt -e matrix.ec -t transcripts.txt --genecounts output.correct.sort.bus
+mkdir kallisto_bustools_getting_started
+cd kallisto_bustools_getting_started
 ```
+
+Download files. These are:
+
+- Mouse transcriptome `Mus_musculus.GRCm38.cdna.all.fa.gz`
+- Mouse GTF file `Mus_musculus.GRCm38.96.gtf.gz`
+- 10x Chromium v2 chemistry barcode whitelist `10xv2_whitelist.txt`
+- Custom python script to make transcript to gene map `t2g.py` 
+- Read 1 fastq file `SRR8599150_S1_L001_R1_001.fastq.gz`
+- Read 2 fastq file `SRR8599150_S1_L001_R2_001.fastq.gz`
+
+```
+wget ftp://ftp.ensembl.org/pub/release-96/fasta/mus_musculus/cdna/Mus_musculus.GRCm38.cdna.all.fa.gz
+wget ftp://ftp.ensembl.org/pub/release-96/gtf/mus_musculus/Mus_musculus.GRCm38.96.gtf.gz
+wget https://github.com/pachterlab/kallistobuspaper_2019/releases/download/getting_started/10xv2_whitelist.txt
+wget https://github.com/pachterlab/kallistobuspaper_2019/releases/download/getting_started/t2g.py
+chmod +x t2g.py
+wget https://github.com/pachterlab/kallistobuspaper_2019/releases/download/getting_started/SRR8599150_S1_L001_R1_001.fastq.gz
+wget https://github.com/pachterlab/kallistobuspaper_2019/releases/download/getting_started/SRR8599150_S1_L001_R2_001.fastq.gz
+```
+
+Build species index using `kallisto index`. Building the index only needs to be done once for each species. 
+Pre built indices are available from the human transcriptome and many model organism transcriptomes are available from the [kallisto transcriptome indices](https://github.com/pachterlab/kallisto-transcriptome-indices) page.
+```
+gunzip Mus_musculus.GRCm38.cdna.all.fa.gz
+kallisto index -i Mus_musculus.GRCm38.cdna.all.idx -k 31 Mus_musculus.GRCm38.cdna.all.fa
+```
+
+Make the transcript to gene map using `t2g.py` script to parse the mouse GTF file
+```
+gunzip Mus_musculus.GRCm38.96.gtf.gz
+./t2g.py --use_version < Mus_musculus.GRCm38.96.gtf > transcripts_to_genes.txt
+```
+
+Run `kallisto bus` to quantify the data
+```
+kallisto bus -i Mus_musculus.GRCm38.cdna.all.idx -o bus_output/ -x 10xv2 -t 10 SRR8599150_S1_L001_R1_001.fastq.gz SRR8599150_S1_L001_R2_001.fastq.gz
+```
+
+Correct and sort the bus file with `bustools correct` and `bustools sort`
+```
+cd bus_output/
+bustools correct -w ../10xv2_whitelist.txt -o output.correct.bus output.bus
+bustools sort -t 4 -o output.correct.sort.bus output.correct.bus
+mkdir eqclass
+mkdir genecount
+```
+
+Produce the gene count matrix with bustools
+```
+bustools count -o genecount/gene -g ../transcripts_to_genes.txt -e matrix.ec -t transcripts.txt --genecounts output.correct.sort.bus
+```
+
+Produce the transcript compatibility count matrix
+```
+bustools count -o eqcount/tcc -g ../transcripts_to_genes.txt -e matrix.ec -t transcripts.txt output.correct.sort.bus
+```
+
+
 
 __Note:__ for these instructions, command line arguments are everything after the `$`. So if you see `$ cd my_folder` then you would type `cd my_folder` on your terminal.  
 
