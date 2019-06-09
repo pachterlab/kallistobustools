@@ -13,16 +13,19 @@ Here we explain how to:
 
 This worked example is based on the (---------) dataset from the (------). CITATION
 
+__Note:__ for the instructions, command line arguments are preceeded by`$`. For example, if you see `$ cd my_folder` then type `cd my_folder`. 
 
 ## Overview
 Below we describe the workflow. Details for each of the steps are expanded on in the subsequent sections.
 
-### 0. Download and install ```kallisto``` from the [__kallisto__ installation page](https://pachterlab.github.io/kallisto/download), and download and install ```bustools``` from the [bustools installation page](https://github.com/BUStools/bustools).
+#### 0. Download and install software
+```kallisto``` from the [__kallisto__ installation page](https://pachterlab.github.io/kallisto/download), and ```bustools``` from the [bustools installation page](https://github.com/BUStools/bustools).
 
-### 1. Download materials
+#### 1. Download materials
+Prepare a folder:
 ```
-mkdir kallisto_bustools_getting_started
-cd kallisto_bustools_getting_started
+$ mkdir kallisto_bustools_getting_started
+$ cd kallisto_bustools_getting_started
 ```
 Download the following files:
 
@@ -34,55 +37,53 @@ Download the following files:
 - Read 2 fastq file `SRR8599150_S1_L001_R2_001.fastq.gz`
 
 ```
-wget ftp://ftp.ensembl.org/pub/release-96/fasta/mus_musculus/cdna/Mus_musculus.GRCm38.cdna.all.fa.gz
-wget ftp://ftp.ensembl.org/pub/release-96/gtf/mus_musculus/Mus_musculus.GRCm38.96.gtf.gz
-wget https://github.com/pachterlab/kallistobuspaper_2019/releases/download/getting_started/10xv2_whitelist.txt
-wget https://github.com/pachterlab/kallistobuspaper_2019/releases/download/getting_started/t2g.py
-chmod +x t2g.py
-wget https://github.com/pachterlab/kallistobuspaper_2019/releases/download/getting_started/SRR8599150_S1_L001_R1_001.fastq.gz
-wget https://github.com/pachterlab/kallistobuspaper_2019/releases/download/getting_started/SRR8599150_S1_L001_R2_001.fastq.gz
+$ wget ftp://ftp.ensembl.org/pub/release-96/fasta/mus_musculus/cdna/Mus_musculus.GRCm38.cdna.all.fa.gz
+$ wget ftp://ftp.ensembl.org/pub/release-96/gtf/mus_musculus/Mus_musculus.GRCm38.96.gtf.gz
+$ wget https://github.com/pachterlab/kallistobuspaper_2019/releases/download/getting_started/10xv2_whitelist.txt
+$ wget https://github.com/pachterlab/kallistobuspaper_2019/releases/download/getting_started/t2g.py
+$ chmod +x t2g.py
+$ wget https://github.com/pachterlab/kallistobuspaper_2019/releases/download/getting_started/SRR8599150_S1_L001_R1_001.fastq.gz
+$ wget https://github.com/pachterlab/kallistobuspaper_2019/releases/download/getting_started/SRR8599150_S1_L001_R2_001.fastq.gz
 ```
-### 2. Build Index & Gene Map
+#### 2. Build Index & Gene Map
 Build the species index (alternatively download a pre-built index from the [kallisto transcriptome indices](https://github.com/pachterlab/kallisto-transcriptome-indices) page):
 ```
-gunzip Mus_musculus.GRCm38.cdna.all.fa.gz
-kallisto index -i Mus_musculus.GRCm38.cdna.all.idx -k 31 Mus_musculus.GRCm38.cdna.all.fa
+$ gunzip Mus_musculus.GRCm38.cdna.all.fa.gz
+$ kallisto index -i Mus_musculus.GRCm38.cdna.all.idx -k 31 Mus_musculus.GRCm38.cdna.all.fa
 ```
 
 Make the transcript to gene map:
 ```
-gunzip Mus_musculus.GRCm38.96.gtf.gz
-./t2g.py --use_version < Mus_musculus.GRCm38.96.gtf > transcripts_to_genes.txt
+$ gunzip Mus_musculus.GRCm38.96.gtf.gz
+$ ./t2g.py --use_version < Mus_musculus.GRCm38.96.gtf > transcripts_to_genes.txt
 ```
 
-### 3. Run kallisto
+#### 3. Run kallisto
 Pseudoalign the reads:
 ```
-kallisto bus -i Mus_musculus.GRCm38.cdna.all.idx -o bus_output/ -x 10xv2 -t 10 SRR8599150_S1_L001_R1_001.fastq.gz SRR8599150_S1_L001_R2_001.fastq.gz
+$ kallisto bus -i Mus_musculus.GRCm38.cdna.all.idx -o bus_output/ -x 10xv2 -t 10 SRR8599150_S1_L001_R1_001.fastq.gz SRR8599150_S1_L001_R2_001.fastq.gz
 ```
-### 4. Run bustools
+#### 4. Run bustools
 Correct and sort the bus file:
 ```
-cd bus_output/
-bustools correct -w ../10xv2_whitelist.txt -o output.correct.bus output.bus
-bustools sort -t 4 -o output.correct.sort.bus output.correct.bus
+$ cd bus_output/
+$ bustools correct -w ../10xv2_whitelist.txt -o output.correct.bus output.bus
+$ bustools sort -t 4 -o output.correct.sort.bus output.correct.bus
 ```
 
 Create the transcript compatibility count (TCC) matrix and/or gene count matrix:
 ```
-mkdir eqclass
-bustools count -o eqclass/tcc -g ../transcripts_to_genes.txt -e matrix.ec -t transcripts.txt output.correct.sort.bus
+$ mkdir eqclass
+$ bustools count -o eqclass/tcc -g ../transcripts_to_genes.txt -e matrix.ec -t transcripts.txt output.correct.sort.bus
 ```
 
 ```
-mkdir genecount
-bustools count -o genecount/gene -g ../transcripts_to_genes.txt -e matrix.ec -t transcripts.txt --genecounts output.correct.sort.bus
+$ mkdir genecount
+$ bustools count -o genecount/gene -g ../transcripts_to_genes.txt -e matrix.ec -t transcripts.txt --genecounts output.correct.sort.bus
 ```
 
-
-
-
-__Note:__ for these instructions, command line arguments are everything after the `$`. So if you see `$ cd my_folder` then you would type `cd my_folder` on your terminal.  
+#### 5. Load count matrices into notebook
+ 
 
 
 &nbsp;
