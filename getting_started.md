@@ -22,32 +22,23 @@ $ cd kallisto_bustools_getting_started
 Download the following files:
 
 - Mouse transcriptome `Mus_musculus.GRCm38.cdna.all.fa.gz`
-- Mouse GTF file `Mus_musculus.GRCm38.96.gtf.gz`
 - 10x Chromium v2 chemistry barcode whitelist `10xv2_whitelist.txt`
-- Custom python script to make transcript to gene map `t2g.py` 
+- Transcripts to Genes map
 - Read 1 fastq file `SRR8599150_S1_L001_R1_001.fastq.gz`
 - Read 2 fastq file `SRR8599150_S1_L001_R2_001.fastq.gz`
 
 ```
 $ wget ftp://ftp.ensembl.org/pub/release-96/fasta/mus_musculus/cdna/Mus_musculus.GRCm38.cdna.all.fa.gz
-$ wget ftp://ftp.ensembl.org/pub/release-96/gtf/mus_musculus/Mus_musculus.GRCm38.96.gtf.gz
 $ wget https://github.com/pachterlab/kallistobuspaper_2019/releases/download/getting_started/10xv2_whitelist.txt
-$ wget https://github.com/pachterlab/kallistobuspaper_2019/releases/download/getting_started/t2g.py
-$ chmod +x t2g.py
+$ wget transcripts_to_genes.txt
 $ wget https://github.com/pachterlab/kallistobuspaper_2019/releases/download/getting_started/SRR8599150_S1_L001_R1_001.fastq.gz
 $ wget https://github.com/pachterlab/kallistobuspaper_2019/releases/download/getting_started/SRR8599150_S1_L001_R2_001.fastq.gz
 ```
-#### 2. Build Index & Gene Map
+#### 2. Build Index
 Build the species index (alternatively download a pre-built index from the [kallisto transcriptome indices](https://github.com/pachterlab/kallisto-transcriptome-indices) page):
 ```
 $ gunzip Mus_musculus.GRCm38.cdna.all.fa.gz
 $ kallisto index -i Mus_musculus.GRCm38.cdna.all.idx -k 31 Mus_musculus.GRCm38.cdna.all.fa
-```
-
-Make the transcript to gene map:
-```
-$ gunzip Mus_musculus.GRCm38.96.gtf.gz
-$ ./t2g.py --use_version < Mus_musculus.GRCm38.96.gtf > transcripts_to_genes.txt
 ```
 
 #### 3. Run kallisto
@@ -56,22 +47,11 @@ Pseudoalign the reads:
 $ kallisto bus -i Mus_musculus.GRCm38.cdna.all.idx -o bus_output/ -x 10xv2 -t 10 SRR8599150_S1_L001_R1_001.fastq.gz SRR8599150_S1_L001_R2_001.fastq.gz
 ```
 #### 4. Run bustools
-Correct and sort the bus file:
+Correct, sort, and count the bus file. This creates the gene count matrix:
 ```
 $ cd bus_output/
-$ bustools correct -w ../10xv2_whitelist.txt -o output.correct.bus output.bus
-$ bustools sort -t 4 -o output.correct.sort.bus output.correct.bus
-```
-
-Create the transcript compatibility count (TCC) matrix and/or gene count matrix:
-```
-$ mkdir eqclass
-$ bustools count -o eqclass/tcc -g ../transcripts_to_genes.txt -e matrix.ec -t transcripts.txt output.correct.sort.bus
-```
-
-```
 $ mkdir genecount
-$ bustools count -o genecount/gene -g ../transcripts_to_genes.txt -e matrix.ec -t transcripts.txt --genecounts output.correct.sort.bus
+$ bustools correct -w ../10xv2_whitelist.txt -p output.bus | bustools sort -t 4 -p | bustools count -o genecount/gene -g ../transcripts_to_genes.txt -e matrix.ec -t transcripts.txt --genecounts output.correct.sort.bus
 ```
 
 #### 5. Load count matrices into notebook
