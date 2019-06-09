@@ -6,20 +6,12 @@ group: navigation
 
 {% include JB/setup %}
 
-Here we explain how to:
-
-1. Process a single-cell RNA-seq dataset with ```kallisto``` and ```bustools```
-2. Load the resultant count matrix into a jupyter notebook for downstream analysis.
-
-This worked example is based on the (---------) dataset from the (------). CITATION
+This page provides instructions for how to pre-process (the blah blah dataset) from (blah blah). Details for each of the steps are expanded on the [explanation page](www.google.com).
 
 __Note:__ for the instructions, command line arguments are preceeded by`$`. For example, if you see `$ cd my_folder` then type `cd my_folder`. 
 
-## Overview
-Below we describe the workflow. Details for each of the steps are expanded on in the subsequent sections.
-
 #### 0. Download and install software
-```kallisto``` from the [__kallisto__ installation page](https://pachterlab.github.io/kallisto/download), and ```bustools``` from the [bustools installation page](https://github.com/BUStools/bustools).
+Obtain ```kallisto``` from the [__kallisto__ installation page](https://pachterlab.github.io/kallisto/download), and ```bustools``` from the [bustools installation page](https://github.com/BUStools/bustools).
 
 #### 1. Download materials
 Prepare a folder:
@@ -85,12 +77,12 @@ $ bustools count -o genecount/gene -g ../transcripts_to_genes.txt -e matrix.ec -
 #### 5. Load count matrices into notebook
  
 
-
+<!---
 &nbsp;
 &nbsp;
 &nbsp;
 
-## 0. Make sure that `kallisto` and `bustools` are installed correctly
+## 0. Download and install the software
 Open up your terminal and run the following commands. These are the expected outputs:
 
 ```
@@ -429,3 +421,4 @@ Analysis of matrices with python: python-notebook
 Analysis of matrices with R: R-notebook
 
 Other useful tutorial notebooks on the __BUStools__ repository include the [10x_hgmm_100 notebook](https://github.com/BUStools/BUS_notebooks_python/blob/master/dataset-notebooks/10x_hgmm_100_python/10x_hgmm_100.ipynb) which details the analysis of a small, and therefore easily downloadable dataset. Links to other tutorial notebooks are posted on the [__BUStools__ python notebook website](https://github.com/BUStools/BUS_notebooks_python) and the [__BUStools__ R notebook website](https://github.com/BUStools/BUS_notebooks_R).
+-->
