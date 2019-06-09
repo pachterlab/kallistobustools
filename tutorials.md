@@ -7,8 +7,8 @@ group: navigation
 {% include JB/setup %}
 
 ## Parsing bus file tutorial
-- BUSpython
-- (BUSpaRse)[https://github.com/BUStools/BUSpaRse]
+- With python
+- [With R](https://github.com/BUStools/BUSpaRse)
 
 ## Making custom indices
 ~ Future tutorial goes here ~
