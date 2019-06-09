@@ -6,23 +6,25 @@ group: navigation
 
 {% include JB/setup %}
 
-In this section we will walk through how to:
+Here we explain how to:
 
-1. Download a single cell RNA-seq dataset
-2. Process it with ```kallisto``` and ```bustools```
-3. Load umi count matrices into a jupyter notebook for downstream analysis. 
+1. Process a single-cell RNA-seq dataset with ```kallisto``` and ```bustools```
+2. Load the resultant count matrix into a jupyter notebook for downstream analysis.
 
-Before we begin, make sure that you have downloaded and installed ```kallisto``` from the [__kallisto__ installation page](https://pachterlab.github.io/kallisto/download), and have downloaded and installed ```bustools``` from the [__bustools__ repository](https://github.com/BUStools/bustools).
+This worked example is based on the (---------) dataset from the (------). CITATION
 
-## Below is a quick reference for all the commands used in this tutorial. 
-Each step is explained in detail in the next sections.
 
+## Overview
+Below we describe the workflow. Details for each of the steps are expanded on in the subsequent sections.
+
+### 0. Download and install ```kallisto``` from the [__kallisto__ installation page](https://pachterlab.github.io/kallisto/download), and download and install ```bustools``` from the [bustools installation page](https://github.com/BUStools/bustools).
+
+### 1. Download required materials
 ```
 mkdir kallisto_bustools_getting_started
 cd kallisto_bustools_getting_started
 ```
-
-Download files. These are:
+Download the following files:
 
 - Mouse transcriptome `Mus_musculus.GRCm38.cdna.all.fa.gz`
 - Mouse GTF file `Mus_musculus.GRCm38.96.gtf.gz`
@@ -40,9 +42,8 @@ chmod +x t2g.py
 wget https://github.com/pachterlab/kallistobuspaper_2019/releases/download/getting_started/SRR8599150_S1_L001_R1_001.fastq.gz
 wget https://github.com/pachterlab/kallistobuspaper_2019/releases/download/getting_started/SRR8599150_S1_L001_R2_001.fastq.gz
 ```
-
-Build species index using `kallisto index`. Building the index only needs to be done once for each species. 
-Pre built indices are available from the human transcriptome and many model organism transcriptomes are available from the [kallisto transcriptome indices](https://github.com/pachterlab/kallisto-transcriptome-indices) page.
+### 
+Build species index using `kallisto index` (alternatively download a pre-built index from the [kallisto transcriptome indices](https://github.com/pachterlab/kallisto-transcriptome-indices) page.)
 ```
 gunzip Mus_musculus.GRCm38.cdna.all.fa.gz
 kallisto index -i Mus_musculus.GRCm38.cdna.all.idx -k 31 Mus_musculus.GRCm38.cdna.all.fa
