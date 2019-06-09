@@ -1,7 +1,7 @@
 ---
 layout: page
-<!---title: "Getting Started"
-group: navigation-->
+title: "Getting Started Explained"
+<!---group: navigation-->
 ---
 
 {% include JB/setup %}
