@@ -16,8 +16,7 @@ Obtain ```kallisto``` from the [__kallisto__ installation page](https://pachterl
 #### 1. Download materials
 Prepare a folder:
 ```
-$ mkdir kallisto_bustools_getting_started
-$ cd kallisto_bustools_getting_started
+$ mkdir kallisto_bustools_getting_started/; cd kallisto_bustools_getting_started/
 ```
 Download the following files:
 
