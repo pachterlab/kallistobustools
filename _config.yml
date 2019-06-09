@@ -8,8 +8,8 @@ highlighter: rouge
 # Themes are encouraged to use these universal variables
 # so be sure to set them if your theme uses them.
 #
-title : kallisto | bus 
-tagline: kallisto | bus 
+title : kallisto | bustools
+tagline: kallisto | bustools
 author :
   name : Pachter Lab
   email : blah@email.test
