@@ -6,7 +6,7 @@ group: navigation
 
 {% include JB/setup %}
 
-This page provides instructions for how to pre-process (the blah blah dataset) from (blah blah). Details for each of the steps are expanded on the [explanation page](www.google.com).
+This page provides instructions for how to pre-process [mouse retinal cells SRR8599150](https://www.ncbi.nlm.nih.gov/sra/?term=SRR8599150) from [this paper](https://doi.org/10.1016/j.immuni.2019.02.007). Details for each of the steps are expanded on the [explanation page](www.google.com).
 
 __Note:__ for the instructions, command line arguments are preceeded by`$`. For example, if you see `$ cd my_folder` then type `cd my_folder`. 
 
