@@ -50,7 +50,7 @@ Correct, sort, and count the bus file. This creates the gene count matrix:
 ```
 $ cd bus_output/
 $ mkdir genecount/
-$ bustools correct -w ../10xv2_whitelist.txt -p output.bus | bustools sort -t 4 -p | bustools count -o genecount/gene -g ../transcripts_to_genes.txt -e matrix.ec -t transcripts.txt --genecounts output.correct.sort.bus
+$ bustools correct -w ../10xv2_whitelist.txt -p output.bus | bustools sort -t 4 -p - | bustools count -o genecount/gene -g ../transcripts_to_genes.txt -e matrix.ec -t transcripts.txt --genecounts output.correct.sort.bus
 ```
 
 #### 5. Load count matrices into notebook
