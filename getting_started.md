@@ -49,8 +49,8 @@ $ kallisto bus -i Mus_musculus.GRCm38.cdna.all.idx -o bus_output/ -x 10xv2 -t 10
 Correct, sort, and count the bus file. This creates the gene count matrix:
 ```
 $ cd bus_output/
-$ mkdir genecount/
-$ bustools correct -w ../10xv2_whitelist.txt -p output.bus | bustools sort -t 4 -p - | bustools count -o genecount/gene -g ../transcripts_to_genes.txt -e matrix.ec -t transcripts.txt --genecounts -
+$ mkdir genecount/ tmp/
+$ bustools correct -w ../10xv2_whitelist.txt -p output.bus | bustools sort -T tmp/ -t 10 -p - | bustools count -o genecount/genes -g ../transcripts_to_genes.txt -e matrix.ec -t transcripts.txt --genecounts -
 ```
 
 #### 5. Load count matrices into notebook
