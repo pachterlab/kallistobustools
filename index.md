@@ -15,5 +15,7 @@ tagline:
 -->
 
 <p align="center">
-<button type="button" href="getting_started.html" class="btn btn-success">Get Started!</button>
+  <a href="getting_started.html">
+    <button type="button" class="btn btn-success">Get Started!</button>
+  </a>
 </p>
