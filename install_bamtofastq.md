@@ -1,7 +1,6 @@
 ---
 layout: page
 title: "Install bamtofastq utility"
-group: navigation
 ---
 
 {% include JB/setup %}
