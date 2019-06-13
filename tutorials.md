@@ -19,7 +19,7 @@ group: navigation
 
 
 ## RNA velocity
-~ Future tutorial goes here ~
+[Tutorial](velocity_tutorial.md)
 
 
 ## QC Using the inspect command
