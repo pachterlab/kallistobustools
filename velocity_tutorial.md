@@ -48,7 +48,28 @@ Since La Manno et al. did not release the FASTQ files, we have to generate them 
 $ bamtofastq --reads-per-fastq=500000000 10X_17_029.bam ./06
 $ bamtofastq --reads-per-fastq=500000000 10X_17_028.bam ./07
 ```
-Rename & organize FASTQs
+Your folder structure will look something like this for 06/ and 07/. Note the `MissingLibrary` does not affect this analysis.
+```
+06/
+├── 10X_17_029_MissingLibrary_1_HL73JBCXY
+│   ├── bamtofastq_S1_L002_I1_001.fastq.gz
+│   ├── bamtofastq_S1_L002_R1_001.fastq.gz
+│   └── bamtofastq_S1_L002_R2_001.fastq.gz
+└── 10X_17_029_MissingLibrary_1_HLFGJBCXY
+    ├── bamtofastq_S1_L002_I1_001.fastq.gz
+    ├── bamtofastq_S1_L002_R1_001.fastq.gz
+    └── bamtofastq_S1_L002_R2_001.fastq.gz
+
+07/
+├── 10X_17_028_MissingLibrary_1_HL73JBCXY
+│   ├── bamtofastq_S1_L001_I1_001.fastq.gz
+│   ├── bamtofastq_S1_L001_R1_001.fastq.gz
+│   └── bamtofastq_S1_L001_R2_001.fastq.gz
+└── 10X_17_028_MissingLibrary_1_HLFGJBCXY
+    ├── bamtofastq_S1_L001_I1_001.fastq.gz
+    ├── bamtofastq_S1_L001_R1_001.fastq.gz
+    └── bamtofastq_S1_L001_R2_001.fastq.gz
+```
 
 #### 3. Build Index
 Build the species velocity index:
@@ -61,14 +82,18 @@ $ kallisto index -i cDNA_introns.idx -k 31 cDNA_introns.fa
 Pseudoalign the reads for 06:
 ```
 $ kallisto bus -i cDNA_introns.idx -o bus_output_06/ -x 10xv2 -t 4 \
-SRR6470906_S1_L001_R1_001.fastq.gz SRR6470906_S1_L001_R2_001.fastq.gz \
-SRR6470906_S1_L002_R1_001.fastq.gz SRR6470906_S1_L002_R2_001.fastq.gz
+06/10X_17_029_MissingLibrary_1_HL73JBCXY/SRR6470906_S1_L001_R1_001.fastq.gz \
+06/10X_17_029_MissingLibrary_1_HL73JBCXY/SRR6470906_S1_L001_R2_001.fastq.gz \
+06/10X_17_029_MissingLibrary_1_HLFGJBCXY/SRR6470906_S1_L002_R1_001.fastq.gz \
+06/10X_17_029_MissingLibrary_1_HLFGJBCXY/SRR6470906_S1_L002_R2_001.fastq.gz
 ```
 And for 07:
 ```
 $ kallisto bus -i cDNA_introns.idx -o bus_output_07/ -x 10xv2 -t 4 \
-SRR6470907_S1_L001_R1_001.fastq.gz SRR6470907_S1_L001_R2_001.fastq.gz \
-SRR6470907_S1_L002_R1_001.fastq.gz SRR6470907_S1_L002_R2_001.fastq.gz
+07/10X_17_028_MissingLibrary_1_HL73JBCXY/SRR6470907_S1_L001_R1_001.fastq.gz \
+07/10X_17_028_MissingLibrary_1_HL73JBCXY/SRR6470907_S1_L001_R2_001.fastq.gz \
+07/10X_17_028_MissingLibrary_1_HLFGJBCXY/SRR6470907_S1_L002_R1_001.fastq.gz \
+07/10X_17_028_MissingLibrary_1_HLFGJBCXY/SRR6470907_S1_L002_R2_001.fastq.gz
 ```
 
 #### 5. Run bustools
