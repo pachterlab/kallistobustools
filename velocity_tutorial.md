@@ -1,6 +1,6 @@
 ---
 layout: page
-title: "Velocity Tutorial"
+title: "RNA velocity tutorial"
 ---
 
 {% include JB/setup %}
