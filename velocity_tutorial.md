@@ -42,7 +42,7 @@ Uncompress all the files:
 ```
 $ gunzip *.gz
 ```
-### 2. Make the FASTQ files
+#### 2. Make the FASTQ files
 Since La Manno et al. did not release the FASTQ files, we have to generate them from the BAM files using 10x Genomics `bamtofastq`.
 ```
 $ bamtofastq --reads-per-fastq=500000000 10X_17_029.bam ./06
