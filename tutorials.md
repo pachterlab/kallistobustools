@@ -6,21 +6,20 @@ group: navigation
 
 {% include JB/setup %}
 
-## Parsing bus file tutorial
+#### Parsing bus files
 - With python
 - [With R](https://github.com/BUStools/BUSpaRse)
 
-## Making custom indices
+#### Making custom indices
 ~ Future tutorial goes here ~
 
-## Species mixing experiment quantification
+#### Multi-species experiments
 [Tutorial](species_mixing.md)
 
 
-
-## RNA velocity
+#### RNA velocity
 [Tutorial](velocity_tutorial.md)
 
 
-## QC Using the inspect command
+#### QC with the bustools inspect command
 ~ Future tutorial goes here ~
