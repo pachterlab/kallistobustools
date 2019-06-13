@@ -5,7 +5,7 @@ title: "Velocity Tutorial"
 
 {% include JB/setup %}
 
-This page provides instructions for how to pre-process a single-cell RNA-seq dataset with __kallisto &#124; bustools__ to perform an RNA velocity analysis. The tutorial describes how to analyze a single-cell RNA-seq experiment of human week 10 fetal forebrain from the [La Manno et al. 2018 paper](https://doi.org/10.1038/s41586-018-0414-6) (accessions SRR6470906 & SRR6470907).
+This page provides instructions for how to pre-process a single-cell RNA-seq dataset with __kallisto &#124; bustools__ to perform an RNA velocity analysis. The tutorial explains the steps using as an example a single-cell RNA-seq experiment of human week 10 fetal forebrain from the [La Manno et al. 2018 paper](https://doi.org/10.1038/s41586-018-0414-6) (accessions SRR6470906 & SRR6470907).
 
 __Note:__ for the instructions, command line arguments are preceeded by`$`. For example, if you see `$ cd my_folder` then type `cd my_folder`. 
 
