@@ -5,7 +5,7 @@ title: "Velocity Tutorial"
 
 {% include JB/setup %}
 
-This page provides instructions for how to pre-process [mouse retinal cells SRR8599150](https://www.ncbi.nlm.nih.gov/sra/?term=SRR8599150) from [this paper](https://doi.org/10.1016/j.immuni.2019.02.007) using the __kallisto &#124; bustools workflow__. Details for each of the steps are expanded on the [explanation page](getting_started_explained.md).
+This page provides instructions for how to pre-process human week 10 fetal forebrain cells to recreate RNA Velocity using the __kallisto &#124; bustools workflow__. The experiment is single-cell RNA-sequencing of human week 10 fetal forebrain dataset (SRR6470906 & SRR6470907) from [this paper](https://doi.org/10.1038/s41586-018-0414-6).
 
 __Note:__ for the instructions, command line arguments are preceeded by`$`. For example, if you see `$ cd my_folder` then type `cd my_folder`. 
 
@@ -42,7 +42,7 @@ Uncompress all the files:
 ```
 $ gunzip *.gz
 ```
-### 2. Make the FASTQ files
+#### 2. Make the FASTQ files
 Since La Manno et al. did not release the FASTQ files, we have to generate them from the BAM files using 10x Genomics `bamtofastq`.
 ```
 $ bamtofastq --reads-per-fastq=500000000 10X_17_029.bam ./06
