@@ -5,7 +5,7 @@ title: "Velocity Tutorial"
 
 {% include JB/setup %}
 
-This page provides instructions for how to pre-process human week 10 fetal forebrain cells to recreate RNA Velocity using the __kallisto &#124; bustools workflow__. The experiment is single-cell RNA-sequencing of human week 10 fetal forebrain dataset (SRR6470906 & SRR6470907) from this paper (https://doi.org/10.1038/s41586-018-0414-6).
+This page provides instructions for how to pre-process human week 10 fetal forebrain cells to recreate RNA Velocity using the __kallisto &#124; bustools workflow__. The experiment is single-cell RNA-sequencing of human week 10 fetal forebrain dataset (SRR6470906 & SRR6470907) from [this paper](https://doi.org/10.1038/s41586-018-0414-6).
 
 __Note:__ for the instructions, command line arguments are preceeded by`$`. For example, if you see `$ cd my_folder` then type `cd my_folder`. 
 
