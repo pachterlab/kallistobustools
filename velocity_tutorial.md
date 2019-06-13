@@ -1,4 +1,3 @@
-< a min
 ---
 layout: page
 title: "Getting Started"
@@ -21,18 +20,24 @@ $ mkdir kallisto_bustools_getting_started/; cd kallisto_bustools_getting_started
 ```
 Download the following files:
 
-- Mouse transcriptome `Mus_musculus.GRCm38.cdna.all.fa.gz`
+- Human cDNA Transcripts `cDNA.correct_header.fa.gz`
+- Human introns Transcripts `introns.correct_header.fa.gz`
+- cDNA Transcripts to Capture `cDNA_transcripts.to_capture.txt.gz`
+- Introns Transcripts to Capture `introns_transcripts.to_capture.txt.gz`
+- cDNA/introns Transcripts to Genes map `cDNA_introns.t2g.txt.gz`
 - 10x Chromium v2 chemistry barcode whitelist `10xv2_whitelist.txt`
-- Transcripts to Genes map
-- Read 1 fastq file `SRR8599150_S1_L001_R1_001.fastq.gz`
-- Read 2 fastq file `SRR8599150_S1_L001_R2_001.fastq.gz`
+- [SRR6470906 BAM File 1](https://trace.ncbi.nlm.nih.gov/Traces/sra/?run=SRR6470906)
+- [SRR6470907 BAM File 2](https://trace.ncbi.nlm.nih.gov/Traces/sra/?run=SRR6470907)
 
 ```
-$ wget ftp://ftp.ensembl.org/pub/release-96/fasta/mus_musculus/cdna/Mus_musculus.GRCm38.cdna.all.fa.gz
-$ wget https://github.com/bustools/getting_started/releases/download/getting_started/10xv2_whitelist.txt
-$ wget https://github.com/bustools/getting_started/releases/download/getting_started/transcripts_to_genes.txt
-$ wget https://github.com/bustools/getting_started/releases/download/getting_started/SRR8599150_S1_L001_R1_001.fastq.gz
-$ wget https://github.com/bustools/getting_started/releases/download/getting_started/SRR8599150_S1_L001_R2_001.fastq.gz
+$ wget https://github.com/BUStools/getting_started/releases/download/velocity_tutorial/cDNA.correct_header.fa.gz
+$ wget https://github.com/BUStools/getting_started/releases/download/velocity_tutorial/introns.correct_header.fa.gz
+$ wget https://github.com/BUStools/getting_started/releases/download/velocity_tutorial/cDNA_transcripts.to_capture.txt.gz
+$ wget https://github.com/BUStools/getting_started/releases/download/velocity_tutorial/introns_transcripts.to_capture.txt.gz
+$ wget https://github.com/BUStools/getting_started/releases/download/velocity_tutorial/cDNA_introns.t2g.txt.gz
+$ wget https://github.com/BUStools/getting_started/releases/download/velocity_tutorial/10xv2_whitelist.txt
+$ wget https://sra-download.ncbi.nlm.nih.gov/traces/sra57/SRZ/006470/SRR6470906/10X_17_029.bam
+$ wget https://sra-download.ncbi.nlm.nih.gov/traces/sra57/SRZ/006470/SRR6470907/10X_17_028.bam
 ```
 #### 2. Build Index
 Build the species index (alternatively download a pre-built index from the [kallisto transcriptome indices](https://github.com/pachterlab/kallisto-transcriptome-indices) page):
