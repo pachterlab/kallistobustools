@@ -1,7 +1,6 @@
 ---
 layout: page
-title: "Getting Started"
-group: navigation
+title: "Velocity Tutorial"
 ---
 
 {% include JB/setup %}
