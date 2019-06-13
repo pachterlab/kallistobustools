@@ -1,3 +1,3 @@
-# kallisto_bus_workflow
+# kallisto &#124; bustools
 
-## https://munfred.github.io/kallisto_bus_workflow/
+## https://pachterlab.github.io/kallistobustools/
