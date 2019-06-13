@@ -11,7 +11,7 @@ This page provides instructions for how to pre-process [mouse retinal cells SRR8
 __Note:__ for the instructions, command line arguments are preceeded by`$`. For example, if you see `$ cd my_folder` then type `cd my_folder`. 
 
 #### 0. Download and install software
-Obtain ```kallisto``` from the [__kallisto__ installation page](https://pachterlab.github.io/kallisto/download), and ```bustools``` from the [bustools installation page](https://github.com/BUStools/bustools). Download and install ```bamtofastq``` from [here](https://github.com/10XGenomics/bamtofastq) to generate the original FASTQ files from the BAM files provided by the authors. Here is a brief tutorial on how to install bamtofastq.
+Obtain ```kallisto``` from the [__kallisto__ installation page](https://pachterlab.github.io/kallisto/download), and ```bustools``` from the [__bustools__ installation page](https://github.com/BUStools/bustools). Download and install ```bamtofastq``` from [here](https://support.10xgenomics.com/docs/bamtofastq) to generate the original FASTQ files from the BAM files provided by the authors. For a brief tutorial on how to install ```bamtofastq``` please see [this page](install_bamtofastq.md).
 
 #### 1. Download materials
 Prepare a folder:
