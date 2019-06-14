@@ -14,11 +14,11 @@ group: navigation
 ~ Future tutorial goes here ~
 
 #### Multi-species experiments
-- [Tutorial](species_mixing.md)
+- [Tutorial](species_mixing.html)
 
 
 #### RNA velocity
-- [Tutorial](velocity_tutorial.md)
+- [Tutorial](velocity_tutorial.html)
 
 
 #### QC with the bustools inspect command
