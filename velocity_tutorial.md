@@ -6,8 +6,8 @@ title: "RNA velocity tutorial"
 {% include JB/setup %}
 
 <p align="center">
-  <a href="https://www.youtube.com/watch?v=TSSPDwAQLXs">
-    <img src="assets/website_velocity.jpg" width="70%">
+  <a href="">
+    <img src="assets/website_velocity.jpg" width="30%">
   </a>
 </p>
 
