@@ -10,16 +10,8 @@ group: navigation
 - With python
 - [With R](https://github.com/BUStools/BUSpaRse)
 
-#### Making custom indices
-~ Future tutorial goes here ~
-
 #### Multi-species experiments
 - [Tutorial](species_mixing.html)
 
-
 #### RNA velocity
 - [Tutorial](velocity_tutorial.html)
-
-
-#### QC with the bustools inspect command
-~ Future tutorial goes here ~
