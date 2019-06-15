@@ -118,4 +118,4 @@ $ bustools count -o spliced/s -g ../cDNA_introns.t2g.txt -e introns_capture/spli
 ```
 
 #### 6. Load count matrices into notebook
-See [this notebook](https://github.com/pachterlab/MBGBLHGP_2019/blob/master/Figure_3/figure_3.ipynb) for how to process the spliced and unspliced count matrices to generate a velocity plot. 
+See [this notebook](https://github.com/BUStools/getting_started/blob/master/velocity_tutorial.ipynb) for how to process the spliced and unspliced count matrices to generate a velocity plot. 
