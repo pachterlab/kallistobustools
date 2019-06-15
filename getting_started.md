@@ -16,10 +16,10 @@ This page provides instructions for how to pre-process the[mouse retinal cells S
 
 __Note:__ command line arguments are preceeded by`$`. For example, if you see `$ cd my_folder` then type `cd my_folder`. 
 
-#### 0. Download and install software
+#### 0. Download and install the software
 Obtain ```kallisto``` from the [__kallisto__ installation page](https://pachterlab.github.io/kallisto/download), and ```bustools``` from the [bustools installation page](https://github.com/BUStools/bustools).
 
-#### 1. Download materials
+#### 1. Download the materials
 Prepare a folder:
 ```
 $ mkdir kallisto_bustools_getting_started/; cd kallisto_bustools_getting_started/
@@ -39,7 +39,7 @@ $ wget https://github.com/bustools/getting_started/releases/download/getting_sta
 $ wget https://github.com/bustools/getting_started/releases/download/getting_started/SRR8599150_S1_L001_R1_001.fastq.gz
 $ wget https://github.com/bustools/getting_started/releases/download/getting_started/SRR8599150_S1_L001_R2_001.fastq.gz
 ```
-#### 2. Build Index
+#### 2. Build an index
 Build the species index (alternatively download a pre-built index from the [kallisto transcriptome indices](https://github.com/pachterlab/kallisto-transcriptome-indices) page):
 ```
 $ gunzip Mus_musculus.GRCm38.cdna.all.fa.gz
@@ -59,5 +59,5 @@ $ mkdir genecount/ tmp/
 $ bustools correct -w ../10xv2_whitelist.txt -p output.bus | bustools sort -T tmp/ -t 4 -p - | bustools count -o genecount/genes -g ../transcripts_to_genes.txt -e matrix.ec -t transcripts.txt --genecounts -
 ```
 
-#### 5. Load count matrices into notebook
+#### 5. Load the count matrices into a notebook
 See [this python notebook](https://github.com/BUStools/getting_started/blob/master/getting_started.ipynb) for how to load the count matrices into [ScanPy](https://scanpy.readthedocs.io/en/latest/index.html) for analysis.
