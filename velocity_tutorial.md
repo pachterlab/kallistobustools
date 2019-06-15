@@ -7,7 +7,7 @@ title: "RNA velocity tutorial"
 
 <p align="center">
   <a href="">
-    <img src="assets/website_velocity.jpg" width="30%">
+    <img src="assets/website_velocity.jpg" width="60%">
   </a>
 </p>
 
