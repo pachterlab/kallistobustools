@@ -19,13 +19,13 @@ $ brew install unrar
 ```
 If not, then [install homebrew](https://brew.sh/) and run the command above. 
 
-### 3. Un-zip the image
+### 3. Unzip the image
 Run 
 ```
 $ unzip secret_tsne.jpg
 ```
 
-### 5. Un-rar the rar file
+### 5. Unrar the rar file
 With the unrar utility, run
 ```
 $ unrar e secret.rar 
