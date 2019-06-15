@@ -17,7 +17,7 @@ If you have homebrew installed on your machine then run
 ```
 $ brew install unrar
 ```
-If not, then [install homebrew](https://docs.brew.sh/Installation) and run the command above.
+If not, then [install homebrew](https://docs.brew.sh/Installation) and run the command above. 
 
 ### 3. Un-zip the image
 Run 
@@ -31,4 +31,11 @@ With the unrar utility, run
 $ unrar e secret.rar 
 ```
 
-to find the surprise :).
+### 6. Gunzip the resultant file
+```
+$ gunzip output.sort.bus
+```
+### 7. Check out the surprise :)
+```
+$ bustools text -p output.sort.bus | head
+```
