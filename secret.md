@@ -5,7 +5,7 @@ title: "Find the secret BUS file"
 
 {% include JB/setup %}
 
-The image you clicked on has a __secret__! Follow the instructions below to find out more:
+The image you clicked on has a __secret__! Follow the instructions below to find it:
 
 ### 1. Download the image
 Right-click the tsne on the previous page and click "Copy Link Address". Navigate to your terminal and download the image using
@@ -31,11 +31,11 @@ With the unrar utility, run
 $ unrar e secret.rar 
 ```
 
-### 6. Gunzip the resultant file
+### 6. Gunzip the file
 ```
 $ gunzip output.sort.bus
 ```
-### 7. Check out the surprise :)
+### 7. Find the BUS!
 ```
 $ bustools text -p output.sort.bus | head
 ```
