@@ -7,7 +7,7 @@ group: navigation
 {% include JB/setup %}
 
 <p align="center">
-  <a href="about.html">
+  <a href="secret.html">
     <img src="assets/secret_tsne.jpg" width="70%">
   </a>
 </p>
