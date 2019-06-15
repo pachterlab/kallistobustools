@@ -1,6 +1,6 @@
 ---
 layout: page
-title: "Find the secret BUS file"
+title: "Find the BUS"
 ---
 
 {% include JB/setup %}
@@ -8,7 +8,7 @@ title: "Find the secret BUS file"
 The image you clicked on has a __secret__! Follow the instructions below to find it:
 
 ### 1. Download the image
-Right-click the tsne on the previous page and click "Copy Link Address". Navigate to your terminal and download the image using
+Right-click the image on the previous page and download the image. Navigate to the terminal and download the image using
 ```
 $ wget https://www.kallistobus.tools/assets/secret_tsne.jpg
 ```
