@@ -17,7 +17,7 @@ If you have homebrew installed on your machine then run
 ```
 $ brew install unrar
 ```
-If not, then [install homebrew](https://docs.brew.sh/Installation) and run the command above. 
+If not, then [install homebrew](https://brew.sh/) and run the command above. 
 
 ### 3. Un-zip the image
 Run 
