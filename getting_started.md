@@ -54,3 +54,4 @@ $ bustools correct -w ../10xv2_whitelist.txt -p output.bus | bustools sort -T tm
 ```
 
 #### 5. Load count matrices into notebook
+See [this python notebook](https://github.com/BUStools/getting_started/blob/master/getting_started.ipynb) for how to load the count matrices into (ScanPy)[https://scanpy.readthedocs.io/en/latest/index.html] for analysis.
