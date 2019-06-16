@@ -62,3 +62,4 @@ $ bustools correct -w ../10xv2_whitelist.txt -p output.bus | bustools sort -T tm
 ```
 
 #### 5. Load count matrices into notebook
+See [this notebook](https://github.com/pachterlab/MBGBLHGP_2019/blob/master/Supplementary_Figure_6_7/analysis/hgmm10k_v3_single_gene.Rmd) for how to process and load count matrices for a species mixing experiment.
