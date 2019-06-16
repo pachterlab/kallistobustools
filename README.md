@@ -1,3 +1,3 @@
 # kallisto &#124; bustools
 
-## http://kallistobus.tools/
+Workflows for pre-processing single-cell RNA-seq. See ## http://kallistobus.tools/
