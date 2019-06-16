@@ -12,12 +12,12 @@ group: navigation
   </a>
 </p>
 
-This page provides instructions for how to pre-process the [mouse retinal cells SRR8599150](https://www.ncbi.nlm.nih.gov/sra/?term=SRR8599150) dataset from [Koren et al., 2019](https://doi.org/10.1016/j.immuni.2019.02.007) using the __kallisto &#124; bustools workflow__. Details for each of the steps are described in the [explanation page](getting_started_explained.html). A video for the tutorial can be viewed [here](https://www.youtube.com/watch?v=uEdHMxqt4vI&feature=youtu.be).
+This page provides instructions for how to pre-process the [mouse retinal cells SRR8599150](https://www.ncbi.nlm.nih.gov/sra/?term=SRR8599150) dataset from [Koren et al., 2019](https://doi.org/10.1016/j.immuni.2019.02.007) using the __kallisto &#124; bustools workflow__. Details for each of the steps are described in the [explanation page](getting_started_explained.html). A video for the tutorial can be viewed [here](https://youtu.be/hWxnL86sak8).
 
 __Note:__ command line arguments are preceeded by`$`. For example, if you see `$ cd my_folder` then type `cd my_folder`. 
 
 #### 0. Download and install the software
-Obtain ```kallisto``` from the [__kallisto__ installation page](https://pachterlab.github.io/kallisto/download), and ```bustools``` from the [bustools installation page](https://github.com/BUStools/bustools).
+Obtain ```kallisto``` from the [__kallisto__ installation page](https://pachterlab.github.io/kallisto/download), and ```bustools``` from the [bustools installation page](https://github.com/BUStools/bustools). A video tutorial for how to install the software can be viewed [here](https://youtu.be/thvtp7Ik6ts).
 
 #### 1. Download the materials
 Prepare a folder:
