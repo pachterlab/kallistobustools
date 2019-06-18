@@ -19,6 +19,8 @@ __Note:__ command line arguments are preceeded by`$`. For example, if you see `$
 #### 0. Download and install the software
 Obtain ```kallisto``` from the [__kallisto__ installation page](https://pachterlab.github.io/kallisto/download), and ```bustools``` from the [bustools installation page](https://bustools.github.io/download). A video tutorial for how to install the software can be viewed [here](https://youtu.be/thvtp7Ik6ts).
 
+__Note:__ this dataset is v2 chemistry. If you would like to process v3 chemistry then you would use the [10xv3 whitelist](https://github.com/BUStools/getting_started/releases).
+
 #### 1. Download the materials
 Prepare a folder:
 ```
