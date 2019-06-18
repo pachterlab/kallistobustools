@@ -6,8 +6,12 @@ title: "Getting Started Explained"
 
 {% include JB/setup %}
 
+__Note:__ this dataset is v2 chemistry. If you would like to process v3 chemistry then you would use the [10xv3 whitelist](https://github.com/BUStools/getting_started/releases).
+
 ## 0. Download and install the software
-Open up your terminal and run the following commands. These are the expected outputs:
+Obtain ```kallisto``` from the [__kallisto__ installation page](https://pachterlab.github.io/kallisto/download), and ```bustools``` from the [bustools installation page](https://bustools.github.io/download). A video tutorial for how to install the software can be viewed [here](https://youtu.be/thvtp7Ik6ts). 
+
+These are the expected outputs:
 
 ```
 $ kallisto
@@ -82,17 +86,17 @@ $ wget ftp://ftp.ensembl.org/pub/release-96/gtf/mus_musculus/Mus_musculus.GRCm38
 ```
 
 ### 1b. Barcode whitelist
-Navigate to https://github.com/pachterlab/kallistobuspaper_2019/releases/tag/getting_started right-click on ```10xv2_whitelist.txt``` select```Copy Link Address``` and download this file on your terminal.
+Navigate to https://github.com/bustools/getting_started/releases/ right-click on ```10xv2_whitelist.txt``` select```Copy Link Address``` and download this file on your terminal.
 
 ```
-$ wget https://github.com/pachterlab/kallistobuspaper_2019/releases/download/getting_started/10xv2_whitelist.txt
+$ wget https://github.com/bustools/getting_started/releases/download/getting_started/10xv2_whitelist.txt
 ```
 
 ### 1c. Gene map utility
-Navigate to https://github.com/pachterlab/kallistobuspaper_2019/releases/tag/getting_started right-click on ```t2g.py``` select```Copy Link Address``` and download this file on your terminal.
+Navigate to https://github.com/bustools/getting_started/releases/ right-click on ```t2g.py``` select```Copy Link Address``` and download this file on your terminal.
 
 ```
-$ wget https://github.com/pachterlab/kallistobuspaper_2019/releases/download/getting_started/t2g.py
+$ wget https://github.com/BUStools/getting_started/releases/download/getting_started/t2g.py
 ```
 
 and make the script executable
@@ -101,13 +105,13 @@ $ chmod +x t2g.py
 ```
 
 ### 1d. Dataset
-Navigate to `https://github.com/pachterlab/kallistobuspaper_2019/releases/tag/getting_started`, right-click on ```SRR8599150_S1_L001_R1_001.fastq.gz``` select```Copy Link Address``` and download this file on your terminal, and do the same for ```SRR8599150_S1_L001_R2_001.fastq.gz```.
+Navigate to `https://github.com/BUStools/getting_started/releases/tag/getting_started`, right-click on ```SRR8599150_S1_L001_R1_001.fastq.gz``` select```Copy Link Address``` and download this file on your terminal, and do the same for ```SRR8599150_S1_L001_R2_001.fastq.gz```.
 
 This is a single cell experiment on mouse retinal cells. You can find the original data (GSM3612831) deposited here: https://www.ncbi.nlm.nih.gov/sra/?term=GSM3612831
 
 ```
-$ wget https://github.com/pachterlab/kallistobuspaper_2019/releases/download/getting_started/SRR8599150_S1_L001_R1_001.fastq.gz
-$ wget https://github.com/pachterlab/kallistobuspaper_2019/releases/download/getting_started/SRR8599150_S1_L001_R2_001.fastq.gz
+$ wget https://github.com/BUStools/getting_started/releases/download/getting_started/SRR8599150_S1_L001_R1_001.fastq.gz
+$ wget https://github.com/BUStools/getting_started/releases/download/getting_started/SRR8599150_S1_L001_R2_001.fastq.gz
 ```
 
 ### 1e. Results
@@ -122,8 +126,6 @@ kallisto_bustools_getting_started/
 ├── SRR8599150_S1_L001_R2_001.fastq.gz
 ├── t2g.py
 └── 10xv2_whitelist.txt
-
-0 directories, 6 files
 ```  
 
 &nbsp;
@@ -135,11 +137,11 @@ kallisto_bustools_getting_started/
 The index only needs to be built once for each species transcriptome for a given k-mer size (the default k-mer 31 is suggested). You have the option of downloading the index or building it yourself. 
 Prebuilt indices constructed from [Ensembl reference transcriptomes](https://uswest.ensembl.org/info/data/ftp/index.html) can be download from the [kallisto transcriptome indices](https://github.com/pachterlab/kallisto-transcriptome-indices/releases) site. Building indices with __kallisto index__ will often be faster in practice than downloading index files. For example, the __kallisto__ index for the mouse transcriptome takes between 5--10 minutes to build on a standard desktop or laptop. Transcriptome fasta files for model organisms can be downloaded from the [Ensembl database](https://www.ensembl.org/info/data/ftp/index.html). We recommend using cDNA fasta, specifically the *.cdna.all.fa.gz files. __kallisto__ can build indices directly from gzipped files.
 
-#### Downloading the index ( if downloading the index then skip to Step 2b.).
-If you wish to download the index then navigate to https://github.com/pachterlab/kallistobuspaper_2019/releases/tag/getting_started right-click on ```Mus_musculus.GRCm38.cdna.all.idx.gz``` select```Copy Link Address``` and download this file on your terminal.
+#### Downloading the index (if you download the index then skip to Step 2b).
+If you wish to download the index then navigate to https://github.com/BUStools/getting_started/releases/tag/getting_started right-click on ```Mus_musculus.GRCm38.cdna.all.idx.gz``` select```Copy Link Address``` and download this file on your terminal.
 
 ```
-$ wget https://github.com/pachterlab/kallistobuspaper_2019/releases/download/getting_started/Mus_musculus.GRCm38.cdna.all.idx.gz
+$ wget https://github.com/BUStools/getting_started/releases/download/getting_started/Mus_musculus.GRCm38.cdna.all.idx.gz
 ```
 And the decompress (unzip) the index we just downloaded:
 
@@ -178,7 +180,7 @@ $ gunzip Mus_musculus.GRCm38.96.gtf.gz
 ```
 Next make transcript to gene map using `t2g.py` script to parse the mouse GTF file
 ```
-$ ./t2g.py --use_version < Mus_musculus.GRCm38.96.gtf > transcripts_to_genes.txt
+$ ./t2g.py < Mus_musculus.GRCm38.96.gtf > transcripts_to_genes.txt
 ```
 
 ### 2c. Results
@@ -195,8 +197,6 @@ kallisto_bustools_getting_started/
 ├── t2g.py
 ├── transcripts_to_genes.txt
 └── 10xv2_whitelist.txt
-
-0 directories, 8 files
 ```  
 
 &nbsp;
@@ -241,8 +241,6 @@ kallisto_bustools_getting_started/
 ├── t2g.txt
 ├── transcripts_to_genes.txt
 └── 10xv2_whitelist.txt
-
-1 directories, 12 files
 ```  
 
 &nbsp;
@@ -331,8 +329,6 @@ kallisto_bustools_getting_started/
 ├── t2g.py
 ├── transcripts_to_genes.txt
 └── 10xv2_whitelist.txt
-
-3 directories, 20 files
 ```  
 
 &nbsp;
@@ -340,8 +336,4 @@ kallisto_bustools_getting_started/
 &nbsp;
 
 ## 5. Load and analyze the matrices with python/R
-Analysis of matrices with python: python-notebook
-
-Analysis of matrices with R: R-notebook
-
-Other useful tutorial notebooks on the __BUStools__ repository include the [10x_hgmm_100 notebook](https://github.com/BUStools/BUS_notebooks_python/blob/master/dataset-notebooks/10x_hgmm_100_python/10x_hgmm_100.ipynb) which details the analysis of a small, and therefore easily downloadable dataset. Links to other tutorial notebooks are posted on the [__BUStools__ python notebook website](https://github.com/BUStools/BUS_notebooks_python) and the [__BUStools__ R notebook website](https://github.com/BUStools/BUS_notebooks_R).
+See [this python notebook](https://github.com/BUStools/getting_started/blob/master/getting_started.ipynb) for how to load the count matrices into [ScanPy](https://scanpy.readthedocs.io/en/latest/index.html) for analysis.
