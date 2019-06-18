@@ -29,9 +29,8 @@ Download the following files:
 ```
 $ wget ftp://ftp.ensembl.org/pub/release-96/fasta/mus_musculus/cdna/Mus_musculus.GRCm38.cdna.all.fa.gz
 $ wget ftp://ftp.ensembl.org/pub/release-96/fasta/mus_musculus/cdna/Homo_sapiens.GRCh38.cdna.all.fa.gz
-$ wget https://github.com/bustools/getting_started/releases/download/getting_started/10xv3_whitelist.txt
-$ wget https://github.com/bustools/getting_started/releases/download/getting_started/GRCm38_transcripts_to_genes.txt
-$ wget https://github.com/bustools/getting_started/releases/download/getting_started/GRCh38_transcripts_to_genes.txt
+$ wget https://github.com/BUStools/getting_started/releases/download/species_mixing/10xv3_whitelist.txt
+$ wget https://github.com/BUStools/getting_started/releases/download/species_mixing/transcripts_to_genes_hg19mm10.txt
 $ wget http://cf.10xgenomics.com/samples/cell-exp/3.0.2/1k_hgmm_v3/1k_hgmm_v3_fastqs.tar
 $ tar -xvf 1k_hgmm_v3_fastqs.tar
 ```
@@ -58,7 +57,7 @@ Correct, sort, and count the bus file. This creates the gene count matrix:
 ```
 $ cd bus_output/
 $ mkdir genecount/ tmp/
-$ bustools correct -w ../10xv2_whitelist.txt -p output.bus | bustools sort -T tmp/ -t 4 -p - | bustools count -o genecount/genes -g ../transcripts_to_genes.txt -e matrix.ec -t transcripts.txt --genecounts -
+$ bustools correct -w ../10xv2_whitelist.txt -p output.bus | bustools sort -T tmp/ -t 4 -p - | bustools count -o genecount/genes -g ../transcripts_to_genes_hg19mm10.txt -e matrix.ec -t transcripts.txt --genecounts -
 ```
 
 #### 5. Load count matrices into notebook
