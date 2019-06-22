@@ -11,7 +11,8 @@ group: navigation
 - [Tutorial](velocity_tutorial.html)
 
 #### Multi-species experiments
-- [Tutorial](species_mixing.html)
+- [Tutorial](species_mixing.html) (using the command line and python)
+- [Tutorial](https://bustools.github.io/BUS_notebooks_R/10xv2.html) (using R)
 
 #### Parsing bus files
 - With python
