@@ -15,6 +15,5 @@ group: navigation
 - [Tutorial](https://bustools.github.io/BUS_notebooks_R/10xv2.html) (using R)
 
 #### Parsing bus files
-- With python
-- [With R](https://bustools.github.io/BUS_notebooks_R/10xv3.html)
+- [Tutorial](https://bustools.github.io/BUS_notebooks_R/10xv3.html) (using R)
 
