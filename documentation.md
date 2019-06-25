@@ -43,4 +43,4 @@ This will create the file `transcripts_to_genes.txt`. It is always a good idea t
 
 6. Running `kallisto` and `bustools`: once the read 1 and read 2 fastqs, thte kallisto index, and the transcript-to-gene files are ready, the count matrix can be generated with just a few commands; See the [getting started](https://www.kallistobus.tools/getting_started) tutorial. A detailed description of each file you should have at each step is provided at the [Getting Started Explained](https://www.kallistobus.tools/getting_started_explained.html) page.
 
-7. Enjoy your pre-processed data! The [tutorials page](https://www.kallistobus.tools/tutorials)contains examples of how to parse BUS files and/or count matrices for downstream analysis.
+7. Enjoy your pre-processed data! The [tutorials page](https://www.kallistobus.tools/tutorials) contains examples of how to parse BUS files and/or count matrices for downstream analysis.
