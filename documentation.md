@@ -8,7 +8,7 @@ group: navigation
 
 #### kallisto and bustools manuals
 
-The kallisto bus single cell workflow requires two programs: `kallisto` and `bustools`
+The kallisto &#124; bustools single-cell RNA-seq workflow requires two programs: `kallisto` and `bustools`
 
 The `kallisto` manual is available at: [https://pachterlab.github.io/kallisto/download](https://pachterlab.github.io/kallisto/download)
 
@@ -39,7 +39,28 @@ AAACCTGAGAAACGCC
 ```
 ./t2g.py --use_version < Mus_musculus.GRCm38.96.gtf > transcripts_to_genes.txt
 ```
-This will create the file `transcripts_to_genes.txt`. It is always a good idea to inspect the files you generate. 
+This will create the file `transcripts_to_genes.txt`. Some examples of such files are provided below:
+Gene names, no Ensembl version:
+```
+ENSMUST00000162897      ENSMUSG00000051951      Xkr4
+ENSMUST00000159265      ENSMUSG00000051951      Xkr4
+ENSMUST00000161581      ENSMUSG00000089699      Gm1992
+ENSMUST00000194643      ENSMUSG00000102343      Gm37381
+```
+No gene names and no Ensembl version:
+```
+ENSMUST00000162897      ENSMUSG00000051951     
+ENSMUST00000159265      ENSMUSG00000051951
+ENSMUST00000161581      ENSMUSG00000089699
+ENSMUST00000194643      ENSMUSG00000102343
+```
+No gene names and with Ensembl version:
+```
+ENSMUST00000162897.1      ENSMUSG00000051951     
+ENSMUST00000159265.2      ENSMUSG00000051951
+ENSMUST00000161581.1      ENSMUSG00000089699
+ENSMUST00000194643.1      ENSMUSG00000102343
+```
 
 6. Running `kallisto` and `bustools`: once the read 1 and read 2 fastqs, thte kallisto index, and the transcript-to-gene files are ready, the count matrix can be generated with just a few commands; See the [getting started](https://www.kallistobus.tools/getting_started) tutorial. A detailed description of each file you should have at each step is provided at the [Getting Started Explained](https://www.kallistobus.tools/getting_started_explained.html) page.
 
