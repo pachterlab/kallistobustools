@@ -39,8 +39,7 @@ AAACCTGAGAAACGCC
 ```
 ./t2g.py --use_version < Mus_musculus.GRCm38.96.gtf > transcripts_to_genes.txt
 ```
-This will create the file `transcripts_to_genes.txt`. Some examples of such files are provided below:
-
+This will create the file `transcripts_to_genes.txt`. Some examples of such files are provided below:<br/>
 Gene names, no Ensembl version:
 ```
 ENSMUST00000162897      ENSMUSG00000051951      Xkr4
