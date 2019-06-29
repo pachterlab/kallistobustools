@@ -39,7 +39,7 @@ Download the following files:
 ```
 $ wget http://cf.10xgenomics.com/samples/cell-exp/3.0.0/pbmc_1k_protein_v3/pbmc_1k_protein_v3_fastqs.tar; tar -xvf ./pbmc_1k_protein_v3_fastqs.tar
 $ wget http://cf.10xgenomics.com/samples/cell-exp/3.0.0/pbmc_1k_protein_v3/pbmc_1k_protein_v3_feature_ref.csv
-$ wget whitelist
+$ wget https://github.com/BUStools/getting_started/releases/download/species_mixing/10xv3_whitelist.txt
 ```
 #### 2. Make the FASTA file
 This step creates a FASTA file containing only the feature barcode sequences (no common or constant sequences) and corresponding feature names used in the experiment. In this case, 10x has provided a csv file that is parsed using `get_tags` from the kite package. The object `tags` is the Python feature barocde dictionary.
@@ -67,7 +67,7 @@ $ kallisto bus -i cDNA_intronkallisto bus -i FeaturesMismatch.idx -o ./ -x 10xv3
 #### 5. Run bustools
 
 ```
-$ bustools correct -w ./3M-february-2018.txt ./output.bus -o ./output_corrected.bus
+$ bustools correct -w ./10xv3_whitelist.txt ./output.bus -o ./output_corrected.bus
 ```
 ```
 $ bustools sort -t 4 -o ./output_sorted.bus ./output_corrected.bus
