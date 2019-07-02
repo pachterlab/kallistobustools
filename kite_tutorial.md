@@ -7,7 +7,7 @@ title: "Feature barcoding tutorial"
 
 <p align="center">
   <a href="">
-    <img src="assets/kite_graphic.png" width="60%">
+    <img src="assets/kITEfigure20190702-01.png" width="60%">
   </a>
 </p>
 
