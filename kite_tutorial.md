@@ -11,41 +11,60 @@ title: "Feature barcoding tutorial"
   </a>
 </p>
 
-This page provides instructions for how to use __kallisto &#124; bustools__ to pre-process feature barcoded single-cell RNA-seq experiments. The tutorial explains the steps using as an example the 10x Genomics [pbmc_1k_protein_v3](https://support.10xgenomics.com/single-cell-gene-expression/datasets/3.0.0/pbmc_1k_protein_v3) feature barcoding dataset.
+This page provides instructions for how to use __kallisto &#124; bustools__ to pre-process feature barcoded single-cell RNA-seq experiments. The tutorial explains the steps using as an example the 10x Genomics [pbmc_1k_protein_v3](https://support.10xgenomics.com/single-cell-gene-expression/datasets/3.0.0/pbmc_1k_protein_v3) feature barcoding dataset. A complete notebook showing all steps and analysis can be found [here](https://github.com/pachterlab/kite/docs/)
 
-In feature barcoding assays, cellular data are recorded as short DNA sequences using procedures adapted from single-cell RNA-seq. The kITE ("kallisto Indexing and Tag Extraction") workflow involves generating a "Mismatch Map" containing the sequences of all feature barcodes used in the experiment, as well as all of their single-base mismatches. The Mismatch Map is used to produce "transcipt-to-gene" (t2g) and "transcriptome" fasta files to be used as inputs for kallisto. An index is made with `kallisto index`, and then  `bustools` is used to search the sequencing data for the sequences in the Mismatch Map. This approach effectively coopts the __kallisto &#124; bustools__ infrastructure for a different application. 
+In feature barcoding assays, cellular data are recorded as short DNA sequences using procedures adapted from single-cell RNA-seq. The kITE ("kallisto Indexing and Tag Extraction") workflow involves generating a "Mismatch Map" containing the sequences of all feature barcodes used in the experiment, as well as all of their single-base mismatches. The Mismatch Map is used to produce "transcipt-to-gene" (t2g) and "transcriptome" fasta files to be used as inputs for kallisto. An index is made with `kallisto index`, and then  `bustools` is used to search the sequencing data for the sequences in the Mismatch Map. This approach effectively co-opts the __kallisto &#124; bustools__ infrastructure for a different application. 
 
 __Note:__ for the instructions, command line arguments are preceeded by`$`. For example, if you see `$ cd my_folder` then type `cd my_folder`. 
 
 #### 0. Download and install software
-Obtain ```kallisto``` from the [__kallisto__ installation page](https://pachterlab.github.io/kallisto/download), and ```bustools``` from the [__bustools__ installation page](https://github.com/BUStools/bustools). The workflow requires the python kite package to be installed:
+Obtain ```kallisto``` from the [__kallisto__ installation page](https://pachterlab.github.io/kallisto/download), and ```bustools``` from the [__bustools__ installation page](https://github.com/BUStools/bustools). Clone the `kite` GitHub repository, which contains the core featuremap.py program as well as a complete Jupyter notebook for this tutorial and some useful supplementary files. 
 ```
 $ git clone https://github.com/pachterlab/kite
-$ pip install ./kite
 ```
-Finally, the python program featuremap.py, included in the kite GitHub repository (`./kite/featuremap/featuremap.py`), is needed.
 
 #### 1. Download materials
 Prepare a folder:
 ```
-$ mkdir kallisto_bustools_kite/; cd kallisto_bustools_kite/
+$ mkdir kallisto_bustools_kite/
+$ cd kallisto_bustools_kite/
 ```
 Download the following files:
 
 - [10xPBMC_1k_protein_v3](https://support.10xgenomics.com/single-cell-gene-expression/datasets/3.0.0/pbmc_1k_protein_v3) dataset
-- Antibody barcode sequences
+- Antibody feature barcode sequences
 - 10x Chromium v3 chemistry barcode whitelist 
 
 ```
-$ wget http://cf.10xgenomics.com/samples/cell-exp/3.0.0/pbmc_1k_protein_v3/pbmc_1k_protein_v3_fastqs.tar; tar -xvf ./pbmc_1k_protein_v3_fastqs.tar
+$ wget http://cf.10xgenomics.com/samples/cell-exp/3.0.0/pbmc_1k_protein_v3/pbmc_1k_protein_v3_fastqs.tar
+$ tar -xvf ./pbmc_1k_protein_v3_fastqs.tar
 $ wget http://cf.10xgenomics.com/samples/cell-exp/3.0.0/pbmc_1k_protein_v3/pbmc_1k_protein_v3_feature_ref.csv
 $ wget https://github.com/BUStools/getting_started/releases/download/species_mixing/10xv3_whitelist.txt
 ```
-#### 2. Make the FASTA file
-This step creates a FASTA file containing only the feature barcode sequences (no common or constant sequences) and corresponding feature names used in the experiment. In this case, 10x has provided a csv file that is parsed using `get_tags` from the kite package. The object `tags` is the Python feature barocde dictionary.
+#### 2. Make the mismatch FASTA and t2g files
+This step creates a FASTA file and a t2g file containing only the feature barcode sequences (no common or constant sequences) and corresponding feature names used in the experiment. A csv-formatted matrix of Feature Barcode names and Feaure Barcode sequences, __including a header__, is used as input. In this case, we parsed the file provided by 10x to give a properly formatted csv, shown below. Example code and a correctly formatted file (FeatureBarcodes.csv) is included in the [kite GitHub repo](https://github.com/pachterlab/kite/docs/)
+
+| Feature Barcode name  | Feature Barcode sequence |
+| ------------- | ------------- |
+|CD3_TotalSeqB|AACAAGACCCTTGAG|
+|CD8a_TotalSeqB|TACCCGTAATAGCGT|
+|CD14_TotalSeqB|GAAAGTCAAAGCACT|
+|CD15_TotalSeqB|ACGAATCAATCTGTG|
+|CD16_TotalSeqB|GTCTTTGTCAGTGCA|
+|CD56_TotalSeqB|GTTGTCCGACAATAC|
+|CD19_TotalSeqB|TCAACGCTTGGCTAG|
+|CD25_TotalSeqB|GTGCATTCAACAGTA|
+|CD45RA_TotalSeqB|GATGAGAACAGGTTT|
+|CD45RO_TotalSeqB|TGCATGTCATCGGTG|
+|PD-1_TotalSeqB|AAGTCGTGAGGCATG|
+|TIGIT_TotalSeqB|TGAAGGCTCATTTGT|
+|CD127_TotalSeqB|ACATTGACGCAACTA|
+|IgG2a_control_TotalSeqB|CTCTATTCAGACCAG|
+|IgG1_control_TotalSeqB|ACTCACTGGAGTCTC|
+|IgG2b_control_TotalSeqB| ATCACATCGTTGCCA|
 
 ``` 
-$./kite/featuremap/featuremap.py pbmc_1k_protein_v3_feature_ref.csv
+$./kite/featuremap/featuremap.py FeatureBarcodes.csv
 ```
 
 #### 3. Build Index
