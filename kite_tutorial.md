@@ -42,7 +42,7 @@ $ wget http://cf.10xgenomics.com/samples/cell-exp/3.0.0/pbmc_1k_protein_v3/pbmc_
 $ wget https://github.com/BUStools/getting_started/releases/download/species_mixing/10xv3_whitelist.txt
 ```
 #### 2. Make the mismatch FASTA and t2g files
-This step creates a FASTA file and a t2g file containing only the feature barcode sequences (no common or constant sequences) and corresponding feature names used in the experiment. A csv-formatted matrix of Feature Barcode names and Feaure Barcode sequences, __including a header__, is used as input. In this case, we parsed the file provided by 10x to give a properly formatted csv, shown below. Example code and a correctly formatted file (FeatureBarcodes.csv) is included in the [kite GitHub repo](https://github.com/pachterlab/kite/docs/)
+This step creates a FASTA file and a t2g file containing only the feature barcode sequences (no common or constant sequences) and corresponding feature names used in the experiment. A csv-formatted matrix of Feature Barcode names and Feaure Barcode sequences, __including a header__, is used as input. In this case, we parsed the file provided by 10x to give a properly formatted csv, shown below. Example code and a correctly formatted file (FeatureBarcodes.csv) is included in the [kite GitHub repo](https://github.com/pachterlab/kite/docs/).
 
 | Feature Barcode name  | Feature Barcode sequence |
 | ------------- | ------------- |
@@ -68,15 +68,16 @@ $./kite/featuremap/featuremap.py FeatureBarcodes.csv
 ```
 
 #### 3. Build Index
-Build the species velocity index:
+Build the kallisto index using a k-mer length `-k` equal to the length of the Feature Barcodes:
 ```
 $ kallisto index -i FeaturesMismatch.idx -k 15 ./FeaturesMismatch.fa
 ```
+Note that kallisto only accepts odd values for the k-mer length, so if your Feature Barcodes are even in length, add a constant base on either side. 
 
 #### 4. Run kallisto
-Pseudoalign the reads for 06:
+Pseudoalign the reads:
 ```
-$ kallisto bus -i cDNA_intronkallisto bus -i FeaturesMismatch.idx -o ./ -x 10xv3 -t 4 \
+$ kallisto bus -i FeaturesMismatch.idx -o ./ -x 10xv3 -t 4 \
 ./pbmc_1k_protein_v3_fastqs/pbmc_1k_protein_v3_antibody_fastqs/pbmc_1k_protein_v3_antibody_S2_L001_R1_001.fastq.gz \
 ./pbmc_1k_protein_v3_fastqs/pbmc_1k_protein_v3_antibody_fastqs/pbmc_1k_protein_v3_antibody_S2_L001_R2_001.fastq.gz \
 ./pbmc_1k_protein_v3_fastqs/pbmc_1k_protein_v3_antibody_fastqs/pbmc_1k_protein_v3_antibody_S2_L002_R1_001.fastq.gz \
