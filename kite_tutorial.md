@@ -39,7 +39,7 @@ $ wget http://cf.10xgenomics.com/samples/cell-exp/3.0.0/pbmc_1k_protein_v3/pbmc_
 $ wget https://github.com/BUStools/getting_started/releases/download/species_mixing/10xv3_whitelist.txt
 ```
 #### 2. Make the mismatch FASTA and t2g files
-Start by preparing a csv-formatted matrix of Feature Barcode names and Feaure Barcode sequences, __including a header__. Do not include any common or constant sequences. For this tutorial, we parsed the feature_ref.csv file provided by 10x to give a properly formatted csv (below). Example code for this step and specifications for a correctly formatted file (FeatureBarcodes.csv) is included in the [kite GitHub repo](https://github.com/pachterlab/kite/docs/).
+Start by preparing a csv-formatted matrix of Feature Barcode names and Feaure Barcode sequences, __including a header__. Do not include any common or constant sequences. For this tutorial, we parsed the feature_ref.csv file provided by 10x to give a properly formatted csv (below). Example code for this step and specifications for a correctly formatted file (FeatureBarcodes.csv) is included in the [kite GitHub repo](https://github.com/pachterlab/kite/tree/master/docs).
 
 |Feature Barcode name|Feature Barcode sequence|
 | ------------- | ------------- |
@@ -59,7 +59,7 @@ Start by preparing a csv-formatted matrix of Feature Barcode names and Feaure Ba
 |IgG2a_control_TotalSeqB|CTCTATTCAGACCAG|
 |IgG1_control_TotalSeqB|ACTCACTGGAGTCTC|
 |IgG2b_control_TotalSeqB| ATCACATCGTTGCCA|
-
+</b>
 With the FeatureBarcodes.csv file ready,run `featuremap.py`, which creates a mismatch FASTA file and a mismatch t2g file for the experiment. In this case the mismatch file has 782 entries. 
 ``` 
 $./kite/featuremap/featuremap.py FeatureBarcodes.csv
