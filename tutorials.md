@@ -8,10 +8,10 @@ group: navigation
 
 
 #### RNA velocity
-- [Tutorial](velocity_tutorial.html)
+- [Tutorial](velocity_tutorial.html) (using the command line and python)
 
 #### Feature barcoding
-- [Tutorial](kite_tutorial.html)
+- [Tutorial](kite_tutorial.html) (using the command line and/or python)
 
 #### Multi-species experiments
 - [Tutorial](species_mixing.html) (using the command line and python)
