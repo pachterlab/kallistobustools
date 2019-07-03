@@ -17,17 +17,14 @@ In feature barcoding assays, cellular data are recorded as short DNA sequences u
 
 __Note:__ for the instructions, command line arguments are preceeded by`$`. For example, if you see `$ cd my_folder` then type `cd my_folder`. 
 
-#### 0. Download and install software
-Obtain ```kallisto``` from the [__kallisto__ installation page](https://pachterlab.github.io/kallisto/download), and ```bustools``` from the [__bustools__ installation page](https://github.com/BUStools/bustools). Clone the `kite` GitHub repository. 
-```
-$ git clone https://github.com/pachterlab/kite
-```
+#### 1. Download software and materials
+Obtain ```kallisto``` from the [__kallisto__ installation page](https://pachterlab.github.io/kallisto/download), and ```bustools``` from the [__bustools__ installation page](https://github.com/BUStools/bustools).
 
-#### 1. Download materials
-Prepare a folder:
+Prepare a folder and clone the `kite` GitHub repository:
 ```
 $ mkdir kallisto_bustools_kite/
 $ cd kallisto_bustools_kite/
+$ git clone https://github.com/pachterlab/kite
 ```
 Download the following files:
 
