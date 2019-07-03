@@ -63,6 +63,7 @@ This step creates a FASTA file and a t2g file containing only the feature barcod
 |IgG1_control_TotalSeqB|ACTCACTGGAGTCTC|
 |IgG2b_control_TotalSeqB| ATCACATCGTTGCCA|
 
+
 ``` 
 $./kite/featuremap/featuremap.py FeatureBarcodes.csv
 ```
