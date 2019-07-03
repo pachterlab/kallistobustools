@@ -42,7 +42,7 @@ $ wget http://cf.10xgenomics.com/samples/cell-exp/3.0.0/pbmc_1k_protein_v3/pbmc_
 $ wget https://github.com/BUStools/getting_started/releases/download/species_mixing/10xv3_whitelist.txt
 ```
 #### 2. Make the mismatch FASTA and t2g files
-Start by preparing a csv-formatted matrix of Feature Barcode names and Feaure Barcode sequences, __including a header__, is used as input. Do not include any common or constant sequences. In this case, we parsed the feature_ref.csv file provided by 10x to give a properly formatted csv (below). Example code for this step and a correctly formatted file (FeatureBarcodes.csv) is included in the [kite GitHub repo](https://github.com/pachterlab/kite/docs/).
+Start by preparing a csv-formatted matrix of Feature Barcode names and Feaure Barcode sequences, __including a header__. Do not include any common or constant sequences. For this tutorial, we parsed the feature_ref.csv file provided by 10x to give a properly formatted csv (below). Example code for this step and specifications for a correctly formatted file (FeatureBarcodes.csv) is included in the [kite GitHub repo](https://github.com/pachterlab/kite/docs/).
 
 |Feature Barcode name|Feature Barcode sequence|
 | ------------- | ------------- |
@@ -63,15 +63,14 @@ Start by preparing a csv-formatted matrix of Feature Barcode names and Feaure Ba
 |IgG1_control_TotalSeqB|ACTCACTGGAGTCTC|
 |IgG2b_control_TotalSeqB| ATCACATCGTTGCCA|
 
-
-Now run featuremap.py, which creates a mismatch FASTA file and a mismatch t2g file for the experiment. In this case the mismatch files each have 782 entries. 
-
+With the FeatureBarcodes.csv file ready,run `featuremap.py`, which creates a mismatch FASTA file and a mismatch t2g file for the experiment. In this case the mismatch file has 782 entries. 
 ``` 
 $./kite/featuremap/featuremap.py FeatureBarcodes.csv
 ```
+
 __Note:__ kallisto only accepts odd values for the k-mer length, so if your Feature Barcodes are even in length, add a constant base on either side before running featuremap.py. For example, append an __A__ base to the CD3_TotalSeqB barcode AACAAGACCCTTGAG &rarr; AACAAGACCCTTGAGA
 
-#### 3. Build Index
+#### 3. Build an index
 Build the kallisto index using the mismatch fasta and a k-mer length `-k` equal to the length of the Feature Barcodes:
 ```
 $ kallisto index -i FeaturesMismatch.idx -k 15 ./FeaturesMismatch.fa
