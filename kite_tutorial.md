@@ -66,7 +66,7 @@ This step creates a FASTA file and a t2g file containing only the feature barcod
 ``` 
 $./kite/featuremap/featuremap.py FeatureBarcodes.csv
 ```
-__Note:__ kallisto only accepts odd values for the k-mer length, so if your Feature Barcodes are even in length, add a constant base on either side before running featuremap.py. For example, append an __A__ base to the CD3_TotalSeqB barcode AACAAGACCCTTGAG &rarr AACAAGACCCTTGAGA
+__Note:__ kallisto only accepts odd values for the k-mer length, so if your Feature Barcodes are even in length, add a constant base on either side before running featuremap.py. For example, append an __A__ base to the CD3_TotalSeqB barcode AACAAGACCCTTGAG &rarr; AACAAGACCCTTGAGA
 
 #### 3. Build Index
 Build the kallisto index using the mismatch fasta and a k-mer length `-k` equal to the length of the Feature Barcodes:
