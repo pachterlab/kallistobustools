@@ -18,7 +18,7 @@ In feature barcoding assays, cellular data are recorded as short DNA sequences u
 __Note:__ for the instructions, command line arguments are preceeded by`$`. For example, if you see `$ cd my_folder` then type `cd my_folder`. 
 
 #### 0. Download and install software
-Obtain ```kallisto``` from the [__kallisto__ installation page](https://pachterlab.github.io/kallisto/download), and ```bustools``` from the [__bustools__ installation page](https://github.com/BUStools/bustools). Clone the `kite` GitHub repository, which contains the core featuremap.py program as well as a complete Jupyter notebook for this tutorial and some useful supplementary files. 
+Obtain ```kallisto``` from the [__kallisto__ installation page](https://pachterlab.github.io/kallisto/download), and ```bustools``` from the [__bustools__ installation page](https://github.com/BUStools/bustools). Clone the `kite` GitHub repository. 
 ```
 $ git clone https://github.com/pachterlab/kite
 ```
