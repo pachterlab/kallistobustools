@@ -44,7 +44,7 @@ $ wget https://github.com/BUStools/getting_started/releases/download/species_mix
 #### 2. Make the mismatch FASTA and t2g files
 This step creates a FASTA file and a t2g file containing only the feature barcode sequences (no common or constant sequences) and corresponding feature names used in the experiment. A csv-formatted matrix of Feature Barcode names and Feaure Barcode sequences, __including a header__, is used as input. In this case, we parsed the file provided by 10x to give a properly formatted csv, shown below. Example code and a correctly formatted file (FeatureBarcodes.csv) is included in the [kite GitHub repo](https://github.com/pachterlab/kite/docs/).
 
-| Feature Barcode name  | Feature Barcode sequence |
+|Feature Barcode name |Feature Barcode sequence|
 | ------------- | ------------- |
 |CD3_TotalSeqB|AACAAGACCCTTGAG|
 |CD8a_TotalSeqB|TACCCGTAATAGCGT|
