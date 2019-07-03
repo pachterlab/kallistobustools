@@ -6,7 +6,6 @@ group: navigation
 
 {% include JB/setup %}
 
-
 #### RNA velocity
 - [Tutorial](velocity_tutorial.html) (using the command line and python)
 
