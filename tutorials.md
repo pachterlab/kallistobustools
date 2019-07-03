@@ -11,7 +11,7 @@ group: navigation
 - [Tutorial](velocity_tutorial.html)
 
 #### Feature barcoding
-- [Tutoria](kite_tutorial.html)
+- [Tutorial](kite_tutorial.html)
 
 #### Multi-species experiments
 - [Tutorial](species_mixing.html) (using the command line and python)
