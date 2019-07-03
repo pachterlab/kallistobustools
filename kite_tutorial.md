@@ -63,6 +63,7 @@ Start by preparing a csv-formatted matrix of Feature Barcode names and Feaure Ba
 |IgG1_control_TotalSeqB|ACTCACTGGAGTCTC|
 |IgG2b_control_TotalSeqB| ATCACATCGTTGCCA|
 
+
 Now run featuremap.py, which creates a mismatch FASTA file and a mismatch t2g file for the experiment. In this case the mismatch files each have 782 entries. 
 
 ``` 
