@@ -59,9 +59,12 @@ Start by preparing a csv-formatted matrix of Feature Barcode names and Feaure Ba
 |IgG2a_control_TotalSeqB|CTCTATTCAGACCAG|
 |IgG1_control_TotalSeqB|ACTCACTGGAGTCTC|
 |IgG2b_control_TotalSeqB| ATCACATCGTTGCCA|
+
 <br>
+
 With the FeatureBarcodes.csv file ready,run `featuremap.py`, which creates a mismatch FASTA file and a mismatch t2g file for the experiment. In this case the mismatch file has 782 entries. 
-``` 
+
+```
 $./kite/featuremap/featuremap.py FeatureBarcodes.csv
 ```
 
