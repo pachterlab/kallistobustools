@@ -69,7 +69,7 @@ $./kite/featuremap/featuremap.py FeatureBarcodes.csv
 ```
 
 #### 3. Build Index
-Build the kallisto index using a k-mer length `-k` equal to the length of the Feature Barcodes:
+Build the kallisto index using the mismatch fasta and a k-mer length `-k` equal to the length of the Feature Barcodes:
 ```
 $ kallisto index -i FeaturesMismatch.idx -k 15 ./FeaturesMismatch.fa
 ```
@@ -86,7 +86,7 @@ $ kallisto bus -i FeaturesMismatch.idx -o ./ -x 10xv3 -t 4 \
 ```
 
 #### 5. Run bustools
-
+For `bustools count`, use the mismatch t2g file. 
 ```
 $ bustools correct -w ./10xv3_whitelist.txt ./output.bus -o ./output_corrected.bus
 ```
