@@ -98,7 +98,7 @@ $ bustools sort -t 4 -o ./output_sorted.bus ./output_corrected.bus
 $ mkdir ./featurecounts/
 ```
 ```
-$ bustools count -o ./featurecounts/featurecounts --genecounts -g ./Features_t2g.txt -e ./matrix.ec -t ./transcripts.txt ./output_sorted.bus
+$ bustools count -o ./featurecounts/featurecounts --genecounts -g ./FeaturesMismatch.t2g -e ./matrix.ec -t ./transcripts.txt ./output_sorted.bus
 ```
 #### 6. Load count matrices into notebook
 See [this notebook](https://github.com/pachterlab/kite/blob/master/docs/10x_kiteVignette_20190702.ipynb) for how to process the feature count matrix.
