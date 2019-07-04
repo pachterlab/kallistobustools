@@ -13,11 +13,11 @@ title: "Feature barcoding tutorial"
 
 This page provides instructions for how to use __kallisto &#124; bustools__ to pre-process feature barcoded single-cell RNA-seq experiments. The tutorial explains the steps using as an example the 10x Genomics [pbmc_1k_protein_v3](https://support.10xgenomics.com/single-cell-gene-expression/datasets/3.0.0/pbmc_1k_protein_v3) feature barcoding dataset. A complete notebook showing all steps and analysis can be found [here](https://github.com/pachterlab/kite/blob/master/docs/10x_kiteVignette_20190702.ipynb).
 
-In feature barcoding assays, cellular data are recorded as short DNA sequences using procedures adapted from single-cell RNA-seq. The kITE ("kallisto Indexing and Tag Extraction") workflow involves generating a "Mismatch Map" containing the sequences of all feature barcodes used in the experiment, as well as all of their single-base mismatches. The Mismatch Map is used to make "transcript-to-gene" (t2g) and "transcriptome" fasta files to be used as inputs for kallisto. An index is made with `kallisto index`, and then  `bustools` is used to search the sequencing data for the sequences in the Mismatch Map. This approach effectively co-opts the __kallisto &#124; bustools__ infrastructure for a different application. 
+In feature barcoding assays, cellular data are recorded as short DNA sequences using procedures adapted from single-cell RNA-seq. The kITE ("kallisto Indexing and Tag Extraction") workflow involves generating a "Mismatch Map" containing the sequences of all feature barcodes used in the experiment, as well as all of their single-base mismatches. The Mismatch Map is used to make "transcipt-to-gene" (t2g) and "transcriptome" fasta files to be used as inputs for kallisto. An index is made with `kallisto index`, and then  `bustools` is used to search the sequencing data for the sequences in the Mismatch Map. This approach effectively co-opts the __kallisto &#124; bustools__ infrastructure for a different application. 
 
 __Note:__ for the instructions, command line arguments are preceeded by`$`. For example, if you see `$ cd my_folder` then type `cd my_folder`. 
 
-#### 1. Download software and materials
+#### 0. Install software
 Obtain ```kallisto``` from the [__kallisto__ installation page](https://pachterlab.github.io/kallisto/download), and ```bustools``` from the [__bustools__ installation page](https://github.com/BUStools/bustools).
 
 Prepare a folder and clone the `kite` GitHub repository:
@@ -26,6 +26,7 @@ $ mkdir kallisto_bustools_kite/
 $ cd kallisto_bustools_kite/
 $ git clone https://github.com/pachterlab/kite
 ```
+#### 1. Download materials
 Download the following files:
 
 - [10xPBMC_1k_protein_v3](https://support.10xgenomics.com/single-cell-gene-expression/datasets/3.0.0/pbmc_1k_protein_v3) dataset
@@ -39,7 +40,7 @@ $ wget http://cf.10xgenomics.com/samples/cell-exp/3.0.0/pbmc_1k_protein_v3/pbmc_
 $ wget https://github.com/BUStools/getting_started/releases/download/species_mixing/10xv3_whitelist.txt
 ```
 #### 2. Make the mismatch FASTA and t2g files
-Start by preparing a csv-formatted matrix of Feature Barcode names and Feaure Barcode sequences, __including a header__. Do not include any common or constant sequences. For this tutorial, we parsed the feature_ref.csv file provided by 10x to give a properly formatted csv (below). Example code for this step and specifications for a correctly formatted file (FeatureBarcodes.csv) is included in the [kite GitHub repo](https://github.com/pachterlab/kite/tree/master/docs).
+Start by preparing a csv-formatted matrix of Feature Barcode names and Feaure Barcode sequences. Do not include any common or constant sequences. For this tutorial, we parsed the feature_ref.csv file provided by 10x to give a properly formatted csv (below). Example code for this step is included in the [kite GitHub repo](https://github.com/pachterlab/kite/tree/master/docs).
 
 |Feature Barcode name|Feature Barcode sequence|
 | ------------- | ------------- |
@@ -62,10 +63,10 @@ Start by preparing a csv-formatted matrix of Feature Barcode names and Feaure Ba
 
 <br>
 
-With the FeatureBarcodes.csv file ready,run `featuremap.py`, which creates a mismatch FASTA file and a mismatch t2g file for the experiment. In this case the mismatch file has 782 entries. 
+With the FeatureBarcodes.csv file ready,run `featuremap.py`, which creates a mismatch FASTA file and a mismatch t2g file for the experiment. The optional `--header` flag is used if the input csv has a header in the first row. In this case the mismatch file has 782 entries. 
 
 ```
-$./kite/featuremap/featuremap.py FeatureBarcodes.csv
+$./kite/featuremap/featuremap.py FeatureBarcodes.csv --header
 ```
 
 __Note:__ kallisto only accepts odd values for the k-mer length, so if your Feature Barcodes are even in length, add a constant base on either side before running featuremap.py. For example, append an __A__ base to the CD3_TotalSeqB barcode AACAAGACCCTTGAG &rarr; AACAAGACCCTTGAGA
