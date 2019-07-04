@@ -10,9 +10,9 @@ The kallisto bus single cell workflow requires two programs: `kallisto` and `bus
 
 To download and install `kallisto` go to: [https://pachterlab.github.io/kallisto/download](https://pachterlab.github.io/kallisto/download)
 
-To download and installing `bustools` go to: [https://bustools.github.io/download](https://bustools.github.io/download)
+To download and install `bustools` go to: [https://bustools.github.io/download](https://bustools.github.io/download)
 
-Pre built indices and transcript to gene files together with the original transcriptomes and GTF files for many model organisms are available [kallisto transcriptome indices repository](https://github.com/pachterlab/kallisto-transcriptome-indices/releases).
+Pre-built indices, transcript-to-gene maps, transcriptomes, and GTF files for many model organisms are available for download from the [kallisto transcriptome indices repository](https://github.com/pachterlab/kallisto-transcriptome-indices/releases).
 
-A video tutorial for how to install this software can be found [here](https://youtu.be/thvtp7Ik6ts).
+A video tutorial for how to install the needed software can be found [here](https://youtu.be/thvtp7Ik6ts).
 
