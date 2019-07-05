@@ -54,27 +54,34 @@ Since La Manno et al. did not release the FASTQ files, we have to generate them 
 $ bamtofastq --reads-per-fastq=500000000 10X_17_029.bam ./06
 $ bamtofastq --reads-per-fastq=500000000 10X_17_028.bam ./07
 ```
-Your folder structure will look something like this for 06/ and 07/. Note the `MissingLibrary` does not affect this analysis.
+Your folder structure will look like the following. Note the `MissingLibrary` does not affect this analysis.
 ```
-06/
-├── 10X_17_029_MissingLibrary_1_HL73JBCXY
-│   ├── bamtofastq_S1_L002_I1_001.fastq.gz
-│   ├── bamtofastq_S1_L002_R1_001.fastq.gz
-│   └── bamtofastq_S1_L002_R2_001.fastq.gz
-└── 10X_17_029_MissingLibrary_1_HLFGJBCXY
-    ├── bamtofastq_S1_L002_I1_001.fastq.gz
-    ├── bamtofastq_S1_L002_R1_001.fastq.gz
-    └── bamtofastq_S1_L002_R2_001.fastq.gz
-
-07/
-├── 10X_17_028_MissingLibrary_1_HL73JBCXY
-│   ├── bamtofastq_S1_L001_I1_001.fastq.gz
-│   ├── bamtofastq_S1_L001_R1_001.fastq.gz
-│   └── bamtofastq_S1_L001_R2_001.fastq.gz
-└── 10X_17_028_MissingLibrary_1_HLFGJBCXY
-    ├── bamtofastq_S1_L001_I1_001.fastq.gz
-    ├── bamtofastq_S1_L001_R1_001.fastq.gz
-    └── bamtofastq_S1_L001_R2_001.fastq.gz
+├── 06
+│   ├── 10X_17_029_MissingLibrary_1_HL73JBCXY
+│   │   ├── bamtofastq_S1_L002_I1_001.fastq.gz
+│   │   ├── bamtofastq_S1_L002_R1_001.fastq.gz
+│   │   └── bamtofastq_S1_L002_R2_001.fastq.gz
+│   └── 10X_17_029_MissingLibrary_1_HLFGJBCXY
+│       ├── bamtofastq_S1_L002_I1_001.fastq.gz
+│       ├── bamtofastq_S1_L002_R1_001.fastq.gz
+│       └── bamtofastq_S1_L002_R2_001.fastq.gz
+├── 07
+│   ├── 10X_17_028_MissingLibrary_1_HL73JBCXY
+│   │   ├── bamtofastq_S1_L001_I1_001.fastq.gz
+│   │   ├── bamtofastq_S1_L001_R1_001.fastq.gz
+│   │   └── bamtofastq_S1_L001_R2_001.fastq.gz
+│   └── 10X_17_028_MissingLibrary_1_HLFGJBCXY
+│       ├── bamtofastq_S1_L001_I1_001.fastq.gz
+│       ├── bamtofastq_S1_L001_R1_001.fastq.gz
+│       └── bamtofastq_S1_L001_R2_001.fastq.gz
+├── 10X_17_028.bam
+├── 10X_17_029.bam
+├── 10xv2_whitelist.txt
+├── cDNA.correct_header.fa
+├── cDNA_introns.t2g.txt
+├── cDNA_transcripts.to_capture.txt
+├── introns.correct_header.fa
+└── introns_transcripts.to_capture.txt
 ```
 
 #### 3. Build Index
