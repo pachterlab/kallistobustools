@@ -95,18 +95,18 @@ $ kallisto index -i cDNA_introns.idx -k 31 cDNA_introns.fa
 Pseudoalign the reads for 06:
 ```
 $ kallisto bus -i cDNA_introns.idx -o bus_output_06/ -x 10xv2 -t 4 \
-06/10X_17_029_MissingLibrary_1_HL73JBCXY/SRR6470906_S1_L001_R1_001.fastq.gz \
-06/10X_17_029_MissingLibrary_1_HL73JBCXY/SRR6470906_S1_L001_R2_001.fastq.gz \
-06/10X_17_029_MissingLibrary_1_HLFGJBCXY/SRR6470906_S1_L002_R1_001.fastq.gz \
-06/10X_17_029_MissingLibrary_1_HLFGJBCXY/SRR6470906_S1_L002_R2_001.fastq.gz
+06/10X_17_029_MissingLibrary_1_HL73JBCXY/bamtofastq_S1_L002_R1_001.fastq.gz \
+06/10X_17_029_MissingLibrary_1_HL73JBCXY/bamtofastq_S1_L002_R2_001.fastq.gz \
+06/10X_17_029_MissingLibrary_1_HLFGJBCXY/bamtofastq_S1_L002_R1_001.fastq.gz \
+06/10X_17_029_MissingLibrary_1_HLFGJBCXY/bamtofastq_S1_L002_R2_001.fastq.gz
 ```
 And for 07:
 ```
 $ kallisto bus -i cDNA_introns.idx -o bus_output_07/ -x 10xv2 -t 4 \
-07/10X_17_028_MissingLibrary_1_HL73JBCXY/SRR6470907_S1_L001_R1_001.fastq.gz \
-07/10X_17_028_MissingLibrary_1_HL73JBCXY/SRR6470907_S1_L001_R2_001.fastq.gz \
-07/10X_17_028_MissingLibrary_1_HLFGJBCXY/SRR6470907_S1_L002_R1_001.fastq.gz \
-07/10X_17_028_MissingLibrary_1_HLFGJBCXY/SRR6470907_S1_L002_R2_001.fastq.gz
+07/10X_17_028_MissingLibrary_1_HL73JBCXY/bamtofastq_S1_L001_R1_001.fastq.gz \
+07/10X_17_028_MissingLibrary_1_HL73JBCXY/bamtofastq_S1_L001_R2_001.fastq.gz \
+07/10X_17_028_MissingLibrary_1_HLFGJBCXY/bamtofastq_S1_L001_R1_001.fastq.gz \
+07/10X_17_028_MissingLibrary_1_HLFGJBCXY/bamtofastq_S1_L001_R2_001.fastq.gz
 ```
 
 #### 5. Run bustools
