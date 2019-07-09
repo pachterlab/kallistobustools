@@ -16,6 +16,9 @@ group: navigation
 - [Tutorial](species_mixing.html) (using the command line and python)
 - [Tutorial](https://bustools.github.io/BUS_notebooks_R/10xv2.html) (using R)
 
+#### Multiple FASTQs 
+- [Tutorial](multiple_files.html) (the command line)
+
 #### Parsing bus files
 - [Tutorial](https://bustools.github.io/BUS_notebooks_R/10xv3.html) (using R)
 
