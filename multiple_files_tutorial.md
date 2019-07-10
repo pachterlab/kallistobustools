@@ -11,7 +11,7 @@ title: "Processing Multiple Lanes at Once"
   </a>
 </p> -->
 
-This page provides instructions for how to pre-process the [mouse T cells SRR8206317](https://www.ncbi.nlm.nih.gov/sra/?term=SRR8206317) dataset from [Miller & Sen et al., 2019](https://doi.org/10.1038/s41590-019-0312-6) using the __kallisto &#124; bustools workflow__. 
+This tutorial provides instructions for how to pre-process the [mouse T cells SRR8206317](https://www.ncbi.nlm.nih.gov/sra/?term=SRR8206317) dataset from [Miller & Sen et al., 2019](https://doi.org/10.1038/s41590-019-0312-6) using the __kallisto &#124; bustools workflow__. 
 
 __Note:__ command line arguments are preceeded by`$`. For example, if you see `$ cd my_folder` then type `cd my_folder`. 
 

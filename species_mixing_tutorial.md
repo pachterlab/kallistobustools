@@ -5,7 +5,7 @@ title: "Tutorial: Species Mixing"
 
 {% include JB/setup %}
 
-This page provides instructions for how to pre-process 1k 1:1 mixture of fresh frozen human (HEK293T) and mouse (NIH3T3) cells (v3 chemistry) from [the 10x website](https://support.10xgenomics.com/single-cell-gene-expression/datasets/3.0.2/1k_hgmm_v3). Details for each of the steps are expanded on in the [explanation page](getting_started_explained.md).
+This tutorial provides instructions for how to pre-process 1k 1:1 mixture of fresh frozen human (HEK293T) and mouse (NIH3T3) cells (v3 chemistry) from [the 10x website](https://support.10xgenomics.com/single-cell-gene-expression/datasets/3.0.2/1k_hgmm_v3). Details for each of the steps are expanded on in the [explanation page](getting_started_explained.md).
 
 __Note:__ for the instructions, command line arguments are preceeded by`$`. For example, if you see `$ cd my_folder` then type `cd my_folder`. 
 

@@ -13,11 +13,11 @@ group: navigation
 - [Tutorial](kite_tutorial.html) (the command line and/or python)
 
 #### Multi-species experiments
-- [Tutorial](species_mixing.html) (the command line and python)
+- [Tutorial](species_mixing_tutorial.html) (the command line and python)
 - [Tutorial](https://bustools.github.io/BUS_notebooks_R/10xv2.html) (R)
 
 #### Multiple FASTQs 
-- [Tutorial](multiple_files.html) (the command line)
+- [Tutorial](multiple_files_tutorial.html) (the command line)
 
 #### Parsing bus files
 - [Tutorial](https://bustools.github.io/BUS_notebooks_R/10xv3.html) (R)
