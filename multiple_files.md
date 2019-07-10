@@ -1,7 +1,6 @@
 ---
 layout: page
 title: "Processing Multiple Lanes at Once"
-group: navigation
 ---
 
 {% include JB/setup %}
