@@ -1,17 +1,16 @@
-0:01 hrs
 ---
 layout: page
-title: "Processing Multiple Lanes"
+title: "Processing Multiple Lanes at Once"
 group: navigation
 ---
 
 {% include JB/setup %}
 
-<p align="center">
+<!--- <p align="center">
   <a href="secret.html">
-    <img src="assets/secret_tsne.jpg" width="70%">
+    <img src="assets/" width="70%">
   </a>
-</p>
+</p> -->
 
 This page provides instructions for how to pre-process the [mouse T cells SRR8206317](https://www.ncbi.nlm.nih.gov/sra/?term=SRR8206317) dataset from [Miller & Sen et al., 2019](https://doi.org/10.1038/s41590-019-0312-6) using the __kallisto &#124; bustools workflow__. 
 
@@ -68,7 +67,7 @@ bamtofastq_S1_L003_R2_001.fastq.gz \
 bamtofastq_S1_L004_R1_001.fastq.gz \
 bamtofastq_S1_L004_R2_001.fastq.gz 
 ```
-**Note:** The `\` is to indicate the continuation of a line and will not affect the running of th program.
+**Note:** The `\` is to indicate the continuation of a line and will not affect the running of the program.
 
 #### 4. Run bustools
 Correct, sort, and count the bus file. This creates the gene count matrix:
@@ -78,5 +77,5 @@ $ mkdir genecount/ tmp/
 $ bustools correct -w ../10xv2_whitelist.txt -p output.bus | bustools sort -T tmp/ -t 4 -p - | bustools count -o genecount/genes -g ../transcripts_to_genes.txt -e matrix.ec -t transcripts.txt --genecounts -
 ```
 
-#### 5. Load the count matrices into a notebook
+#### 5. Load the count matrices into a notebook [from getting started tutorial]
 See [this python notebook](https://github.com/BUStools/getting_started/blob/master/getting_started.ipynb) for how to load the count matrices into [ScanPy](https://scanpy.readthedocs.io/en/latest/index.html) for analysis.
