@@ -86,6 +86,7 @@ Download the GTF and make a transcripts to genes map
 ```
 $ wget  ftp://ftp.ensembl.org/pub/release-97/gtf/homo_sapiens/Homo_sapiens.GRCh38.97.gtf.gz ## Homo sapiens GRCh38 example
 ```
+
 #### 3. Make transcripts to genes map
 Gunzip (decompress) the GTF file
 ```
@@ -117,6 +118,7 @@ $ head -2 introns.fa ## Homo sapiens GRCh38
 >ENST00000456328.2_intron_0_109_chr1_12228_f
 CTGCATGTAACTTAATACCACAACCAGGCATAGGGGAAAGATTGGAGGAAAGATGAGTGAGAGCATCAACTTCTCTCACAACCTAGGCCAGTAAGTAGTGCTTGTGCTCATCTCCTTGGCTGTGATACGTGGCCGGCCCTCGCTCCAGCAGCTGGACCCCTACCTGCCGTCTGCTGCCATCGGAGCCCAAAGCCGGGCTGTGACTGCTCAGACCAGCCGGCTGGAGGGAGGGGCTCAGCAGGTCTGGCTTTGGCCCTGGGAGAGCAGGTGGAAGATCAGGCAGGCCATCGCTGCCACAGAACCCAGTGGATTGGCCTAGGTGGGATCTCTGAGCTCAACAAGCCCTCTCTGGGTGGTAGGTGCAGAGACGGGAGGGGCAGAGCCGCAGGCACAGCCAAGAGGGCTGAAGAAATGGTAGAACGGAGCAGCTGGTGATGTGTGGGCCCACCGGCCCCAGGCTCCTGTCTCCCCCCAGGTGTGTGGTGATGCCAGGCATGCCCTTCCCCAGCATCAGGTCTCCAGAGCTGCAGAAGACGACGGCCGACTTGGATCACACTCTTGTGAG
 ```
+
 #### 4b. Get the transcripts to capture list and transcripts to genes for INTRONS
 First we need to get a list of all of the intronic transcript IDs represented in our FASTA file, with or without version numbers. 
 ```
@@ -135,6 +137,7 @@ Next we have to map the transcripts to their respective genes.
 ```
 $ awk 'NR==FNR{a[$1]=$2; b[$1]=$3;next} {$2=a[$1];$3=b[$1]} 1' tr2g.txt introns_transcripts.txt > introns_t2g.txt
 ```
+
 #### 4c. Fix the INTRONS FASTA header
 We need to fix all of the headers for the introns FASTA file so that they contain the transcript ID, an identifier specifying that the transcript is an "intronic" transcript, and a unique number to avoid duplicates. 
 ```
@@ -143,6 +146,7 @@ $ awk -v var=1 'FNR==NR{a[NR]=$0;next}{ if ($0~/^>/) {print a[var], var++} else 
 $ head -1 introns.correct_header.fa
 >ENST00000456328.2.1-I gene_id:ENSG00000223972.5 gene_name:DDX11L1 1
 ```
+
 #### 5a. Get the transcripts to capture list and transcripts to genes for cDNA
 Gunzip the cDNA FASTA file
 ```
@@ -168,7 +172,7 @@ Map the transcripts to genes
 $ awk 'NR==FNR{a[$1]=$2; b[$1]=$3;next} {$2=a[$1];$3=b[$1]} 1' tr2g.txt cDNA_transcripts.txt > cDNA_t2g.txt
 ```
 
-### 5b. Fix the INTRONS FASTA header
+#### 5b. Fix the INTRONS FASTA header
 ```
 $ awk '{print ">"$1"."NR" gene_id:"$2" gene_name:"$3}' cDNA_t2g.txt > cDNA_fasta_header.txt
 $ awk -v var=1 'FNR==NR{a[NR]=$0;next}{ if ($0~/^>/) {print a[var], var++} else {print $0}}' cDNA_fasta_header.txt $cDNA_fa > cDNA.correct_header.fa
@@ -184,4 +188,4 @@ $ kallisto index -i cDNA_introns.idx -k 31 cDNA_introns.fa
 ```
 
 #### 7. Align your reads
-See (this)[velocity_tutorial.html] tutorial for how to proceed.
+See [this](velocity_tutorial.html) tutorial for how to proceed.
