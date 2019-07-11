@@ -10,7 +10,7 @@ This tutorial provides instructions for how to generate indicies to use with __k
 __Note:__ for the instructions, command line arguments are preceeded by`$`. For example, if you see `$ cd my_folder` then type `cd my_folder`. 
 
 #### 0. Download and install software
-Download and install ```bedtools``` from [here](https://bedtools.readthedocs.io/en/latest/content/installation.html).
+Download and install ```bedtools``` from [here](https://bedtools.readthedocs.io/en/latest/content/installation.html). Download and install the transcripts to genes binary from [here](https://github.com/sbooeshaghi/tools/releases/tag/t2g_v0.24.0).
 
 #### 1. Determine your biological read length
 Take your FASTQ file `R1.fastq.gz` find the length of the read
@@ -70,17 +70,28 @@ A page of options relating to the FASTA file will appear.
 **Note**: You may ask why we don't just download the `sequence` of introns? The reason is because the FASTA file is large for complex organisms (you can do this for simple organisms) and the UCSC server times out after 20 minutes and results in a corrupted intron FASTA file.
 
 Download the Genome
-1. Go to [ensembl](http://uswest.ensembl.org/index.html) or whichever **track** specified in the UCSC table browser
+1. Go to [ensembl](http://uswest.ensembl.org/index.html) or the website for whichever **track** specified in the UCSC table browser
 2. Selected desired species
 3. Select `Download FASTA`
 4. Select `dna`
-5. Download species.dna.primary_assembly.fa (where species will be your specific species) 
+5. Download species.dna.primary_assembly.fa.gz (where species will be your specific species) 
 ```
-wget ftp://ftp.ensembl.org/pub/release-97/fasta/homo_sapiens/dna/Homo_sapiens.GRCh38.dna.primary_assembly.fa.gz ## Homo sapiens GRCh38 example
+$ wget ftp://ftp.ensembl.org/pub/release-97/fasta/homo_sapiens/dna/Homo_sapiens.GRCh38.dna.primary_assembly.fa.gz ## Homo sapiens GRCh38 example
 ```
 
+Download the GTF and make a transcripts to genes map
+1. Go to [ensembl](http://uswest.ensembl.org/index.html) or the website for whichever **track** specified in the UCSC table browser
+2. Selected desired species
+3. Select `Download GTF`
+5. Download species.gtf.gz (where species will be your specific species) 
+```
+$ wget  ftp://ftp.ensembl.org/pub/release-97/gtf/homo_sapiens/Homo_sapiens.GRCh38.97.gtf.gz ## Homo sapiens GRCh38 example
+```
+#### 3. Make transcripts to genes map
+
+
 #### 3. Convert BED file to FASTA file
-Gunzip (decompress) the BED file
+Gunzip (decompress) files
 ```
 $ gunzip species.primary_assembly.fa.gz
 $ gunzip introns.bed
