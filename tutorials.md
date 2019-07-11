@@ -7,13 +7,14 @@ group: navigation
 {% include JB/setup %}
 
 #### RNA velocity
-- [Tutorial](velocity_tutorial.html) (the command line and python)
+- [Building the Index Tutorial](velocity_index_tutorial.html) (command line)
+- [Creating the Spliced & Unspliced Matrices Tutorial](velocity_tutorial.html) (command line and python)
 
 #### Feature barcoding
-- [Tutorial](kite_tutorial.html) (the command line and/or python)
+- [Tutorial](kite_tutorial.html) (command line and/or python)
 
 #### Multi-species experiments
-- [Tutorial](species_mixing_tutorial.html) (the command line and python)
+- [Tutorial](species_mixing_tutorial.html) (command line and python)
 - [Tutorial](https://bustools.github.io/BUS_notebooks_R/10xv2.html) (R)
 
 #### Multiple FASTQs 
