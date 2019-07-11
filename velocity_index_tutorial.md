@@ -45,7 +45,7 @@ A second page of options relating to the BED file will appear.
 11. Under 'create one BED record per:'. Select 'Introns plus'
 12. Add flank `L - 1` flank
 13. Select the 'get BED' option
-14. Save to `velocity_index/`
+14. Save as `introns.bed.gz` to `velocity_index/`
 
 Download the **cDNA FASTA file**:
 
@@ -65,18 +65,17 @@ A page of options relating to the FASTA file will appear.
 11. Select `One FASTA record per region (exon, intron, etc.) with  0 extra bases upstream (5') and  0 extra downstream (3')`
 14. Select `All upper case`
 13. Select `get sequence`
-14. Save to `velocity_index/`
+14. Save as `cDNA.fa.gz` to `velocity_index/`
 
 **Note**: You may ask why we don't just download the `sequence` of introns? The reason is because the FASTA file is large for complex organisms (you can do this for simple organisms) and the UCSC server times out after 20 minutes and results in a corrupted intron FASTA file.
 
 Download the Genome
-1. Go to [ensembl](http://uswest.ensembl.org/index.html) or the website for whichever **track** specified in the UCSC table browser
+1. Go to [the website specieid by the **track** in the UCSC table browser](https://www.gencodegenes.org/human/release_29.html) ## Example Gencode 29 GRCh38
 2. Selected desired species
-3. Select `Download FASTA`
-4. Select `dna`
-5. Download species.dna.primary_assembly.fa.gz (where species will be your specific species) 
+3. Right click `FASTA` next to `Genome sequence, primary assembly (GRCh38)`
+4. Download species.dna.primary_assembly.fa.gz (where species will be your specific species) 
 ```
-$ wget ftp://ftp.ensembl.org/pub/release-97/fasta/homo_sapiens/dna/Homo_sapiens.GRCh38.dna.primary_assembly.fa.gz ## Homo sapiens GRCh38 example
+$ wget ftp://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_29/GRCh38.primary_assembly.genome.fa.gz
 ```
 
 Download the GTF and make a transcripts to genes map
@@ -98,12 +97,13 @@ $ cat genes.gtf | t2g make -p - > tr2g.txt
 $ t2g make -p - < genes.gtf > tr2g.txt
 $ t2g make --version -p - < genes.gtf > tr2g.txt       # (with version number)
 ```
+**Note:** for this tutorial we will use the transcript IDs _with a version number_.
 
-#### 3. Convert BED file to FASTA file
+#### 4a. Convert INTRONS BED file to INTRON FASTA file
 Gunzip (decompress) files
 ```
 $ gunzip species.primary_assembly.fa.gz
-$ gunzip introns.bed
+$ gunzip introns.bed.gz
 $ head -4 introns.bed
 chr1	12118	12721	ENST00000456328.2_intron_0_109_chr1_12228_f	0	+
 chr1	12612	13329	ENST00000456328.2_intron_1_109_chr1_12722_f	0	+
@@ -117,6 +117,7 @@ $ head -2 introns.fa ## Homo sapiens GRCh38
 >ENST00000456328.2_intron_0_109_chr1_12228_f
 CTGCATGTAACTTAATACCACAACCAGGCATAGGGGAAAGATTGGAGGAAAGATGAGTGAGAGCATCAACTTCTCTCACAACCTAGGCCAGTAAGTAGTGCTTGTGCTCATCTCCTTGGCTGTGATACGTGGCCGGCCCTCGCTCCAGCAGCTGGACCCCTACCTGCCGTCTGCTGCCATCGGAGCCCAAAGCCGGGCTGTGACTGCTCAGACCAGCCGGCTGGAGGGAGGGGCTCAGCAGGTCTGGCTTTGGCCCTGGGAGAGCAGGTGGAAGATCAGGCAGGCCATCGCTGCCACAGAACCCAGTGGATTGGCCTAGGTGGGATCTCTGAGCTCAACAAGCCCTCTCTGGGTGGTAGGTGCAGAGACGGGAGGGGCAGAGCCGCAGGCACAGCCAAGAGGGCTGAAGAAATGGTAGAACGGAGCAGCTGGTGATGTGTGGGCCCACCGGCCCCAGGCTCCTGTCTCCCCCCAGGTGTGTGGTGATGCCAGGCATGCCCTTCCCCAGCATCAGGTCTCCAGAGCTGCAGAAGACGACGGCCGACTTGGATCACACTCTTGTGAG
 ```
+#### 4b. Get the transcripts to capture list and transcripts to genes for INTRONS
 First we need to get a list of all of the intronic transcript IDs represented in our FASTA file, with or without version numbers. 
 ```
 $ cat introns.fa | awk '/^>/ {print $0}' | tr "_" " " | awk '{print $3"."$4}' > introns_transcripts.txt
@@ -128,9 +129,59 @@ $ cat introns_transcripts.txt | tr "." " " | awk '{print $1}' > introns_transcri
 
 Now we add an identifier to the transcript IDs
 ```
-$ cat introns_transcripts_no_version.txt | awk '{print $0"."NR"-I"}' > introns_transcripts.to_capture.txt
+$ cat introns_transcripts.txt | awk '{print $0"."NR"-I"}' > introns_transcripts.to_capture.txt
 ```
 Next we have to map the transcripts to their respective genes.
+```
+$ awk 'NR==FNR{a[$1]=$2; b[$1]=$3;next} {$2=a[$1];$3=b[$1]} 1' tr2g.txt introns_transcripts.txt > introns_t2g.txt
+```
+#### 4c. Fix the INTRONS FASTA header
+We need to fix all of the headers for the introns FASTA file so that they contain the transcript ID, an identifier specifying that the transcript is an "intronic" transcript, and a unique number to avoid duplicates. 
+```
+$ awk '{print ">"$1"."NR"-I"" gene_id:"$2" gene_name:"$3}' introns_t2g.txt > introns_fasta_header.txt
+$ awk -v var=1 'FNR==NR{a[NR]=$0;next}{ if ($0~/^>/) {print a[var], var++} else {print $0}}' introns_fasta_header.txt introns.fa > introns.correct_header.fa
+$ head -1 introns.correct_header.fa
+>ENST00000456328.2.1-I gene_id:ENSG00000223972.5 gene_name:DDX11L1 1
+```
+#### 5a. Get the transcripts to capture list and transcripts to genes for cDNA
+Gunzip the cDNA FASTA file
+```
+$ gunzip cDNA.fa.gz
+$ head -1 cDNA.fa  ## Homo sapiens GRCh38
+>hg38_knownGene_ENST00000456328.2_0 range=chr1:11869-12227 5'pad=0 3'pad=0 strand=+ repeatMasking=none ## GRCh38 example
+```
+Get list of transcripts
+```
+$ cat cDNA.fa | awk '/^>/ {print $0}' | tr "_" " " | awk '{print $3}' > cDNA_transcripts.txt
+$ cat cDNA_transcripts.txt | tr "." " " | awk '{print $1}' > cDNA_transcripts_no_version.txt
+```
+**Note:** your FASTA header may not be structured exactly like the example. If that is the case, you can change the columns that are printed in the `awk` command. For example, `awk '{print $3}'` prints the 3rd column.
 
-We need to fix all of the labels for the FASTA file so that they contain the transcript ID, an identifier specifying that the transcript is an "intronic" transcript, and a unique number to avoid duplicates. This is easily accomplished with an `awk` command
+**Note:** its important that the transcript IDs be consistent with the `tr2g.txt` that you made earlier, i.e. keep both with or without version.
 
+Add an identifier to thr transcript IDs
+```
+$ cat cDNA_transcripts.txt | awk '{print $0"."NR}' > cDNA_transcripts.to_capture.txt
+```
+Map the transcripts to genes
+```
+$ awk 'NR==FNR{a[$1]=$2; b[$1]=$3;next} {$2=a[$1];$3=b[$1]} 1' tr2g.txt cDNA_transcripts.txt > cDNA_t2g.txt
+```
+
+### 5b. Fix the INTRONS FASTA header
+```
+$ awk '{print ">"$1"."NR" gene_id:"$2" gene_name:"$3}' cDNA_t2g.txt > cDNA_fasta_header.txt
+$ awk -v var=1 'FNR==NR{a[NR]=$0;next}{ if ($0~/^>/) {print a[var], var++} else {print $0}}' cDNA_fasta_header.txt $cDNA_fa > cDNA.correct_header.fa
+$ head -1 cDNA.correct_header.fa
+>ENST00000456328.2.1 gene_id:ENSG00000223972.5 gene_name:DDX11L1 1
+```
+
+#### 6. Make the kallisto index
+```
+$ cat cDNA.correct_header.fa introns.correct_header.fa > cDNA_introns.fa
+$ cat cDNA_t2g.txt introns_t2g.txt > cDNA_introns_t2g.txt
+$ kallisto index -i cDNA_introns.idx -k 31 cDNA_introns.fa
+```
+
+#### 7. Align your reads
+See (this)[velocity_tutorial.html] tutorial for how to proceed.
