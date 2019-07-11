@@ -88,7 +88,16 @@ Download the GTF and make a transcripts to genes map
 $ wget  ftp://ftp.ensembl.org/pub/release-97/gtf/homo_sapiens/Homo_sapiens.GRCh38.97.gtf.gz ## Homo sapiens GRCh38 example
 ```
 #### 3. Make transcripts to genes map
-
+Gunzip (decompress) the GTF file
+```
+$ gunzip species.gtf
+```
+Use the `t2g` utility to make thr transcripts to genes map (takes a minute or two for larger GTF files). Pick **one** of the commands to run.
+```
+$ cat genes.gtf | t2g make -p - > tr2g.txt
+$ t2g make -p - < genes.gtf > tr2g.txt
+$ t2g make --version -p - < genes.gtf > tr2g.txt       # (with version number)
+```
 
 #### 3. Convert BED file to FASTA file
 Gunzip (decompress) files
@@ -108,17 +117,20 @@ $ head -2 introns.fa ## Homo sapiens GRCh38
 >ENST00000456328.2_intron_0_109_chr1_12228_f
 CTGCATGTAACTTAATACCACAACCAGGCATAGGGGAAAGATTGGAGGAAAGATGAGTGAGAGCATCAACTTCTCTCACAACCTAGGCCAGTAAGTAGTGCTTGTGCTCATCTCCTTGGCTGTGATACGTGGCCGGCCCTCGCTCCAGCAGCTGGACCCCTACCTGCCGTCTGCTGCCATCGGAGCCCAAAGCCGGGCTGTGACTGCTCAGACCAGCCGGCTGGAGGGAGGGGCTCAGCAGGTCTGGCTTTGGCCCTGGGAGAGCAGGTGGAAGATCAGGCAGGCCATCGCTGCCACAGAACCCAGTGGATTGGCCTAGGTGGGATCTCTGAGCTCAACAAGCCCTCTCTGGGTGGTAGGTGCAGAGACGGGAGGGGCAGAGCCGCAGGCACAGCCAAGAGGGCTGAAGAAATGGTAGAACGGAGCAGCTGGTGATGTGTGGGCCCACCGGCCCCAGGCTCCTGTCTCCCCCCAGGTGTGTGGTGATGCCAGGCATGCCCTTCCCCAGCATCAGGTCTCCAGAGCTGCAGAAGACGACGGCCGACTTGGATCACACTCTTGTGAG
 ```
-First we need to get a list of all of the intronic transcript IDs represented in our FASTA file, with and without version numbers. 
+First we need to get a list of all of the intronic transcript IDs represented in our FASTA file, with or without version numbers. 
 ```
 $ cat introns.fa | awk '/^>/ {print $0}' | tr "_" " " | awk '{print $3"."$4}' > introns_transcripts.txt
 $ cat introns_transcripts.txt | tr "." " " | awk '{print $1}' > introns_transcripts_no_version.txt
 ```
 **Note:** your FASTA header may not be structured exactly like the example. If that is the case, you can change the columns that are printed in the `awk` command. For example, `awk '{print $3}'` prints the 3rd column.
 
+**Note:** its important that the transcript IDs be consistent with the `tr2g.txt` that you made earlier, i.e. keep both with or without version.
+
 Now we add an identifier to the transcript IDs
 ```
 $ cat introns_transcripts_no_version.txt | awk '{print $0"."NR"-I"}' > introns_transcripts.to_capture.txt
 ```
 Next we have to map the transcripts to their respective genes.
+
 We need to fix all of the labels for the FASTA file so that they contain the transcript ID, an identifier specifying that the transcript is an "intronic" transcript, and a unique number to avoid duplicates. This is easily accomplished with an `awk` command
 
