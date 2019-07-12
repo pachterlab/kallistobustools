@@ -31,8 +31,7 @@ Download the following files:
 - Introns Transcripts to Capture `introns_transcripts.to_capture.txt.gz`
 - cDNA/introns Transcripts to Genes map `cDNA_introns.t2g.txt.gz`
 - 10x Chromium v2 chemistry barcode whitelist `10xv2_whitelist.txt`
-- [SRR6470906 BAM File 1](https://trace.ncbi.nlm.nih.gov/Traces/sra/?run=SRR6470906)
-- [SRR6470907 BAM File 2](https://trace.ncbi.nlm.nih.gov/Traces/sra/?run=SRR6470907)
+- [SRR6470906 & SRR6470907 BAM Files](https://www.ebi.ac.uk/ena/data/view/PRJNA429950) 
 
 ```
 $ wget https://github.com/BUStools/getting_started/releases/download/velocity_tutorial/cDNA.correct_header.fa.gz
@@ -41,8 +40,8 @@ $ wget https://github.com/BUStools/getting_started/releases/download/velocity_tu
 $ wget https://github.com/BUStools/getting_started/releases/download/velocity_tutorial/introns_transcripts.to_capture.txt.gz
 $ wget https://github.com/BUStools/getting_started/releases/download/velocity_tutorial/cDNA_introns.t2g.txt.gz
 $ wget https://github.com/BUStools/getting_started/releases/download/velocity_tutorial/10xv2_whitelist.txt
-$ wget https://sra-download.ncbi.nlm.nih.gov/traces/sra57/SRZ/006470/SRR6470906/10X_17_029.bam
-$ wget https://sra-download.ncbi.nlm.nih.gov/traces/sra57/SRZ/006470/SRR6470907/10X_17_028.bam
+$ wget ftp://ftp.sra.ebi.ac.uk/vol1/SRA646/SRA646572/bam/10X_17_029.bam
+$ wget ftp://ftp.sra.ebi.ac.uk/vol1/SRA646/SRA646572/bam/10X_17_028.bam
 ```
 Uncompress all the files:
 ```
