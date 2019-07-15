@@ -12,7 +12,7 @@ group: navigation
   </a>
 </p>
 
-This page provides instructions for how to pre-process the [mouse retinal cells SRR8599150](https://www.ncbi.nlm.nih.gov/sra/?term=SRR8599150) dataset from [Koren et al., 2019](https://doi.org/10.1016/j.immuni.2019.02.007) using the __kallisto &#124; bustools workflow__. Details for each of the steps are described in the [explanation page](getting_started_explained.html). A video for the tutorial can be viewed [here](https://youtu.be/hWxnL86sak8).
+This page provides instructions for how to pre-process the [mouse retinal cells SRR8599150](https://www.ncbi.nlm.nih.gov/sra/?term=SRR8599150) dataset from [Koren et al., 2019](https://doi.org/10.1016/j.immuni.2019.02.007) using the __kallisto &#124; bustools workflow__. A video for the tutorial can be viewed [here](https://youtu.be/hWxnL86sak8).
 
 __Note:__ command line arguments are preceeded by`$`. For example, if you see `$ cd my_folder` then type `cd my_folder`. 
 
@@ -63,3 +63,5 @@ $ bustools correct -w ../10xv2_whitelist.txt -p output.bus | bustools sort -T tm
 
 #### 5. Load the count matrices into a notebook
 See [this python notebook](https://github.com/BUStools/getting_started/blob/master/getting_started.ipynb) for how to load the count matrices into [ScanPy](https://scanpy.readthedocs.io/en/latest/index.html) for analysis.
+
+**Note:** Details for each of the steps are described in the [explanation page](getting_started_explained.html).
