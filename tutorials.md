@@ -17,6 +17,9 @@ group: navigation
 - [Tutorial](species_mixing_tutorial.html) (command line and python)
 - [Tutorial](https://bustools.github.io/BUS_notebooks_R/10xv2.html) (R)
 
+#### Pseudotime with Monocole
+- [Tutorial](https://bustools.github.io/BUS_notebooks_R/monocle2.html) (R)
+
 #### Multiple FASTQs 
 - [Tutorial](multiple_files_tutorial.html) (the command line)
 
