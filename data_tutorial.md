@@ -25,3 +25,11 @@ There are four databases that are important repositories for sequencing data and
 
 
 #### Streaming
+
+Single-cell RNA-seq data from sequence repositories can be streamed into __kallisto__ making possible a workflow that does not require saving files to disk prior to pre-processing. This can be done via process substitution or using `df`. For example, the following command can be used to stream data from the ENA for pre-processing:
+
+`$ urlR1="https://github.com/bustools/getting_started/releases/download/getting_started/SRR8599150_S1_L001_R1_001.fastq.gz";`
+`$ urlR2="https://github.com/bustools/getting_started/releases/download/getting_started/SRR8599150_S1_L001_R2_001.fastq.gz";`
+`$ time kallisto bus -i Mus_musculus.GRCm38.cdna.all.idx -x 10xv2 -t 4 -o bus_out/ <(curl -Ls ${urlR1}) <(curl -Ls ${urlR2})`
+
+The only required file that must be locally stored on disk prior to pre-processing is the transcriptome index [Mus_musculus.GRCm38.cdna.all.idx](https://github.com/pachterlab/kallisto-transcriptome-indices/releases). A complete tutorial for how to stream data, together with code based on `mkfifo` is available [here](https://sinabooeshaghi.com/2019/07/09/fasterq-to-count-matrices-for-single-cell-rna-seq/).
