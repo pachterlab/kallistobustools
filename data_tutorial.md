@@ -21,8 +21,7 @@ There are four databases that are important repositories for sequencing data and
 
 - [__European Nucelotide Archive__](https://www.ebi.ac.uk/ena) (ENA): The ENA provides access to nucleotide sequences associated with genomic projects. In the case of [GSE132151](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE132151) mentioned above, the nucleotide sequences are at [PRJNA546231](https://www.ebi.ac.uk/ena/data/view/PRJNA546231). The ENA provides direct access to FASTQ files from the project page. It also links to NCBI Sequence Read Archive format data.
 
-- [__Sequence Read Archive__](https://www.ncbi.nlm.nih.gov/sra) (SRA):
-
+- [__Sequence Read Archive__](https://www.ncbi.nlm.nih.gov/sra) (SRA): The SRA is a sequence repository for genomic data. Files are stored in SRA format, which must be downloaded and converted to FASTQ format prior to pre-processing using the `fasterq-dump` program available as part of [SRA tools](https://github.com/ncbi/sra-tools/wiki/HowTo:-fasterq-dump). For example, the data in [Rossi et al., 2019](https://science.sciencemag.org/content/364/6447/1271) can be located in the SRA via [GEO](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE130597), then to the [SRA](https://www.ncbi.nlm.nih.gov/sra?term=SRP194426), and finally a sequence data page for one of the runs, [SRX5779290](https://trace.ncbi.nlm.nih.gov/Traces/sra/?run=SRR9000493) has information about the traces (reads). The SRA tools operate directly on SRA accessions.
 
 #### Streaming
 
