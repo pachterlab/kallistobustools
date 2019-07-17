@@ -24,4 +24,4 @@ group: navigation
 - [Tutorial](https://bustools.github.io/BUS_notebooks_R/10xv3.html) (R)
 
 #### Downloading data
-- [Tutorial](https://data_tutorial.html) (browser and command line)
+- [Tutorial](data_tutorial.html) (browser and command line)
