@@ -7,8 +7,8 @@ group: navigation
 {% include JB/setup %}
 
 #### RNA velocity
-- [Building the Index Tutorial](velocity_index_tutorial.html) (command line)
-- [Creating the Spliced & Unspliced Matrices Tutorial](velocity_tutorial.html) (command line and python)
+- [RNA velocity tutorial](velocity_tutorial.html) (command line and python)
+- [Building a cDNA and intron index tutorial](velocity_index_tutorial.html) (command line)
 
 #### Feature barcoding
 - [Tutorial](kite_tutorial.html) (command line and/or python)
