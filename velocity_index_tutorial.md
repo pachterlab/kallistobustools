@@ -1,6 +1,6 @@
 ---
 layout: page
-title: "Building RNA velocity index"
+title: "Building a cDNA and intron index"
 ---
 
 {% include JB/setup %}
