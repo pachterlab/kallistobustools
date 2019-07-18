@@ -23,6 +23,10 @@ There are four databases that are important repositories for sequencing data and
 
 - [__Sequence Read Archive__](https://www.ncbi.nlm.nih.gov/sra) (SRA): The SRA is a sequence repository for genomic data. Files are stored in SRA format, which must be downloaded and converted to FASTQ format prior to pre-processing using the `fasterq-dump` program available as part of [SRA tools](https://github.com/ncbi/sra-tools/wiki/HowTo:-fasterq-dump). For example, the data in [Rossi et al., 2019](https://science.sciencemag.org/content/364/6447/1271) can be located in the SRA via [GEO](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE130597), then to the [SRA](https://www.ncbi.nlm.nih.gov/sra?term=SRP194426), and finally a sequence data page for one of the runs, [SRX5779290](https://trace.ncbi.nlm.nih.gov/Traces/sra/?run=SRR9000493) has information about the traces (reads). The SRA tools operate directly on SRA accessions.
 
+#### Searching
+
+The [__sra-explorer__](https://ewels.github.io/sra-explorer/) website is an effective and easy to use utility for searching the SRA and for downloading files. The utility finds SRA entires by keywords or accession numbers and produces links to the FASTQs and to commands for downloading them. 
+
 #### Streaming
 
 Single-cell RNA-seq data from sequence repositories can be streamed into __kallisto__ making possible a workflow that does not require saving files to disk prior to pre-processing. This can be done via process substitution or using `df`. For example, the following command can be used to stream data from the ENA for pre-processing:
