@@ -23,6 +23,9 @@ group: navigation
 #### Multiple FASTQs 
 - [Tutorial](multiple_files_tutorial.html) (the command line)
 
+#### Aggregating multiple count matrices 
+- [Tutorial](aggr_tutorial.html) (python)
+
 #### Parsing bus files
 - [Tutorial](https://bustools.github.io/BUS_notebooks_R/10xv3.html) (R)
 
