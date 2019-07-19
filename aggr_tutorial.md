@@ -1,3 +1,10 @@
+---
+layout: page
+title: "Aggregating multiple count matrices tutorial"
+---
+
+{% include JB/setup %}
+
 # Aggregating multiple  count matrices
 
 This tutorial describes how to aggregate multiple count matrices by concatenating them into a single [AnnData](https://anndata.readthedocs.io/en/latest/anndata.AnnData.html) object with batch labels for different samples. A notebook showing the entire workflow (including running kallisto and bsutools) is available [here](https://github.com/BUStools/getting_started/blob/master/aggr_tutorial.ipynb).
