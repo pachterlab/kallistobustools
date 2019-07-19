@@ -5,8 +5,6 @@ title: "Aggregating multiple count matrices tutorial"
 
 {% include JB/setup %}
 
-# Aggregating multiple  count matrices
-
 This tutorial describes how to aggregate multiple count matrices by concatenating them into a single [AnnData](https://anndata.readthedocs.io/en/latest/anndata.AnnData.html) object with batch labels for different samples. A notebook showing the entire workflow (including running kallisto and bsutools) is available [here](https://github.com/BUStools/getting_started/blob/master/aggr_tutorial.ipynb).
 
 This is similar to the Cell Ranger `aggr` function, however no normalization is performed. `cellranger aggr` is described at https://support.10xgenomics.com/single-cell-gene-expression/software/pipelines/latest/using/aggregate
@@ -58,9 +56,10 @@ sample1.obs= pd.read_csv('./sample1/genecounts/genes.barcodes.txt', index_col = 
 sample1.var = pd.read_csv('./sample1/genecounts/genes.genes.txt', header = None, index_col = 0, names =['ensembl_id'], sep = '\t')
 print('Loaded sample1 mtx:',sample1.X.shape)
 ```
-```
->>> Loaded sample1 mtx: (226612, 35606)
 
+Output:
+```
+Loaded sample1 mtx: (226612, 35606)
 ```
 
 ```python
@@ -71,8 +70,9 @@ sample2.var = pd.read_csv('./sample2/genecounts/genes.genes.txt', header = None,
 print('Loaded sample2 mtx:',sample2.X.shape)
 ```
 
+Output:
 ```
->>>  Loaded sample2 mtx: (135582, 35606)
+Loaded sample2 mtx: (135582, 35606)
 ```
 
 ```python
