@@ -25,7 +25,7 @@ group: navigation
 #### Parsing bus files
 - [Tutorial](https://bustools.github.io/BUS_notebooks_R/10xv3.html) (R)
 
-#### Processing single cell RNA nuclei data
+#### Pre-processing single-nuclei RNA-seq
 - [Tutorial](https://github.com/BUStools/getting_started/blob/master/kallisto_bus_mouse_nuclei_tutorial.ipynb) (python)
 
 #### Pseudotime
