@@ -14,6 +14,7 @@ group: navigation
 
 #### Feature barcoding
 - [Tutorial](kite_tutorial.html) (command line and/or python)
+- [Tutorial](https://colab.research.google.com/github/pachterlab/kallistobustools/blob/master/notebooks/kite.ipynb) (Google Colab notebook)
 
 #### Multi-species experiments
 - [Tutorial](species_mixing_tutorial.html) (command line and python)
