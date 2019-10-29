@@ -6,14 +6,16 @@ group: navigation
 
 {% include JB/setup %}
 
-`kb` is a python package for rapidly pre-processing single-cell RNA-seq data. It is a wrapper for the methods described in [Melsted, Booeshaghi et al., 2019](https://doi.org/10.1101/673285). The goal of the wrapper is to simplify downloading and running of the kallisto and bustools programs. It was inspired by Sten Linnarsson’s [loompy fromfq command](http://linnarssonlab.org/loompy/kallisto/index.html).
+<p align="center">
+  <a href="secret.html">
+    <img src="assets/secret_tsne.jpg" width="70%">
+  </a>
+</p>
 
+This page provides instructions for how to pre-process the [mouse retinal cells SRR8599150](https://www.ncbi.nlm.nih.gov/sra/?term=SRR8599150) dataset from [Koren et al., 2019](https://doi.org/10.1016/j.immuni.2019.02.007) using the __kallisto &#124; bustools workflow__.
 
-The kb program consists of two parts:
+__Note:__ command line arguments are preceeded by`$`. For example, if you see `$ cd my_folder` then type `cd my_folder`.
 
-The `kb count` command runs the kallisto and bustools programs. It can be used for pre-processing of data from a variety of single-cell RNA-seq technologies, and for a number of different workflows (e.g. production of gene count matrices, RNA velocity analyses, etc.). The output can be saved in a variety of formats including mix and loom. Tutorials are provided below.
-
-The `kb ref` command builds or downloads a species-specific index for pseudoalignment of reads. This command must be run prior to `kb count`, and it runs the `kallisto index`.
 
 #### 0. Install kb
 Install `kb` from PyPi with `pip`:
