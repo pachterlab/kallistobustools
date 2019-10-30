@@ -6,7 +6,7 @@ group: navigation
 
 {% include JB/setup %}
 
-#### Aggregating multiple count matrices 
+#### Aggregating multiple count matrices
 - [Tutorial](aggr_tutorial.html) (python)
 
 #### Downloading data
@@ -16,11 +16,15 @@ group: navigation
 - [Tutorial](kite_tutorial.html) (command line and/or python)
 - [Tutorial](https://colab.research.google.com/github/pachterlab/kallistobustools/blob/master/notebooks/kite.ipynb) (Google Colab notebook)
 
+#### Getting started
+- [Tutorial](getting_started.html) (command line and python)
+- [Tutorial](kb_getting_started.html) (`kb` and python)
+
 #### Multi-species experiments
 - [Tutorial](species_mixing_tutorial.html) (command line and python)
 - [Tutorial](https://bustools.github.io/BUS_notebooks_R/10xv2.html) (R)
 
-#### Multiple FASTQs 
+#### Multiple FASTQs
 - [Tutorial](multiple_files_tutorial.html) (the command line)
 
 #### Parsing bus files
