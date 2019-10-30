@@ -47,6 +47,7 @@ $ kb ref -d mouse -i index.idx -g transcripts_to_genes.txt
 The following command will
 1. Pseudoalign the reads into a BUS file.
 2. Correct, sort, and count the BUS file into a gene count matrix.
+
 ```
 $ kb count -i index.idx -g transcripts_to_genes.txt -x 10xv2 -o output SRR8599150_S1_L001_R1_001.fastq.gz SRR8599150_S1_L001_R2_001.fastq.gz
 ```
