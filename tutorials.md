@@ -19,6 +19,7 @@ group: navigation
 #### Getting started
 - [Tutorial](getting_started.html) (command line and python)
 - [Tutorial](kb_getting_started.html) (`kb` and python)
+- [Build a transcriptome index](kb_transcriptome_index.html)(`kb`)
 
 #### Multi-species experiments
 - [Tutorial](species_mixing_tutorial.html) (command line and python)
@@ -39,6 +40,8 @@ group: navigation
 - [Slingshot](https://bustools.github.io/BUS_notebooks_R/slingshot.html) (R)
 
 #### RNA velocity
+- [RNA velocity tutorial](kb_velocity_tutorial.html) (`kb` and python)
 - [RNA velocity tutorial](velocity_tutorial.html) (command line and python)
 - [RNA velocity tutorial with construction of a cDNA and intron index](https://bustools.github.io/BUS_notebooks_R/velocity.html) (R)
+- [Building a cDNA and intron index tutorial](kb_velocity_index.html) (`kb`)
 - [Building a cDNA and intron index tutorial](velocity_index_tutorial.html) (command line)

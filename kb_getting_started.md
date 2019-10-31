@@ -20,7 +20,7 @@ __Note:__ command line arguments are preceeded by`$`. For example, if you see `$
 #### 0. Install kb
 Install `kb` from PyPi with `pip`:
 ```
-pip install kb-python
+$ pip install kb-python
 ```
 
 #### 1. Download the materials
@@ -55,6 +55,7 @@ $ kb count -i index.idx -g transcripts_to_genes.txt -x 10xv2 -o output SRR859915
 #### 4. Load the count matrices into a notebook
 See [this python notebook](https://github.com/BUStools/getting_started/blob/master/getting_started.ipynb) for how to load the count matrices into [ScanPy](https://scanpy.readthedocs.io/en/latest/index.html) for analysis.
 
-<!-- #### Tutorials
-- [Count matrices with `kb`](kb_count_matrix_tutorial.html)
-- [Velocity matrices with `kb`](kb_velocity_matrix_tutorial.html) -->
+#### Related tutorials
+- [Constructing a transcriptome index](kb_transcriptome_index.html)
+- [Building a cDNA and intron index](kb_velocity_index.html)
+- [RNA velocity tutorial](kb_velocity_tutorial.html)
