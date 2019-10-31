@@ -36,7 +36,8 @@ Note that we use the `-O` option for each of these commands because otherwise th
 #### 1. Generate velocity matrices for both sets of FASTQs
 SRR6470906:
 ```
-kb count -i index.idx -g transcripts_to_genes.txt -x 10xv2 -o SRR6470907 -c1 cdna_transcripts_to_capture.txt -c2 intron_transcripts_to_capture.txt --lamanno \
+$ kb count -i index.idx -g transcripts_to_genes.txt -x 10xv2 -o SRR6470907 \
+-c1 cdna_transcripts_to_capture.txt -c2 intron_transcripts_to_capture.txt --lamanno \
 SRR6470906_S1_L001_R1_001.fastq.gz \
 SRR6470906_S1_L001_R2_001.fastq.gz \
 SRR6470906_S1_L002_R1_001.fastq.gz \
@@ -44,7 +45,8 @@ SRR6470906_S1_L002_R2_001.fastq.gz
 ```
 SRR6470907:
 ```
-kb count -i index.idx -g transcripts_to_genes.txt -x 10xv2 -o SRR6470907 -c1 cdna_transcripts_to_capture.txt -c2 intron_transcripts_to_capture.txt --lamanno \
+$ kb count -i index.idx -g transcripts_to_genes.txt -x 10xv2 -o SRR6470907 \
+-c1 cdna_transcripts_to_capture.txt -c2 intron_transcripts_to_capture.txt --lamanno \
 SRR6470907_S1_L001_R1_001.fastq.gz \
 SRR6470907_S1_L001_R2_001.fastq.gz \
 SRR6470907_S1_L002_R1_001.fastq.gz \

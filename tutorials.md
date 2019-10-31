@@ -19,7 +19,7 @@ group: navigation
 #### Getting started
 - [Tutorial](getting_started.html) (command line and python)
 - [Tutorial](kb_getting_started.html) (`kb` and python)
-- [Build a transcriptome index](kb_transcriptome_index.html)(`kb`)
+- [Build a transcriptome index](kb_transcriptome_index.html) (`kb`)
 
 #### Multi-species experiments
 - [Tutorial](species_mixing_tutorial.html) (command line and python)
