@@ -51,6 +51,7 @@ The following command will
 ```
 $ kb count -i index.idx -g transcripts_to_genes.txt -x 10xv2 -o output SRR8599150_S1_L001_R1_001.fastq.gz SRR8599150_S1_L001_R2_001.fastq.gz
 ```
+__Note__: `kb` can convert the final count matrix to a `loom` file by setting the `--loom` flag and a `h5ad` file by setting the `--h5ad` flag.
 
 #### 4. Load the count matrices into a notebook
 See [this python notebook](https://github.com/BUStools/getting_started/blob/master/getting_started.ipynb) for how to load the count matrices into [ScanPy](https://scanpy.readthedocs.io/en/latest/index.html) for analysis.

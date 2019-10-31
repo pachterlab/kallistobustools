@@ -52,6 +52,7 @@ SRR6470907_S1_L001_R2_001.fastq.gz \
 SRR6470907_S1_L002_R1_001.fastq.gz \
 SRR6470907_S1_L002_R2_001.fastq.gz
 ```
+__Note__: `kb` can convert the velocity matrices to a  `loom` file by setting the `--loom` flag and a `h5ad` file by setting the `--h5ad` flag.
 
 #### 2. Load count matrices into notebook
 See [this notebook](https://github.com/BUStools/getting_started/blob/master/velocity_tutorial.ipynb) for how to process the spliced and unspliced count matrices to generate a velocity plot.
