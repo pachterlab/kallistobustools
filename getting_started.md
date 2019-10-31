@@ -1,7 +1,6 @@
 ---
 layout: page
 title: "Getting Started"
-group: navigation
 ---
 
 {% include JB/setup %}
@@ -14,7 +13,7 @@ group: navigation
 
 This page provides instructions for how to pre-process the [mouse retinal cells SRR8599150](https://www.ncbi.nlm.nih.gov/sra/?term=SRR8599150) dataset from [Koren et al., 2019](https://doi.org/10.1016/j.immuni.2019.02.007) using the __kallisto &#124; bustools workflow__. A video for the tutorial can be viewed [here](https://youtu.be/hWxnL86sak8).
 
-__Note:__ command line arguments are preceeded by`$`. For example, if you see `$ cd my_folder` then type `cd my_folder`. 
+__Note:__ command line arguments are preceeded by`$`. For example, if you see `$ cd my_folder` then type `cd my_folder`.
 
 #### 0. Download and install the software
 Obtain ```kallisto``` from the [__kallisto__ installation page](https://pachterlab.github.io/kallisto/download), and ```bustools``` from the [bustools installation page](https://bustools.github.io/download). A video tutorial for how to install the software can be viewed [here](https://youtu.be/thvtp7Ik6ts).

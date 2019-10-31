@@ -1,7 +1,7 @@
 ---
 layout: page
-title: 
-tagline: 
+title:
+tagline:
 ---
 {% include JB/setup %}
 <!-- <link rel="icon" href="favicon.ico" type="image/x-icon"> -->
@@ -15,7 +15,7 @@ tagline:
 -->
 
 <p align="center">
-  <a href="getting_started.html">
+  <a href="kb_getting_started.html">
     <button type="button" class="btn btn-success">Get Started</button>
   </a>
 </p>
