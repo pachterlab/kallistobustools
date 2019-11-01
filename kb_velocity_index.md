@@ -20,11 +20,16 @@ Download the genomic (DNA) FASTA and GTF annotations for your desired organism f
 $ wget ftp://ftp.ensembl.org/pub/release-98/fasta/homo_sapiens/dna/Homo_sapiens.GRCh38.dna.primary_assembly.fa.gz
 $ wget ftp://ftp.ensembl.org/pub/release-98/gtf/homo_sapiens/Homo_sapiens.GRCh38.98.gtf.gz
 ```
+Extract the files
+```
+$ gunzip Homo_sapiens.GRCh38.dna.primary_assembly.fa.gz
+$ gunzip Homo_sapiens.GRCh38.98.gtf.gz
+```
 
 #### 1. Build the index
 `kb` automatically splits the genome into a cDNA and intron FASTA file and uses these to build a kallisto index. This method is based on [La Manno, et al. 2019](https://doi.org/10.1038/s41586-018-0414-6).
 ```
-$ kb ref -i index.idx -g transcripts_to_genes.txt -f1 cdna.fa -f2 intron.fa -c1 cdna_transcripts_to_capture.txt -c1 intron_transcripts_to_capture.txt --lamanno Homo_sapiens.GRCh38.dna.primary_assembly.fa.gz Homo_sapiens.GRCh38.98.gtf.gz
+$ kb ref -i index.idx -g transcripts_to_genes.txt -f1 cdna.fa -f2 intron.fa -c1 cdna_transcripts_to_capture.txt -c1 intron_transcripts_to_capture.txt --lamanno Homo_sapiens.GRCh38.dna.primary_assembly.fa Homo_sapiens.GRCh38.98.gtf
 ```
 
 #### 2. Align your reads and generate a velocity matrix

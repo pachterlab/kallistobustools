@@ -20,11 +20,16 @@ Download the genomic (DNA) FASTA and GTF annotations for your desired organism f
 $ wget ftp://ftp.ensembl.org/pub/release-98/fasta/mus_musculus/dna/Mus_musculus.GRCm38.dna.primary_assembly.fa.gz
 $ wget ftp://ftp.ensembl.org/pub/release-98/gtf/mus_musculus/Mus_musculus.GRCm38.98.gtf.gz
 ```
+Extract the files
+```
+$ gunzip Mus_musculus.GRCm38.dna.primary_assembly.fa.gz
+$ gunzip Mus_musculus.GRCm38.98.gtf.gz
+```
 
 #### 1. Build the index
 `kb` automatically splits the genome into a cDNA FASTA file and uses that to build a kallisto index.
 ```
-$ kb ref -i transcriptome.idx -g transcripts_to_genes.txt -f1 cdna.fa Mus_musculus.GRCm38.dna.primary_assembly.fa.gz Mus_musculus.GRCm38.98.gtf.gz
+$ kb ref -i transcriptome.idx -g transcripts_to_genes.txt -f1 cdna.fa Mus_musculus.GRCm38.dna.primary_assembly.fa Mus_musculus.GRCm38.98.gtf
 ```
 
 #### 2. Align your reads and generate a count matrix
