@@ -29,7 +29,7 @@ $ gunzip Homo_sapiens.GRCh38.98.gtf.gz
 #### 1. Build the index
 `kb` automatically splits the genome into a cDNA and intron FASTA file and uses these to build a kallisto index. This method is based on [La Manno, et al. 2019](https://doi.org/10.1038/s41586-018-0414-6).
 ```
-$ kb ref -i index.idx -g transcripts_to_genes.txt -f1 cdna.fa -f2 intron.fa -c1 cdna_transcripts_to_capture.txt -c1 intron_transcripts_to_capture.txt --lamanno Homo_sapiens.GRCh38.dna.primary_assembly.fa Homo_sapiens.GRCh38.98.gtf
+$ kb ref -i index.idx -g transcripts_to_genes.txt -f1 cdna.fa -f2 intron.fa -c1 cdna_transcripts_to_capture.txt -c2 intron_transcripts_to_capture.txt --lamanno Homo_sapiens.GRCh38.dna.primary_assembly.fa Homo_sapiens.GRCh38.98.gtf
 ```
 
 #### 2. Align your reads and generate a velocity matrix
