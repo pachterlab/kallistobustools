@@ -89,7 +89,7 @@ Build the species velocity index:
 $ cat cDNA.correct_header.fa introns.correct_header.fa > cDNA_introns.fa
 $ kallisto index -i cDNA_introns.idx -k 31 cDNA_introns.fa
 ```
-For instructions on how to create cDNA and intron references for index construction see the [Building a cDNA and intron index tutorial](velocity_tutorial.html). 
+For instructions on how to create cDNA and intron references for index construction see the [Building a cDNA and intron index tutorial](velocity_index_tutorial.html). 
 
 #### 4. Run kallisto
 Pseudoalign the reads for 06:
