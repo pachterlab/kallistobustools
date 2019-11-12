@@ -17,4 +17,4 @@ We recently introduced the [__BUS__ file format](https://academic.oup.com/bioinf
 
 This website provides tutorials and workflows to learn how to use the __kallisto__ and __bustools__ programs together to perform single-cell RNA-seq pre-processing. We suggest beginning with the [Getting Started](kb_getting_started.html) page. See the [__kallisto and applications__ Google group](https://groups.google.com/forum/#!forum/kallisto-and-applications) for answers to frequently asked questions. The kallisto &#124; bustools workflow is described in detail in
 
-Páll Melsted, A. Sina Booeshaghi, Fan Gao, Eduardo Beltrame, Lambda Lu, Kristján Eldjárn Hjorleifsson, Jase Gehring and Lior Pachter, [Modular and efficient pre-processing of single-cell RNA-seq](https://www.biorxiv.org/content/10.1101/673285v1), bioRxiv, 2019.
+Páll Melsted, A. Sina Booeshaghi, Fan Gao, Eduardo Beltrame, Lambda Lu, Kristján Eldjárn Hjorleifsson, Jase Gehring and Lior Pachter, [Modular and efficient pre-processing of single-cell RNA-seq](https://www.biorxiv.org/content/10.1101/673285v2), bioRxiv, 2019.
