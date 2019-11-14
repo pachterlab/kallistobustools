@@ -48,7 +48,7 @@ Note that we use the `-O` option for each of these commands because otherwise th
 SRR6470906:
 ```
 $ kb count -i index.idx -g transcripts_to_genes.txt -x 10xv2 -o SRR6470907 \
--c1 cdna_transcripts_to_capture.txt -c2 intron_transcripts_to_capture.txt --lamanno \
+-c1 cdna_transcripts_to_capture.txt -c2 intron_transcripts_to_capture.txt --workflow lamanno \
 SRR6470906_S1_L001_R1_001.fastq.gz \
 SRR6470906_S1_L001_R2_001.fastq.gz \
 SRR6470906_S1_L002_R1_001.fastq.gz \
@@ -57,12 +57,13 @@ SRR6470906_S1_L002_R2_001.fastq.gz
 SRR6470907:
 ```
 $ kb count -i index.idx -g transcripts_to_genes.txt -x 10xv2 -o SRR6470907 \
--c1 cdna_transcripts_to_capture.txt -c2 intron_transcripts_to_capture.txt --lamanno \
+-c1 cdna_transcripts_to_capture.txt -c2 intron_transcripts_to_capture.txt --workflow lamanno \
 SRR6470907_S1_L001_R1_001.fastq.gz \
 SRR6470907_S1_L001_R2_001.fastq.gz \
 SRR6470907_S1_L002_R1_001.fastq.gz \
 SRR6470907_S1_L002_R2_001.fastq.gz
 ```
+__Note__: The `--lamanno` option has been deprecated since version 0.24.5.
 __Note__: `kb` can convert the velocity matrices to a  `loom` file by setting the `--loom` flag and a `h5ad` file by setting the `--h5ad` flag.
 
 #### 3. Load count matrices into notebook
