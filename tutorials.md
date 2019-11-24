@@ -37,6 +37,7 @@ group: navigation
 #### Pseudotime
 - [Monocle 2](https://bustools.github.io/BUS_notebooks_R/monocle2.html) (R)
 - [Monocle 3](https://bustools.github.io/BUS_notebooks_R/monocle3.html) (R)
+- [Monocle 3](https://colab.research.google.com/github/pachterlab/kallistobustools/blob/master/notebooks/kb_monocle.ipynb) (`kb` and R on Google Colab)
 - [Slingshot](https://bustools.github.io/BUS_notebooks_R/slingshot.html) (R)
 
 #### RNA velocity
