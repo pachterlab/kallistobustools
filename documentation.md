@@ -16,11 +16,11 @@ The `bustools` manual is available at: [https://bustools.github.io/manual](https
 
 #### Overview of the `kallisto | bustools` workflow
 
-For a hands-on introduction to the workflow see the [getting started](https://www.kallistobus.tools/getting_started) page and accompanying [video](https://www.youtube.com/watch?v=hWxnL86sak8).
+For a hands-on introduction to the workflow see the [getting started](https://colab.research.google.com/github/pachterlab/kallistobustools/blob/master/notebooks/kb_standard.ipynb) page and accompanying [video](https://www.youtube.com/watch?v=hWxnL86sak8).
 
-#### Description of associated files: 
+#### Description of associated files:
 
-1. A pair of read files of the form read 1 and read 2 with `.fastq` or `.fastq.gz` extensions are required. For example, `SRR8599150_S1_L001_R1_001.fastq.gz` and `SRR8599150_S1_L001_R2_001.fastq.gz` are the files used in the [getting started](https://www.kallistobus.tools/getting_started) tutorial.
+1. A pair of read files of the form read 1 and read 2 with `.fastq` or `.fastq.gz` extensions are required. For example, `SRR8599150_S1_L001_R1_001.fastq.gz` and `SRR8599150_S1_L001_R2_001.fastq.gz` are the files used in the [getting started](https://colab.research.google.com/github/pachterlab/kallistobustools/blob/master/notebooks/kb_standard.ipynb) tutorial.
 
 2. A set of target sequences, typically a reference transcriptome is needed for pseudoalignment. Species transcriptomes can be downloaded from the [Ensembl database page](https://uswest.ensembl.org/info/data/ftp/index.html). They are usually around 100MB in size. For example the mouse transcriptome downloaded from Ensembl is named `Mus_musculus.GRCm38.cdna.all.fa.gz`
 
@@ -39,7 +39,7 @@ AAACCTGAGAAACGCC
 ```
 ./t2g.py --use_version < Mus_musculus.GRCm38.96.gtf > transcripts_to_genes.txt
 ```
-This will create the file `transcripts_to_genes.txt`. Some examples of such files are provided below: 
+This will create the file `transcripts_to_genes.txt`. Some examples of such files are provided below:
 Gene names, no Ensembl version:
 ```
 ENSMUST00000162897      ENSMUSG00000051951      Xkr4
@@ -49,19 +49,19 @@ ENSMUST00000194643      ENSMUSG00000102343      Gm37381
 ```
 No gene names and no Ensembl version:
 ```
-ENSMUST00000162897      ENSMUSG00000051951     
+ENSMUST00000162897      ENSMUSG00000051951
 ENSMUST00000159265      ENSMUSG00000051951
 ENSMUST00000161581      ENSMUSG00000089699
 ENSMUST00000194643      ENSMUSG00000102343
 ```
 No gene names and with Ensembl version:
 ```
-ENSMUST00000162897.1      ENSMUSG00000051951     
+ENSMUST00000162897.1      ENSMUSG00000051951
 ENSMUST00000159265.2      ENSMUSG00000051951
 ENSMUST00000161581.1      ENSMUSG00000089699
 ENSMUST00000194643.1      ENSMUSG00000102343
 ```
 
-6. Running `kallisto` and `bustools`: once the read 1 and read 2 fastqs, thte kallisto index, and the transcript-to-gene files are ready, the count matrix can be generated with just a few commands; See the [getting started](https://www.kallistobus.tools/getting_started) tutorial. A detailed description of each file you should have at each step is provided at the [Getting Started Explained](https://www.kallistobus.tools/getting_started_explained.html) page.
+6. Running `kallisto` and `bustools`: once the read 1 and read 2 fastqs, thte kallisto index, and the transcript-to-gene files are ready, the count matrix can be generated with just a few commands; See the [getting started](https://colab.research.google.com/github/pachterlab/kallistobustools/blob/master/notebooks/kb_standard.ipynb) tutorial.
 
 7. Enjoy your pre-processed data! The [tutorials page](https://www.kallistobus.tools/tutorials) contains examples of how to parse BUS files and/or count matrices for downstream analysis.

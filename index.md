@@ -15,7 +15,7 @@ tagline:
 -->
 
 <p align="center">
-  <a href="kb_getting_started.html">
+  <a href="https://colab.research.google.com/github/pachterlab/kallistobustools/blob/master/notebooks/kb_standard.ipynb" target="_blank">
     <button type="button" class="btn btn-success">Get Started</button>
   </a>
 </p>
