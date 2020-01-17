@@ -7,22 +7,20 @@ group: navigation
 {% include JB/setup %}
 
 #### Aggregating multiple count matrices
-- [Tutorial](aggr_tutorial.html) (python)
+- [Tutorial](https://colab.research.google.com/github/pachterlab/kallistobustools/blob/master/notebooks/kb_aggregating_count_matrices.ipynb) (`kb` and python)
 
 #### Downloading data
-- [Tutorial](data_tutorial.html) (browser and command line)
+- [Tutorial](https://colab.research.google.com/github/pachterlab/kallistobustools/blob/master/notebooks/data_download.ipynb) (browser, command line, and `kb`)
 
 #### Feature barcoding
-- [Tutorial](kite_tutorial.html) (command line and/or python)
-- [Tutorial](https://colab.research.google.com/github/pachterlab/kallistobustools/blob/master/notebooks/kite.ipynb) (Google Colab notebook)
+- [Tutorial](https://colab.research.google.com/github/pachterlab/kallistobustools/blob/master/notebooks/kb_kite.ipynb) (`kb` and python)
 
 #### Getting started
-- [Tutorial](getting_started.html) (command line and python)
-- [Tutorial](kb_getting_started.html) (`kb` and python)
-- [Build a transcriptome index](kb_transcriptome_index.html) (`kb`)
+- [Tutorial](https://colab.research.google.com/github/pachterlab/kallistobustools/blob/master/notebooks/kb_standard.ipynb) (`kb` and python)
+- [Build a transcriptome index](https://colab.research.google.com/github/pachterlab/kallistobustools/blob/master/notebooks/kb_transcriptome_index.ipynb) (`kb`)
 
 #### Multi-species experiments
-- [Tutorial](species_mixing_tutorial.html) (command line and python)
+- [Tutorial](https://colab.research.google.com/github/pachterlab/kallistobustools/blob/master/notebooks/kb_species_mixing.ipynb) (`kb` and python)
 - [Tutorial](https://bustools.github.io/BUS_notebooks_R/10xv2.html) (R)
 
 #### Multiple FASTQs
