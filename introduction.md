@@ -6,7 +6,6 @@ group: navigation
 
 {% include JB/setup %}
 
-# Introduction
 We have wrapped kallisto and bustools into an easy-to-use program called `kb-python` which can be installed on any machine by typing `pip install kb-python` on the command line. This installs everything you need to process your single-cell RNA-seq reads with two simple commands. The first command is `kb ref` and the second command `kb count`.
 
 ```
@@ -16,7 +15,7 @@ $ kb count -i index.idx -g t2g.txt -x 10xv2 --h5ad -t 2 read_1.fastq.gz read_2.f
 
 To play around with a real data set using `kb-python`, check out this [tutorial](https://colab.research.google.com/github/pachterlab/kallistobustools/blob/master/notebooks/kb_species_mixing.ipynb). For an in-depth overview of `kb` checkout the [docs](https://kb-python.readthedocs.io/en/latest/index.html).
 
-# Explanation of `kb-python`
+## `kb-python` explained
 ### 1. Building a reference
 takes a genome and a genome annotation and builds a transcriptome index to use with `kallisto` under the hood of `kb-python`. `kb ref` allows flexibility in making a transcriptome from a custom genome and genome annotation, making custom references for RNA velocity/single-nuclei RNA-seq, and it allows one to download premade references.
 
