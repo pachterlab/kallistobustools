@@ -6,29 +6,29 @@ group: navigation
 
 {% include JB/setup %}
 
-**Note:** All Google Colab notebooks can be run by pressing `Runtime > Run all > Run anyway` within the notebook.
+**Note:** All Google Colab notebooks can be run by selecting `Runtime > Run all > Run anyway` within the notebook.
 
 ---
-
-#### Aggregating multiple count matrices
-- [Tutorial](https://colab.research.google.com/github/pachterlab/kallistobustools/blob/master/notebooks/kb_aggregating_count_matrices.ipynb) (`kb` and python on Google Colab)
-
-#### Downloading data
-- [Tutorial](https://colab.research.google.com/github/pachterlab/kallistobustools/blob/master/notebooks/data_download.ipynb) (browser, command line, and `kb` on Google Colab)
-
-#### Feature barcoding
-- [Tutorial](https://colab.research.google.com/github/pachterlab/kallistobustools/blob/master/notebooks/kb_kite.ipynb) (`kb` and python on Google Colab)
 
 #### Getting started
 - [Tutorial](https://colab.research.google.com/github/pachterlab/kallistobustools/blob/master/notebooks/kb_standard.ipynb) (`kb` and python on Google Colab)
 - [Build a transcriptome index](https://colab.research.google.com/github/pachterlab/kallistobustools/blob/master/notebooks/kb_transcriptome_index.ipynb) (`kb` on Google Colab)
 
+#### Downloading data
+- [Tutorial](https://colab.research.google.com/github/pachterlab/kallistobustools/blob/master/notebooks/data_download.ipynb) (browser, command line, and `kb` on Google Colab)
+
+#### Aggregating multiple count matrices
+- [Tutorial](https://colab.research.google.com/github/pachterlab/kallistobustools/blob/master/notebooks/kb_aggregating_count_matrices.ipynb) (`kb` and python on Google Colab)
+
+#### Multiple FASTQs
+- [Tutorial](https://colab.research.google.com/github/pachterlab/kallistobustools/blob/master/notebooks/kb_multiple_files.ipynb) (command line and `kb` on Google Colab)
+
 #### Multi-species experiments
 - [Tutorial](https://colab.research.google.com/github/pachterlab/kallistobustools/blob/master/notebooks/kb_species_mixing.ipynb) (`kb` and python on Google Colab)
 - [Tutorial](https://bustools.github.io/BUS_notebooks_R/10xv2.html) (R)
 
-#### Multiple FASTQs
-- [Tutorial](https://colab.research.google.com/github/pachterlab/kallistobustools/blob/master/notebooks/kb_multiple_files.ipynb) (command line and `kb` on Google Colab)
+#### Feature barcoding
+- [Tutorial](https://colab.research.google.com/github/pachterlab/kallistobustools/blob/master/notebooks/kb_kite.ipynb) (`kb` and python on Google Colab)
 
 #### Parsing bus files
 - [Tutorial](https://bustools.github.io/BUS_notebooks_R/10xv3.html) (R)
