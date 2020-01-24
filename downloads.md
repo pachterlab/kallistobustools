@@ -7,7 +7,7 @@ group: navigation
 {% include JB/setup %}
 
 # Standard
-The kallisto bus single cell workflow can be downloaded and installed with one command:
+The `kallisto` `bustools` single-cell workflow can be downloaded and installed with one command:
 ```
 $ pip install kb-python
 ```
