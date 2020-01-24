@@ -6,21 +6,19 @@ group: navigation
 
 {% include JB/setup %}
 
-We have wrapped kallisto and bustools into an easy-to-use program called `kb-python` which can be installed on any machine by typing `pip install kb-python` on the command line. With `kb-python` you can process your single-cell RNA-seq reads with two simple commands. The first command `kb ref` takes a genome and a genome annotation and builds a transcriptome index to use with `kallisto` under the hood of `kb-python`
+# Introduction
+We have wrapped kallisto and bustools into an easy-to-use program called `kb-python` which can be installed on any machine by typing `pip install kb-python` on the command line. This installs everything you need to process your single-cell RNA-seq reads with two simple commands. The first command is `kb ref` and the second command `kb count`.
 
 ```
 $ kb ref -i transcriptome.idx -g transcripts_to_genes.txt -f1 cdna.fa Mus_musculus.GRCm38.dna.primary_assembly.fa.gz Mus_musculus.GRCm38.98.gtf.gz
-```
-The second command `kb count` takes the transcriptome index and your single-cell FASTQ files and outputs a cell x genes matrix
-```
 $ kb count -i index.idx -g t2g.txt -x 10xv2 --h5ad -t 2 read_1.fastq.gz read_2.fastq.gz
 ```
 
-To play around with a real data set, check out this [tutorial](https://colab.research.google.com/github/pachterlab/kallistobustools/blob/master/notebooks/kb_species_mixing.ipynb). For an in-depth overview of `kb` checkout the [docs](https://kb-python.readthedocs.io/en/latest/index.html).
+To play around with a real data set using `kb-python`, check out this [tutorial](https://colab.research.google.com/github/pachterlab/kallistobustools/blob/master/notebooks/kb_species_mixing.ipynb). For an in-depth overview of `kb` checkout the [docs](https://kb-python.readthedocs.io/en/latest/index.html).
 
-### Documentation
-#### 1. Building a reference
-`kb ref` allows flexibility in making a transcriptome from a custom genome and genome annotation, making custom references for RNA velocity/single-nuclei RNA-seq, and it allows one to download premade references.
+# Explanation of `kb-python`
+### 1. Building a reference
+takes a genome and a genome annotation and builds a transcriptome index to use with `kallisto` under the hood of `kb-python`. `kb ref` allows flexibility in making a transcriptome from a custom genome and genome annotation, making custom references for RNA velocity/single-nuclei RNA-seq, and it allows one to download premade references.
 
 ```
 $ kb ref
@@ -78,8 +76,8 @@ required arguments for `lamanno` and `nucleus` workflows:
   -c2 T2C               Path to generate intron transcripts-to-capture
 ```
 
-#### 2. Running a workflow
-Once a reference is made, FASTQ reads must be aligned to it. `kb count` is responsible for running a variety of workflows from standard count matrix generation to feature barcoding.
+### 2. Running a workflow
+Once a reference is made, FASTQ reads must be aligned to it. `kb count` is responsible for running a variety of workflows that align reads to a reference for standard count matrix generation to feature barcoding.
 ```
 usage: kb count [-h] [--tmp TMP] [--keep-tmp] [--verbose] -i INDEX -g T2G -x
                 TECHNOLOGY [-o OUT] [-w WHITELIST] [-t THREADS] [-m MEMORY]
@@ -137,9 +135,9 @@ required arguments for `lamanno` and `nucleus` workflows:
   -c2 T2C               Path to intron transcripts-to-captured
 ```
 
-### `kb-python` is built on top of `kallisto` and `bustools`
+## `kb-python` is built on top of `kallisto` and `bustools`
 
-#### kallisto and bustools manuals
+### kallisto and bustools manuals
 
 The kallisto &#124; bustools single-cell RNA-seq workflow requires two programs: `kallisto` and `bustools`
 
