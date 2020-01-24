@@ -6,6 +6,8 @@ group: navigation
 
 {% include JB/setup %}
 
+*Note:* All Google Colab notebooks can be run by pressing `Runtime > Run all > Run anyway` within the notebook.
+
 #### Aggregating multiple count matrices
 - [Tutorial](https://colab.research.google.com/github/pachterlab/kallistobustools/blob/master/notebooks/kb_aggregating_count_matrices.ipynb) (`kb` and python on Google Colab)
 
