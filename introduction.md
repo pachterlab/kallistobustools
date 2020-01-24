@@ -10,7 +10,7 @@ group: navigation
 We have wrapped kallisto and bustools into an easy-to-use program called `kb-python` which can be installed on any machine by typing `pip install kb-python` on the command line. This installs everything you need to process your single-cell RNA-seq reads with two simple commands. The first command is `kb ref` and the second command `kb count`.
 
 ```
-$ kb ref -i transcriptome.idx -g transcripts_to_genes.txt -f1 cdna.fa Mus_musculus.GRCm38.dna.primary_assembly.fa.gz Mus_musculus.GRCm38.98.gtf.gz
+$ kb ref -i transcriptome.idx -g transcripts_to_genes.txt -f1 cdna.fa dna.primary_assembly.fa.gz gtf.gz
 $ kb count -i index.idx -g t2g.txt -x 10xv2 --h5ad -t 2 read_1.fastq.gz read_2.fastq.gz
 ```
 
