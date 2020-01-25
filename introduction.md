@@ -6,18 +6,18 @@ group: navigation
 
 {% include JB/setup %}
 
-`kallisto` and `bustools` are wrapped in an easy-to-use program called `kb-python` that can be installed on any machine by typing `pip install kb-python` on the command line. This installs everything needed to process single-cell RNA-seq reads with two simple commands. The first is `kb ref` and the second `kb count`:
+__kallisto__ and __bustools__ are wrapped in an easy-to-use program called `kb` which is part of the `kb-python` package, and that can be installed on any machine by typing `pip install kb-python` on the command line. This installs everything needed to process single-cell RNA-seq reads with two simple commands. The first is `kb ref` and the second `kb count`:
 
 ```
 $ kb ref -i transcriptome.idx -g transcripts_to_genes.txt -f1 cdna.fa dna.primary_assembly.fa.gz gtf.gz
 $ kb count -i index.idx -g t2g.txt -x 10xv2 --h5ad -t 2 read_1.fastq.gz read_2.fastq.gz
 ```
 
-To explore a real data set using `kb-python` see the [getting started tutorial](https://colab.research.google.com/github/pachterlab/kallistobustools/blob/master/notebooks/kb_species_mixing.ipynb). For an in-depth overview of `kb` see the [docs](https://kb-python.readthedocs.io/en/latest/index.html).
+To learn how to explore a dataset using `kb-python` begin with the [getting started tutorial](https://colab.research.google.com/github/pachterlab/kallistobustools/blob/master/notebooks/kb_species_mixing.ipynb). For an in-depth overview of `kb` see the [docs](https://kb-python.readthedocs.io/en/latest/index.html).
 
 ## Details
 ### 1. Building a reference
-Starting with a genome and a genome annotation a transcriptome index  can be built with `kallisto` via `kb ref`. This allows flexibility in building a transcriptomes from agenoms and associated genome annotation. In addition `kb ref` can be used to download pre-built indices:
+Starting with a genome and a genome annotation a transcriptome index  can be built with `kallisto` via `kb ref`. This allows flexibility in building a transcriptomes from genomes and associated genome annotations. In addition `kb ref` can be used to download pre-built indices:
 
 ```
 $ kb ref
@@ -76,7 +76,7 @@ required arguments for `lamanno` and `nucleus` workflows:
 ```
 
 ### 2. Quantifying a dataset
-Once an index has been generated or downloaded `kb count` uses `kallisto` to pseudoalign reads and `bustools` to quantify the data: 
+Once an index has been generated or downloaded, `kb count` uses `kallisto` to pseudoalign reads and `bustools` to quantify the data: 
 ```
 usage: kb count [-h] [--tmp TMP] [--keep-tmp] [--verbose] -i INDEX -g T2G -x
                 TECHNOLOGY [-o OUT] [-w WHITELIST] [-t THREADS] [-m MEMORY]
