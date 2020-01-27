@@ -7,7 +7,7 @@ group: navigation
 {% include JB/setup %}
 **kallisto &#124; bustools** is a workflow for pre-processing single-cell RNA-seq data. 
 
-Pre-processing single-cell rNA-seq involves: (1) association of reads with their cells of origin, (2) collapsing of reads according to unique molecular identifiers (UMIs), and (3) generation of gene or feature counts from the reads to generate a cell x gene matrix.
+Pre-processing single-cell RNA-seq involves: (1) association of reads with their cells of origin, (2) collapsing of reads according to unique molecular identifiers (UMIs), and (3) generation of gene or feature counts from the reads to generate a _cell x gene_ matrix.
 
 With **kallisto &#124; bustools** you can 
 * Generate a _cell x gene_ or _cell x transcript equivalence class_ count matrix
@@ -16,8 +16,6 @@ With **kallisto &#124; bustools** you can
 * Customize workflows for new technologies and protocols.
 * Process feature barcoding data such as CITE-seq, REAP-seq, MULTI-seq, Clicktags, and Perturb-seq.
 * Obtain QC reports from single-cell RNA-seq data
-
-Click on the introduction tab to learn more or the tutorials tab for examples.
 
 The **kallisto &#124; bustools** workflow is described in:
 
