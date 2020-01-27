@@ -10,39 +10,38 @@ group: navigation
 
 ---
 
-#### Getting started
-- [Tutorial](https://colab.research.google.com/github/pachterlab/kallistobustools/blob/master/notebooks/kb_standard.ipynb) (`kb` and python on Google Colab)
-- [Build a transcriptome index](https://colab.research.google.com/github/pachterlab/kallistobustools/blob/master/notebooks/kb_transcriptome_index.ipynb) (`kb` on Google Colab)
+#### Getting started [`python`](https://colab.research.google.com/github/pachterlab/kallistobustools/blob/master/notebooks/kb_standard.ipynb) 
+- Download a mouse transcriptome index, pseudoalign reads, and perform downstream analysis
 
-#### Downloading data
-- [Tutorial](https://colab.research.google.com/github/pachterlab/kallistobustools/blob/master/notebooks/data_download.ipynb) (browser, command line, and `kb` on Google Colab)
+#### Build transcriptome index [`python`](https://colab.research.google.com/github/pachterlab/kallistobustools/blob/master/notebooks/kb_transcriptome_index.ipynb)
+- Build a transcriptome index from a Genome and Genome annotation file
 
-#### Aggregating multiple count matrices
-- [Tutorial](https://colab.research.google.com/github/pachterlab/kallistobustools/blob/master/notebooks/kb_aggregating_count_matrices.ipynb) (`kb` and python on Google Colab)
+#### Downloading data [`command line and python`](https://colab.research.google.com/github/pachterlab/kallistobustools/blob/master/notebooks/data_download.ipynb)
+- Learn how to download data from different sequencing databases
 
-#### Multiple FASTQs
-- [Tutorial](https://colab.research.google.com/github/pachterlab/kallistobustools/blob/master/notebooks/kb_multiple_files.ipynb) (command line and `kb` on Google Colab)
+#### Aggregating multiple count matrices [`python`](https://colab.research.google.com/github/pachterlab/kallistobustools/blob/master/notebooks/kb_aggregating_count_matrices.ipynb)
+- Combine two count matrices for downstream analysis
 
-#### Multi-species experiments
-- [Tutorial](https://colab.research.google.com/github/pachterlab/kallistobustools/blob/master/notebooks/kb_species_mixing.ipynb) (`kb` and python on Google Colab)
-- [Tutorial](https://bustools.github.io/BUS_notebooks_R/10xv2.html) (R)
+#### Multiple FASTQs [`python`](https://colab.research.google.com/github/pachterlab/kallistobustools/blob/master/notebooks/kb_multiple_files.ipynb)
+- Process multiple sets of FASTQs to create gene count matrices
 
-#### Feature barcoding
-- [Tutorial](https://colab.research.google.com/github/pachterlab/kallistobustools/blob/master/notebooks/kb_kite.ipynb) (`kb` and python on Google Colab)
+#### Multi-species experiments [`python`](https://colab.research.google.com/github/pachterlab/kallistobustools/blob/master/notebooks/kb_species_mixing.ipynb) [`R`](https://bustools.github.io/BUS_notebooks_R/10xv2.html)
+- Create a combine human mouse index and align single cell reads from a human mouse experiment
 
-#### Parsing bus files
-- [Tutorial](https://bustools.github.io/BUS_notebooks_R/10xv3.html) (R)
+#### Feature barcoding [`python`](https://colab.research.google.com/github/pachterlab/kallistobustools/blob/master/notebooks/kb_kite.ipynb)
+- Align feature barcoding reads from a 10x Feature Barcoding experiment
 
-#### Pre-processing single-nuclei RNA-seq
-- [Tutorial](https://colab.research.google.com/github/pachterlab/kallistobustools/blob/master/notebooks/kb_single_nucleus.ipynb) (`kb` on Google Colab)
+#### Parsing bus files [`R`](https://bustools.github.io/BUS_notebooks_R/10xv3.html)
+- Parse a bus file 
 
-#### Pseudotime
-- [Monocle 2](https://bustools.github.io/BUS_notebooks_R/monocle2.html) (R)
-- [Monocle 3](https://bustools.github.io/BUS_notebooks_R/monocle3.html) (R)
-- [Monocle 3](https://colab.research.google.com/github/pachterlab/kallistobustools/blob/master/notebooks/kb_monocle.ipynb) (`kb` and R on Google Colab)
-- [Slingshot](https://bustools.github.io/BUS_notebooks_R/slingshot.html) (R)
+#### Pre-processing single-nuclei RNA-seq [`python`](https://colab.research.google.com/github/pachterlab/kallistobustools/blob/master/notebooks/kb_single_nucleus.ipynb)
+- Create a combine transciptome - intron index and process single-nuclei data
 
-#### RNA velocity
-- [RNA velocity tutorial](https://colab.research.google.com/github/pachterlab/kallistobustools/blob/master/notebooks/kb_velocity.ipynb) (`kb` and python on Google Colab)
-- [RNA velocity tutorial with construction of a cDNA and intron index](https://bustools.github.io/BUS_notebooks_R/velocity.html) (R)
-- [Building a cDNA and intron index tutorial](https://colab.research.google.com/github/pachterlab/kallistobustools/blob/master/notebooks/kb_velocity_index.ipynb) (`kb` on Google Colab)
+#### Pseudotime [`R - Monocole 2`](https://bustools.github.io/BUS_notebooks_R/monocle2.html) [`R - Monocole 3`](https://bustools.github.io/BUS_notebooks_R/monocle3.html) [`python - Monocole 3`](https://colab.research.google.com/github/pachterlab/kallistobustools/blob/master/notebooks/kb_monocle.ipynb) [`R - Slingshot`](https://bustools.github.io/BUS_notebooks_R/slingshot.html)
+- Perform pseudotime to understand differentiation trajectories of cells
+
+#### RNA velocity [`python - premade index`](https://colab.research.google.com/github/pachterlab/kallistobustools/blob/master/notebooks/kb_velocity.ipynb) [`R - custom index`](https://bustools.github.io/BUS_notebooks_R/velocity.html)
+- Perform RNA velocity on the La Manno Human Forebrain data to create TSNE RNA velocity vectors
+
+#### Custom Index for RNA velocity [`python`](https://colab.research.google.com/github/pachterlab/kallistobustools/blob/master/notebooks/kb_velocity_index.ipynb)
+- Construct a custom transcriptome - intron index for RNA velocity
