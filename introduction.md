@@ -13,7 +13,7 @@ $ kb ref -i transcriptome.idx -g transcripts_to_genes.txt -f1 cdna.fa dna.primar
 $ kb count -i index.idx -g t2g.txt -x 10xv2 --h5ad -t 2 read_1.fastq.gz read_2.fastq.gz
 ```
 
-To learn how to explore a dataset using `kb-python` begin with the [getting started tutorial](https://colab.research.google.com/github/pachterlab/kallistobustools/blob/master/notebooks/kb_species_mixing.ipynb). For an in-depth overview of `kb` see the [docs](https://kb-python.readthedocs.io/en/latest/index.html).
+To learn how to explore a dataset using `kb-python` begin with the [getting started tutorial](https://colab.research.google.com/github/pachterlab/kallistobustools/blob/master/notebooks/kb_standard.ipynb). For an in-depth overview of `kb` see the [docs](https://kb-python.readthedocs.io/en/latest/index.html).
 
 ## Under the hood
 ### 1. Building a reference
