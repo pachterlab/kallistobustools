@@ -6,7 +6,7 @@ group: navigation
 
 {% include JB/setup %}
 
-**Note:** All Google Colab notebooks can be run by selecting `Runtime > Run all > Run anyway` within the notebook.
+**Note:** All [Google Colab](https://colab.research.google.com/notebooks/basic_features_overview.ipynb) notebooks can be run by selecting `Runtime > Run all > Run anyway` within the notebook.
 
 ---
 
