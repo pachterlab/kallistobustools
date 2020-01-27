@@ -25,7 +25,7 @@ group: navigation
 #### Multiple FASTQs [`python`](https://colab.research.google.com/github/pachterlab/kallistobustools/blob/master/notebooks/kb_multiple_files.ipynb)
 - Process multiple sets of FASTQs to create gene count matrices
 
-#### Multi-species experiments [`python`](https://colab.research.google.com/github/pachterlab/kallistobustools/blob/master/notebooks/kb_species_mixing.ipynb) [`R`](https://bustools.github.io/BUS_notebooks_R/10xv2.html)
+#### Multi-species experiments [`python`](https://colab.research.google.com/github/pachterlab/kallistobustools/blob/master/notebooks/kb_species_mixing.ipynb), [`R`](https://bustools.github.io/BUS_notebooks_R/10xv2.html)
 - Create a combine human mouse index and align single cell reads from a human mouse experiment
 
 #### Feature barcoding [`python`](https://colab.research.google.com/github/pachterlab/kallistobustools/blob/master/notebooks/kb_kite.ipynb)
