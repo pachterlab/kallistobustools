@@ -15,7 +15,7 @@ $ kb count -i index.idx -g t2g.txt -x 10xv2 --h5ad -t 2 read_1.fastq.gz read_2.f
 
 To learn how to explore a dataset using `kb-python` begin with the [getting started tutorial](https://colab.research.google.com/github/pachterlab/kallistobustools/blob/master/notebooks/kb_species_mixing.ipynb). For an in-depth overview of `kb` see the [docs](https://kb-python.readthedocs.io/en/latest/index.html).
 
-## Details
+## Under the hood
 ### 1. Building a reference
 Starting with a genome and a genome annotation a transcriptome index  can be built with `kallisto` via `kb ref`. This allows flexibility in building a transcriptomes from genomes and associated genome annotations. In addition `kb ref` can be used to download pre-built indices:
 
