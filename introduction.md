@@ -15,8 +15,8 @@ $ kb count -i index.idx -g t2g.txt -x 10xv2 --h5ad -t 2 read_1.fastq.gz read_2.f
 
 To learn how to explore a dataset using `kb-python` begin with the [getting started tutorial](https://colab.research.google.com/github/pachterlab/kallistobustools/blob/master/notebooks/kb_standard.ipynb). For an in-depth overview of `kb` see the [docs](https://kb-python.readthedocs.io/en/latest/index.html).
 
-## Under the hood
-### 1. Building a reference
+### Under the hood
+#### 1. Building a reference
 Starting with a genome and a genome annotation a transcriptome index  can be built with `kallisto` via `kb ref`. This allows flexibility in building a transcriptomes from genomes and associated genome annotations. In addition `kb ref` can be used to download pre-built indices:
 
 ```
@@ -75,7 +75,7 @@ required arguments for `lamanno` and `nucleus` workflows:
   -c2 T2C               Path to generate intron transcripts-to-capture
 ```
 
-### 2. Quantifying a dataset
+#### 2. Quantifying a dataset
 Once an index has been generated or downloaded, `kb count` uses `kallisto` to pseudoalign reads and `bustools` to quantify the data: 
 ```
 usage: kb count [-h] [--tmp TMP] [--keep-tmp] [--verbose] -i INDEX -g T2G -x
@@ -134,7 +134,7 @@ required arguments for `lamanno` and `nucleus` workflows:
   -c2 T2C               Path to intron transcripts-to-captured
 ```
 
-### 3. kallisto and bustools
+#### 3. kallisto and bustools
 `kb-python` utilizes the `kallisto` and `bustools` programs. Details on the use of these tools can be found below:
 
 The `kallisto` manual is available at: [https://pachterlab.github.io/kallisto/download](https://pachterlab.github.io/kallisto/download)
