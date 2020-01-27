@@ -16,7 +16,7 @@ group: navigation
 #### Build transcriptome index [`python`](https://colab.research.google.com/github/pachterlab/kallistobustools/blob/master/notebooks/kb_transcriptome_index.ipynb)
 - Build a transcriptome index from a Genome and Genome annotation file
 
-#### Downloading data [`command line and python`](https://colab.research.google.com/github/pachterlab/kallistobustools/blob/master/notebooks/data_download.ipynb)
+#### Downloading data [`command line`](https://colab.research.google.com/github/pachterlab/kallistobustools/blob/master/notebooks/data_download.ipynb)
 - Learn how to download data from different sequencing databases
 
 #### Aggregating multiple count matrices [`python`](https://colab.research.google.com/github/pachterlab/kallistobustools/blob/master/notebooks/kb_aggregating_count_matrices.ipynb)
@@ -37,10 +37,10 @@ group: navigation
 #### Pre-processing single-nuclei RNA-seq [`python`](https://colab.research.google.com/github/pachterlab/kallistobustools/blob/master/notebooks/kb_single_nucleus.ipynb)
 - Create a combine transciptome - intron index and process single-nuclei data
 
-#### Pseudotime [`R - Monocole 2`](https://bustools.github.io/BUS_notebooks_R/monocle2.html) [`R - Monocole 3`](https://bustools.github.io/BUS_notebooks_R/monocle3.html) [`python - Monocole 3`](https://colab.research.google.com/github/pachterlab/kallistobustools/blob/master/notebooks/kb_monocle.ipynb) [`R - Slingshot`](https://bustools.github.io/BUS_notebooks_R/slingshot.html)
+#### Pseudotime [`R - Monocole 2`](https://bustools.github.io/BUS_notebooks_R/monocle2.html), [`R - Monocole 3`](https://bustools.github.io/BUS_notebooks_R/monocle3.html), [`python - Monocole 3`](https://colab.research.google.com/github/pachterlab/kallistobustools/blob/master/notebooks/kb_monocle.ipynb), [`R - Slingshot`](https://bustools.github.io/BUS_notebooks_R/slingshot.html)
 - Perform pseudotime to understand differentiation trajectories of cells
 
-#### RNA velocity [`python - premade index`](https://colab.research.google.com/github/pachterlab/kallistobustools/blob/master/notebooks/kb_velocity.ipynb) [`R - custom index`](https://bustools.github.io/BUS_notebooks_R/velocity.html)
+#### RNA velocity [`python - premade index`](https://colab.research.google.com/github/pachterlab/kallistobustools/blob/master/notebooks/kb_velocity.ipynb), [`R - custom index`](https://bustools.github.io/BUS_notebooks_R/velocity.html)
 - Perform RNA velocity on the La Manno Human Forebrain data to create TSNE RNA velocity vectors
 
 #### Custom Index for RNA velocity [`python`](https://colab.research.google.com/github/pachterlab/kallistobustools/blob/master/notebooks/kb_velocity_index.ipynb)
