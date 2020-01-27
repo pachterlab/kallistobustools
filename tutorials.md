@@ -10,7 +10,7 @@ group: navigation
 
 ---
 
-| Tutorial | Description | Languages|
+| Tutorial | Description | Languages (Click link to view)|
 |:-----|------------:|---------:|
 |Getting started | Generate count matrices from FASTQs | [`python`](https://colab.research.google.com/github/pachterlab/kallistobustools/blob/master/notebooks/kb_standard.ipynb)  |
 | Build index | From a Genome and annotation | [`python`](https://colab.research.google.com/github/pachterlab/kallistobustools/blob/master/notebooks/kb_transcriptome_index.ipynb) |
