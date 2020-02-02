@@ -18,7 +18,7 @@ group: navigation
 |Introduction 2 | Getting started with analysis | [`python`](https://colab.research.google.com/github/pachterlab/kallistobustools/blob/master/notebooks/kb_standard.ipynb)  |
 |<br/>|
 |Analysis 0 | Building and annotating an atlas | [`python`](https://colab.research.google.com/github/pachterlab/kallistobustools/blob/master/notebooks/kb_atlas_annotation_Scanpy.ipynb) |
-| Analysis 1 | Perform pseudotime analysis | [`R - Monocole 2`](https://bustools.github.io/BUS_notebooks_R/monocle2.html) and [`3`](https://bustools.github.io/BUS_notebooks_R/monocle3.html), [`python - Monocole 3`](https://colab.research.google.com/github/pachterlab/kallistobustools/blob/master/notebooks/kb_monocle.ipynb), [`R - Slingshot`](https://bustools.github.io/BUS_notebooks_R/slingshot.html)|
+| Analysis 1 | Perform pseudotime analysis | [`R - Monocole 3`](https://bustools.github.io/BUS_notebooks_R/monocle3.html),
 | Analysis 2 | Process single-nuclei RNA-seq | [`python`](https://colab.research.google.com/github/pachterlab/kallistobustools/blob/master/notebooks/kb_single_nucleus.ipynb)|
 | Analysis 3 | Perform RNA velocity analysis | [`python - premade index`](https://colab.research.google.com/github/pachterlab/kallistobustools/blob/master/notebooks/kb_velocity.ipynb), [`R - custom index`](https://bustools.github.io/BUS_notebooks_R/velocity.html)|
 | Analysis 4 | Quantify multi-modal data | [`python`](https://colab.research.google.com/github/pachterlab/kallistobustools/blob/master/notebooks/kb_kite.ipynb)|
