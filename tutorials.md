@@ -23,7 +23,7 @@ group: navigation
 | Analysis 3 | Perform RNA velocity analysis | [`python`](https://colab.research.google.com/github/pachterlab/kallistobustools/blob/master/notebooks/kb_velocity.ipynb), [`R`](https://bustools.github.io/BUS_notebooks_R/velocity.html)|
 | Analysis 4 | Quantify multi-modal data | [`python`](https://colab.research.google.com/github/pachterlab/kallistobustools/blob/master/notebooks/kb_kite.ipynb)|
 |<br/>
-| FAQ 0 | Finding and downloading data | [`command line`](https://colab.research.google.com/github/pachterlab/kallistobustools/blob/master/notebooks/data_download.ipynb)|
+| FAQ 0 | Finding and downloading data | [`python`](https://colab.research.google.com/github/pachterlab/kallistobustools/blob/master/notebooks/data_download.ipynb)|
 | FAQ 1 | Building consistent and custom indices | [`python`](https://colab.research.google.com/github/pachterlab/kallistobustools/blob/master/notebooks/kb_transcriptome_index.ipynb) |
 | FAQ 2 | Building RNA velocity indices | [`python`](https://colab.research.google.com/github/pachterlab/kallistobustools/blob/master/notebooks/kb_velocity_index.ipynb)|
 | FAQ 3 | Combining two count matrices | [`python`](https://colab.research.google.com/github/pachterlab/kallistobustools/blob/master/notebooks/kb_aggregating_count_matrices.ipynb)|
