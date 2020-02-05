@@ -28,6 +28,6 @@ group: navigation
 | FAQ 2 | Building RNA velocity indices | [`python`](https://colab.research.google.com/github/pachterlab/kallistobustools/blob/master/notebooks/kb_velocity_index.ipynb)|
 | FAQ 3 | Combining two count matrices | [`python`](https://colab.research.google.com/github/pachterlab/kallistobustools/blob/master/notebooks/kb_aggregating_count_matrices.ipynb)|
 | FAQ 4 | Processing multiple sets of FASTQs | [`python`](https://colab.research.google.com/github/pachterlab/kallistobustools/blob/master/notebooks/kb_multiple_files.ipynb) |
-| FAQ 5 | Processing multi-species data | ['R](https://colab.research.google.com/github/pachterlab/kallistobustools/blob/master/notebooks/kb_mixed_species_10x_v2.ipynb)[`python`](https://colab.research.google.com/github/pachterlab/kallistobustools/blob/master/notebooks/kb_species_mixing.ipynb), [`R`](https://bustools.github.io/BUS_notebooks_R/10xv2.html)|
+| FAQ 5 | Processing multi-species data | ['R`](https://colab.research.google.com/github/pachterlab/kallistobustools/blob/master/notebooks/kb_mixed_species_10x_v2.ipynb)[`python`](https://colab.research.google.com/github/pachterlab/kallistobustools/blob/master/notebooks/kb_species_mixing.ipynb) |
 | FAQ 6 | Pseudotime with Monocle2 | [`R`](https://colab.research.google.com/github/pachterlab/kallistobustools/blob/master/notebooks/kb_monocle2.ipynb) | 
 | FAQ 7 | Parsing a BUS file in R | [`R`](https://bustools.github.io/BUS_notebooks_R/10xv3.html) |
