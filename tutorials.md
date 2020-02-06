@@ -11,7 +11,7 @@ group: navigation
 ---
 
 | Tutorial | Description | Link | Time (min) |
-|:-----|:------------:|:---------:| ----------:|
+|:-----|:------------|:---------|:----------|
 |Introduction 0 | Introduction to single-cell RNA-seq | [`python`](https://colab.research.google.com/github/pachterlab/kallistobustools/blob/master/notebooks/Introduction_single_cell_RNA_seq.ipynb){:target="_blank"} | 0.58
 |Introduction 1 | Pre-processing and quality control| [`python`](https://colab.research.google.com/github/pachterlab/kallistobustools/blob/master/notebooks/kb_1_minute_intro.ipynb){:target="_blank"} | 1.36
 |Introduction 2 | Getting started with analysis | [`python`](https://colab.research.google.com/github/pachterlab/kallistobustools/blob/master/notebooks/kb_standard.ipynb){:target="_blank"}  | 13.5
