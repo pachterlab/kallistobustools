@@ -9,11 +9,11 @@ group: navigation
 **Note:** All [Google Colab](https://colab.research.google.com/notebooks/basic_features_overview.ipynb){:target="_blank"} notebooks can be run by selecting `Runtime > Run all > Run anyway` within the notebook.
 
 ---
-<div style="text-align: center">
-| Tutorial | Description | Link |
-|:-----|------------:|---------:|
-|Introduction 0 | Introduction to single-cell RNA-seq | [`python`](https://colab.research.google.com/github/pachterlab/kallistobustools/blob/master/notebooks/Introduction_single_cell_RNA_seq.ipynb){:target="_blank"} | 
-|Introduction 1 | Pre-processing and quality control| [`python`](https://colab.research.google.com/github/pachterlab/kallistobustools/blob/master/notebooks/kb_1_minute_intro.ipynb){:target="_blank"} |
+
+| Tutorial | Description | Link | Time (min) |
+|:-----|------------:|---------:| ----------:|
+|Introduction 0 | Introduction to single-cell RNA-seq | [`python`](https://colab.research.google.com/github/pachterlab/kallistobustools/blob/master/notebooks/Introduction_single_cell_RNA_seq.ipynb){:target="_blank"} | 0.58
+|Introduction 1 | Pre-processing and quality control| [`python`](https://colab.research.google.com/github/pachterlab/kallistobustools/blob/master/notebooks/kb_1_minute_intro.ipynb){:target="_blank"} | 1.4
 |Introduction 2 | Getting started with analysis | [`python`](https://colab.research.google.com/github/pachterlab/kallistobustools/blob/master/notebooks/kb_standard.ipynb){:target="_blank"}  |
 ||||
 |Analysis 0 | Building and annotating an atlas | [`python`](https://colab.research.google.com/github/pachterlab/kallistobustools/blob/master/notebooks/kb_atlas_annotation_Scanpy.ipynb){:target="_blank"}, [`R`](https://colab.research.google.com/github/pachterlab/kallistobustools/blob/master/notebooks/kb_atlas_annotation_Seurat.ipynb){:target="_blank"} |
@@ -30,4 +30,3 @@ group: navigation
 | FAQ 5 | Processing multi-species data | [`python`](https://colab.research.google.com/github/pachterlab/kallistobustools/blob/master/notebooks/kb_species_mixing.ipynb){:target="_blank"}, [`R`](https://colab.research.google.com/github/pachterlab/kallistobustools/blob/master/notebooks/kb_mixed_species_10x_v2.ipynb){:target="_blank"} |
 | FAQ 6 | Pseudotime with Monocle2 | [`R`](https://colab.research.google.com/github/pachterlab/kallistobustools/blob/master/notebooks/kb_monocle2.ipynb){:target="_blank"} | 
 | FAQ 7 | Parsing a BUS file in R | [`R`](https://bustools.github.io/BUS_notebooks_R/10xv3.html){:target="_blank"} |
-</div>
