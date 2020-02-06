@@ -9,7 +9,7 @@ group: navigation
 **Note:** All [Google Colab](https://colab.research.google.com/notebooks/basic_features_overview.ipynb) notebooks can be run by selecting `Runtime > Run all > Run anyway` within the notebook.
 
 ---
-<center>
+
 | Tutorial | Description | Link |
 |:-----|------------:|---------:|
 |Introduction 0 | Introduction to single-cell RNA-seq | [`python`](https://colab.research.google.com/github/pachterlab/kallistobustools/blob/master/notebooks/Introduction_single_cell_RNA_seq.ipynb) | 
@@ -30,4 +30,4 @@ group: navigation
 | FAQ 5 | Processing multi-species data | [`python`](https://colab.research.google.com/github/pachterlab/kallistobustools/blob/master/notebooks/kb_species_mixing.ipynb)[`R`](https://colab.research.google.com/github/pachterlab/kallistobustools/blob/master/notebooks/kb_mixed_species_10x_v2.ipynb) |
 | FAQ 6 | Pseudotime with Monocle2 | [`R`](https://colab.research.google.com/github/pachterlab/kallistobustools/blob/master/notebooks/kb_monocle2.ipynb) | 
 | FAQ 7 | Parsing a BUS file in R | [`R`](https://bustools.github.io/BUS_notebooks_R/10xv3.html) |
-</center>
+
