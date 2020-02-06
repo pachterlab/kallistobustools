@@ -12,17 +12,17 @@ group: navigation
 
 | Tutorial | Description | Link |
 |:-----|------------:|---------:|
-|<br/>
+| | | |
 |Introduction 0 | Introduction to single-cell RNA-seq | [`python`](https://colab.research.google.com/github/pachterlab/kallistobustools/blob/master/notebooks/Introduction_single_cell_RNA_seq.ipynb) | 
 |Introduction 1 | Pre-processing and quality control| [`python`](https://colab.research.google.com/github/pachterlab/kallistobustools/blob/master/notebooks/kb_1_minute_intro.ipynb) |
 |Introduction 2 | Getting started with analysis | [`python`](https://colab.research.google.com/github/pachterlab/kallistobustools/blob/master/notebooks/kb_standard.ipynb)  |
-|<br/>|
+| | | |
 |Analysis 0 | Building and annotating an atlas | [`python`](https://colab.research.google.com/github/pachterlab/kallistobustools/blob/master/notebooks/kb_atlas_annotation_Scanpy.ipynb) |
 | Analysis 1 | Perform pseudotime analysis | [`R`](https://colab.research.google.com/github/pachterlab/kallistobustools/blob/master/notebooks/kb_slingshot.ipynb#scrollTo=Thbf0wBfnMb_)|
 | Analysis 2 | Process single-nuclei RNA-seq | [`python`](https://colab.research.google.com/github/pachterlab/kallistobustools/blob/master/notebooks/kb_single_nucleus.ipynb)|
 | Analysis 3 | Perform RNA velocity analysis | [`python`](https://colab.research.google.com/github/pachterlab/kallistobustools/blob/master/notebooks/kb_velocity.ipynb), [`R`](https://bustools.github.io/BUS_notebooks_R/velocity.html)|
 | Analysis 4 | Quantify multi-modal data | [`python`](https://colab.research.google.com/github/pachterlab/kallistobustools/blob/master/notebooks/kb_kite.ipynb)|
-|<br/>
+| | | |
 | FAQ 0 | Finding and downloading data | [`python`](https://colab.research.google.com/github/pachterlab/kallistobustools/blob/master/notebooks/data_download.ipynb)|
 | FAQ 1 | Building consistent and custom indices | [`python`](https://colab.research.google.com/github/pachterlab/kallistobustools/blob/master/notebooks/kb_transcriptome_index.ipynb) |
 | FAQ 2 | Building RNA velocity indices | [`python`](https://colab.research.google.com/github/pachterlab/kallistobustools/blob/master/notebooks/kb_velocity_index.ipynb)|
