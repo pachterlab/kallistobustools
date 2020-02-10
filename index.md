@@ -15,7 +15,7 @@ tagline:
 -->
 
 <p align="center">
-  <a href="https://colab.research.google.com/github/pachterlab/kallistobustools/blob/master/notebooks/Introduction_single_cell_RNA_seq.ipynb"" target="_blank">
+  <a href="https://colab.research.google.com/github/pachterlab/kallistobustools/blob/master/notebooks/Introduction_single_cell_RNA_seq.ipynb" target="_blank">
     <button type="button" class="btn btn-success">Get Started</button>
   </a>
 </p>
