@@ -19,6 +19,7 @@ Manual of all single-cell RNA-seq workflows supported by `kb`. This document is 
 ## 1. Standard workflow<a name='standard'></a>
 ### ref
 #### Options that apply to all commands
+
 | Option &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; | Description &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; |
 |:------|:------------|
 | `--tmp TMP` | Set the temporary directory, which defaults to `./tmp`, to `TMP`. |
