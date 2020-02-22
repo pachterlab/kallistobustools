@@ -18,7 +18,7 @@ Manual of all single-cell RNA-seq workflows supported by `kb`. This document is 
 
 ## 1. Standard workflow<a name='standard'></a>
 ### ref
-#### Options that apply to all commands
+Options that apply to all commands
 
 |:--------------|:------------------------------------------------------------------|
 | `--tmp TMP`   | Set the temporary directory, which defaults to `./tmp`, to `TMP`. |
@@ -27,25 +27,34 @@ Manual of all single-cell RNA-seq workflows supported by `kb`. This document is 
 | `--overwrite` | Overwrite any existing files.                                     |
 
 #### Download a pre-built mouse or human index
+This will download a `tar.gz` archive containing a kallisto index and transcript-to-gene mapping.
 ```
 kb ref -i INDEX -g T2G -d ORGANISM [options]
 ```
-* `INDEX`
-* `T2G`
-* `ORGANISM`
+Required arguments
+
+|:-----------|:-------------------------------------------------------------------------------|
+| `INDEX`    | Path to the kallisto index. The extracted kallisto index will be placed here.  |
+| `T2G`      | Path to transcript-to-gene mapping. The extracted mapping will be placed here. |
+| `ORGANISM` | Specifies which organism's index to download. Either `human` or `mouse`.       |
 
 #### Build an index with local files or files streamed from the internet
 ```
 kb ref -i INDEX -g T2G -f1 CDNA [options] FASTA GTF
 ```
-* `INDEX`
-* `T2G`
-* `CDNA`
-* `FASTA`
-* `GTF`
-* `[options]`
-  * `-n N`
-  * `-k K`
+Required arguments
+
+|:-----------|:-------------------------------------------------------------------------------|
+| `INDEX`     | Path to the kallisto index to be constructed.  |
+| `T2G`       | Path to transcript-to-gene mapping to be generated. |
+| `CDNA`      | Path to the cDNA FASTA to be generated.  |
+| `FASTA`     | Path to the input genomic FASTA file.  |
+| `GTF`       | Path to the input GTF file.  |
+
+Options
+|:-------|:-------------------------------------------------------------------------------|
+| `-n N` | Split the kallisto index into `N` files. Specifying this option will internally split the cDNA FASTA into `N` approximately-equal parts, and each of these FASTAs are indexed separately. |
+| `-k K` | Use this option to override the k-mer length of the index to `K`. The default k-mer length is 31. |
 
 ### count
 
