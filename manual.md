@@ -14,13 +14,15 @@ Manual of all single-cell RNA-seq workflows supported by `kb`. This document is 
 3. [Single-nucleus workflow](#nucleus)
 4. [KITE feature barcoding workflow](#kite)
 
+-------------------------------------------
+
 ## 1. Standard workflow<a name='standard'></a>
 ### ref
 #### Options that apply to all commands
-* `--tmp TMP`
-* `--keep-tmp`
-* `--verbose`
-* `--overwrite`
+* `--tmp TMP` Set the temporary directory, which defaults to `./tmp`, to `TMP`.
+* `--keep-tmp` Do not delete the temporary directory once `kb` finishes running.
+* `--verbose` Output debugging information.
+* `--overwrite` Overwrite any existing files.
 
 #### Download a pre-built mouse or human index
 ```
