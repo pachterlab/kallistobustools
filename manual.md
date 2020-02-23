@@ -13,14 +13,14 @@ Manual of all single-cell RNA-seq workflows supported by `kb`. This document is 
   * [ref](#standard-ref)
   * [count](#standard-count)
 2. [RNA velocity workflow](#velocity)
-  * [ref]()
-  * [count]()
+  * [ref](#velocity-ref)
+  * [count](#velocity-count)
 3. [Single-nucleus workflow](#nucleus)
-  * [ref]()
-  * [count]()
+  * [ref](#nucleus-ref)
+  * [count](#nucleus-count)
 4. [KITE feature barcoding workflow](#kite)
-  * [ref]()
-  * [count]()
+  * [ref](#kite-ref)
+  * [count](#kite-count)
 
 -------------------------------------------
 
@@ -144,16 +144,16 @@ The following options convert the final unfiltered (+ filtered) sparse matrices 
 
 
 ### 2. RNA velocity workflow<a name='velocity'></a>
-### ref
+### ref<a name='velocity-ref'></a>
 
-### count
+### count<a name='velocity-count'></a>
 
 ### 3. Single-nucleus workflow<a name='nucleus'></a>
-### ref
+### ref<a name='nucleus-ref'></a>
 
-### count
+### count<a name='nucleus-count'></a>
 
 ### 4. KITE feature barcoding workflow<a name='kite'></a>
-### ref
+### ref<a name='kite-ref'></a>
 
-### count
+### count<a name='kite-count'></a>
