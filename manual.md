@@ -11,7 +11,7 @@ Manual of all single-cell RNA-seq workflows supported by `kb`. This document is 
 
 1. [Standard workflow](#standard)
   * [ref](#standard-ref)
-  * [count]()
+  * [count](#standard-count)
 2. [RNA velocity workflow](#velocity)
   * [ref]()
   * [count]()
