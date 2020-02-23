@@ -10,14 +10,22 @@ Manual of all single-cell RNA-seq workflows supported by `kb`. This document is 
 ### Table of Contents
 
 1. [Standard workflow](#standard)
+  * [ref](#standard-ref)
+  * [count]()
 2. [RNA velocity workflow](#velocity)
+  * [ref]()
+  * [count]()
 3. [Single-nucleus workflow](#nucleus)
+  * [ref]()
+  * [count]()
 4. [KITE feature barcoding workflow](#kite)
+  * [ref]()
+  * [count]()
 
 -------------------------------------------
 
 ### 1. Standard workflow<a name='standard'></a>
-### ref
+### ref<a name='standard-ref'></a>
 **Options that apply to all commands**
 
 The following options apply to all commands when running `kb ref` standard workflow.
@@ -66,7 +74,7 @@ kb ref -i INDEX -g T2G -f1 CDNA [options] FASTA GTF
 | `-n N`&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Split the kallisto index into `N` files. Specifying this option will internally split the cDNA FASTA into `N` approximately-equal parts, and each of these FASTAs are indexed separately. |
 | `-k K` | Use this option to override the k-mer length of the index to `K`. The default k-mer length is 31. |
 
-### count
+### count<a name='standard-count'></a>
 **Options that apply to all commands**
 
 The following options apply to all commands when running `kb count` standard workflow.
