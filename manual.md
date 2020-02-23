@@ -89,6 +89,7 @@ This command generates an unfiltered (+ filtered) gene count matrix in sparse ma
 ```
 kb count -i INDEX -g T2G -x TECHNOLOGY [options] FASTQS
 ```
+
 |:---|:---|
 | `INDEX`&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Path to the kallisto index generated with `kb ref`. |
 | `T2G` | Path to transcript-to-gene mapping generated with `kb ref`. |
@@ -98,6 +99,7 @@ kb count -i INDEX -g T2G -x TECHNOLOGY [options] FASTQS
 &nbsp;
 
 **Additional options**
+
 |:---|:---|
 | `--filter FILTER` | Produce an additional, filtered, count matrix (default: `bustools`). Currently, only `bustools` is supported, which runs `bustools whitelist` to detect and filter empty droplets. |
 
@@ -107,6 +109,7 @@ This command generates an unfiltered (+ filtered) TCC matrix in sparse matrix fo
 ```
 kb count -i INDEX -g T2G -x TECHNOLOGY --tcc [options] FASTQS
 ```
+
 |:---|:---|
 | `INDEX`&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Path to the kallisto index generated with `kb ref`. |
 | `T2G` | Path to transcript-to-gene mapping generated with `kb ref`. |
@@ -116,6 +119,7 @@ kb count -i INDEX -g T2G -x TECHNOLOGY --tcc [options] FASTQS
 &nbsp;
 
 **Additional options**
+
 |:---|:---|
 | `--filter FILTER` | Produce an additional, filtered, count matrix (default: `bustools`). Currently, only `bustools` is supported, which runs `bustools whitelist` to detect and filter empty droplets. |
 
@@ -124,6 +128,7 @@ kb count -i INDEX -g T2G -x TECHNOLOGY --tcc [options] FASTQS
 
 #### Convert sparse matrices to other formats
 The following options convert the final unfiltered (+ filtered) sparse matrices to other popular formats.
+
 |:---|:---|
 | `--h5ad`&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Convert the final matrices to H5AD format. The count matrices are loaded as an [Anndata](https://icb-anndata.readthedocs-hosted.com/en/stable/anndata.AnnData.html) object, which is then saved as `adata.h5ad`. |
 | `--loom` | Convert the final matrices to Loom format. The count matrices are loaded as an [Anndata](https://icb-anndata.readthedocs-hosted.com/en/stable/anndata.AnnData.html) object, which is then saved as `adata.loom`. |
