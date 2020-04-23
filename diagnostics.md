@@ -35,7 +35,15 @@ To analyze diagnostic testing sequence data we have adapted kallisto and bustool
   - kallisto is called with an option specific to the diagnostic technology. For example, for SwabSeq, kallisto is called with `kallisto -x SwabSeq`. This specifies the location of the sample barcodes in the read files, along with the location of the biological sequence. It is straightforward to add technology (-x) options to kallisto. 
   - kallisto process the FASTQ records one at a time, and for each records the sample barcode in the first column of the resultant BUS file. In the case of SwabSeq, the barcode sequence is split between reads, and kallisto automatically handles this (thanks to the specification with the -x SwabSeq option in kallisto). When processing a record, kallisto also aligns the biological sequence to the genes using the index, and results of the alignment are stored in the third column of the BUS file. The second column of the BUS file is unused for this application and is filled with a dummy "A". More detail on the alignment procedure is provided below.
   - Once kalliso has finished processing the reads, the resultant BUS file contains a table where each record corresponds to a sequence obtained from a sample, and where the record contains information about its sample barcode and a gene (which the biological sequence corresponding to that record aligned to). This BUS file is ready to be processed with various bustools programs.
-- bustools 
+- `bustools sort` is run to sort the BUS file by barcode sequence. This step is key to ensuring that all subsequent bustools commands run in constant memory, and time that is linear in the number of BUS records.
+- `bustools correct` is now used to correct errors in the barcodes in the BUS file. This is done using a "whitelist" of barcodes from a sample sheet describing the diagnostic experiment. The `bustools correct` command will correct all barcodes within Hamming distance 1 of a whitelist barcode.
+  - Alternatively, the `bustools whitelist` command can be run before `bustools correct` to automatically identify valid barcodes (using the total counts associated with each barcode). The reusltant whitelist can then be used with the `bustools correct` command to error correct the remaining barcodes.
+- `bustools sort` is run again. The purpose of this sort command is to collate the counts of genes associated to each barcode sequence. These counts are recorded in a fourth column of the BUS file, indicating multiplcity of the record.
+- `bustools count` is used to produce a human readable table of sample barcode sequences along with the counts of genes detected for each of them.
+
+## Details of the alignment
+
+The alignment of biological sequences to the gene sequences using kallisto is performed using k-mers. The k-mer size is an input to the program (the default is 11 for SwabSeq). A biological sequence is aligned to a gene sequence if at least one k-mer matches exactly. This means that the alignment procedure is robust to a variety of sequencing errors, including multiple nucleotide insertions or deletions, as well as mismatches. 
 
 
 {% include JB/setup %}
