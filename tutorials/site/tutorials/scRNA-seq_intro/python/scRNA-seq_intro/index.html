@@ -1,0 +1,2319 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Short and simple bioinformatics tutorials">
+      
+      
+      
+        <meta name="author" content="A. Sina Booeshaghi">
+      
+      
+      <link rel="icon" href="../../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-7.0.7">
+    
+    
+      
+        <title>Python - kallisto | bustools</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.c772ddf0.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.7fa14f5b.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+      
+    
+    
+    
+      <link rel="stylesheet" href="../../../../css/custom.css">
+    
+    
+      
+        
+<script>window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)},ga.l=+new Date,ga("create","UA-142178789-1","kallistobus.tools"),ga("set","anonymizeIp",!0),ga("send","pageview"),document.addEventListener("DOMContentLoaded",function(){document.forms.search&&document.forms.search.query.addEventListener("blur",function(){var e;this.value&&(e=document.location.pathname,ga("send","pageview",e+"?q="+this.value))}),"undefined"!=typeof location$&&location$.subscribe(function(e){ga("send","pageview",e.pathname)})})</script>
+<script async src="https://www.google-analytics.com/analytics.js"></script>
+      
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="amber">
+      
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#an-introduction-to-single-cell-rna-seq" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../../.." title="kallisto | bustools" class="md-header__button md-logo" aria-label="kallisto | bustools" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            kallisto | bustools
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Python
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    <div class="md-header__options">
+      
+    </div>
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        
+<a href="https://github.com/pachterlab/kallistobustools/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    pachterlab/kallistobustools
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../.." title="kallisto | bustools" class="md-nav__button md-logo" aria-label="kallisto | bustools" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    kallisto | bustools
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/pachterlab/kallistobustools/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    pachterlab/kallistobustools
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../.." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
+      
+      <label class="md-nav__link" for="__nav_2">
+        Using kb
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Using kb" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Using kb
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../kb_usage/kb_usage/" class="md-nav__link">
+        Introduction
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../kb_usage/kb_ref/" class="md-nav__link">
+        Building a reference
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../kb_usage/kb_count/" class="md-nav__link">
+        Quantifying a dataset
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" checked>
+      
+      <label class="md-nav__link" for="__nav_3">
+        Tutorials
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Tutorials" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          Tutorials
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_1" type="checkbox" id="__nav_3_1" checked>
+      
+      <label class="md-nav__link" for="__nav_3_1">
+        Introduction to single-cell RNA-seq
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Introduction to single-cell RNA-seq" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_1">
+          <span class="md-nav__icon md-icon"></span>
+          Introduction to single-cell RNA-seq
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Python
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Python
+      </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#written-by-sina-booeshaghi-and-lior-pachter-based-on-material-taught-in-caltech-course-bibecs183-by-lior-pachter-and-matt-thomson-with-contributions-from-sina-booeshaghi-lambda-lu-jialong-jiang-eduardo-beltrame-jase-gehring-ingileif-hallgrimsdottir-and-valentine-svensson" class="md-nav__link">
+    Written by Sina Booeshaghi* and Lior Pachter*. Based on material taught in Caltech course Bi/BE/CS183 by Lior Pachter and Matt Thomson, with contributions from Sina Booeshaghi, Lambda Lu, Jialong Jiang, Eduardo Beltrame, Jase Gehring, Ingileif Hallgrímsdóttir and Valentine Svensson.
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#division-of-biology-and-biological-engineering-california-institute-of-technology" class="md-nav__link">
+    *Division of Biology and Biological Engineering, California Institute of Technology
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#setup" class="md-nav__link">
+    Setup
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#motivation" class="md-nav__link">
+    Motivation
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#droplet-based-methods" class="md-nav__link">
+    Droplet-based methods
+  </a>
+  
+    <nav class="md-nav" aria-label="Droplet-based methods">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    Overview
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#emulsions" class="md-nav__link">
+    Emulsions
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#beads" class="md-nav__link">
+    Beads
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#single-cell-suspensions" class="md-nav__link">
+    Single cell suspensions
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#statistics-of-beads-cells-in-droplets" class="md-nav__link">
+    Statistics of beads &amp; cells in droplets
+  </a>
+  
+    <nav class="md-nav" aria-label="Statistics of beads &amp; cells in droplets">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-binomial-distribution" class="md-nav__link">
+    The binomial distribution
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-poisson-distribution" class="md-nav__link">
+    The Poisson distribution
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#droplet-tuning" class="md-nav__link">
+    Droplet tuning
+  </a>
+  
+    <nav class="md-nav" aria-label="Droplet tuning">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cell-capture-and-bead-overload" class="md-nav__link">
+    Cell capture and bead overload
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sub-poisson-loading" class="md-nav__link">
+    Sub-Poisson loading
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#barcode-collisions" class="md-nav__link">
+    Barcode collisions
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#barcode-diversity-and-length" class="md-nav__link">
+    Barcode diversity and length
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#technical-doublets" class="md-nav__link">
+    Technical doublets
+  </a>
+  
+    <nav class="md-nav" aria-label="Technical doublets">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-barnyard-plot" class="md-nav__link">
+    The barnyard plot
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#blooms-correction" class="md-nav__link">
+    Bloom's correction
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#biological-doublets" class="md-nav__link">
+    Biological doublets
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#unique-molecular-identifiers" class="md-nav__link">
+    Unique Molecular Identifiers
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    Summary
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_2" type="checkbox" id="__nav_3_2" >
+      
+      <label class="md-nav__link" for="__nav_3_2">
+        Preprocessing & Quality Control
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Preprocessing & Quality Control" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_2">
+          <span class="md-nav__icon md-icon"></span>
+          Preprocessing & Quality Control
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../kb_quality_control/python/kb_intro_1_python/" class="md-nav__link">
+        Python
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../kb_quality_control/R/kb_intro_1_R/" class="md-nav__link">
+        R
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_3" type="checkbox" id="__nav_3_3" >
+      
+      <label class="md-nav__link" for="__nav_3_3">
+        Getting started with analysis
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Getting started with analysis" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_3">
+          <span class="md-nav__icon md-icon"></span>
+          Getting started with analysis
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../kb_getting_started/python/kb_intro_2_python/" class="md-nav__link">
+        Python
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../kb_getting_started/R/kb_intro_2_R/" class="md-nav__link">
+        R
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_4" type="checkbox" id="__nav_3_4" >
+      
+      <label class="md-nav__link" for="__nav_3_4">
+        Building & annotating an atlas
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Building & annotating an atlas" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_4">
+          <span class="md-nav__icon md-icon"></span>
+          Building & annotating an atlas
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../kb_building_atlas/python/kb_analysis_0_python/" class="md-nav__link">
+        Python
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../kb_building_atlas/R/kb_analysis_0_R/" class="md-nav__link">
+        R
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_5" type="checkbox" id="__nav_3_5" >
+      
+      <label class="md-nav__link" for="__nav_3_5">
+        Pseudotime analysis
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Pseudotime analysis" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_5">
+          <span class="md-nav__icon md-icon"></span>
+          Pseudotime analysis
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../kb_pseudotime/R/slingshot/kb_slingshot/" class="md-nav__link">
+        R
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_6" type="checkbox" id="__nav_3_6" >
+      
+      <label class="md-nav__link" for="__nav_3_6">
+        Single-nuclei RNA-seq
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Single-nuclei RNA-seq" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_6">
+          <span class="md-nav__icon md-icon"></span>
+          Single-nuclei RNA-seq
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../kb_nucleus/python/kb_single_nucleus/" class="md-nav__link">
+        Python
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_7" type="checkbox" id="__nav_3_7" >
+      
+      <label class="md-nav__link" for="__nav_3_7">
+        RNA Velocity
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="RNA Velocity" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_7">
+          <span class="md-nav__icon md-icon"></span>
+          RNA Velocity
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../kb_velocity/python/kb_velocity/" class="md-nav__link">
+        Python
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_8" type="checkbox" id="__nav_3_8" >
+      
+      <label class="md-nav__link" for="__nav_3_8">
+        Feature barcode & multimodal data
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Feature barcode & multimodal data" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_8">
+          <span class="md-nav__icon md-icon"></span>
+          Feature barcode & multimodal data
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../kb_kite/python/kb_kite/" class="md-nav__link">
+        Python
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../download_data/data_download/" class="md-nav__link">
+        Find & download data
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_10" type="checkbox" id="__nav_3_10" >
+      
+      <label class="md-nav__link" for="__nav_3_10">
+        Build custom index
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Build custom index" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_10">
+          <span class="md-nav__icon md-icon"></span>
+          Build custom index
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../kb_custom_index/python/kb_transcriptome_index/" class="md-nav__link">
+        Python
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_11" type="checkbox" id="__nav_3_11" >
+      
+      <label class="md-nav__link" for="__nav_3_11">
+        Build RNA velocity index
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Build RNA velocity index" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_11">
+          <span class="md-nav__icon md-icon"></span>
+          Build RNA velocity index
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../kb_velocity_index/python/kb_velocity_index/" class="md-nav__link">
+        Python
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_12" type="checkbox" id="__nav_3_12" >
+      
+      <label class="md-nav__link" for="__nav_3_12">
+        Aggregate multiple matrices
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Aggregate multiple matrices" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_12">
+          <span class="md-nav__icon md-icon"></span>
+          Aggregate multiple matrices
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../kb_aggregate/python/kb_aggregating_count_matrices/" class="md-nav__link">
+        Python
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_13" type="checkbox" id="__nav_3_13" >
+      
+      <label class="md-nav__link" for="__nav_3_13">
+        Process multiple FASTQs
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Process multiple FASTQs" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_13">
+          <span class="md-nav__icon md-icon"></span>
+          Process multiple FASTQs
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../kb_multiple_fastqs/python/kb_multiple_files/" class="md-nav__link">
+        Python
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_14" type="checkbox" id="__nav_3_14" >
+      
+      <label class="md-nav__link" for="__nav_3_14">
+        Processing multi-species data
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Processing multi-species data" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_14">
+          <span class="md-nav__icon md-icon"></span>
+          Processing multi-species data
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../kb_species_mixing/python/kb_species_mixing/" class="md-nav__link">
+        Python
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../kb_species_mixing/R/kb_mixed_species_10x_v2/" class="md-nav__link">
+        R
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_15" type="checkbox" id="__nav_3_15" >
+      
+      <label class="md-nav__link" for="__nav_3_15">
+        Pseudotime analysis (Monocle2)
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Pseudotime analysis (Monocle2)" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_15">
+          <span class="md-nav__icon md-icon"></span>
+          Pseudotime analysis (Monocle2)
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../kb_pseudotime/R/monocle2/kb_monocle2/" class="md-nav__link">
+        R
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#written-by-sina-booeshaghi-and-lior-pachter-based-on-material-taught-in-caltech-course-bibecs183-by-lior-pachter-and-matt-thomson-with-contributions-from-sina-booeshaghi-lambda-lu-jialong-jiang-eduardo-beltrame-jase-gehring-ingileif-hallgrimsdottir-and-valentine-svensson" class="md-nav__link">
+    Written by Sina Booeshaghi* and Lior Pachter*. Based on material taught in Caltech course Bi/BE/CS183 by Lior Pachter and Matt Thomson, with contributions from Sina Booeshaghi, Lambda Lu, Jialong Jiang, Eduardo Beltrame, Jase Gehring, Ingileif Hallgrímsdóttir and Valentine Svensson.
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#division-of-biology-and-biological-engineering-california-institute-of-technology" class="md-nav__link">
+    *Division of Biology and Biological Engineering, California Institute of Technology
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#setup" class="md-nav__link">
+    Setup
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#motivation" class="md-nav__link">
+    Motivation
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#droplet-based-methods" class="md-nav__link">
+    Droplet-based methods
+  </a>
+  
+    <nav class="md-nav" aria-label="Droplet-based methods">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    Overview
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#emulsions" class="md-nav__link">
+    Emulsions
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#beads" class="md-nav__link">
+    Beads
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#single-cell-suspensions" class="md-nav__link">
+    Single cell suspensions
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#statistics-of-beads-cells-in-droplets" class="md-nav__link">
+    Statistics of beads &amp; cells in droplets
+  </a>
+  
+    <nav class="md-nav" aria-label="Statistics of beads &amp; cells in droplets">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-binomial-distribution" class="md-nav__link">
+    The binomial distribution
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-poisson-distribution" class="md-nav__link">
+    The Poisson distribution
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#droplet-tuning" class="md-nav__link">
+    Droplet tuning
+  </a>
+  
+    <nav class="md-nav" aria-label="Droplet tuning">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cell-capture-and-bead-overload" class="md-nav__link">
+    Cell capture and bead overload
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sub-poisson-loading" class="md-nav__link">
+    Sub-Poisson loading
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#barcode-collisions" class="md-nav__link">
+    Barcode collisions
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#barcode-diversity-and-length" class="md-nav__link">
+    Barcode diversity and length
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#technical-doublets" class="md-nav__link">
+    Technical doublets
+  </a>
+  
+    <nav class="md-nav" aria-label="Technical doublets">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-barnyard-plot" class="md-nav__link">
+    The barnyard plot
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#blooms-correction" class="md-nav__link">
+    Bloom's correction
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#biological-doublets" class="md-nav__link">
+    Biological doublets
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#unique-molecular-identifiers" class="md-nav__link">
+    Unique Molecular Identifiers
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    Summary
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/pachterlab/kallistobustools/edit/master/docs/tutorials/scRNA-seq_intro/python/scRNA-seq_intro.md" title="Edit this page" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                <p><a href="https://colab.research.google.com/github/pachterlab/kallistobustools/blob/master/notebooks/Introduction_single_cell_RNA_seq.ipynb" target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a></p>
+<h1 id="an-introduction-to-single-cell-rna-seq">An introduction to single-cell RNA-seq<a class="headerlink" href="#an-introduction-to-single-cell-rna-seq" title="Permanent link">&para;</a></h1>
+<h4 id="written-by-sina-booeshaghi-and-lior-pachter-based-on-material-taught-in-caltech-course-bibecs183-by-lior-pachter-and-matt-thomson-with-contributions-from-sina-booeshaghi-lambda-lu-jialong-jiang-eduardo-beltrame-jase-gehring-ingileif-hallgrimsdottir-and-valentine-svensson">Written by Sina Booeshaghi* and Lior Pachter*. Based on <a href="https://figshare.com/articles/Introduction_to_single-cell_RNA-seq_technologies/7704659/1">material taught in Caltech course Bi/BE/CS183</a> by Lior Pachter and Matt Thomson, with contributions from Sina Booeshaghi, Lambda Lu, Jialong Jiang, Eduardo Beltrame, Jase Gehring, Ingileif Hallgrímsdóttir and Valentine Svensson.<a class="headerlink" href="#written-by-sina-booeshaghi-and-lior-pachter-based-on-material-taught-in-caltech-course-bibecs183-by-lior-pachter-and-matt-thomson-with-contributions-from-sina-booeshaghi-lambda-lu-jialong-jiang-eduardo-beltrame-jase-gehring-ingileif-hallgrimsdottir-and-valentine-svensson" title="Permanent link">&para;</a></h4>
+<h4 id="division-of-biology-and-biological-engineering-california-institute-of-technology">*Division of Biology and Biological Engineering, California Institute of Technology<a class="headerlink" href="#division-of-biology-and-biological-engineering-california-institute-of-technology" title="Permanent link">&para;</a></h4>
+<p>The rapid development of single-cell genomics methods starting in 2009 has created unprecedented opportunity for highly resolved measurements of cellular states. Among such methods, single-cell RNA-seq (scRNA-seq) is having a profound impact on biology. Here we introduce some of the key concepts of single-cell RNA-seq technologies, with a focus on droplet based methods.</p>
+<p>To learn how to pre-process and analyze single-cell RNA-seq explore the following Google Colab notebooks that explain how to go from reads to results:</p>
+<ul>
+<li>Pre-processing and quality control [<a href="https://colab.research.google.com/github/pachterlab/kallistobustools/blob/master/notebooks/kb_intro_1_python.ipynb">Python</a>, <a href="https://colab.research.google.com/github/pachterlab/kallistobustools/blob/master/notebooks/kb_intro_1_R.ipynb">R</a>]</li>
+<li>Getting started with analysis [<a href="https://colab.research.google.com/github/pachterlab/kallistobustools/blob/master/notebooks/kb_intro_2_python.ipynb">Python</a>, <a href="https://colab.research.google.com/github/pachterlab/kallistobustools/blob/master/notebooks/kb_intro_2_R.ipynb">R</a>]</li>
+<li>Building and annotating an atlas [<a href="https://colab.research.google.com/github/pachterlab/kallistobustools/blob/master/notebooks/kb_analysis_0_python.ipynb">Python</a>, <a href="https://colab.research.google.com/github/pachterlab/kallistobustools/blob/master/notebooks/kb_analysis_0_R.ipynb">R</a>]</li>
+</ul>
+<p>The <a href="https://www.kallistobus.tools/tutorials">kallistobus.tools tutorials</a> site has a extensive list of tutorials and vignettes on single-cell RNA-seq.</p>
+<h2 id="setup">Setup<a class="headerlink" href="#setup" title="Permanent link">&para;</a></h2>
+<p>This notebook is a "living document". It downloads data and performs computations. As such it requires the installation of some python packages, which are installed with the commands below. In addition to running on Google Colab, the notebook can be downloaded and run locally on any machine which has python3 installed.</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>#@title Install packages
+%%capture
+!pip install matplotlib
+!pip install scikit-learn
+!pip install numpy
+!pip install scipy
+!pip install anndata
+import numpy as np
+import matplotlib.cm as cm
+import matplotlib.pyplot as plt
+import matplotlib.colors as mplcol
+import matplotlib.font_manager
+import matplotlib as mpl
+import pandas as pd
+import io
+import anndata
+
+from scipy.stats import binom
+from scipy.stats import poisson
+from scipy.sparse import csr_matrix
+from scipy.io import mmread
+from sklearn import linear_model
+
+from IPython.display import HTML
+from mizani.breaks import date_breaks
+from mizani.formatters import date_format
+# Only pandas &gt;= v0.25.0 supports column names with spaces in querys
+import plotnine as p
+import requests
+import warnings
+import colorsys
+warnings.filterwarnings(&quot;ignore&quot;)  # plotnine has a lot of MatplotlibDeprecationWarning&#39;s
+import seaborn as sns
+sns.set_context(&quot;notebook&quot;, font_scale=1.5, rc={&quot;lines.linewidth&quot;: 2.5})
+
+fsize=20
+
+plt.rcParams.update({&#39;font.size&#39;: fsize})
+%config InlineBackend.figure_format = &#39;retina&#39;
+</code></pre></div>
+</td></tr></table>
+<h2 id="motivation">Motivation<a class="headerlink" href="#motivation" title="Permanent link">&para;</a></h2>
+<p>The goal of single-cell transcriptomics is to measure the transcriptional states of large numbers of cells simultaneously. The input to a scRNA-seq method is a collection of cells, possibly from intact tissue, or in dissociated form. Formally, the desired output is a <em>transcripts x cells</em> or <em>genes x cells</em>  matrix that describes, for each cell, the abundance of its constituent transcripts or genes. More generally, single-cell genomics methods seek to measure not just transcriptional state, but other modalities in cells, e.g. protein abundances, epigenetic states, cellular morphology, etc.</p>
+<p>The ideal single-cell technology should thus:</p>
+<ul>
+<li>Be <strong><em>universal</em></strong> in terms of cell size, type and state.</li>
+<li>Perform <strong><em>in situ</em></strong> measurements.</li>
+<li>Have no <strong><em>minimum input</em></strong> requirements.</li>
+<li>Assay every cell, i.e. have a 100% <strong><em>capture rate</em></strong>.</li>
+<li>Detect every transcript in every cell, i.e. have 100% <strong><em>sensitivity</em></strong>.</li>
+<li>Identify individual transcripts by their <strong><em>full-length sequence</em></strong>.</li>
+<li>Assign transcripts correctly to cells, e.g. no <strong><em>doublets</em></strong>.</li>
+<li>Be compatible with additional <strong><em>multimodal measurements</em></strong>.</li>
+<li>Be <strong><em>cost effective</em></strong> per cell.</li>
+<li>Be <strong><em>easy to use</em></strong>.</li>
+<li>Be <strong><em>open source</em></strong> so that it is transparent, and results from it reproducible.</li>
+</ul>
+<p>There is no method satisfying all of these requirements, however progress has been rapid. The development of single-cell RNA-seq technologies and their adoption by biologists, has been remarkable. <a href="https://www.biorxiv.org/content/10.1101/742304v2">Svensson et al. 2019</a> describes a database of articles which present single-cell RNA-seq experiments, and the graph below, rendered from the <a href="https://docs.google.com/spreadsheets/d/1En7-UV0k0laDiIfjFkdn7dggyR7jIk3WH8QgXaMOZF0/edit#gid=0">current version of the database</a>, makes clear the exponential growth in single-cell transcriptomics:</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>#@title Growth of single-cell RNA-seq
+df = pd.read_csv(&#39;http://nxn.se/single-cell-studies/data.tsv&#39;, sep=&#39;\t&#39;)
+# converts string to date format, can only be run once!
+df[&#39;Date&#39;] = pd.to_datetime(df[&#39;Date&#39;], format=&#39;%Y%m%d&#39;)
+
+# converts string of reported cells total to float, can only be run once!
+df[&#39;Reported cells total&#39;] = df[&#39;Reported cells total&#39;].str.replace(&#39;,&#39;, &#39;&#39;).map(float)
+
+# plot number of studies over time
+fig, ax = plt.subplots(figsize=(12, 5))
+
+papers = pd.read_csv(&#39;http://nxn.se/single-cell-studies/data.tsv&#39;, sep=&#39;\t&#39;)
+papers[&#39;Datetime&#39;] = pd.to_datetime(papers[&#39;Date&#39;], format=&#39;%Y%m%d&#39;)
+papers = papers.sort_values(&quot;Date&quot;)
+papers[&quot;count&quot;] = 1
+
+x = papers.Datetime
+y = papers[&quot;count&quot;].groupby(papers.Datetime.dt.time).cumsum()
+
+ax.plot(x, y, color=&quot;k&quot;)
+ax.set_xlabel(&quot;Date&quot;)
+ax.set_ylabel(&quot;Cumulative number of studies&quot;)
+
+plt.show()
+</code></pre></div>
+</td></tr></table>
+<p><img alt="png" src="../scRNA-seq_intro_files/scRNA-seq_intro_9_0.png" /></p>
+<p>There are many different scRNA-seq technologies in use and under development, but broadly they fall into a few categories
+-  well-based methods (e.g. Fluidigm SMARTer C1, Smart-seq2)
+- droplet-based methods (e.g. Drop-seq, InDrops, 10X Genomics Chromium)
+- spatial transcriptomics approaches (e.g. MERFISH, SEQFISH)</p>
+<p>At the time of initial writing of this document (2019), droplet-based approaches have become popular due to their relative low-cost, easy of use, and scalability. This is evident in a breakdown of articles by technology used: </p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span>
+<span class="normal">41</span>
+<span class="normal">42</span>
+<span class="normal">43</span>
+<span class="normal">44</span>
+<span class="normal">45</span>
+<span class="normal">46</span>
+<span class="normal">47</span>
+<span class="normal">48</span>
+<span class="normal">49</span>
+<span class="normal">50</span>
+<span class="normal">51</span>
+<span class="normal">52</span>
+<span class="normal">53</span>
+<span class="normal">54</span>
+<span class="normal">55</span>
+<span class="normal">56</span>
+<span class="normal">57</span>
+<span class="normal">58</span>
+<span class="normal">59</span>
+<span class="normal">60</span>
+<span class="normal">61</span>
+<span class="normal">62</span>
+<span class="normal">63</span>
+<span class="normal">64</span>
+<span class="normal">65</span>
+<span class="normal">66</span>
+<span class="normal">67</span>
+<span class="normal">68</span>
+<span class="normal">69</span>
+<span class="normal">70</span>
+<span class="normal">71</span>
+<span class="normal">72</span>
+<span class="normal">73</span>
+<span class="normal">74</span>
+<span class="normal">75</span>
+<span class="normal">76</span>
+<span class="normal">77</span>
+<span class="normal">78</span>
+<span class="normal">79</span>
+<span class="normal">80</span>
+<span class="normal">81</span>
+<span class="normal">82</span>
+<span class="normal">83</span>
+<span class="normal">84</span>
+<span class="normal">85</span>
+<span class="normal">86</span>
+<span class="normal">87</span>
+<span class="normal">88</span>
+<span class="normal">89</span>
+<span class="normal">90</span>
+<span class="normal">91</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>#@title Technologies used
+def tidy_split(df, column, sep=&#39;|&#39;, keep=False):
+
+    indexes = list()
+    new_values = list()
+    df = df.dropna(subset=[column])
+    for i, presplit in enumerate(df[column].astype(str)):
+        values = presplit.split(sep)
+        if keep and len(values) &gt; 1:
+            indexes.append(i)
+            new_values.append(presplit)
+        for value in values:
+            indexes.append(i)
+            new_values.append(value)
+    new_df = df.iloc[indexes, :].copy()
+    new_df[column] = new_values
+
+    return new_df
+
+ts = pd.Timestamp
+
+tdf = tidy_split(df, &#39;Technique&#39;, &#39; &amp; &#39;)
+t_dict = {k: k for k in tdf[&#39;Technique&#39;].value_counts().head(5).index}
+tdf[&#39;Technique&#39;] = tdf[&#39;Technique&#39;].map(lambda s: t_dict.get(s, &#39;Other&#39;))
+techs = list(
+    tdf[&#39;Technique&#39;]
+    .value_counts()
+    .sort_index()
+    .index
+    .difference([&#39;Other&#39;])
+)
+techs.append(&#39;Other&#39;)
+tdf[&#39;Technique&#39;] = (
+    pd.Categorical(
+       tdf[&#39;Technique&#39;],
+        categories=techs,
+        ordered=True
+    )
+)
+
+def desaturate(color, prop):
+
+    # Check inputs
+#     if not 0 &lt;= prop &lt;= 1:
+#         raise ValueError(&quot;prop must be between 0 and 1&quot;)
+
+    # Get rgb tuple rep
+    rgb = mplcol.colorConverter.to_rgb(color)
+
+    # Convert to hls
+    h, l, s = colorsys.rgb_to_hls(*rgb)
+
+    # Desaturate the saturation channel
+#     l *= prop
+    l = 0.8
+
+    # Convert back to rgb
+    new_color = colorsys.hls_to_rgb(h, l, s)
+
+    hex_color = &#39;#{:02x}{:02x}{:02x}&#39;.format(*map(lambda c: int(c * 255), new_color))
+
+    return hex_color
+
+    # lighten matplotlib default colors
+clrs = list(map(lambda c: desaturate(c, 1.2), [&#39;C0&#39;, &#39;C1&#39;, &#39;C2&#39;, &#39;C3&#39;, &#39;C4&#39;, &#39;black&#39;]))
+
+#### Plot number of studies per month by technique
+per_month = (
+    tdf
+    .groupby(&#39;Technique&#39;)
+    .resample(&#39;1M&#39;, on=&#39;Date&#39;)
+    .count()[&#39;DOI&#39;]
+    .reset_index()
+)
+
+p.options.figure_size = (9, 2)
+fig = (
+    p.ggplot(
+        p.aes(x=&#39;Date&#39;, y=&#39;DOI&#39;, fill=&#39;Technique&#39;),
+        data=per_month.query(&#39;Date &gt; @ts(&quot;20130101T010101&quot;)&#39;)
+    )
+    + p.geom_bar(stat=&#39;identity&#39;, color=&#39;grey&#39;)
+    + p.theme_minimal(base_family=&#39;DejaVu Sans&#39;)
+    + p.scale_x_datetime(
+        breaks=date_breaks(&#39;1 years&#39;),
+        labels=date_format(&#39;%Y&#39;)
+    )
+    + p.labs(y=&#39;Number of studies&#39;)
+    + p.scale_fill_manual(clrs)
+)
+fig
+</code></pre></div>
+</td></tr></table>
+<p><img alt="png" src="../scRNA-seq_intro_files/scRNA-seq_intro_11_0.png" /></p>
+<div class="codehilite"><pre><span></span><code>&lt;ggplot: (-9223363288449985206)&gt;
+</code></pre></div>
+
+<p>We therefore restrict this exposition to droplet-based technologies.</p>
+<h2 id="droplet-based-methods">Droplet-based methods<a class="headerlink" href="#droplet-based-methods" title="Permanent link">&para;</a></h2>
+<p>Droplet based single-cell RNA-seq methods were popularized by a pair of papers published concurrently in 2015: 
+- Macosko et al., <a href="https://www.cell.com/fulltext/S0092-8674(15)00549-8">Highly parallel genome-wide expression profiling of individual cells using nanoliter droplets</a>, 2015. DOI:10.1016/j.cell.2015.05.002 - describes Drop-seq.
+- Klein et al., <a href="https://www.cell.com/cell/fulltext/S0092-8674(15)00500-0">Droplet barcoding for single-cell transcriptomics applied to embryonic stem cells</a>, 2015. DOI:10.1016/j.cell.2015.04.044 - descibes inDrops.</p>
+<p>Both of the methods makes use of developments in microfluidics published in:
+- Song, Chen, Ismagilov, <a href="https://onlinelibrary.wiley.com/doi/10.1002/anie.200601554">Reactions in droplets in microfluidic channels</a>, 2006. DOI:10.1002/anie.200601554
+- Guo, Rotem, Heyman and Weitz, <a href="https://pubs.rsc.org/en/content/articlelanding/2012/lc/c2lc21147e#!divAbstract">Droplet microfluidics for high-throughput biological assays</a>, 2012. DOI:10.1039/C2LC21147E</p>
+<h3 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h3>
+<p>An overview of how a droplet based scRNA-seq method works is illustrated in a figure from the Drop-seq <a href="https://www.cell.com/fulltext/S0092-8674(15)00549-8">Macosko et al. 2015</a> paper:</p>
+<p><img alt="Droplet scRNA-seq" src="https://ars.els-cdn.com/content/image/1-s2.0-S0092867415005498-fx1.jpg" /></p>
+<p>A microfluidic device is used to generate an emulsion, which  consists of aqueous droplets in oil. The droplets are used to encapsulate cells, beads and reagents. In other words, each droplet is a "mini laboratory" in which the RNA from a single-cell can be captured and prepared for identification. Thus, the consistuent parts are as follows:</p>
+<ul>
+<li>an emulsion (white circles containing beads and cells on the right hand-side of the figure). </li>
+<li>dissociated cells (depicted as odd-shaped colored objects in the figure).</li>
+<li>beads (flowing in from the left hand side of the figure).</li>
+</ul>
+<h3 id="emulsions">Emulsions<a class="headerlink" href="#emulsions" title="Permanent link">&para;</a></h3>
+<p>The foundation of droplet based single-cell RNA-seq methods are <em>mono-dispersed emulsions</em>. Mono-dispersed refers to the requirements that droplets are of (near) uniform size. Mono-dispersed emulsions can be generated with a microfluidic device, as shown below. The droplets are being "pinched off" at the junction, and one can see a polystyrene bead being captured in one droplet, while others are empty.</p>
+<p><img alt="alt text" src="http://mccarrolllab.org/wp-content/uploads/2015/05/Substack-4455-4504.gif" /></p>
+<p>The movie is from the <a href="http://mccarrolllab.org/dropseq/">McCarolll Drop-seq tutorial</a> courtesy of Patrick Stumpf, Matthew Rose-Zerilli, Rosanna Smith, Martin Fischlechner &amp; Jonathan West at the Centre for Hybrid Biodevices &amp; Cancer Sciences Unit at the University of Southampton.</p>
+<h3 id="beads">Beads<a class="headerlink" href="#beads" title="Permanent link">&para;</a></h3>
+<p><img alt="alt text" src="https://els-jbs-prod-cdn.literatumonline.com/cms/attachment/5bf7541c-af0d-4a13-a806-c014bee07359/gr2.jpg" /></p>
+<p>The figure above, reproduce from Klein et al. 2015, shows the procedure used to make hydrogel beads for inDrops. Every bead contains the same barcode sequence, while the barcode sequences on two different beads are distinct. </p>
+<p>The barcode and UMI structure for a variety of technologies is viewable in a <a href="https://teichlab.github.io/scg_lib_structs/">compilation</a> by Xi Chen.</p>
+<h3 id="single-cell-suspensions">Single cell suspensions<a class="headerlink" href="#single-cell-suspensions" title="Permanent link">&para;</a></h3>
+<p>In order to assay the transcriptomes of individual cells with droplet-based single-cell RNA-seq technologies, it is necessary to first dissociate tissue. Procedures for tissue dissociation are varied, and highly dependent on the organism, type of tissue, and many other factors. Protocols may be be enzymatic, but can also utilize mechanical dissociators. The talk below provides an introduction to tissue handling and dissociation.</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>#@title Tissue handling and dissociation
+from IPython.display import HTML
+HTML(&#39;&lt;iframe width=&quot;882&quot; height=&quot;496&quot; src=&quot;https://www.youtube.com/embed/ARozvI4AbS8&quot; frameborder=&quot;0&quot; allow=&quot;accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture&quot; allowfullscreen&gt;&lt;/iframe&gt;&#39;)
+</code></pre></div>
+</td></tr></table>
+<iframe width="882" height="496" src="https://www.youtube.com/embed/ARozvI4AbS8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+<h2 id="statistics-of-beads-cells-in-droplets">Statistics of beads &amp; cells in droplets<a class="headerlink" href="#statistics-of-beads-cells-in-droplets" title="Permanent link">&para;</a></h2>
+<h3 id="the-binomial-distribution">The binomial distribution<a class="headerlink" href="#the-binomial-distribution" title="Permanent link">&para;</a></h3>
+<p>An understanding of droplet-based single-cell RNA-seq requires consideration of the statistics describing the capture of cells and beads in droplets. Suppose that in an experiment multiple droplets have been formed, and focus on one of the droplets. Assume that the probability that any single one of $n$ cells were captured inside it is $p$. We can calculate the probability that $k$ cells have been captured in the droplet as follows:</p>
+<p>$$ \mathbb{P}({\mbox Droplet\ contains\ k\ cells}) = \binom{n}{k}p^k(1-p)^{n-k}.$$</p>
+<p>The expected number of cells in the droplet is </p>
+<p>$$\lambda := \sum_{k=0}^n k \binom{n}{k}p^k(1-p)^{n-k} = n \cdot p.$$ </p>
+<p>We plot this distribution on number of cells in a droplet below. It is called the Binomial distribution and has two parameters: $n$ and $p$.</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>#@title Binomial distribution { run: &quot;auto&quot; }
+n =  10#@param {type:&quot;integer&quot;}
+p = 0.02 #@param {type:&quot;slider&quot;, min:0, max:1, step:0.01}
+fig, ax = plt.subplots(figsize=(7, 4))
+s = 10
+
+x = np.arange(s)
+y = binom.pmf(x,n,p)
+
+ax.bar(x, y, color=&quot;k&quot;, label=&quot;Binomial n, p = ({}, {})&quot;.format(n,p))
+ax.set_xlabel(&quot;Number of Trials&quot;)
+ax.set_ylabel(&quot;Probability&quot;)
+ax.set_xticks(x)
+ax.legend()
+
+plt.show()
+</code></pre></div>
+</td></tr></table>
+<p><img alt="png" src="../scRNA-seq_intro_files/scRNA-seq_intro_21_0.png" /></p>
+<p>With $n=10$ and $p=0.02$, it's quite probable that the droplet is empty, and while possible that it contains one cell, unlikely that it has 2 or more. This is a good regime for a single-cell experiment; we will see that it is problematic if two cells are captured in a single droplet. Empty droplets are not problematic in the sense that they will not lead to data, and can therefore be ignored.</p>
+<h3 id="the-poisson-distribution">The Poisson distribution<a class="headerlink" href="#the-poisson-distribution" title="Permanent link">&para;</a></h3>
+<p>The Binomial distribution can be difficult to work with in practice. Suppose, for example, that $n=1000$ and $p=0.002$. Suppose that we are interested in the probability of seeing 431 cells in a droplet. This probability is given by </p>
+<p>$$\binom{1000}{421}0.02^{421}(1-0.02)^{1000-431},$$ </p>
+<p>which is evidently a difficult number to calculate exactly.</p>
+<p>A practical alternative to the binmomial is the Poisson distribution. The Poisson distribution has one parameter, and its support is the non-negative integers. A random variable $X$ is Poisson distributed if
+$$\mathbb{P}(X=k)\quad = \quad \frac{e^{-\lambda}\lambda^k}{k!}.$$</p>
+<p>The Poisson limit theorem states that if $p_n$ is a sequence of real numbers in $[0,1]$ with the sequence $np_n$ converging to to a finite limit $\lambda$, then
+$${\mbox lim}_{n \rightarrow \infty} \binom{n}{k}p_n^{k}(1-p_n)^{n-k} = e^{-\lambda}\frac{\lambda^k}{k!}.$$</p>
+<p>Thus, the Poisson distribution serves as a useful, tractable distribution to work with in lieu of the Binomial distribution for large $n$ and small $p$.</p>
+<p>The histogram below can be used to explore the Poisson and its relationship to the binomial </p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>#@title Binomial - Poisson comparison { run: &quot;auto&quot; }
+
+n =  10#@param {type:&quot;integer&quot;}
+p = 0.02 #@param {type:&quot;slider&quot;, min:0, max:1, step:0.01}
+
+s = 10
+lambda_param = n*p
+
+fig, ax = plt.subplots(figsize=(14, 4), ncols=2)
+
+x = np.arange(s)
+y = poisson.pmf(x, lambda_param)
+
+ax[0].bar(x, y, color=&quot;k&quot;, label=&quot;Binomial n, p = ({}, {})&quot;.format(n,p))
+ax[0].set_xlabel(&quot;Number of Trials&quot;)
+ax[0].set_ylabel(&quot;Probability&quot;)
+ax[0].set_xticks(x)
+ax[0].legend()
+
+x = np.arange(s)
+y = binom.pmf(x,n,p)
+
+ax[1].bar(x, y, color=&quot;k&quot;, label=&quot;Poisson $\lambda$={}&quot;.format(lambda_param))
+ax[1].set_xlabel(&quot;Number of Trials&quot;)
+ax[1].set_ylabel(&quot;Probability&quot;)
+ax[1].set_xticks(x)
+
+ax[1].legend()
+
+plt.show()
+</code></pre></div>
+</td></tr></table>
+<p><img alt="png" src="../scRNA-seq_intro_files/scRNA-seq_intro_24_0.png" /></p>
+<p>We therefore posit that </p>
+<p>$$ \mathbb{P}({\mbox Droplet\ contains\ k\ cells}) = \frac{e^{-\lambda}\lambda^k}{k!}$$ and<br />
+$$ \mathbb{P}({\mbox Droplet\ contains\ j\ beads}) = \frac{e^{-\mu}\mu^j}{j!}.$$</p>
+<h2 id="droplet-tuning">Droplet tuning<a class="headerlink" href="#droplet-tuning" title="Permanent link">&para;</a></h2>
+<h3 id="cell-capture-and-bead-overload">Cell capture and bead overload<a class="headerlink" href="#cell-capture-and-bead-overload" title="Permanent link">&para;</a></h3>
+<p>The cell capture rate is the probability that a droplet has at least one bead, and is given by $1-e^{-\mu}$.</p>
+<p>The bead overload rate is the rate at which captured single cells are associated with two or more different barcodes, which will happen when multiple beads are loaded into a droplet with one cell. The probability this happens is $$\frac{1-e^{-\mu}-\mu e^{-\mu}}{1-e^{-\mu}}.$$ </p>
+<p>This leads to a tradeoff, as shown below.</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>#@title Tradeoff { run: &quot;auto&quot; }
+fig, ax = plt.subplots(figsize=(5,5))
+
+mu = np.arange(0, 10, 0.1)
+
+x = 1 - np.exp(-mu)
+y = (1 - np.exp(-mu)-mu*np.exp(-mu))/(1-np.exp(-mu))
+
+ax.plot(x, y, color=&#39;k&#39;)
+ax.set_xlabel(&quot;Cell capture rate&quot;)
+ax.set_ylabel(&quot;Bead overload rate&quot;)
+
+plt.show()
+</code></pre></div>
+</td></tr></table>
+<p><img alt="png" src="../scRNA-seq_intro_files/scRNA-seq_intro_28_0.png" /></p>
+<h3 id="sub-poisson-loading">Sub-Poisson loading<a class="headerlink" href="#sub-poisson-loading" title="Permanent link">&para;</a></h3>
+<p>In order to circumvent the limit posed by a Poisson process for beads in droplets, the inDrops method uses tightly packed hydrogel beads that can be injected into droplets without loss. This approach, which leads to "<a href="https://liorpachter.wordpress.com/tag/hydrogel-beads/">sub-Poisson loading</a>" is also used by 10X Genomics, and allows for increased capture rate.</p>
+<p>The difference is shown in two videos from the <a href="https://www.abatelab.org/">Abate lab</a> linked to below. The first video, shows beads loaded being loaded in droplets with Poisson statistics:</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>#@title Poisson loading
+HTML(&#39;&lt;iframe width=&quot;688&quot; height=&quot;387&quot; src=&quot;https://www.youtube.com/embed/usK71SG30t0?autoplay=1&amp;loop=1&amp;playlist=usK71SG30t0&quot; frameborder=&quot;0&quot; allow=&quot;accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture&quot; allowfullscreen&gt;&lt;/iframe&gt;&#39;)
+</code></pre></div>
+</td></tr></table>
+<iframe width="688" height="387" src="https://www.youtube.com/embed/usK71SG30t0?autoplay=1&loop=1&playlist=usK71SG30t0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+<p>The next video shows sub-Poisson loading with hydrogel beads. In this case the flow rate has been set so that exactly two beads are situated in each droplet.</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>#@title Sub-Poisson loading { run: &quot;auto&quot; }
+HTML(&#39;&lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;https://www.youtube.com/embed/2q1Lt9DWmRQ?autoplay=1&amp;loop=1&amp;playlist=2q1Lt9DWmRQ&quot; frameborder=&quot;0&quot; allow=&quot;accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture&quot; allowfullscreen&gt;&lt;/iframe&gt;&#39;)
+</code></pre></div>
+</td></tr></table>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/2q1Lt9DWmRQ?autoplay=1&loop=1&playlist=2q1Lt9DWmRQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+<p>The following shows the types of beads used for different droplet-based scRNA-seq methods, and associated properties:</p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Drop-seq</th>
+<th>inDrops</th>
+<th>10x genomics</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Bead material</td>
+<td>Polystyrene</td>
+<td>Hydrogel</td>
+<td>Hydrogel</td>
+</tr>
+<tr>
+<td>Loading dynamics</td>
+<td>Poisson</td>
+<td>sub-Poisson</td>
+<td>sub-Poisson</td>
+</tr>
+<tr>
+<td>Dissolvable</td>
+<td>No</td>
+<td>No</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Barcode release</td>
+<td>No</td>
+<td>UV release</td>
+<td>Chemical release</td>
+</tr>
+<tr>
+<td>Customizable</td>
+<td>Demonstrated</td>
+<td>Not shown</td>
+<td>Feasible</td>
+</tr>
+<tr>
+<td>Licensing</td>
+<td>Open source</td>
+<td>Open Source</td>
+<td>Proprietary</td>
+</tr>
+<tr>
+<td>Availability</td>
+<td>Beads are sold</td>
+<td>Commercial</td>
+<td>Commercial</td>
+</tr>
+</tbody>
+</table>
+<h3 id="barcode-collisions">Barcode collisions<a class="headerlink" href="#barcode-collisions" title="Permanent link">&para;</a></h3>
+<p>Barcode collisions arise when two cells are separately encapsulated with beads that happen to contain identical barcodes.</p>
+<p>For $n$ assayed cells with $m$ barcodes, the barcode collision rate is the expected proportion of assayed cells that did not receive a unique barcode, i.e.</p>
+<p>$$1-\frac{\mathbb{E}[\mbox{cells with a unique barcode}]}{\mbox{number of cells}}$$</p>
+<p>$$= 1-(1-\frac{1}{m})^{n-1} \approx 1-\left(\frac{1}{e}\right)^\frac{n}{m}.$$</p>
+<p>Avoiding barcode collisions requires high barcode diversity, i.e. a small ratio of $\frac{n}{m}$.</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>#@title Diversity and collisions  { run: &quot;auto&quot; }
+fig, ax = plt.subplots(figsize=(5,5))
+
+bc = np.arange(0, 1, 0.01)
+
+x = bc
+y = 1 - np.exp(-bc)
+
+ax.plot(x, y, color=&#39;k&#39;)
+ax.set_xlabel(&quot;n/m&quot;)
+ax.set_ylabel(&quot;Barcode collision rate&quot;)
+
+plt.show()
+</code></pre></div>
+</td></tr></table>
+<p><img alt="png" src="../scRNA-seq_intro_files/scRNA-seq_intro_35_0.png" /></p>
+<h3 id="barcode-diversity-and-length">Barcode diversity and length<a class="headerlink" href="#barcode-diversity-and-length" title="Permanent link">&para;</a></h3>
+<p>A 1% barcode collision rate requires a barcode diversity of ~1%, i.e. the number of barcodes should be 100 times the number of cells. The number of barcodes from a sequence of length $L$ is $4^L$. Therefore, to assay $n$ cells, the barcode sequence must be of length at least $log_4n+3\frac{1}{3}$. This is a minimum and does not account for the need to be robust to sequencing errors.</p>
+<h3 id="technical-doublets">Technical doublets<a class="headerlink" href="#technical-doublets" title="Permanent link">&para;</a></h3>
+<p>Technical doublets arise when two or more cells are captured in a droplet with a single bead. The technical doublet rate is therefore the probability of capturing two or more cells in a droplet given that at least one cell has been captured in a droplet:</p>
+<p>$\frac{1-e^{-\lambda}-\lambda e^{-\lambda}}{1-e^{-\lambda}}$.</p>
+<p>Note that "overloading" a droplet-based single-cell experiment by loading more cells while keeping flow rates constant will increase the number of technical doublets due to an effective increase in $\lambda$ and also the number of synthetic doublets due to an increase in barcode diversity.</p>
+<h4 id="the-barnyard-plot">The barnyard plot<a class="headerlink" href="#the-barnyard-plot" title="Permanent link">&para;</a></h4>
+<p>Technical doublet rates can be measured by experiments in which a mixture of cells from two different species are assayed together. For example, if mouse and human cells are pooled prior to single-cell RNA-seq, the resultant reads ought to be assignable to either human or mouse. If a droplet contained a "mixed" doublet, i.e. two cells one of which is from human and the other from mouse, it will generate reads some of which can be aligned to mouse, and some to human.</p>
+<p>An example from a 10X Genomics dataset (<a href="https://support.10xgenomics.com/single-cell-gene-expression/datasets/3.0.2/5k_hgmm_v3_nextgem">5k 1:1 mixture of fresh frozen human (HEK293T) and mouse (NIH3T3) cells</a>) is shown in the plot below, which is called a <em>Barnyard plot</em> in Macosko et al. <strong>2015</strong>.</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>%%capture
+# Download a matrix of human and mouse
+!wget http://cf.10xgenomics.com/samples/cell-exp/3.0.0/hgmm_1k_v2/hgmm_1k_v2_filtered_feature_bc_matrix.tar.gz
+!tar -xvf hgmm_1k_v2_filtered_feature_bc_matrix.tar.gz
+</code></pre></div>
+</td></tr></table>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>#@title Human &amp; mouse PBMCs 
+mtx = csr_matrix(mmread(&quot;/content/filtered_feature_bc_matrix/matrix.mtx.gz&quot;).T)
+genes = pd.read_csv(&quot;/content/filtered_feature_bc_matrix/features.tsv.gz&quot;, header=None, names=[&quot;gene_id&quot;, &quot;gene_name&quot;, &quot;extra&quot;], sep=&quot;\t&quot;)
+cells = pd.read_csv(&quot;/content/filtered_feature_bc_matrix/barcodes.tsv.gz&quot;, header=None, names=[&quot;cell_barcode&quot;], sep=&quot;\t&quot;)
+
+adata = anndata.AnnData(X=mtx, var=genes, obs=cells)
+adata.var[&quot;human&quot;] = adata.var[&quot;gene_id&quot;].str.contains(&quot;hg19&quot;).values
+
+x = (mtx[:,adata.var[&quot;human&quot;].values]).sum(axis=1)
+y = (mtx[:,~adata.var[&quot;human&quot;].values]).sum(axis=1)
+
+fig, ax = plt.subplots(figsize=(5,5))
+
+x = np.asarray(x).reshape(-1)
+y = np.asarray(y).reshape(-1)
+
+ax.scatter(x, y, color=&#39;k&#39;)
+
+ax.set_xlabel(&quot;Human UMI counts per cell&quot;)
+ax.set_ylabel(&quot;Mouse UMI counts per cell&quot;)
+
+ax.xaxis.set_major_formatter(mpl.ticker.StrMethodFormatter(&#39;{x:,.0f}&#39;))
+ax.yaxis.set_major_formatter(mpl.ticker.StrMethodFormatter(&#39;{x:,.0f}&#39;))
+
+
+plt.show()
+</code></pre></div>
+</td></tr></table>
+<p><img alt="png" src="../scRNA-seq_intro_files/scRNA-seq_intro_40_0.png" /></p>
+<p>THe plot shows that there are only 7 doublets out of 5,000 cells in this experiment. This is an unusually small number and atypical of most experiments, where doublet rates are between 5%--15% (see <a href="https://www.biorxiv.org/content/10.1101/364810v1.abstract">DePasquale et al. 2018</a>);  perhaps the 5k human mouse PBMC dataset data is articularly "clean" as it is an advertisement distributed by 10X Genomics.</p>
+<h4 id="blooms-correction">Bloom's correction<a class="headerlink" href="#blooms-correction" title="Permanent link">&para;</a></h4>
+<p>The 7 doublets identifiable by eye in the plot above are all <em>mixed doublets</em>, i.e. they contain one human and one mouse cell. However doublets may consist of two mouse cells, or two human cells. If the number of droplets containing at least one human cells is $n_1$, the number containing at least one mouse cell is $n_2$, and the number of mixed doublets is $n_{1,2}$, then an estimate for the actual doublet rate can be obtained from the calculation below (<a href="https://peerj.com/articles/5578/">Bloom 2018</a>):</p>
+<p>Given $n_1, n_2$ and $n_{1,2}$ as described above (note that $n_1$ is the number of cells on the <em>x</em> axis + the number of mixed doublets and $n_2$ is the number of cells on the <em>y</em> axis + the number of mixed doublets), then in expectation</p>
+<p>$$\frac{n_1}{N} \cdot \frac{n_2}{N} = \frac{n_{1,2}}{N}, $$</p>
+<p>where $N$ is the total number of droplets. From this we see that</p>
+<p>$$ \hat{N} = \frac{n_1 \cdot n_2}{n_{1,2}}.$$</p>
+<p>This is the maximum likelihood <a href="https://en.wikipedia.org/wiki/Mark_and_recapture">Lincoln-Petersen estimator</a> for population size from mark and recapture. </p>
+<p>Let $\mu_1$ nad $\mu_2$ be the Poisson rates for the respective types of cells, i.e. the average number of cells of each type per droplet. Then </p>
+<p>$$ \hat{\mu}_1 = -\mbox{ln } \left( \frac{N-n_1}{N} \right)$$ and
+$$ \hat{\mu}_2 = -\mbox{ln } \left( \frac{N-n_2}{N} \right).$$ </p>
+<p>From this the doublet rate $D$ can be estimated as </p>
+<p>$$\hat{D} = 1 - \frac{(\mu_1+\mu_2)e^{-\mu_1+\mu_2}}{1-e^{-\mu_1-\mu_2}}.$$</p>
+<h3 id="biological-doublets">Biological doublets<a class="headerlink" href="#biological-doublets" title="Permanent link">&para;</a></h3>
+<p>Biological doublets arise when two cells form a discrete unit that does not break apart during disruption to form a single-cell suspension. Note that biological doublets cannot be detected in barnyard plots. </p>
+<p>One approach to avoiding biological doublets is to perform single-nuclei RNA-seq. See, e.g. <a href="https://www.nature.com/articles/nmeth.4407">Habib et al., 2017</a>. However, biological doublets are not necessarily just a technical artifact to be avoided. <a href="https://www.nature.com/articles/nbt.4231">Halpern et al., 2018</a> utilizes biological doublets of hepatocytes and liver endothelial cells to assign tissue coordinates to liver endothelial cells via imputation from their hepatocyte partners.</p>
+<h3 id="unique-molecular-identifiers">Unique Molecular Identifiers<a class="headerlink" href="#unique-molecular-identifiers" title="Permanent link">&para;</a></h3>
+<p>The number of distinct UMIs on a bead in a droplet is at most $4^L$ where $L$ is the number of UMI bases. For example, for 10X Genomics v2 technology $L=10$ and for 10X Genomics v3 technology $L=12$. <a href="https://www.biorxiv.org/content/10.1101/673285v2">Melsted, Booeshaghi et al. 2019</a> show how to estimate the number of the actual distinct UMIs on each bead for which data is obtained in a scRNA-seq experiment.</p>
+<h2 id="summary">Summary<a class="headerlink" href="#summary" title="Permanent link">&para;</a></h2>
+<p>Selection of a single-cell RNA-seq method requires choosing among many tradeoffs that reflect the underlying technologies. The table below, from From <a href="https://www.sciencedirect.com/science/article/pii/S1097276518308803?via%3Dihub">Zhang et al. 2019. DOI:10.1016/j.molcel.2018.10.020</a>, summarizes the three most popular droplet-based single-cell RNA-seq assays:</p>
+<p><img alt="alt text" src="https://ars.els-cdn.com/content/image/1-s2.0-S1097276518308803-gr1.jpg" /></p>
+<p>The generation of single-cell RNA-seq data is just the first step in understanding the transcriptomes cells. To interpret the data reads must be aligned or pseudoaligned, UMIs counted, and large <em>cell x gene</em> matrices examined. The growth in single-cell RNA-seq analysis <em>tools</em> for these tasks has been breathtaking. The graph below, plotted from real-time data downloaded from the <a href="https://www.scrna-tools.org/tools">scRNA-seq tools database</a>, shows the number of tools published since 2016. </p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>#@title Growth of single-cell tools { run: &quot;auto&quot; }
+tools = pd.read_csv(&#39;https://raw.githubusercontent.com/Oshlack/scRNA-tools/master/database/tools.tsv&#39;, sep=&#39;\t&#39;)
+tools[&quot;Datetime&quot;] = pd.to_datetime(tools[&quot;Added&quot;])
+tools = tools.sort_values(&quot;Added&quot;)
+tools[&quot;count&quot;] = 1
+
+fig, ax = plt.subplots(figsize=(12, 5))
+
+x = tools.Datetime
+y = tools[&quot;count&quot;].groupby(tools.Datetime.dt.time).cumsum()
+
+ax.plot(x, y, color=&quot;k&quot;)
+ax.set_xlabel(&quot;Date&quot;)
+ax.set_ylabel(&quot;Number of tools&quot;)
+ax.tick_params(axis=&#39;x&#39;, rotation=45)
+
+
+
+plt.show()
+</code></pre></div>
+</td></tr></table>
+<p><img alt="png" src="../scRNA-seq_intro_files/scRNA-seq_intro_47_0.png" /></p>
+<p>In fact, the rate of growth of single-cell RNA-seq <em>tools</em> is similar to that of single-cell RNA-seq <em>studies</em>:</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>#@title scRNA-seq tools vs. studies linear regression
+date_papers = papers.groupby(&quot;Datetime&quot;)[&quot;count&quot;].sum()
+date_tools = tools.groupby(&quot;Datetime&quot;)[&quot;count&quot;].sum()
+dates = pd.date_range(start=&#39;7/26/2002&#39;, end=&#39;01/01/2025&#39;)
+combined = pd.DataFrame(index=dates)
+combined[&quot;tool_counts&quot;] = combined.index.map(date_tools)
+combined[&quot;paper_counts&quot;] = combined.index.map(date_papers)
+combined = combined.fillna(0)
+combined[&quot;Datetime&quot;] = combined.index.values
+
+fig, ax = plt.subplots(figsize=(5,5))
+
+x = combined[&quot;paper_counts&quot;].groupby(combined.Datetime.dt.time).cumsum()
+y = combined[&quot;tool_counts&quot;].groupby(combined.Datetime.dt.time).cumsum()
+
+ax.scatter(x, y, color=&quot;k&quot;)
+regr = linear_model.LinearRegression()
+x = x.values[:, np.newaxis]
+regr.fit(x, y.values)
+xx = np.linspace(0, max(x), 200)
+yy = regr.intercept_ + regr.coef_*xx
+ax.plot(xx, yy, color=&quot;r&quot;, label=f&quot;{regr.intercept_:,.2f} + {regr.coef_[0]:,.2f}*x&quot;)
+
+lims = [np.min([ax.get_xlim(), ax.get_ylim()]),  # min of both axes
+    np.max([ax.get_xlim(), ax.get_ylim()])]  # max of both axes
+ax.plot(lims, lims, &#39;k-&#39;, alpha=0.75, zorder=0)
+ax.set_aspect(&#39;equal&#39;)
+ax.set_xlim(lims)
+ax.set_ylim(lims)
+
+ax.set_xlabel(&quot;Cumulative Papers&quot;)
+ax.set_ylabel(&quot;Cumulative Tools&quot;)
+ax.legend()
+
+plt.show()
+</code></pre></div>
+</td></tr></table>
+<p><img alt="png" src="../scRNA-seq_intro_files/scRNA-seq_intro_49_0.png" /></p>
+<p>Next step: to learn how to analyze single-cell RNA-seq data, visit the <a href="https://www.kallistobus.tools/tutorials">kallistobus.tools site tutorials</a> site and explore the "Introduction 1: pre-processing and quality control" notebook in <a href="https://colab.research.google.com/github/pachterlab/kallistobustools/blob/master/notebooks/kb_intro_1_python.ipynb">Python</a> or <a href="https://colab.research.google.com/github/pachterlab/kallistobustools/blob/master/notebooks/kb_intro_1_R.ipynb">R</a>.</p>
+<p><strong>Feedback</strong>: please report any issues, or submit pull requests for improvements, in the <a href="https://github.com/pachterlab/kallistobustools/blob/master/notebooks/Introduction_single_cell_RNA_seq.ipynb">Github repository where this notebook is located</a>.</p>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        <a href="../../../../kb_usage/kb_count/" class="md-footer__link md-footer__link--prev" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Quantifying a dataset
+            </div>
+          </div>
+        </a>
+      
+      
+        <a href="../../../kb_quality_control/python/kb_intro_1_python/" class="md-footer__link md-footer__link--next" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Python
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            Copyright &copy; 2021 - 2021 Pachterlab
+          </div>
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+        
+      </div>
+      
+  <div class="md-footer-social">
+    
+      
+      
+        
+        
+      
+      <a href="https://github.com/pachterlab" target="_blank" rel="noopener" title="github.com" class="md-footer-social__link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+      </a>
+    
+      
+      
+        
+        
+      
+      <a href="https://twitter.com/sinabooeshaghi" target="_blank" rel="noopener" title="twitter.com" class="md-footer-social__link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg>
+      </a>
+    
+  </div>
+
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../../../..", "features": ["search.suggest", "search.highlight"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}, "search": "../../../../assets/javascripts/workers/search.fe42c31b.min.js", "version": null}</script>
+    
+    
+      <script src="../../../../assets/javascripts/bundle.65ce87ac.min.js"></script>
+      
+    
+  </body>
+</html>
