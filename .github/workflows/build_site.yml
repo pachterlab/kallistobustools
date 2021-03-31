@@ -39,7 +39,9 @@ jobs:
         run: |
           python -m pip install mkdocs markdown mkdocs-material
       - name: build site
-        run: mkdocs build -d ./ -f tutorials/mkdocs.yml
+        run: |
+          mkdocs build -d site -f tutorials/mkdocs.yml
+          mv tutorials/site/ ./
         
       - name: Commit and push if it changed
         run: |-
@@ -47,7 +49,7 @@ jobs:
           git config user.email "actions@users.noreply.github.com"
           git status
           git checkout pages
-          git add tutorials/site
+          git add site/
           timestamp=$(date -u)
           git commit -m "Rebuilt site: ${timestamp}" || exit 0
           git push
