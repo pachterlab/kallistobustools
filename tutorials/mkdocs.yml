@@ -4,6 +4,7 @@ site_author: A. Sina Booeshaghi
 copyright: "Copyright &copy; 2021 - 2021 Pachterlab"
 repo_url: https://github.com/pachterlab/kallistobustools
 repo_name: pachterlab/kallistobustools
+edit_uri: tutorials/docs/
 
 theme:
   name: material
