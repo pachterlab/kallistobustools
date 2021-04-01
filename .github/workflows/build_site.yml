@@ -40,8 +40,8 @@ jobs:
           python -m pip install mkdocs markdown mkdocs-material
       - name: build site
         run: |
-          mkdocs build -d docs -f tutorials/mkdocs.yml
-          mv tutorials/docs/ ./
+          mkdocs build -d site -f tutorials/mkdocs.yml
+          mv tutorials/site/ ./docs
         
       - name: Commit and push if it changed
         run: |-
