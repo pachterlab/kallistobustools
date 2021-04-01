@@ -48,7 +48,7 @@ jobs:
         run: |-
           git config user.name "Automated"
           git config user.email "actions@users.noreply.github.com"
-          git checkout gh-pages
+          git checkout -b gh-pages
           git add docs/
           timestamp=$(date -u)
           git commit -m "Rebuilt site: ${timestamp}" || exit 0
