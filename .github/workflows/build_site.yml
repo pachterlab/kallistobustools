@@ -48,9 +48,9 @@ jobs:
           git config user.name "Automated"
           git config user.email "actions@users.noreply.github.com"
           git status
-          git branch -d gh-pages
-          git branch -b gh-pages
+
           git add docs/
           timestamp=$(date -u)
           git commit -m "Rebuilt site: ${timestamp}" || exit 0
+          git checkout gh-pages 2>/dev/null || git checkout -b gh-pages
           git push origin gh-pages
