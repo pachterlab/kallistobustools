@@ -15,4 +15,8 @@ With **kallisto &#124; bustools** you can
 
 The **kallisto &#124; bustools** workflow is described in:
 
-Páll Melsted, A. Sina Booeshaghi, Fan Gao, Eduardo Beltrame, Lambda Lu, Kristján Eldjárn Hjorleifsson, Jase Gehring and Lior Pachter, <a href="https://www.biorxiv.org/content/10.1101/673285v2" class="external-link" target="_blank">Modular and efficient pre-processing of single-cell RNA-seq</a>, bioRxiv, 2019.
+Páll Melsted*, A. Sina Booeshaghi*, Lauren Liu, Fan Gao, Lambda Lu, Kyung Hoi (Joseph) Min, Eduardo da Veiga Beltrame, Kristján Eldjárn Hjörleifsson, Jase Gehring & Lior Pachter† <a href="https://doi.org/10.1038/s41587-021-00870-2" class="external-link" target="_blank">Modular and efficient pre-processing of single-cell RNA-seq</a>, Nature Biotechnology (2021). 
+
+*Authors contributed equally
+
+†Corresponding author
