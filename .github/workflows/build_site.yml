@@ -41,16 +41,16 @@ jobs:
       - name: build site
         run: |
           mkdocs build -d site -f tutorials/mkdocs.yml
-          mv tutorials/site/ ./docs
+          mv tutorials/site/ ./
+          mv ./site ./docs
         
       - name: Commit and push if it changed
         run: |-
           git config user.name "Automated"
           git config user.email "actions@users.noreply.github.com"
-          git status
-
+          git checkout gh-pages
           git add docs/
           timestamp=$(date -u)
           git commit -m "Rebuilt site: ${timestamp}" || exit 0
-          git checkout gh-pages 2>/dev/null || git checkout -b gh-pages
-          git push origin gh-pages
+
+          git push -f origin gh-pages
