@@ -41,6 +41,7 @@ jobs:
       - name: build site
         run: |
           mkdocs build -d site -f tutorials/mkdocs.yml
+          rm -rf ./docs
           mv tutorials/site/ ./
           mv ./site ./docs
         
