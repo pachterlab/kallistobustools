@@ -14,7 +14,7 @@
       
       
       <link rel="icon" href="../../../../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-7.0.7">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-7.1.0">
     
     
       
@@ -22,10 +22,14 @@
       
     
     
-      <link rel="stylesheet" href="../../../../../assets/stylesheets/main.c772ddf0.min.css">
+      <link rel="stylesheet" href="../../../../../assets/stylesheets/main.33e2939f.min.css">
       
         
-        <link rel="stylesheet" href="../../../../../assets/stylesheets/palette.7fa14f5b.min.css">
+        <link rel="stylesheet" href="../../../../../assets/stylesheets/palette.ef6f36e2.min.css">
+        
+          
+          
+          <meta name="theme-color" content="#009485">
         
       
     
@@ -55,14 +59,13 @@
   
     
     
-      
-    
     
     
     
     <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="amber">
-      
   
+    
+    <script>function __prefix(e){return new URL("../../../../..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
@@ -106,9 +109,8 @@
         </div>
       </div>
     </div>
-    <div class="md-header__options">
-      
-    </div>
+    
+    
     
       <label class="md-header__button md-icon" for="__search">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
@@ -1018,6 +1020,7 @@
 <span class="p">})</span>
 </code></pre></div>
 </td></tr></table>
+
 <div class="codehilite"><pre><span></span><code><span class="n">Installing</span> <span class="n">packages</span> <span class="n">into</span> <span class="err">‘</span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">R</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">library</span><span class="err">’</span>
 <span class="p">(</span><span class="k">as</span> <span class="err">‘</span><span class="n">lib</span><span class="err">’</span> <span class="k">is</span> <span class="n">unspecified</span><span class="p">)</span>
 
@@ -1042,9 +1045,11 @@
 <span class="mf">3927.901</span>  <span class="mf">271.269</span> <span class="mf">2157.764</span>
 </code></pre></div>
 
+
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="n">devtools</span><span class="o">::</span><span class="nf">install_github</span><span class="p">(</span><span class="s">&#39;cole-trapnell-lab/leidenbase&#39;</span><span class="p">)</span>
 </code></pre></div>
 </td></tr></table>
+
 <div class="codehilite"><pre><span></span><code><span class="n">Downloading</span> <span class="n">GitHub</span> <span class="n">repo</span> <span class="n">cole</span><span class="o">-</span><span class="n">trapnell</span><span class="o">-</span><span class="n">lab</span><span class="o">/</span><span class="n">leidenbase</span><span class="err">@</span><span class="k">master</span>
 
 
@@ -1064,9 +1069,11 @@
 <span class="p">(</span><span class="k">as</span> <span class="s1">&#39;lib&#39;</span> <span class="k">is</span> <span class="n">unspecified</span><span class="p">)</span>
 </code></pre></div>
 
+
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="nf">system</span><span class="p">(</span><span class="s">&quot;pip3 install kb-python&quot;</span><span class="p">)</span>
 </code></pre></div>
 </td></tr></table>
+
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
 <span class="normal"> 2</span>
 <span class="normal"> 3</span>
@@ -1098,8 +1105,10 @@
 <span class="nf">theme_set</span><span class="p">(</span><span class="nf">theme_bw</span><span class="p">())</span>
 </code></pre></div>
 </td></tr></table>
+
 <div class="codehilite"><pre><span></span><code><span class="nv">tradeSeq</span> <span class="nv">has</span> <span class="nv">been</span> <span class="nv">updated</span> <span class="nv">to</span> <span class="nv">accommodate</span> <span class="nv">singleCellExperiment</span> <span class="nv">objects</span> <span class="nv">as</span> <span class="nv">output</span>, <span class="nv">making</span> <span class="nv">it</span> <span class="nv">much</span> <span class="nv">more</span> <span class="nv">memory</span> <span class="nv">efficient</span>. <span class="nv">Please</span> <span class="nv">check</span> <span class="nv">the</span> <span class="nv">news</span> <span class="nv">file</span> <span class="nv">and</span> <span class="nv">the</span> <span class="nv">updated</span> <span class="nv">vignette</span> <span class="k">for</span> <span class="nv">details</span>.
 </code></pre></div>
+
 
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span>
@@ -1114,15 +1123,19 @@
 <span class="p">}</span>
 </code></pre></div>
 </td></tr></table>
+
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="nf">untar</span><span class="p">(</span><span class="s">&quot;./data/neuron_1k_v3_fastqs.tar&quot;</span><span class="p">,</span> <span class="n">exdir</span> <span class="o">=</span> <span class="s">&quot;./data&quot;</span><span class="p">)</span>
 </code></pre></div>
 </td></tr></table>
+
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="nf">system</span><span class="p">(</span><span class="s">&quot;kb ref -d human -i index.idx -g t2g.txt -f1 transcriptome.fasta&quot;</span><span class="p">,</span><span class="n">intern</span><span class="o">=</span><span class="kc">TRUE</span><span class="p">)</span>
 </code></pre></div>
 </td></tr></table>
+
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="nf">system</span><span class="p">(</span><span class="s">&quot;chmod -R 777 data/&quot;</span><span class="p">)</span>
 </code></pre></div>
 </td></tr></table>
+
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span>
 <span class="normal">3</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="n">fn</span> <span class="o">&lt;-</span> <span class="nf">list.files</span><span class="p">(</span><span class="s">&quot;data/neuron_1k_v3_fastqs&quot;</span><span class="p">,</span> <span class="n">full.names</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">)</span>
@@ -1130,11 +1143,13 @@
 <span class="n">fn</span>
 </code></pre></div>
 </td></tr></table>
+
 <style>
 .list-inline {list-style: none; margin:0; padding: 0}
 .list-inline>li {display: inline-block}
 .list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
 </style>
+
 <ol class=list-inline><li>'data/neuron_1k_v3_fastqs/neuron_1k_v3_S1_L001_R1_001.fastq.gz'</li><li>'data/neuron_1k_v3_fastqs/neuron_1k_v3_S1_L001_R2_001.fastq.gz'</li><li>'data/neuron_1k_v3_fastqs/neuron_1k_v3_S1_L002_R1_001.fastq.gz'</li><li>'data/neuron_1k_v3_fastqs/neuron_1k_v3_S1_L002_R2_001.fastq.gz'</li></ol>
 
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
@@ -1142,17 +1157,21 @@
 <span class="nf">paste</span><span class="p">(</span><span class="n">fn</span><span class="p">,</span> <span class="n">collapse</span> <span class="o">=</span> <span class="s">&quot; &quot;</span><span class="p">)),</span> <span class="n">intern</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">)</span>
 </code></pre></div>
 </td></tr></table>
+
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="n">res_mat</span> <span class="o">&lt;-</span> <span class="nf">read_count_output</span><span class="p">(</span><span class="s">&quot;./output/counts_unfiltered&quot;</span><span class="p">,</span> <span class="n">name</span> <span class="o">=</span> <span class="s">&quot;cells_x_genes&quot;</span><span class="p">,</span> <span class="n">tcc</span> <span class="o">=</span> <span class="kc">FALSE</span><span class="p">)</span>
 </code></pre></div>
 </td></tr></table>
+
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="nf">dim</span><span class="p">(</span><span class="n">res_mat</span><span class="p">)</span>
 </code></pre></div>
 </td></tr></table>
+
 <style>
 .list-inline {list-style: none; margin:0; padding: 0}
 .list-inline>li {display: inline-block}
 .list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
 </style>
+
 <ol class=list-inline><li>36711</li><li>399524</li></ol>
 
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
@@ -1160,15 +1179,18 @@
 <span class="nf">summary</span><span class="p">(</span><span class="n">tot_counts</span><span class="p">)</span>
 </code></pre></div>
 </td></tr></table>
+
 <div class="codehilite"><pre><span></span><code>     Min.   1st Qu.    Median      Mean   3rd Qu.      Max. 
      0.00      1.00      1.00     40.47      5.00 154216.00
 </code></pre></div>
+
 
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="c1"># Compute barcode rank</span>
 <span class="n">bc_rank</span> <span class="o">&lt;-</span> <span class="nf">barcodeRanks</span><span class="p">(</span><span class="n">res_mat</span><span class="p">,</span> <span class="n">lower</span> <span class="o">=</span> <span class="m">1000</span><span class="p">)</span>
 </code></pre></div>
 </td></tr></table>
+
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
 <span class="normal"> 2</span>
 <span class="normal"> 3</span>
@@ -1220,11 +1242,13 @@
 <span class="p">}</span>
 </code></pre></div>
 </td></tr></table>
+
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="nf">options</span><span class="p">(</span><span class="n">repr.plot.width</span><span class="o">=</span><span class="m">9</span><span class="p">,</span> <span class="n">repr.plot.height</span><span class="o">=</span><span class="m">6</span><span class="p">)</span>
 <span class="nf">knee_plot</span><span class="p">(</span><span class="n">bc_rank</span><span class="p">)</span>
 </code></pre></div>
 </td></tr></table>
+
 <p><img alt="png" src="../kb_slingshot_files/kb_slingshot_16_0.png" /></p>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span>
@@ -1235,16 +1259,19 @@
 <span class="nf">dim</span><span class="p">(</span><span class="n">res_mat</span><span class="p">)</span>
 </code></pre></div>
 </td></tr></table>
+
 <style>
 .list-inline {list-style: none; margin:0; padding: 0}
 .list-inline>li {display: inline-block}
 .list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
 </style>
+
 <ol class=list-inline><li>20198</li><li>1210</li></ol>
 
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="nf">rownames</span><span class="p">(</span><span class="n">res_mat</span><span class="p">)</span> <span class="o">&lt;-</span> <span class="nf">str_remove</span><span class="p">(</span><span class="nf">rownames</span><span class="p">(</span><span class="n">res_mat</span><span class="p">),</span> <span class="s">&quot;\\.\\d+&quot;</span><span class="p">)</span>
 </code></pre></div>
 </td></tr></table>
+
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span>
 <span class="normal">3</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="n">mouse.rnaseq</span> <span class="o">&lt;-</span> <span class="nf">MouseRNAseqData</span><span class="p">(</span><span class="n">ensembl</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">)</span>
@@ -1252,6 +1279,7 @@
 <span class="n">sce</span> <span class="o">&lt;-</span> <span class="nf">logNormCounts</span><span class="p">(</span><span class="n">sce</span><span class="p">)</span>
 </code></pre></div>
 </td></tr></table>
+
 <div class="codehilite"><pre><span></span><code><span class="n">Using</span> <span class="n">temporary</span> <span class="n">cache</span> <span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">Rtmp3ZgCkF</span><span class="o">/</span><span class="n">BiocFileCache</span>
 
 <span class="n">snapshotDate</span><span class="p">():</span> <span class="mi">2019</span><span class="o">-</span><span class="mi">10</span><span class="o">-</span><span class="mi">22</span>
@@ -1314,14 +1342,17 @@
 <span class="s2">&quot;Unable to map 2180 of 21214 requested IDs.&quot;</span>
 </code></pre></div>
 
+
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="n">annots</span> <span class="o">&lt;-</span> <span class="nf">SingleR</span><span class="p">(</span><span class="n">sce</span><span class="p">,</span> <span class="n">ref</span> <span class="o">=</span> <span class="n">mouse.rnaseq</span><span class="p">,</span> <span class="n">labels</span> <span class="o">=</span> <span class="nf">colData</span><span class="p">(</span><span class="n">mouse.rnaseq</span><span class="p">)</span><span class="o">$</span><span class="n">label.fine</span><span class="p">,</span>
 <span class="n">de.method</span> <span class="o">=</span> <span class="s">&quot;wilcox&quot;</span><span class="p">,</span> <span class="n">method</span> <span class="o">=</span> <span class="s">&quot;single&quot;</span><span class="p">,</span> <span class="n">BPPARAM</span> <span class="o">=</span> <span class="nf">MulticoreParam</span><span class="p">(</span><span class="m">2</span><span class="p">))</span>
 </code></pre></div>
 </td></tr></table>
+
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="n">annots</span>
 </code></pre></div>
 </td></tr></table>
+
 <div class="codehilite"><pre><span></span><code><span class="nv">DataFrame</span> <span class="s s-Atom">with</span> <span class="mi">1210</span> <span class="s s-Atom">rows</span> <span class="s s-Atom">and</span> <span class="mi">5</span> <span class="s s-Atom">columns</span>
                                                                         <span class="s s-Atom">scores</span>
                                                                       <span class="o">&lt;</span><span class="s s-Atom">matrix</span><span class="o">&gt;</span>
@@ -1364,6 +1395,7 @@
 <span class="nv">TTTGTTGGTATGGAAT</span>       <span class="nv">Neurons</span>
 </code></pre></div>
 
+
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span>
 <span class="normal">3</span>
@@ -1377,6 +1409,7 @@
 <span class="n">sce</span><span class="o">$</span><span class="n">cell_type</span> <span class="o">&lt;-</span> <span class="n">annots</span><span class="o">$</span><span class="n">pruned.labels</span><span class="p">[</span><span class="n">inds</span><span class="p">]</span>
 </code></pre></div>
 </td></tr></table>
+
 <h1 id="qc">QC<a class="headerlink" href="#qc" title="Permanent link">&para;</a></h1>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span>
@@ -1385,6 +1418,7 @@
 <span class="nf">colData</span><span class="p">(</span><span class="n">sce</span><span class="p">)</span>
 </code></pre></div>
 </td></tr></table>
+
 <div class="codehilite"><pre><span></span><code>DataFrame with 1146 rows and 8 columns
                    cell_type       sum  detected   percent_top_50
                  &lt;character&gt; &lt;numeric&gt; &lt;integer&gt;        &lt;numeric&gt;
@@ -1414,13 +1448,16 @@ TTTGGTTAGTAATCCC 27.7183052376851 36.2659447930766 49.9733398958205     24381
 TTTGTTGGTATGGAAT 20.6293706293706 29.4513179128564 46.9338353953739      3718
 </code></pre></div>
 
+
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="nf">plotColData</span><span class="p">(</span><span class="n">sce</span><span class="p">,</span> <span class="n">x</span> <span class="o">=</span> <span class="s">&quot;cell_type&quot;</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="s">&quot;sum&quot;</span><span class="p">)</span>
 </code></pre></div>
 </td></tr></table>
+
 <p><img alt="png" src="../kb_slingshot_files/kb_slingshot_25_0.png" /></p>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="nf">plotColData</span><span class="p">(</span><span class="n">sce</span><span class="p">,</span> <span class="n">x</span> <span class="o">=</span> <span class="s">&quot;cell_type&quot;</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="s">&quot;detected&quot;</span><span class="p">)</span>
 </code></pre></div>
 </td></tr></table>
+
 <p><img alt="png" src="../kb_slingshot_files/kb_slingshot_26_0.png" /></p>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span>
@@ -1431,6 +1468,7 @@ TTTGTTGGTATGGAAT 20.6293706293706 29.4513179128564 46.9338353953739      3718
   <span class="nf">annotation_logticks</span><span class="p">()</span>
 </code></pre></div>
 </td></tr></table>
+
 <p><img alt="png" src="../kb_slingshot_files/kb_slingshot_27_0.png" /></p>
 <h2 id="dimension-reduction">Dimension reduction<a class="headerlink" href="#dimension-reduction" title="Permanent link">&para;</a></h2>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
@@ -1438,6 +1476,7 @@ TTTGTTGGTATGGAAT 20.6293706293706 29.4513179128564 46.9338353953739      3718
 <span class="n">fit_pbmc</span> <span class="o">&lt;-</span> <span class="nf">metadata</span><span class="p">(</span><span class="n">dec_sce</span><span class="p">)</span>
 </code></pre></div>
 </td></tr></table>
+
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span>
 <span class="normal">3</span>
@@ -1447,12 +1486,14 @@ TTTGTTGGTATGGAAT 20.6293706293706 29.4513179128564 46.9338353953739      3718
 <span class="nf">curve</span><span class="p">(</span><span class="n">fit_pbmc</span><span class="o">$</span><span class="nf">trend</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">col</span><span class="o">=</span><span class="s">&quot;dodgerblue&quot;</span><span class="p">,</span> <span class="n">add</span><span class="o">=</span><span class="kc">TRUE</span><span class="p">,</span> <span class="n">lwd</span><span class="o">=</span><span class="m">2</span><span class="p">)</span>
 </code></pre></div>
 </td></tr></table>
+
 <p><img alt="png" src="../kb_slingshot_files/kb_slingshot_30_0.png" /></p>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="n">hvgs</span> <span class="o">&lt;-</span> <span class="nf">getTopHVGs</span><span class="p">(</span><span class="n">dec_sce</span><span class="p">,</span> <span class="n">n</span> <span class="o">=</span> <span class="m">3000</span><span class="p">)</span>
 <span class="n">sce</span> <span class="o">&lt;-</span> <span class="nf">runPCA</span><span class="p">(</span><span class="n">sce</span><span class="p">,</span> <span class="n">subset_row</span> <span class="o">=</span> <span class="n">hvgs</span><span class="p">)</span>
 </code></pre></div>
 </td></tr></table>
+
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span>
 <span class="normal">3</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="c1"># Percentage of variance explained is tucked away in the attributes.</span>
@@ -1460,6 +1501,7 @@ TTTGTTGGTATGGAAT 20.6293706293706 29.4513179128564 46.9338353953739      3718
 <span class="nf">plot</span><span class="p">(</span><span class="n">percent.var</span><span class="p">,</span> <span class="n">xlab</span><span class="o">=</span><span class="s">&quot;PC&quot;</span><span class="p">,</span> <span class="n">ylab</span><span class="o">=</span><span class="s">&quot;Variance explained (%)&quot;</span><span class="p">)</span>
 </code></pre></div>
 </td></tr></table>
+
 <p><img alt="png" src="../kb_slingshot_files/kb_slingshot_32_0.png" /></p>
 <p>The y axis is percentage of variance explained by the PC, or the eigenvalues of the covariance matrix.</p>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
@@ -1467,6 +1509,7 @@ TTTGTTGGTATGGAAT 20.6293706293706 29.4513179128564 46.9338353953739      3718
 <span class="nf">plotPCA</span><span class="p">(</span><span class="n">sce</span><span class="p">,</span> <span class="n">colour_by</span> <span class="o">=</span> <span class="s">&quot;cell_type&quot;</span><span class="p">,</span> <span class="n">ncomponents</span> <span class="o">=</span> <span class="m">4</span><span class="p">)</span>
 </code></pre></div>
 </td></tr></table>
+
 <p><img alt="png" src="../kb_slingshot_files/kb_slingshot_34_0.png" /></p>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span>
@@ -1475,6 +1518,7 @@ TTTGTTGGTATGGAAT 20.6293706293706 29.4513179128564 46.9338353953739      3718
 <span class="nf">plotTSNE</span><span class="p">(</span><span class="n">sce</span><span class="p">,</span> <span class="n">colour_by</span> <span class="o">=</span> <span class="s">&quot;cell_type&quot;</span><span class="p">)</span>
 </code></pre></div>
 </td></tr></table>
+
 <p><img alt="png" src="../kb_slingshot_files/kb_slingshot_35_0.png" /></p>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span>
@@ -1483,12 +1527,14 @@ TTTGTTGGTATGGAAT 20.6293706293706 29.4513179128564 46.9338353953739      3718
 <span class="nf">plotUMAP</span><span class="p">(</span><span class="n">sce</span><span class="p">,</span> <span class="n">colour_by</span> <span class="o">=</span> <span class="s">&quot;cell_type&quot;</span><span class="p">)</span>
 </code></pre></div>
 </td></tr></table>
+
 <p><img alt="png" src="../kb_slingshot_files/kb_slingshot_36_0.png" /></p>
 <p>UMAP can better preserve pairwise distance of cells than tSNE and can better separate cell populations than the first 2 PCs of PCA (<a href="https://doi.org/10.1038/nbt.4314">Becht et al. 2018</a>), so the TI will be visualized on UMAP rather than tSNE or PCA. </p>
 <p>Cell type annotation with <code>SingleR</code> requires a reference with bulk RNA seq data for isolated known cell types. The reference used for cell type annotation here does not differentiate between different types of neural progenitor cells; clustering can further partition the neural progenitor cells. Furthermore, <code>slingshot</code> is based on cluster-wise minimum spanning tree, so finding a good clustering is important to good trajectory inference with <code>slingshot</code>. The clustering algorithm used here is <a href="https://www.nature.com/articles/s41598-019-41695-z">Leiden</a>, which is an improvement over the commonly used Louvain; Leiden communities are guaranteed to be well-connected, while Louvain can lead to poorly connected communities.</p>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="n">g</span> <span class="o">&lt;-</span> <span class="nf">buildSNNGraph</span><span class="p">(</span><span class="n">sce</span><span class="p">,</span> <span class="n">k</span> <span class="o">=</span> <span class="m">15</span><span class="p">,</span> <span class="n">use.dimred</span> <span class="o">=</span> <span class="s">&quot;PCA&quot;</span><span class="p">)</span>
 </code></pre></div>
 </td></tr></table>
+
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span>
 <span class="normal">3</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="n">sce</span><span class="o">$</span><span class="n">cluster</span> <span class="o">&lt;-</span> <span class="n">leidenbase</span><span class="o">::</span><span class="nf">leiden_find_partition</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="n">resolution_parameter</span> <span class="o">=</span> <span class="m">1.2</span><span class="p">,</span> 
@@ -1496,9 +1542,11 @@ TTTGTTGGTATGGAAT 20.6293706293706 29.4513179128564 46.9338353953739      3718
   <span class="n">num_iter</span> <span class="o">=</span> <span class="m">10</span><span class="p">,</span> <span class="n">seed</span> <span class="o">=</span> <span class="m">1</span><span class="p">)</span><span class="o">$</span><span class="n">membership</span> <span class="o">%&gt;%</span> <span class="nf">factor</span><span class="p">()</span>
 </code></pre></div>
 </td></tr></table>
+
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="nf">plotUMAP</span><span class="p">(</span><span class="n">sce</span><span class="p">,</span> <span class="n">colour_by</span> <span class="o">=</span> <span class="s">&quot;cluster&quot;</span><span class="p">)</span>
 </code></pre></div>
 </td></tr></table>
+
 <p><img alt="png" src="../kb_slingshot_files/kb_slingshot_41_0.png" /></p>
 <h1 id="slingshot">Slingshot<a class="headerlink" href="#slingshot" title="Permanent link">&para;</a></h1>
 <h2 id="trajectory-inference">Trajectory inference<a class="headerlink" href="#trajectory-inference" title="Permanent link">&para;</a></h2>
@@ -1509,8 +1557,10 @@ TTTGTTGGTATGGAAT 20.6293706293706 29.4513179128564 46.9338353953739      3718
                  <span class="n">start.clus</span> <span class="o">=</span> <span class="m">2</span><span class="p">,</span> <span class="n">stretch</span> <span class="o">=</span> <span class="m">0</span><span class="p">)</span>
 </code></pre></div>
 </td></tr></table>
+
 <div class="codehilite"><pre><span></span><code><span class="n">Using</span> <span class="n">full</span> <span class="n">covariance</span> <span class="n">matrix</span>
 </code></pre></div>
+
 
 <p>Unfortunately, <code>slingshot</code> does not natively support <code>ggplot2</code>. So this is a function that assigns colors to each cell in base R graphics.</p>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
@@ -1548,12 +1598,14 @@ TTTGTTGGTATGGAAT 20.6293706293706 29.4513179128564 46.9338353953739      3718
 <span class="p">}</span>
 </code></pre></div>
 </td></tr></table>
+
 <p>We need color palettes for both cell types and Leiden clusters. These would be the same colors seen in the Seurat plots.</p>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="n">cell_colors</span> <span class="o">&lt;-</span> <span class="nf">cell_pal</span><span class="p">(</span><span class="n">sce</span><span class="o">$</span><span class="n">cell_type</span><span class="p">,</span> <span class="nf">pal_d3</span><span class="p">(</span><span class="n">alpha</span> <span class="o">=</span> <span class="m">0.5</span><span class="p">))</span>
 <span class="n">cell_colors_clust</span> <span class="o">&lt;-</span> <span class="nf">cell_pal</span><span class="p">(</span><span class="n">sce</span><span class="o">$</span><span class="n">cluster</span><span class="p">,</span> <span class="nf">pal_d3</span><span class="p">(</span><span class="n">alpha</span> <span class="o">=</span> <span class="m">0.5</span><span class="p">))</span>
 </code></pre></div>
 </td></tr></table>
+
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span>
 <span class="normal">3</span>
@@ -1565,6 +1617,7 @@ TTTGTTGGTATGGAAT 20.6293706293706 29.4513179128564 46.9338353953739      3718
        <span class="n">col</span> <span class="o">=</span> <span class="nf">unique</span><span class="p">(</span><span class="n">cell_colors</span><span class="p">),</span> <span class="n">pch</span> <span class="o">=</span> <span class="m">16</span><span class="p">,</span> <span class="n">box.lwd</span> <span class="o">=</span> <span class="m">0</span><span class="p">)</span>
 </code></pre></div>
 </td></tr></table>
+
 <p><img alt="png" src="../kb_slingshot_files/kb_slingshot_48_0.png" /></p>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span>
@@ -1579,6 +1632,7 @@ TTTGTTGGTATGGAAT 20.6293706293706 29.4513179128564 46.9338353953739      3718
        <span class="n">col</span> <span class="o">=</span> <span class="nf">unique</span><span class="p">(</span><span class="n">cell_colors_clust</span><span class="p">)[</span><span class="n">ord</span><span class="p">],</span> <span class="n">pch</span> <span class="o">=</span> <span class="m">16</span><span class="p">,</span> <span class="n">box.lwd</span> <span class="o">=</span> <span class="m">0</span><span class="p">)</span>
 </code></pre></div>
 </td></tr></table>
+
 <p><img alt="png" src="../kb_slingshot_files/kb_slingshot_49_0.png" /></p>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span>
@@ -1591,6 +1645,7 @@ TTTGTTGGTATGGAAT 20.6293706293706 29.4513179128564 46.9338353953739      3718
        <span class="n">col</span> <span class="o">=</span> <span class="nf">unique</span><span class="p">(</span><span class="n">cell_colors</span><span class="p">),</span> <span class="n">pch</span> <span class="o">=</span> <span class="m">16</span><span class="p">,</span> <span class="n">box.lwd</span> <span class="o">=</span> <span class="m">0</span><span class="p">)</span>
 </code></pre></div>
 </td></tr></table>
+
 <p><img alt="png" src="../kb_slingshot_files/kb_slingshot_50_0.png" /></p>
 <p>Which cells are in which lineage? Here we plot the pseudotime values for each lineage.</p>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
@@ -1618,6 +1673,7 @@ TTTGTTGGTATGGAAT 20.6293706293706 29.4513179128564 46.9338353953739      3718
 <span class="p">}</span>
 </code></pre></div>
 </td></tr></table>
+
 <p><img alt="png" src="../kb_slingshot_files/kb_slingshot_52_0.png" /></p>
 <p>Or on UMAP, though can't plot the lineages here</p>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
@@ -1633,6 +1689,7 @@ TTTGTTGGTATGGAAT 20.6293706293706 29.4513179128564 46.9338353953739      3718
 <span class="p">}</span>
 </code></pre></div>
 </td></tr></table>
+
 <p><img alt="png" src="../kb_slingshot_files/kb_slingshot_54_0.png" /></p>
 <h1 id="differential-expression">Differential expression<a class="headerlink" href="#differential-expression" title="Permanent link">&para;</a></h1>
 <p>Here we use the package <code>tradeSeq</code>, presented in <a href="https://www.biorxiv.org/content/10.1101/623397v1">this paper</a>. This section was adapted from the vignette of <code>tradeSeq</code>.</p>
@@ -1649,6 +1706,7 @@ TTTGTTGGTATGGAAT 20.6293706293706 29.4513179128564 46.9338353953739      3718
                    <span class="n">cellWeights</span> <span class="o">=</span> <span class="nf">slingCurveWeights</span><span class="p">(</span><span class="n">sds</span><span class="p">),</span> <span class="n">control</span> <span class="o">=</span> <span class="n">control</span><span class="p">)</span>
 </code></pre></div>
 </td></tr></table>
+
 <div class="codehilite"><pre><span></span><code>Warning message in newton(lsp = lsp, X = G$X, y = G$y, Eb = G$Eb, UrS = G$UrS, L = G$L, :
 &quot;Fitting terminated with step failure - check results carefully&quot;
 Warning message in newton(lsp = lsp, X = G$X, y = G$y, Eb = G$Eb, UrS = G$UrS, L = G$L, :
@@ -1779,18 +1837,21 @@ Warning message in newton(lsp = lsp, X = G$X, y = G$y, Eb = G$Eb, UrS = G$UrS, L
 &quot;Iteration limit reached without full convergence - check carefully&quot;
 </code></pre></div>
 
+
 <p><img alt="png" src="../kb_slingshot_files/kb_slingshot_56_1.png" /></p>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="nf">register</span><span class="p">(</span><span class="nf">MulticoreParam</span><span class="p">(</span><span class="m">2</span><span class="p">))</span>
 <span class="n">sce2</span> <span class="o">&lt;-</span> <span class="nf">fitGAM</span><span class="p">(</span><span class="n">counts</span> <span class="o">=</span> <span class="n">cts</span><span class="p">[</span><span class="n">hvgs</span><span class="p">[</span><span class="m">1</span><span class="o">:</span><span class="m">50</span><span class="p">],],</span> <span class="n">sds</span> <span class="o">=</span> <span class="n">sds</span><span class="p">,</span> <span class="n">nknots</span> <span class="o">=</span> <span class="m">5</span><span class="p">,</span> <span class="n">control</span> <span class="o">=</span> <span class="n">control</span><span class="p">)</span>
 </code></pre></div>
 </td></tr></table>
+
 <p>See where the knots are</p>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="nf">plotGeneCount</span><span class="p">(</span><span class="n">curve</span> <span class="o">=</span> <span class="n">sds</span><span class="p">,</span> <span class="n">clusters</span> <span class="o">=</span> <span class="n">sce</span><span class="o">$</span><span class="n">cluster</span><span class="p">,</span>
               <span class="n">models</span> <span class="o">=</span> <span class="n">sce2</span><span class="p">)</span>
 </code></pre></div>
 </td></tr></table>
+
 <p><img alt="png" src="../kb_slingshot_files/kb_slingshot_59_0.png" /></p>
 <h2 id="within-linenage-comparisons">Within linenage comparisons<a class="headerlink" href="#within-linenage-comparisons" title="Permanent link">&para;</a></h2>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
@@ -1798,6 +1859,7 @@ Warning message in newton(lsp = lsp, X = G$X, y = G$y, Eb = G$Eb, UrS = G$UrS, L
 <span class="nf">head</span><span class="p">(</span><span class="n">assoRes</span><span class="p">)</span>
 </code></pre></div>
 </td></tr></table>
+
 <table>
 <caption>A data.frame: 6 × 3</caption>
 <thead>
@@ -1817,6 +1879,7 @@ Warning message in newton(lsp = lsp, X = G$X, y = G$y, Eb = G$Eb, UrS = G$UrS, L
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="n">startRes</span> <span class="o">&lt;-</span> <span class="nf">startVsEndTest</span><span class="p">(</span><span class="n">sce2</span><span class="p">)</span>
 </code></pre></div>
 </td></tr></table>
+
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span>
 <span class="normal">3</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="n">oStart</span> <span class="o">&lt;-</span> <span class="nf">order</span><span class="p">(</span><span class="n">startRes</span><span class="o">$</span><span class="n">waldStat</span><span class="p">,</span> <span class="n">decreasing</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">)</span>
@@ -1824,15 +1887,18 @@ Warning message in newton(lsp = lsp, X = G$X, y = G$y, Eb = G$Eb, UrS = G$UrS, L
 <span class="nf">plotSmoothers</span><span class="p">(</span><span class="n">sce2</span><span class="p">,</span> <span class="n">cts</span><span class="p">,</span> <span class="n">gene</span> <span class="o">=</span> <span class="n">sigGeneStart</span><span class="p">)</span>
 </code></pre></div>
 </td></tr></table>
+
 <p><img alt="png" src="../kb_slingshot_files/kb_slingshot_63_0.png" /></p>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="nf">plotUMAP</span><span class="p">(</span><span class="n">sce</span><span class="p">,</span> <span class="n">colour_by</span> <span class="o">=</span> <span class="n">sigGeneStart</span><span class="p">)</span>
 </code></pre></div>
 </td></tr></table>
+
 <p><img alt="png" src="../kb_slingshot_files/kb_slingshot_64_0.png" /></p>
 <h2 id="between-lineage-comparisons">Between lineage comparisons<a class="headerlink" href="#between-lineage-comparisons" title="Permanent link">&para;</a></h2>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="n">endRes</span> <span class="o">&lt;-</span> <span class="nf">diffEndTest</span><span class="p">(</span><span class="n">sce2</span><span class="p">)</span>
 </code></pre></div>
 </td></tr></table>
+
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span>
 <span class="normal">3</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="n">o</span> <span class="o">&lt;-</span> <span class="nf">order</span><span class="p">(</span><span class="n">endRes</span><span class="o">$</span><span class="n">waldStat</span><span class="p">,</span> <span class="n">decreasing</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">)</span>
@@ -1840,10 +1906,12 @@ Warning message in newton(lsp = lsp, X = G$X, y = G$y, Eb = G$Eb, UrS = G$UrS, L
 <span class="nf">plotSmoothers</span><span class="p">(</span><span class="n">sce2</span><span class="p">,</span> <span class="n">cts</span><span class="p">,</span> <span class="n">sigGene</span><span class="p">)</span>
 </code></pre></div>
 </td></tr></table>
+
 <p><img alt="png" src="../kb_slingshot_files/kb_slingshot_67_0.png" /></p>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="nf">plotUMAP</span><span class="p">(</span><span class="n">sce</span><span class="p">,</span> <span class="n">colour_by</span> <span class="o">=</span> <span class="n">sigGene</span><span class="p">)</span>
 </code></pre></div>
 </td></tr></table>
+
 <p><img alt="png" src="../kb_slingshot_files/kb_slingshot_68_0.png" /></p>
 <h2 id="different-patterns">Different patterns<a class="headerlink" href="#different-patterns" title="Permanent link">&para;</a></h2>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
@@ -1853,20 +1921,24 @@ Warning message in newton(lsp = lsp, X = G$X, y = G$y, Eb = G$Eb, UrS = G$UrS, L
 <span class="nf">head</span><span class="p">(</span><span class="nf">rownames</span><span class="p">(</span><span class="n">patternRes</span><span class="p">)[</span><span class="n">oPat</span><span class="p">])</span>
 </code></pre></div>
 </td></tr></table>
+
 <style>
 .list-inline {list-style: none; margin:0; padding: 0}
 .list-inline>li {display: inline-block}
 .list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
 </style>
+
 <ol class=list-inline><li>'ENSMUSG00000035551'</li><li>'ENSMUSG00000027239'</li><li>'ENSMUSG00000018411'</li><li>'ENSMUSG00000067786'</li><li>'ENSMUSG00000052727'</li><li>'ENSMUSG00000058672'</li></ol>
 
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="nf">plotSmoothers</span><span class="p">(</span><span class="n">sce2</span><span class="p">,</span> <span class="n">cts</span><span class="p">,</span> <span class="n">gene</span> <span class="o">=</span> <span class="nf">rownames</span><span class="p">(</span><span class="n">patternRes</span><span class="p">)[</span><span class="n">oPat</span><span class="p">][</span><span class="m">1</span><span class="p">])</span>
 </code></pre></div>
 </td></tr></table>
+
 <p><img alt="png" src="../kb_slingshot_files/kb_slingshot_71_0.png" /></p>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="nf">plotUMAP</span><span class="p">(</span><span class="n">sce</span><span class="p">,</span> <span class="n">colour_by</span> <span class="o">=</span> <span class="nf">rownames</span><span class="p">(</span><span class="n">patternRes</span><span class="p">)[</span><span class="n">oPat</span><span class="p">][</span><span class="m">1</span><span class="p">])</span>
 </code></pre></div>
 </td></tr></table>
+
 <p><img alt="png" src="../kb_slingshot_files/kb_slingshot_72_0.png" /></p>
 <h2 id="clustering-patterns">Clustering patterns<a class="headerlink" href="#clustering-patterns" title="Permanent link">&para;</a></h2>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
@@ -1876,9 +1948,11 @@ Warning message in newton(lsp = lsp, X = G$X, y = G$y, Eb = G$Eb, UrS = G$UrS, L
                                      <span class="n">genes</span> <span class="o">=</span> <span class="nf">rownames</span><span class="p">(</span><span class="n">sce2</span><span class="p">))</span>
 </code></pre></div>
 </td></tr></table>
+
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="n">clusterLabels</span> <span class="o">&lt;-</span> <span class="nf">primaryCluster</span><span class="p">(</span><span class="n">clusPat</span><span class="o">$</span><span class="n">rsec</span><span class="p">)</span>
 </code></pre></div>
 </td></tr></table>
+
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
 <span class="normal"> 2</span>
 <span class="normal"> 3</span>
@@ -1936,6 +2010,7 @@ Warning message in newton(lsp = lsp, X = G$X, y = G$y, Eb = G$Eb, UrS = G$UrS, L
 <span class="nf">do.call</span><span class="p">(</span><span class="n">cowplot</span><span class="o">::</span><span class="n">plot_grid</span><span class="p">,</span> <span class="n">plots</span><span class="p">)</span>
 </code></pre></div>
 </td></tr></table>
+
 <p><img alt="png" src="../kb_slingshot_files/kb_slingshot_76_0.png" /></p>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>
 </code></pre></div>
@@ -1950,6 +2025,7 @@ Warning message in newton(lsp = lsp, X = G$X, y = G$y, Eb = G$Eb, UrS = G$UrS, L
             </article>
           </div>
         </div>
+        
       </main>
       
         
@@ -2036,7 +2112,7 @@ Warning message in newton(lsp = lsp, X = G$X, y = G$y, Eb = G$Eb, UrS = G$UrS, L
     <script id="__config" type="application/json">{"base": "../../../../..", "features": ["search.suggest", "search.highlight"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}, "search": "../../../../../assets/javascripts/workers/search.fe42c31b.min.js", "version": null}</script>
     
     
-      <script src="../../../../../assets/javascripts/bundle.65ce87ac.min.js"></script>
+      <script src="../../../../../assets/javascripts/bundle.d892486b.min.js"></script>
       
     
   </body>

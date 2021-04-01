@@ -14,7 +14,7 @@
       
       
       <link rel="icon" href="../../../../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-7.0.7">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-7.1.0">
     
     
       
@@ -22,10 +22,14 @@
       
     
     
-      <link rel="stylesheet" href="../../../../../assets/stylesheets/main.c772ddf0.min.css">
+      <link rel="stylesheet" href="../../../../../assets/stylesheets/main.33e2939f.min.css">
       
         
-        <link rel="stylesheet" href="../../../../../assets/stylesheets/palette.7fa14f5b.min.css">
+        <link rel="stylesheet" href="../../../../../assets/stylesheets/palette.ef6f36e2.min.css">
+        
+          
+          
+          <meta name="theme-color" content="#009485">
         
       
     
@@ -55,14 +59,13 @@
   
     
     
-      
-    
     
     
     
     <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="amber">
-      
   
+    
+    <script>function __prefix(e){return new URL("../../../../..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
@@ -106,9 +109,8 @@
         </div>
       </div>
     </div>
-    <div class="md-header__options">
-      
-    </div>
+    
+    
     
       <label class="md-header__button md-icon" for="__search">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
@@ -1014,6 +1016,7 @@
 <span class="n">BiocManager</span><span class="o">::</span><span class="nf">install</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;DropletUtils&quot;</span><span class="p">,</span> <span class="s">&quot;monocle&quot;</span><span class="p">,</span> <span class="s">&quot;SingleR&quot;</span><span class="p">,</span> <span class="s">&quot;BUSpaRse&quot;</span><span class="p">,</span> <span class="s">&quot;scater&quot;</span><span class="p">,</span> <span class="s">&quot;scran&quot;</span><span class="p">))</span>
 </code></pre></div>
 </td></tr></table>
+
 <div class="codehilite"><pre><span></span><code><span class="n">Installing</span> <span class="n">package</span> <span class="n">into</span> <span class="err">‘</span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">R</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">library</span><span class="err">’</span>
 <span class="p">(</span><span class="k">as</span> <span class="err">‘</span><span class="n">lib</span><span class="err">’</span> <span class="k">is</span> <span class="n">unspecified</span><span class="p">)</span>
 
@@ -1031,6 +1034,7 @@
   <span class="s1">&#39;xtable&#39;</span><span class="p">,</span> <span class="s1">&#39;boot&#39;</span><span class="p">,</span> <span class="s1">&#39;foreign&#39;</span><span class="p">,</span> <span class="s1">&#39;MASS&#39;</span>
 </code></pre></div>
 
+
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span>
 <span class="normal">3</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="nf">system</span><span class="p">(</span><span class="s">&quot;wget https://github.com/pachterlab/kallisto/releases/download/v0.46.1/kallisto_linux-v0.46.1.tar.gz&quot;</span><span class="p">)</span>
@@ -1038,10 +1042,12 @@
 <span class="nf">system</span><span class="p">(</span><span class="s">&quot;cp kallisto/kallisto /usr/local/bin&quot;</span><span class="p">)</span>
 </code></pre></div>
 </td></tr></table>
+
 <p>To get from fastq files to the gene count matrix, we will use the <code>kb</code> wrapper of <code>kallisto</code> and <code>bustools</code> here, which condenses several commands directly calling <code>kallisto</code> and <code>bustools</code> into 2. See the <a href="https://bustools.github.io/BUS_notebooks_R/monocle2.html">static version of this notebook</a> for instructions of calling <code>kallisto</code> and <code>bustools</code> directly.</p>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="nf">system</span><span class="p">(</span><span class="s">&quot;pip3 install kb-python&quot;</span><span class="p">)</span>
 </code></pre></div>
 </td></tr></table>
+
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span>
 <span class="normal">3</span>
@@ -1059,6 +1065,7 @@
 <span class="nf">theme_set</span><span class="p">(</span><span class="nf">theme_bw</span><span class="p">())</span>
 </code></pre></div>
 </td></tr></table>
+
 <div class="codehilite"><pre><span></span><code><span class="n">Loading</span> <span class="n">required</span> <span class="n">package</span><span class="p">:</span> <span class="n">SingleCellExperiment</span>
 
 <span class="n">Loading</span> <span class="n">required</span> <span class="n">package</span><span class="p">:</span> <span class="n">SummarizedExperiment</span>
@@ -1197,6 +1204,7 @@
 <span class="err"></span><span class="p">[</span><span class="mi">31</span><span class="n">m</span><span class="err">✖</span><span class="p">[</span><span class="mi">39</span><span class="n">m</span> <span class="err"></span><span class="p">[</span><span class="mi">34</span><span class="n">mtidyr</span><span class="err"></span><span class="p">[</span><span class="mi">39</span><span class="n">m</span><span class="p">::</span><span class="err"></span><span class="p">[</span><span class="mi">32</span><span class="n">munpack</span><span class="p">()</span><span class="err"></span><span class="p">[</span><span class="mi">39</span><span class="n">m</span>     <span class="n">masks</span> <span class="err"></span><span class="p">[</span><span class="mi">34</span><span class="n">mMatrix</span><span class="err"></span><span class="p">[</span><span class="mi">39</span><span class="n">m</span><span class="p">::</span><span class="n">unpack</span><span class="p">()</span>
 </code></pre></div>
 
+
 <h2 id="download-data">Download data<a class="headerlink" href="#download-data" title="Permanent link">&para;</a></h2>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span>
@@ -1211,9 +1219,11 @@
 <span class="p">}</span>
 </code></pre></div>
 </td></tr></table>
+
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="nf">untar</span><span class="p">(</span><span class="s">&quot;./data/neuron_1k_v3_fastqs.tar&quot;</span><span class="p">,</span> <span class="n">exdir</span> <span class="o">=</span> <span class="s">&quot;./data&quot;</span><span class="p">)</span>
 </code></pre></div>
 </td></tr></table>
+
 <h1 id="generate-the-gene-count-matrix">Generate the gene count matrix<a class="headerlink" href="#generate-the-gene-count-matrix" title="Permanent link">&para;</a></h1>
 <h2 id="build-the-kallisto-index">Build the <code>kallisto</code> index<a class="headerlink" href="#build-the-kallisto-index" title="Permanent link">&para;</a></h2>
 <p>Here we use <a href="https://pachterlab.github.io/kallisto/about">kallisto</a> to pseudoalign the reads to the transcriptome and then to create the <code>bus</code> file to be converted to a sparse matrix. The first step is to build an index of the mouse transcriptome. The transcriptome downloaded here is Ensembl version 99, the most recent version as of writing.</p>
@@ -1230,21 +1240,26 @@
 <span class="p">}</span>
 </code></pre></div>
 </td></tr></table>
+
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="nf">system</span><span class="p">(</span><span class="s">&quot;kallisto index -i ./reference/mm_tr_index99.idx ./reference/mm_cdna99.fa.gz&quot;</span><span class="p">,</span> <span class="n">intern</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">)</span>
 </code></pre></div>
 </td></tr></table>
+
 <h4 id="map-transcripts-to-genes">Map transcripts to genes<a class="headerlink" href="#map-transcripts-to-genes" title="Permanent link">&para;</a></h4>
 <p>For the sparse matrix, most people are interested in how many UMIs per gene per cell, we here we will quantify this from the <code>bus</code> output, and to do so, we need to find which gene corresponds to each transcript. Remember in the output of <code>kallisto bus</code>, there's the file <code>transcripts.txt</code>. Those are the transcripts in the transcriptome index. </p>
 <p>Remember that we downloaded transcriptome FASTA file from Ensembl just now. In FASTA files, each entry is a sequence with a name. In Ensembl FASTA files, the sequence name has genome annotation of the corresponding sequence, so we can extract transcript IDs and corresponding gene IDs and gene names from there.</p>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="n">tr2g</span> <span class="o">&lt;-</span> <span class="nf">tr2g_fasta</span><span class="p">(</span><span class="s">&quot;./reference/mm_cdna99.fa.gz&quot;</span><span class="p">)</span>
 </code></pre></div>
 </td></tr></table>
+
 <div class="codehilite"><pre><span></span><code>Reading FASTA file.
 </code></pre></div>
+
 
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="nf">head</span><span class="p">(</span><span class="n">tr2g</span><span class="p">)</span>
 </code></pre></div>
 </td></tr></table>
+
 <table>
 <caption>A tibble: 6 × 3</caption>
 <thead>
@@ -1267,12 +1282,14 @@
 <span class="nf">save_tr2g_bustools</span><span class="p">(</span><span class="n">tr2g</span><span class="p">,</span> <span class="n">file_save</span> <span class="o">=</span> <span class="s">&quot;./reference/tr2g_mm99.tsv&quot;</span><span class="p">)</span>
 </code></pre></div>
 </td></tr></table>
+
 <h2 id="using-the-kb-wrapper">Using the <code>kb</code> wrapper<a class="headerlink" href="#using-the-kb-wrapper" title="Permanent link">&para;</a></h2>
 <p>With <code>kallisto</code> and <code>bustools</code>, it takes several commands to go from fastq files to the spliced and unspliced matrices, which is quite cumbersome. So a wrapper called <code>kb</code> was written to condense those steps to one. The command line tool <code>kb</code> can be installed with</p>
 <p>Then we can use the following command to generate the spliced and unspliced matrices:</p>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="nf">system</span><span class="p">(</span><span class="s">&quot;chmod -R 777 data/&quot;</span><span class="p">)</span>
 </code></pre></div>
 </td></tr></table>
+
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span>
 <span class="normal">3</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="n">fn</span> <span class="o">&lt;-</span> <span class="nf">list.files</span><span class="p">(</span><span class="s">&quot;data/neuron_1k_v3_fastqs&quot;</span><span class="p">,</span> <span class="n">full.names</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">)</span>
@@ -1280,6 +1297,7 @@
 <span class="n">fn</span>
 </code></pre></div>
 </td></tr></table>
+
 <ol class=list-inline>
     <li>'data/neuron_1k_v3_fastqs/neuron_1k_v3_S1_L001_R1_001.fastq.gz'</li>
     <li>'data/neuron_1k_v3_fastqs/neuron_1k_v3_S1_L001_R2_001.fastq.gz'</li>
@@ -1292,15 +1310,18 @@
 <span class="nf">paste</span><span class="p">(</span><span class="n">fn</span><span class="p">,</span> <span class="n">collapse</span> <span class="o">=</span> <span class="s">&quot; &quot;</span><span class="p">)),</span> <span class="n">intern</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">)</span>
 </code></pre></div>
 </td></tr></table>
+
 <h1 id="preprocessing">Preprocessing<a class="headerlink" href="#preprocessing" title="Permanent link">&para;</a></h1>
 <p>Now we can load the matrix into R for analysis.</p>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="n">res_mat</span> <span class="o">&lt;-</span> <span class="nf">read_count_output</span><span class="p">(</span><span class="s">&quot;./output/counts_unfiltered&quot;</span><span class="p">,</span> <span class="n">name</span> <span class="o">=</span> <span class="s">&quot;cells_x_genes&quot;</span><span class="p">,</span> <span class="n">tcc</span> <span class="o">=</span> <span class="kc">FALSE</span><span class="p">)</span>
 </code></pre></div>
 </td></tr></table>
+
 <h2 id="remove-empty-droplets">Remove empty droplets<a class="headerlink" href="#remove-empty-droplets" title="Permanent link">&para;</a></h2>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="nf">dim</span><span class="p">(</span><span class="n">res_mat</span><span class="p">)</span>
 </code></pre></div>
 </td></tr></table>
+
 <ol class=list-inline>
     <li>36711</li>
     <li>399524</li>
@@ -1312,9 +1333,11 @@
 <span class="nf">summary</span><span class="p">(</span><span class="n">tot_counts</span><span class="p">)</span>
 </code></pre></div>
 </td></tr></table>
+
 <div class="codehilite"><pre><span></span><code>     Min.   1st Qu.    Median      Mean   3rd Qu.      Max. 
      0.00      1.00      1.00     40.47      5.00 154216.00
 </code></pre></div>
+
 
 <p>The vast majority of "cells" have only no or just a few UMI detected. Those are empty droplets. 10x claims to have cell capture rate of up to 65%, but in practice, depending on how many cells are in fact loaded, the rate can be much lower. A commonly used method to estimate the number of empty droplets is barcode ranking knee and inflection points, as those are often assumed to represent transition between two components of a distribution. While more sophisticated methods exist (e.g. see <a href="https://www.bioconductor.org/packages/devel/bioc/vignettes/DropletUtils/inst/doc/DropletUtils.html#detecting-empty-droplets"><code>emptyDrops</code> in <code>DropletUtils</code></a>), for simplicity, we will use the barcode ranking method here. However, whichever way we go, we don't have the ground truth.</p>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
@@ -1322,6 +1345,7 @@
 <span class="n">bc_rank</span> <span class="o">&lt;-</span> <span class="nf">barcodeRanks</span><span class="p">(</span><span class="n">res_mat</span><span class="p">,</span> <span class="n">lower</span> <span class="o">=</span> <span class="m">1000</span><span class="p">)</span>
 </code></pre></div>
 </td></tr></table>
+
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
 <span class="normal"> 2</span>
 <span class="normal"> 3</span>
@@ -1373,11 +1397,13 @@
 <span class="p">}</span>
 </code></pre></div>
 </td></tr></table>
+
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="nf">options</span><span class="p">(</span><span class="n">repr.plot.width</span><span class="o">=</span><span class="m">9</span><span class="p">,</span> <span class="n">repr.plot.height</span><span class="o">=</span><span class="m">6</span><span class="p">)</span>
 <span class="nf">knee_plot</span><span class="p">(</span><span class="n">bc_rank</span><span class="p">)</span>
 </code></pre></div>
 </td></tr></table>
+
 <p><img alt="png" src="../kb_monocle2_files/kb_monocle2_32_0.png" /></p>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span>
@@ -1388,6 +1414,7 @@
 <span class="nf">dim</span><span class="p">(</span><span class="n">res_mat</span><span class="p">)</span>
 </code></pre></div>
 </td></tr></table>
+
 <ol class=list-inline>
     <li>20198</li>
     <li>1210</li>
@@ -1396,6 +1423,7 @@
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="nf">rownames</span><span class="p">(</span><span class="n">res_mat</span><span class="p">)</span> <span class="o">&lt;-</span> <span class="nf">str_remove</span><span class="p">(</span><span class="nf">rownames</span><span class="p">(</span><span class="n">res_mat</span><span class="p">),</span> <span class="s">&quot;\\.\\d+&quot;</span><span class="p">)</span>
 </code></pre></div>
 </td></tr></table>
+
 <p>Now the number of cells is closer to expectation.</p>
 <h2 id="cell-type-inference">Cell type inference<a class="headerlink" href="#cell-type-inference" title="Permanent link">&para;</a></h2>
 <p>Monocle 2 only infers one trajectory for the entire dataset, so non-neuronal cells like endothelial cells and erythrocytes may be mistaken as highly differentiated cells from the neuronal lineage. So we will remove cell types not of the neural or glial lineages. Cell types are also helpful to orient the trajectory; neuronal progenitor cells must come before neurons. Here cell type inference is done programatically with <a href="https://github.com/dviraran/SingleR"><code>SingleR</code></a>, which compares gene expression profiles of individual cells to bulk RNA-seq data of purified known cell types.</p>
@@ -1406,6 +1434,7 @@
 <span class="n">sce</span> <span class="o">&lt;-</span> <span class="nf">logNormCounts</span><span class="p">(</span><span class="n">sce</span><span class="p">)</span>
 </code></pre></div>
 </td></tr></table>
+
 <p>Then <code>SingleR</code> will assign each cell a label based on Spearman correlation with known cell types from bulk RNA-seq. These are meanings of the acronyms:</p>
 <ul>
 <li>OPCs: Oligodendrocyte progenitor cells</li>
@@ -1418,9 +1447,11 @@
 <span class="n">de.method</span> <span class="o">=</span> <span class="s">&quot;wilcox&quot;</span><span class="p">,</span> <span class="n">method</span> <span class="o">=</span> <span class="s">&quot;single&quot;</span><span class="p">,</span> <span class="n">BPPARAM</span> <span class="o">=</span> <span class="nf">MulticoreParam</span><span class="p">(</span><span class="m">4</span><span class="p">))</span>
 </code></pre></div>
 </td></tr></table>
+
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="n">annots</span>
 </code></pre></div>
 </td></tr></table>
+
 <div class="codehilite"><pre><span></span><code><span class="nv">DataFrame</span> <span class="s s-Atom">with</span> <span class="mi">1210</span> <span class="s s-Atom">rows</span> <span class="s s-Atom">and</span> <span class="mi">5</span> <span class="s s-Atom">columns</span>
                                                                         <span class="s s-Atom">scores</span>
                                                                       <span class="o">&lt;</span><span class="s s-Atom">matrix</span><span class="o">&gt;</span>
@@ -1463,6 +1494,7 @@
 <span class="nv">TTTGTTGGTATGGAAT</span>       <span class="nv">Neurons</span>
 </code></pre></div>
 
+
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span>
 <span class="normal">3</span>
@@ -1476,16 +1508,20 @@
 <span class="n">sce</span><span class="o">$</span><span class="n">cell_type</span> <span class="o">&lt;-</span> <span class="n">annots</span><span class="o">$</span><span class="n">pruned.labels</span><span class="p">[</span><span class="n">inds</span><span class="p">]</span>
 </code></pre></div>
 </td></tr></table>
+
 <h2 id="qc">QC<a class="headerlink" href="#qc" title="Permanent link">&para;</a></h2>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="n">df</span> <span class="o">&lt;-</span> <span class="nf">perCellQCMetrics</span><span class="p">(</span><span class="n">sce</span><span class="p">)</span>
 </code></pre></div>
 </td></tr></table>
+
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="nf">colData</span><span class="p">(</span><span class="n">sce</span><span class="p">)</span> <span class="o">&lt;-</span> <span class="nf">cbind</span><span class="p">(</span><span class="nf">colData</span><span class="p">(</span><span class="n">sce</span><span class="p">),</span> <span class="n">df</span><span class="p">)</span>
 </code></pre></div>
 </td></tr></table>
+
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="nf">colData</span><span class="p">(</span><span class="n">sce</span><span class="p">)</span>
 </code></pre></div>
 </td></tr></table>
+
 <div class="codehilite"><pre><span></span><code>DataFrame with 1146 rows and 8 columns
                    cell_type       sum  detected   percent_top_50
                  &lt;character&gt; &lt;numeric&gt; &lt;integer&gt;        &lt;numeric&gt;
@@ -1515,13 +1551,16 @@ TTTGGTTAGTAATCCC 27.7183052376851 36.2659447930766 49.9733398958205     24381
 TTTGTTGGTATGGAAT 20.6293706293706 29.4513179128564 46.9338353953739      3718
 </code></pre></div>
 
+
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="nf">plotColData</span><span class="p">(</span><span class="n">sce</span><span class="p">,</span> <span class="n">x</span> <span class="o">=</span> <span class="s">&quot;cell_type&quot;</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="s">&quot;sum&quot;</span><span class="p">)</span>
 </code></pre></div>
 </td></tr></table>
+
 <p><img alt="png" src="../kb_monocle2_files/kb_monocle2_45_0.png" /></p>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="nf">plotColData</span><span class="p">(</span><span class="n">sce</span><span class="p">,</span> <span class="n">x</span> <span class="o">=</span> <span class="s">&quot;cell_type&quot;</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="s">&quot;detected&quot;</span><span class="p">)</span>
 </code></pre></div>
 </td></tr></table>
+
 <p><img alt="png" src="../kb_monocle2_files/kb_monocle2_46_0.png" /></p>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span>
@@ -1532,6 +1571,7 @@ TTTGTTGGTATGGAAT 20.6293706293706 29.4513179128564 46.9338353953739      3718
   <span class="nf">annotation_logticks</span><span class="p">()</span>
 </code></pre></div>
 </td></tr></table>
+
 <p><img alt="png" src="../kb_monocle2_files/kb_monocle2_47_0.png" /></p>
 <h1 id="monocle-2">Monocle 2<a class="headerlink" href="#monocle-2" title="Permanent link">&para;</a></h1>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
@@ -1555,14 +1595,17 @@ TTTGTTGGTATGGAAT 20.6293706293706 29.4513179128564 46.9338353953739      3718
 <span class="n">cds</span> <span class="o">&lt;-</span> <span class="nf">newCellDataSet</span><span class="p">(</span><span class="nf">counts</span><span class="p">(</span><span class="n">sce</span><span class="p">),</span> <span class="n">phenoData</span> <span class="o">=</span> <span class="n">pd</span><span class="p">,</span> <span class="n">featureData</span> <span class="o">=</span> <span class="n">fd</span><span class="p">)</span>
 </code></pre></div>
 </td></tr></table>
+
 <p>Size factor and dispersion will be used to normalize data and select genes for clustering.</p>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="n">cds</span> <span class="o">&lt;-</span> <span class="nf">estimateSizeFactors</span><span class="p">(</span><span class="n">cds</span><span class="p">)</span>
 <span class="n">cds</span> <span class="o">&lt;-</span> <span class="nf">estimateDispersions</span><span class="p">(</span><span class="n">cds</span><span class="p">)</span>
 </code></pre></div>
 </td></tr></table>
+
 <div class="codehilite"><pre><span></span><code>Removing 16 outliers
 </code></pre></div>
+
 
 <p>Genes that aren't highly expressed enough will not be used for clustering, since they may not give meaningful signal and would only add noise.</p>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
@@ -1572,11 +1615,13 @@ TTTGTTGGTATGGAAT 20.6293706293706 29.4513179128564 46.9338353953739      3718
 <span class="n">cds</span> <span class="o">&lt;-</span> <span class="nf">setOrderingFilter</span><span class="p">(</span><span class="n">cds</span><span class="p">,</span> <span class="n">clustering_genes</span><span class="o">$</span><span class="n">gene_id</span><span class="p">)</span>
 </code></pre></div>
 </td></tr></table>
+
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="n">cds</span> <span class="o">&lt;-</span> <span class="nf">reduceDimension</span><span class="p">(</span><span class="n">cds</span><span class="p">,</span> <span class="n">num_dim</span> <span class="o">=</span> <span class="m">40</span><span class="p">,</span> <span class="n">reduction_method</span> <span class="o">=</span> <span class="s">&#39;tSNE&#39;</span><span class="p">)</span>
 <span class="n">cds</span> <span class="o">&lt;-</span> <span class="nf">clusterCells</span><span class="p">(</span><span class="n">cds</span><span class="p">,</span> <span class="n">method</span> <span class="o">=</span> <span class="s">&quot;louvain&quot;</span><span class="p">)</span>
 </code></pre></div>
 </td></tr></table>
+
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span>
 <span class="normal">3</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="nf">plot_cell_clusters</span><span class="p">(</span><span class="n">cds</span><span class="p">)</span> <span class="o">+</span>
@@ -1584,6 +1629,7 @@ TTTGTTGGTATGGAAT 20.6293706293706 29.4513179128564 46.9338353953739      3718
   <span class="nf">labs</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="s">&quot;tSNE1&quot;</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="s">&quot;tSNE2&quot;</span><span class="p">)</span>
 </code></pre></div>
 </td></tr></table>
+
 <p><img alt="png" src="../kb_monocle2_files/kb_monocle2_55_0.png" /></p>
 <p>See where the annotated cell types are</p>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
@@ -1597,6 +1643,7 @@ TTTGTTGGTATGGAAT 20.6293706293706 29.4513179128564 46.9338353953739      3718
   <span class="nf">guides</span><span class="p">(</span><span class="n">color</span> <span class="o">=</span> <span class="nf">guide_legend</span><span class="p">(</span><span class="n">override.aes</span> <span class="o">=</span> <span class="nf">list</span><span class="p">(</span><span class="n">size</span> <span class="o">=</span> <span class="m">3</span><span class="p">)))</span>
 </code></pre></div>
 </td></tr></table>
+
 <p><img alt="png" src="../kb_monocle2_files/kb_monocle2_57_0.png" /></p>
 <p>Genes likely to be informative of ordering of cells along the pseudotime trajectory will be selected for pseudotime inference.</p>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
@@ -1610,18 +1657,21 @@ TTTGTTGGTATGGAAT 20.6293706293706 29.4513179128564 46.9338353953739      3718
 <span class="n">cds</span> <span class="o">&lt;-</span> <span class="nf">setOrderingFilter</span><span class="p">(</span><span class="n">cds</span><span class="p">,</span> <span class="n">ordering_genes</span><span class="p">)</span>
 </code></pre></div>
 </td></tr></table>
+
 <p>Here Monocle 2 will first project the data to 2 dimensions with <code>DDRTree</code>, and then do trajectory inference (<code>orderCells</code>).</p>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="n">cds</span> <span class="o">&lt;-</span> <span class="nf">reduceDimension</span><span class="p">(</span><span class="n">cds</span><span class="p">,</span> <span class="n">max_components</span> <span class="o">=</span> <span class="m">2</span><span class="p">,</span> <span class="n">method</span> <span class="o">=</span> <span class="s">&#39;DDRTree&#39;</span><span class="p">)</span>
 <span class="n">cds</span> <span class="o">&lt;-</span> <span class="nf">orderCells</span><span class="p">(</span><span class="n">cds</span><span class="p">)</span>
 </code></pre></div>
 </td></tr></table>
+
 <p>See what the trajectory looks like. This projection is <code>DDRTree</code>.</p>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="nf">plot_cell_trajectory</span><span class="p">(</span><span class="n">cds</span><span class="p">,</span> <span class="n">color_by</span> <span class="o">=</span> <span class="s">&quot;cell_type&quot;</span><span class="p">,</span> <span class="n">cell_size</span> <span class="o">=</span> <span class="m">1</span><span class="p">)</span> <span class="o">+</span>
   <span class="nf">scale_color_brewer</span><span class="p">(</span><span class="n">name</span> <span class="o">=</span> <span class="s">&quot;cell type&quot;</span><span class="p">,</span> <span class="n">type</span> <span class="o">=</span> <span class="s">&quot;qual&quot;</span><span class="p">,</span> <span class="n">palette</span> <span class="o">=</span> <span class="s">&quot;Set2&quot;</span><span class="p">)</span>
 </code></pre></div>
 </td></tr></table>
+
 <p><img alt="png" src="../kb_monocle2_files/kb_monocle2_63_0.png" /></p>
 <p>In the <a href="https://www.biorxiv.org/content/10.1101/673285v1">kallisto | bustools paper</a>, I used <code>slingshot</code> for pseudotime analysis (Supplementary Figure 6.5) of this dataset, and found two neuronal end points. The result from Monocle 2 here also shows two main branches. Also, as expected, the stem cells are at the very beginning of the trajectory.</p>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
@@ -1629,6 +1679,7 @@ TTTGTTGGTATGGAAT 20.6293706293706 29.4513179128564 46.9338353953739      3718
   <span class="nf">scale_color_viridis_c</span><span class="p">()</span>
 </code></pre></div>
 </td></tr></table>
+
 <p><img alt="png" src="../kb_monocle2_files/kb_monocle2_65_0.png" /></p>
 <p>The pseudotime values are inverted.</p>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
@@ -1638,6 +1689,7 @@ TTTGTTGGTATGGAAT 20.6293706293706 29.4513179128564 46.9338353953739      3718
   <span class="nf">scale_color_viridis_c</span><span class="p">()</span>
 </code></pre></div>
 </td></tr></table>
+
 <p><img alt="png" src="../kb_monocle2_files/kb_monocle2_67_0.png" /></p>
 <p>Monocle 2 can also be used to find genes differentially expressed along the pseudotime trajectory and clusters of such genes. See <a href="https://davetang.org/muse/2017/10/01/getting-started-monocle/">David Tang's excellent Monocle 2 tutorial</a> for how to use these functionalities.</p>
                 
@@ -1650,6 +1702,7 @@ TTTGTTGGTATGGAAT 20.6293706293706 29.4513179128564 46.9338353953739      3718
             </article>
           </div>
         </div>
+        
       </main>
       
         
@@ -1722,7 +1775,7 @@ TTTGTTGGTATGGAAT 20.6293706293706 29.4513179128564 46.9338353953739      3718
     <script id="__config" type="application/json">{"base": "../../../../..", "features": ["search.suggest", "search.highlight"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}, "search": "../../../../../assets/javascripts/workers/search.fe42c31b.min.js", "version": null}</script>
     
     
-      <script src="../../../../../assets/javascripts/bundle.65ce87ac.min.js"></script>
+      <script src="../../../../../assets/javascripts/bundle.d892486b.min.js"></script>
       
     
   </body>

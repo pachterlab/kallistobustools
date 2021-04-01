@@ -14,7 +14,7 @@
       
       
       <link rel="icon" href="../../../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-7.0.7">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-7.1.0">
     
     
       
@@ -22,10 +22,14 @@
       
     
     
-      <link rel="stylesheet" href="../../../../assets/stylesheets/main.c772ddf0.min.css">
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.33e2939f.min.css">
       
         
-        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.7fa14f5b.min.css">
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.ef6f36e2.min.css">
+        
+          
+          
+          <meta name="theme-color" content="#009485">
         
       
     
@@ -55,14 +59,13 @@
   
     
     
-      
-    
     
     
     
     <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="amber">
-      
   
+    
+    <script>function __prefix(e){return new URL("../../../..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
@@ -106,9 +109,8 @@
         </div>
       </div>
     </div>
-    <div class="md-header__options">
-      
-    </div>
+    
+    
     
       <label class="md-header__button md-icon" for="__search">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
@@ -1093,8 +1095,10 @@
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>!date
 </code></pre></div>
 </td></tr></table>
+
 <div class="codehilite"><pre><span></span><code>Thu Jan 16 15:52:05 UTC 2020
 </code></pre></div>
+
 
 <h2 id="pre-processing">Pre-processing<a class="headerlink" href="#pre-processing" title="Permanent link">&para;</a></h2>
 <h3 id="download-the-data">Download the data<a class="headerlink" href="#download-the-data" title="Permanent link">&para;</a></h3>
@@ -1112,6 +1116,7 @@
 !wget https://caltech.box.com/shared/static/gqrvkqllr9d7zq4e3yfrng9kgfbejowe.gz -O nuclei_900_S1_L002_R2_001.fastq.gz
 </code></pre></div>
 </td></tr></table>
+
 <div class="codehilite"><pre><span></span><code><span class="o">--</span><span class="mi">2020</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">16</span><span class="w"> </span><span class="mi">15</span><span class="err">:</span><span class="mi">52</span><span class="err">:</span><span class="mi">07</span><span class="o">--</span><span class="w">  </span><span class="nl">https</span><span class="p">:</span><span class="o">//</span><span class="n">caltech</span><span class="p">.</span><span class="n">box</span><span class="p">.</span><span class="n">com</span><span class="o">/</span><span class="n">shared</span><span class="o">/</span><span class="k">static</span><span class="o">/</span><span class="n">j337aflq9ublmwaripkepob41mr23216</span><span class="p">.</span><span class="n">txt</span><span class="w"></span>
 <span class="n">Resolving</span><span class="w"> </span><span class="n">caltech</span><span class="p">.</span><span class="n">box</span><span class="p">.</span><span class="n">com</span><span class="w"> </span><span class="p">(</span><span class="n">caltech</span><span class="p">.</span><span class="n">box</span><span class="p">.</span><span class="n">com</span><span class="p">)...</span><span class="w"> </span><span class="mf">107.152.26.197</span><span class="p">,</span><span class="w"> </span><span class="mf">107.152.27.197</span><span class="w"></span>
 <span class="n">Connecting</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">caltech</span><span class="p">.</span><span class="n">box</span><span class="p">.</span><span class="n">com</span><span class="w"> </span><span class="p">(</span><span class="n">caltech</span><span class="p">.</span><span class="n">box</span><span class="p">.</span><span class="n">com</span><span class="p">)</span><span class="o">|</span><span class="mf">107.152.26.197</span><span class="o">|</span><span class="err">:</span><span class="mf">443.</span><span class="p">..</span><span class="w"> </span><span class="n">connected</span><span class="p">.</span><span class="w"></span>
@@ -1241,21 +1246,25 @@
 <span class="n">Wall</span><span class="w"> </span><span class="nc">time</span><span class="err">:</span><span class="w"> </span><span class="mi">4</span><span class="nf">min</span><span class="w"> </span><span class="mi">9</span><span class="n">s</span><span class="w"></span>
 </code></pre></div>
 
+
 <p>Then, we verify the integrity of the files we downloaded to make sure they were not corrupted during the download.</p>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>!md5sum -c checksums.txt --ignore-missing
 </code></pre></div>
 </td></tr></table>
+
 <div class="codehilite"><pre><span></span><code>nuclei_900_S1_L001_R1_001.fastq.gz: OK
 nuclei_900_S1_L001_R2_001.fastq.gz: OK
 nuclei_900_S1_L002_R1_001.fastq.gz: OK
 nuclei_900_S1_L002_R2_001.fastq.gz: OK
 </code></pre></div>
 
+
 <h3 id="install-kb">Install <code>kb</code><a class="headerlink" href="#install-kb" title="Permanent link">&para;</a></h3>
 <p>Install <code>kb</code> for running the <strong>kallisto | bustools</strong> workflow.</p>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>!pip install git+https://github.com/pachterlab/kb_python@count-kite
 </code></pre></div>
 </td></tr></table>
+
 <div class="codehilite"><pre><span></span><code><span class="n">Collecting</span> <span class="n">git</span><span class="o">+</span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">pachterlab</span><span class="o">/</span><span class="n">kb_python</span><span class="err">@</span><span class="n">count</span><span class="o">-</span><span class="n">kite</span>
   <span class="n">Cloning</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">pachterlab</span><span class="o">/</span><span class="n">kb_python</span> <span class="p">(</span><span class="n">to</span> <span class="n">revision</span> <span class="n">count</span><span class="o">-</span><span class="n">kite</span><span class="p">)</span> <span class="n">to</span> <span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">pip</span><span class="o">-</span><span class="n">req</span><span class="o">-</span><span class="n">build</span><span class="o">-</span><span class="mi">00</span><span class="n">ne_j5p</span>
   <span class="n">Running</span> <span class="n">command</span> <span class="n">git</span> <span class="n">clone</span> <span class="o">-</span><span class="n">q</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">pachterlab</span><span class="o">/</span><span class="n">kb_python</span> <span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">pip</span><span class="o">-</span><span class="n">req</span><span class="o">-</span><span class="n">build</span><span class="o">-</span><span class="mi">00</span><span class="n">ne_j5p</span>
@@ -1309,6 +1318,7 @@ nuclei_900_S1_L002_R2_001.fastq.gz: OK
 <span class="n">Successfully</span> <span class="n">installed</span> <span class="n">anndata</span><span class="o">-</span><span class="mf">0.6</span><span class="o">.</span><span class="mf">22.</span><span class="n">post1</span> <span class="n">kb</span><span class="o">-</span><span class="n">python</span><span class="o">-</span><span class="mf">0.24</span><span class="o">.</span><span class="mi">4</span> <span class="n">loompy</span><span class="o">-</span><span class="mf">3.0</span><span class="o">.</span><span class="mi">6</span> <span class="n">numpy</span><span class="o">-</span><span class="n">groupies</span><span class="o">-</span><span class="mi">0</span><span class="o">+</span><span class="n">unknown</span> <span class="n">tqdm</span><span class="o">-</span><span class="mf">4.41</span><span class="o">.</span><span class="mi">1</span>
 </code></pre></div>
 
+
 <h3 id="download-mouse-reference-files-and-build-the-index">Download mouse reference files and build the index<a class="headerlink" href="#download-mouse-reference-files-and-build-the-index" title="Permanent link">&para;</a></h3>
 <p>We build a mouse cDNA and intron index from the mouse genome and annotations provided by Ensembl.</p>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
@@ -1318,6 +1328,7 @@ nuclei_900_S1_L002_R2_001.fastq.gz: OK
 !wget ftp://ftp.ensembl.org/pub/release-98/gtf/mus_musculus/Mus_musculus.GRCm38.98.gtf.gz
 </code></pre></div>
 </td></tr></table>
+
 <div class="codehilite"><pre><span></span><code>--2020-01-16 15:56:57--  ftp://ftp.ensembl.org/pub/release-98/fasta/mus_musculus/dna/Mus_musculus.GRCm38.dna.primary_assembly.fa.gz
            =&gt; ‘Mus_musculus.GRCm38.dna.primary_assembly.fa.gz’
 Resolving ftp.ensembl.org (ftp.ensembl.org)... 193.62.193.8
@@ -1352,6 +1363,7 @@ CPU times: user 371 ms, sys: 76.5 ms, total: 447 ms
 Wall time: 43.2 s
 </code></pre></div>
 
+
 <p>Notice we use the <code>-n</code> option to split the index into multiple files. This helps reduce the maximum memory usage so that Google Colab doesn't run out of memory.</p>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span>
@@ -1362,6 +1374,7 @@ Wall time: 43.2 s
 Mus_musculus.GRCm38.dna.primary_assembly.fa.gz Mus_musculus.GRCm38.98.gtf.gz
 </code></pre></div>
 </td></tr></table>
+
 <div class="codehilite"><pre><span></span><code>[<span class="mi">2020</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">16</span> <span class="mi">15</span>:<span class="mi">57</span>:<span class="mi">41</span>,<span class="mi">860</span>]    <span class="nv">INFO</span> <span class="nv">Preparing</span> <span class="nv">Mus_musculus</span>.<span class="nv">GRCm38</span>.<span class="nv">dna</span>.<span class="nv">primary_assembly</span>.<span class="nv">fa</span>.<span class="nv">gz</span>, <span class="nv">Mus_musculus</span>.<span class="nv">GRCm38</span>.<span class="mi">98</span>.<span class="nv">gtf</span>.<span class="nv">gz</span>
 [<span class="mi">2020</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">16</span> <span class="mi">15</span>:<span class="mi">57</span>:<span class="mi">41</span>,<span class="mi">860</span>]    <span class="nv">INFO</span> <span class="nv">Decompressing</span> <span class="nv">Mus_musculus</span>.<span class="nv">GRCm38</span>.<span class="nv">dna</span>.<span class="nv">primary_assembly</span>.<span class="nv">fa</span>.<span class="nv">gz</span> <span class="nv">to</span> <span class="nv">tmp</span>
 [<span class="mi">2020</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">16</span> <span class="mi">15</span>:<span class="mi">58</span>:<span class="mi">08</span>,<span class="mi">556</span>]    <span class="nv">INFO</span> <span class="nv">Sorting</span> <span class="nv">tmp</span><span class="o">/</span><span class="nv">Mus_musculus</span>.<span class="nv">GRCm38</span>.<span class="nv">dna</span>.<span class="nv">primary_assembly</span>.<span class="nv">fa</span> <span class="nv">to</span> <span class="o">/</span><span class="nv">content</span><span class="o">/</span><span class="nv">tmp</span><span class="o">/</span><span class="nv">tmptuipvatl</span>
@@ -1393,6 +1406,7 @@ Mus_musculus.GRCm38.dna.primary_assembly.fa.gz Mus_musculus.GRCm38.98.gtf.gz
 <span class="nv">Wall</span> <span class="nv">time</span>: <span class="mi">2</span><span class="nv">h</span> <span class="mi">20</span><span class="nv">min</span> <span class="mi">44</span><span class="nv">s</span>
 </code></pre></div>
 
+
 <h3 id="generate-rna-count-matrices">Generate RNA count matrices<a class="headerlink" href="#generate-rna-count-matrices" title="Permanent link">&para;</a></h3>
 <p>The following command will generate an RNA count matrix of cells (rows) by genes (columns) in H5AD format, which is a binary format used to store <a href="https://anndata.readthedocs.io/en/stable/">Anndata</a> objects. Notice we are providing the index and transcript-to-gene mapping we downloaded in the previous step to the <code>-i</code> and <code>-g</code> arguments respectively, as well as the transcripts-to-capture lists to the <code>-c1</code> and <code>-c2</code> arguments. Also, these reads were generated with the 10x Genomics Chromium Single Cell v2 Chemistry, hence the <code>-x 10xv2</code> argument. To view other supported technologies, run <code>kb --list</code>. Note the <code>--workflow nucleus</code> to indicate this is a single nucleus experiment.</p>
 <p><strong>Note:</strong> If you would like a Loom file instead, replace the <code>--h5ad</code> flag with <code>--loom</code>. If you want to use the raw matrix output by <code>kb</code> instead of their H5AD or Loom converted files, omit these flags.</p>
@@ -1407,6 +1421,7 @@ nuclei_900_S1_L001_R1_001.fastq.gz nuclei_900_S1_L001_R2_001.fastq.gz \
 nuclei_900_S1_L002_R1_001.fastq.gz nuclei_900_S1_L002_R2_001.fastq.gz
 </code></pre></div>
 </td></tr></table>
+
 <div class="codehilite"><pre><span></span><code>[2020-01-16 21:26:55,274]    INFO Generating BUS file using 8 indices
 [2020-01-16 21:26:55,274]    INFO Generating BUS file to output/tmp/bus_part0 from
 [2020-01-16 21:26:55,274]    INFO         nuclei_900_S1_L001_R1_001.fastq.gz
@@ -1485,23 +1500,29 @@ CPU times: user 38.4 s, sys: 5.08 s, total: 43.5 s
 Wall time: 2h 19min 8s
 </code></pre></div>
 
+
 <h2 id="load-the-anndata-into-python">Load the anndata into python<a class="headerlink" href="#load-the-anndata-into-python" title="Permanent link">&para;</a></h2>
 <p><code>kb</code> automatically sums the counts of genes for barcodes common to both spliced and unspliced matrices as an Anndata object in H5AD format (because <code>--h5ad</code> was used).</p>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>import anndata
 </code></pre></div>
 </td></tr></table>
+
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>adata = anndata.read(&#39;output/counts_unfiltered/adata.h5ad&#39;)
 </code></pre></div>
 </td></tr></table>
+
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>adata
 </code></pre></div>
 </td></tr></table>
+
 <div class="codehilite"><pre><span></span><code><span class="n">AnnData</span> <span class="n">object</span> <span class="n">with</span> <span class="n">n_obs</span> <span class="err">×</span> <span class="n">n_vars</span> <span class="o">=</span> <span class="mi">175538</span> <span class="err">×</span> <span class="mi">55421</span>
 </code></pre></div>
+
 
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>adata.obs
 </code></pre></div>
 </td></tr></table>
+
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -1567,6 +1588,7 @@ Wall time: 2h 19min 8s
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>adata.var
 </code></pre></div>
 </td></tr></table>
+
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -1642,6 +1664,7 @@ Wall time: 2h 19min 8s
             </article>
           </div>
         </div>
+        
       </main>
       
         
@@ -1728,7 +1751,7 @@ Wall time: 2h 19min 8s
     <script id="__config" type="application/json">{"base": "../../../..", "features": ["search.suggest", "search.highlight"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}, "search": "../../../../assets/javascripts/workers/search.fe42c31b.min.js", "version": null}</script>
     
     
-      <script src="../../../../assets/javascripts/bundle.65ce87ac.min.js"></script>
+      <script src="../../../../assets/javascripts/bundle.d892486b.min.js"></script>
       
     
   </body>

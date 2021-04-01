@@ -14,7 +14,7 @@
       
       
       <link rel="icon" href="../../../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-7.0.7">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-7.1.0">
     
     
       
@@ -22,10 +22,14 @@
       
     
     
-      <link rel="stylesheet" href="../../../../assets/stylesheets/main.c772ddf0.min.css">
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.33e2939f.min.css">
       
         
-        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.7fa14f5b.min.css">
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.ef6f36e2.min.css">
+        
+          
+          
+          <meta name="theme-color" content="#009485">
         
       
     
@@ -55,14 +59,13 @@
   
     
     
-      
-    
     
     
     
     <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="amber">
-      
   
+    
+    <script>function __prefix(e){return new URL("../../../..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
@@ -106,9 +109,8 @@
         </div>
       </div>
     </div>
-    <div class="md-header__options">
-      
-    </div>
+    
+    
     
       <label class="md-header__button md-icon" for="__search">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
@@ -1303,8 +1305,10 @@
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>!date
 </code></pre></div>
 </td></tr></table>
+
 <div class="codehilite"><pre><span></span><code>Thu Dec 12 20:34:50 UTC 2019
 </code></pre></div>
+
 
 <h2 id="pre-processing">Pre-processing<a class="headerlink" href="#pre-processing" title="Permanent link">&para;</a></h2>
 <h3 id="download-the-data">Download the data<a class="headerlink" href="#download-the-data" title="Permanent link">&para;</a></h3>
@@ -1334,6 +1338,7 @@
 !wget https://caltech.box.com/shared/static/o5bwf9u2g7egi02by3e3hbvov8fgwbb3.gz -O SRR6470907_S1_L002_R2_001.fastq.gz
 </code></pre></div>
 </td></tr></table>
+
 <div class="codehilite"><pre><span></span><code><span class="o">--</span><span class="mi">2019</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">12</span><span class="w"> </span><span class="mi">16</span><span class="err">:</span><span class="mi">45</span><span class="err">:</span><span class="mi">17</span><span class="o">--</span><span class="w">  </span><span class="nl">https</span><span class="p">:</span><span class="o">//</span><span class="n">caltech</span><span class="p">.</span><span class="n">box</span><span class="p">.</span><span class="n">com</span><span class="o">/</span><span class="n">shared</span><span class="o">/</span><span class="k">static</span><span class="o">/</span><span class="mi">8</span><span class="n">w79k2ydhqigkb4cfhosc6k32zycizdq</span><span class="p">.</span><span class="n">txt</span><span class="w"></span>
 <span class="n">Resolving</span><span class="w"> </span><span class="n">caltech</span><span class="p">.</span><span class="n">box</span><span class="p">.</span><span class="n">com</span><span class="w"> </span><span class="p">(</span><span class="n">caltech</span><span class="p">.</span><span class="n">box</span><span class="p">.</span><span class="n">com</span><span class="p">)...</span><span class="w"> </span><span class="mf">103.116.4.197</span><span class="w"></span>
 <span class="n">Connecting</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">caltech</span><span class="p">.</span><span class="n">box</span><span class="p">.</span><span class="n">com</span><span class="w"> </span><span class="p">(</span><span class="n">caltech</span><span class="p">.</span><span class="n">box</span><span class="p">.</span><span class="n">com</span><span class="p">)</span><span class="o">|</span><span class="mf">103.116.4.197</span><span class="o">|</span><span class="err">:</span><span class="mf">443.</span><span class="p">..</span><span class="w"> </span><span class="n">connected</span><span class="p">.</span><span class="w"></span>
@@ -1563,10 +1568,12 @@
 <span class="n">Wall</span><span class="w"> </span><span class="nc">time</span><span class="err">:</span><span class="w"> </span><span class="mi">50</span><span class="nf">min</span><span class="w"> </span><span class="mi">28</span><span class="n">s</span><span class="w"></span>
 </code></pre></div>
 
+
 <p>Then, we verify the integrity of the files we downloaded to make sure they were not corrupted during the download.</p>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>!md5sum -c checksums.txt --ignore-missing
 </code></pre></div>
 </td></tr></table>
+
 <div class="codehilite"><pre><span></span><code>SRR6470906_S1_L001_R1_001.fastq.gz: OK
 SRR6470906_S1_L001_R2_001.fastq.gz: OK
 SRR6470906_S1_L002_R1_001.fastq.gz: OK
@@ -1577,11 +1584,13 @@ SRR6470907_S1_L002_R1_001.fastq.gz: OK
 SRR6470907_S1_L002_R2_001.fastq.gz: OK
 </code></pre></div>
 
+
 <h3 id="install-kb">Install <code>kb</code><a class="headerlink" href="#install-kb" title="Permanent link">&para;</a></h3>
 <p>Install <code>kb</code> for running the kallisto|bustools workflow.</p>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>!pip install kb-python
 </code></pre></div>
 </td></tr></table>
+
 <div class="codehilite"><pre><span></span><code><span class="n">Collecting</span> <span class="n">kb</span><span class="o">-</span><span class="n">python</span>
 <span class="err"></span><span class="p">[</span><span class="err">?</span><span class="mi">25</span><span class="n">l</span>  <span class="n">Downloading</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">files</span><span class="o">.</span><span class="n">pythonhosted</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">packages</span><span class="o">/</span><span class="mi">62</span><span class="o">/</span><span class="n">c9</span><span class="o">/</span><span class="mf">2e5</span><span class="n">b8fa2cd873a23ae1aeb128b33165d6a9387a2f56ea1fafec1d6d32477</span><span class="o">/</span><span class="n">kb_python</span><span class="o">-</span><span class="mf">0.24</span><span class="o">.</span><span class="mi">4</span><span class="o">-</span><span class="n">py3</span><span class="o">-</span><span class="n">none</span><span class="o">-</span><span class="n">any</span><span class="o">.</span><span class="n">whl</span> <span class="p">(</span><span class="mf">35.4</span><span class="n">MB</span><span class="p">)</span>
 <span class="err"></span><span class="p">[</span><span class="n">K</span>     <span class="o">|</span><span class="err">████████████████████████████████</span><span class="o">|</span> <span class="mf">35.4</span><span class="n">MB</span> <span class="mf">93.0</span><span class="n">MB</span><span class="o">/</span><span class="n">s</span> 
@@ -1618,6 +1627,7 @@ SRR6470907_S1_L002_R2_001.fastq.gz: OK
 <span class="n">Successfully</span> <span class="n">installed</span> <span class="n">anndata</span><span class="o">-</span><span class="mf">0.6</span><span class="o">.</span><span class="mf">22.</span><span class="n">post1</span> <span class="n">kb</span><span class="o">-</span><span class="n">python</span><span class="o">-</span><span class="mf">0.24</span><span class="o">.</span><span class="mi">4</span> <span class="n">loompy</span><span class="o">-</span><span class="mf">3.0</span><span class="o">.</span><span class="mi">6</span> <span class="n">numpy</span><span class="o">-</span><span class="n">groupies</span><span class="o">-</span><span class="mi">0</span><span class="o">+</span><span class="n">unknown</span>
 </code></pre></div>
 
+
 <h3 id="download-a-pre-built-human-rna-velocity-index">Download a pre-built human RNA velocity index<a class="headerlink" href="#download-a-pre-built-human-rna-velocity-index" title="Permanent link">&para;</a></h3>
 <p><code>kb</code> provides a pre-built human RNA velocity index, which is suitable for 10x data only. See this notebook to understand how the index was generated: https://github.com/linnarsson-lab/loompy/blob/master/notebooks/build_index.ipynb Because this is a velocity index, we need to provide the <code>-c1</code> and <code>-c2</code> options when downloading to indicate what we want to name our transcripts-to-capture lists. These lists contain transcript IDs that correspond to spliced and unspliced variants of genes, the sequences of which were used to generate the <code>index.idx</code> file.</p>
 <p><strong>Note:</strong> See <a href="https://colab.research.google.com/github/pachterlab/kallistobustools/blob/master/notebooks/kb_velocity_index.ipynb">this notebook</a> for a tutorial on how to build custom transcriptome or RNA velocity indices.</p>
@@ -1626,11 +1636,13 @@ SRR6470907_S1_L002_R2_001.fastq.gz: OK
 !kb ref -d linnarsson -i index.idx -g t2g.txt -c1 spliced_t2c.txt -c2 unspliced_t2c.txt
 </code></pre></div>
 </td></tr></table>
+
 <div class="codehilite"><pre><span></span><code><span class="p">[</span><span class="mi">2019</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">12</span> <span class="mi">17</span><span class="p">:</span><span class="mi">40</span><span class="p">:</span><span class="mi">34</span><span class="p">,</span><span class="mi">599</span><span class="p">]</span>    <span class="n">INFO</span> <span class="n">Downloading</span> <span class="n">files</span> <span class="k">for</span> <span class="n">linnarsson</span> <span class="n">from</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">caltech</span><span class="o">.</span><span class="n">box</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">shared</span><span class="o">/</span><span class="k">static</span><span class="o">/</span><span class="n">kyf7ai5s8y2l0vycl5yxunrappvrf0yx</span><span class="o">.</span><span class="n">gz</span> <span class="n">to</span> <span class="n">tmp</span><span class="o">/</span><span class="n">kyf7ai5s8y2l0vycl5yxunrappvrf0yx</span><span class="o">.</span><span class="n">gz</span>
 <span class="p">[</span><span class="mi">2019</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">12</span> <span class="mi">17</span><span class="p">:</span><span class="mi">45</span><span class="p">:</span><span class="mi">54</span><span class="p">,</span><span class="mi">084</span><span class="p">]</span>    <span class="n">INFO</span> <span class="n">Extracting</span> <span class="n">files</span> <span class="n">from</span> <span class="n">tmp</span><span class="o">/</span><span class="n">kyf7ai5s8y2l0vycl5yxunrappvrf0yx</span><span class="o">.</span><span class="n">gz</span>
 <span class="n">CPU</span> <span class="n">times</span><span class="p">:</span> <span class="n">user</span> <span class="mf">1.32</span> <span class="n">s</span><span class="p">,</span> <span class="n">sys</span><span class="p">:</span> <span class="mi">174</span> <span class="n">ms</span><span class="p">,</span> <span class="n">total</span><span class="p">:</span> <span class="mf">1.5</span> <span class="n">s</span>
 <span class="n">Wall</span> <span class="n">time</span><span class="p">:</span> <span class="mi">6</span><span class="nb">min</span> <span class="mi">30</span><span class="n">s</span>
 </code></pre></div>
+
 
 <h3 id="generate-rna-velocity-count-matrices">Generate RNA velocity count matrices<a class="headerlink" href="#generate-rna-velocity-count-matrices" title="Permanent link">&para;</a></h3>
 <p>The following command will generate an RNA count matrix of cells (rows) by genes (columns) in H5AD format, which is a binary format used to store <a href="https://anndata.readthedocs.io/en/stable/">Anndata</a> objects. Notice we are providing the index and transcript-to-gene mapping we downloaded in the previous step to the <code>-i</code> and <code>-g</code> arguments respectively, as well as the transcripts-to-capture lists to the <code>-c1</code> and <code>-c2</code> arguments. Also, these reads were generated with the 10x Genomics Chromium Single Cell v2 Chemistry, hence the <code>-x 10xv2</code> argument. To view other supported technologies, run <code>kb --list</code>.</p>
@@ -1658,6 +1670,7 @@ SRR6470906_S1_L002_R1_001.fastq.gz \
 SRR6470906_S1_L002_R2_001.fastq.gz
 </code></pre></div>
 </td></tr></table>
+
 <div class="codehilite"><pre><span></span><code><span class="p">[</span><span class="mi">2019</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">12</span> <span class="mi">17</span><span class="p">:</span><span class="mi">59</span><span class="p">:</span><span class="mi">33</span><span class="p">,</span><span class="mi">838</span><span class="p">]</span>    <span class="n">INFO</span> <span class="n">Generating</span> <span class="n">BUS</span> <span class="n">file</span> <span class="n">from</span>
 <span class="p">[</span><span class="mi">2019</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">12</span> <span class="mi">17</span><span class="p">:</span><span class="mi">59</span><span class="p">:</span><span class="mi">33</span><span class="p">,</span><span class="mi">838</span><span class="p">]</span>    <span class="n">INFO</span>         <span class="n">SRR6470906_S1_L001_R1_001</span><span class="o">.</span><span class="n">fastq</span><span class="o">.</span><span class="n">gz</span>
 <span class="p">[</span><span class="mi">2019</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">12</span> <span class="mi">17</span><span class="p">:</span><span class="mi">59</span><span class="p">:</span><span class="mi">33</span><span class="p">,</span><span class="mi">838</span><span class="p">]</span>    <span class="n">INFO</span>         <span class="n">SRR6470906_S1_L001_R2_001</span><span class="o">.</span><span class="n">fastq</span><span class="o">.</span><span class="n">gz</span>
@@ -1691,6 +1704,7 @@ SRR6470906_S1_L002_R2_001.fastq.gz
 <span class="n">Wall</span> <span class="n">time</span><span class="p">:</span> <span class="mi">39</span><span class="nb">min</span> <span class="mi">20</span><span class="n">s</span>
 </code></pre></div>
 
+
 <h4 id="srr6470907">SRR6470907<a class="headerlink" href="#srr6470907" title="Permanent link">&para;</a></h4>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
 <span class="normal"> 2</span>
@@ -1713,6 +1727,7 @@ SRR6470907_S1_L002_R1_001.fastq.gz \
 SRR6470907_S1_L002_R2_001.fastq.gz
 </code></pre></div>
 </td></tr></table>
+
 <div class="codehilite"><pre><span></span><code><span class="p">[</span><span class="mi">2019</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">12</span> <span class="mi">18</span><span class="p">:</span><span class="mi">38</span><span class="p">:</span><span class="mi">55</span><span class="p">,</span><span class="mi">843</span><span class="p">]</span>    <span class="n">INFO</span> <span class="n">Generating</span> <span class="n">BUS</span> <span class="n">file</span> <span class="n">from</span>
 <span class="p">[</span><span class="mi">2019</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">12</span> <span class="mi">18</span><span class="p">:</span><span class="mi">38</span><span class="p">:</span><span class="mi">55</span><span class="p">,</span><span class="mi">843</span><span class="p">]</span>    <span class="n">INFO</span>         <span class="n">SRR6470907_S1_L001_R1_001</span><span class="o">.</span><span class="n">fastq</span><span class="o">.</span><span class="n">gz</span>
 <span class="p">[</span><span class="mi">2019</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">12</span> <span class="mi">18</span><span class="p">:</span><span class="mi">38</span><span class="p">:</span><span class="mi">55</span><span class="p">,</span><span class="mi">844</span><span class="p">]</span>    <span class="n">INFO</span>         <span class="n">SRR6470907_S1_L001_R2_001</span><span class="o">.</span><span class="n">fastq</span><span class="o">.</span><span class="n">gz</span>
@@ -1746,6 +1761,7 @@ SRR6470907_S1_L002_R2_001.fastq.gz
 <span class="n">Wall</span> <span class="n">time</span><span class="p">:</span> <span class="mi">43</span><span class="nb">min</span> <span class="mi">24</span><span class="n">s</span>
 </code></pre></div>
 
+
 <h2 id="analysis">Analysis<a class="headerlink" href="#analysis" title="Permanent link">&para;</a></h2>
 <p>In this part of the tutorial, we will load the RNA count matrix generated by <code>kb count</code> into Python and cluster the cells with Louvain.</p>
 <h3 id="install-packages">Install packages<a class="headerlink" href="#install-packages" title="Permanent link">&para;</a></h3>
@@ -1753,6 +1769,7 @@ SRR6470907_S1_L002_R2_001.fastq.gz
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>!pip install scanpy loompy scvelo anndata velocyto python-igraph louvain
 </code></pre></div>
 </td></tr></table>
+
 <div class="codehilite"><pre><span></span><code><span class="n">Collecting</span> <span class="n">scanpy</span>
 <span class="err"></span><span class="p">[</span><span class="err">?</span><span class="mi">25</span><span class="n">l</span>  <span class="n">Downloading</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">files</span><span class="o">.</span><span class="n">pythonhosted</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">packages</span><span class="o">/</span><span class="n">c9</span><span class="o">/</span><span class="n">df</span><span class="o">/</span><span class="n">e0957422a85e924501afbff2f9283e02d93cefcb04aa8319ade7af68d266</span><span class="o">/</span><span class="n">scanpy</span><span class="o">-</span><span class="mf">1.4</span><span class="o">.</span><span class="mf">4.</span><span class="n">post1</span><span class="o">-</span><span class="n">py3</span><span class="o">-</span><span class="n">none</span><span class="o">-</span><span class="n">any</span><span class="o">.</span><span class="n">whl</span> <span class="p">(</span><span class="mf">1.9</span><span class="n">MB</span><span class="p">)</span>
 <span class="err"></span><span class="p">[</span><span class="n">K</span>     <span class="o">|</span><span class="err">████████████████████████████████</span><span class="o">|</span> <span class="mf">1.9</span><span class="n">MB</span> <span class="mf">2.7</span><span class="n">MB</span><span class="o">/</span><span class="n">s</span> 
@@ -1822,11 +1839,13 @@ SRR6470907_S1_L002_R2_001.fastq.gz
 <span class="n">Successfully</span> <span class="n">installed</span> <span class="n">matplotlib</span><span class="o">-</span><span class="mf">3.0</span><span class="o">.</span><span class="mi">3</span> <span class="n">numba</span><span class="o">-</span><span class="mf">0.46</span><span class="o">.</span><span class="mi">0</span> <span class="n">pysam</span><span class="o">-</span><span class="mf">0.15</span><span class="o">.</span><span class="mi">3</span> <span class="n">scanpy</span><span class="o">-</span><span class="mf">1.4</span><span class="o">.</span><span class="mf">4.</span><span class="n">post1</span> <span class="n">scvelo</span><span class="o">-</span><span class="mf">0.1</span><span class="o">.</span><span class="mi">24</span> <span class="n">velocyto</span><span class="o">-</span><span class="mf">0.17</span><span class="o">.</span><span class="mi">17</span>
 </code></pre></div>
 
+
 <p>We also install an <code>R</code> package called <code>princurve</code>, which is used to fit a principal curve.</p>
 <p><strong>Note:</strong> Google Colab does not official support <code>R</code> as of writing this tutorial, so this process may change with the official release. At the moment, we need to "hack" Google Colab to install <code>R</code> dependencies.</p>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>!Rscript -e &quot;install.packages(&#39;princurve&#39;)&quot;
 </code></pre></div>
 </td></tr></table>
+
 <div class="codehilite"><pre><span></span><code><span class="n">Installing</span> <span class="n">package</span> <span class="n">into</span> <span class="err">‘</span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">R</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">library</span><span class="err">’</span>
 <span class="p">(</span><span class="k">as</span> <span class="err">‘</span><span class="n">lib</span><span class="err">’</span> <span class="k">is</span> <span class="n">unspecified</span><span class="p">)</span>
 <span class="n">trying</span> <span class="n">URL</span> <span class="s1">&#39;https://cran.rstudio.com/src/contrib/princurve_2.1.4.tar.gz&#39;</span>
@@ -1858,6 +1877,7 @@ SRR6470907_S1_L002_R2_001.fastq.gz
 <span class="n">The</span> <span class="n">downloaded</span> <span class="n">source</span> <span class="n">packages</span> <span class="n">are</span> <span class="ow">in</span>
     <span class="err">‘</span><span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">RtmpNrrQA5</span><span class="o">/</span><span class="n">downloaded_packages</span><span class="err">’</span>
 </code></pre></div>
+
 
 <h3 id="import-packages">Import packages<a class="headerlink" href="#import-packages" title="Permanent link">&para;</a></h3>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
@@ -1907,12 +1927,14 @@ matplotlib.rcParams.update({&#39;font.size&#39;: 12})
 %config InlineBackend.figure_format = &#39;retina&#39;
 </code></pre></div>
 </td></tr></table>
+
 <h3 id="import-h5ad-formatted-anndata-matrices">Import H5AD-formatted Anndata matrices<a class="headerlink" href="#import-h5ad-formatted-anndata-matrices" title="Permanent link">&para;</a></h3>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>adata_06 = anndata.read(&#39;SRR6470906/counts_unfiltered/adata.h5ad&#39;)
 adata_07 = anndata.read(&#39;SRR6470907/counts_unfiltered/adata.h5ad&#39;)
 </code></pre></div>
 </td></tr></table>
+
 <h3 id="combine-both-matrices-into-a-single-anndata-object">Combine both matrices into a single Anndata object<a class="headerlink" href="#combine-both-matrices-into-a-single-anndata-object" title="Permanent link">&para;</a></h3>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
 <span class="normal"> 2</span>
@@ -1935,10 +1957,12 @@ adata_07.obs.index = adata_07.obs[&#39;bcs&#39;] + &#39;.&#39; + adata_07.obs[&#
 adata = adata_06.concatenate(adata_07, batch_key=&#39;batch&#39;)
 </code></pre></div>
 </td></tr></table>
+
 <p>Let's remove the <code>-0</code> prefixes from the <code>obs</code> index.</p>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>adata.obs.head()
 </code></pre></div>
 </td></tr></table>
+
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -2002,6 +2026,7 @@ adata = adata_06.concatenate(adata_07, batch_key=&#39;batch&#39;)
 adata.obs.head()
 </code></pre></div>
 </td></tr></table>
+
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -2064,6 +2089,7 @@ adata.obs.head()
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>adata.var.head()
 </code></pre></div>
 </td></tr></table>
+
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -2109,6 +2135,7 @@ adata.obs.head()
 adata.var.head()
 </code></pre></div>
 </td></tr></table>
+
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -2152,10 +2179,12 @@ adata.var.head()
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>adata
 </code></pre></div>
 </td></tr></table>
+
 <div class="codehilite"><pre><span></span><code><span class="n">AnnData</span> <span class="n">object</span> <span class="n">with</span> <span class="n">n_obs</span> <span class="err">×</span> <span class="n">n_vars</span> <span class="o">=</span> <span class="mi">374814</span> <span class="err">×</span> <span class="mi">58367</span> 
     <span class="n">obs</span><span class="p">:</span> <span class="s1">&#39;batch&#39;</span><span class="p">,</span> <span class="s1">&#39;bcs&#39;</span><span class="p">,</span> <span class="s1">&#39;run&#39;</span>
     <span class="n">layers</span><span class="p">:</span> <span class="s1">&#39;spliced&#39;</span><span class="p">,</span> <span class="s1">&#39;unspliced&#39;</span>
 </code></pre></div>
+
 
 <h3 id="select-the-right-barcodes-and-genes">Select the right barcodes and genes<a class="headerlink" href="#select-the-right-barcodes-and-genes" title="Permanent link">&para;</a></h3>
 <p>Our Anndata matrix so far contains all genes and barcodes. Here, we will take the genes and barcodes present in our matrix and the matrix published with this dataset.</p>
@@ -2165,6 +2194,7 @@ adata.var.head()
 them.var_names_make_unique()
 </code></pre></div>
 </td></tr></table>
+
 <div class="codehilite"><pre><span></span><code><span class="n">HBox</span><span class="p">(</span><span class="n">children</span><span class="o">=</span><span class="p">(</span><span class="n">IntProgress</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">bar_style</span><span class="o">=</span><span class="s1">&#39;info&#39;</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;hgForebrainGlut.loom&#39;</span><span class="p">,</span> <span class="nb">max</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="n">Progres</span><span class="err">…</span>
 
 
@@ -2176,6 +2206,7 @@ them.var_names_make_unique()
 <span class="o">...</span> <span class="n">storing</span> <span class="s1">&#39;Strand&#39;</span> <span class="k">as</span> <span class="n">categorical</span>
 </code></pre></div>
 
+
 <p>Clean it up so that we can compare it to ours</p>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span>
@@ -2186,19 +2217,23 @@ them.obs[&quot;run&quot;] = them.obs.bid.map(lambda x: &quot;06&quot; if x==&quo
 them.obs.index = them.obs.bcs.values + &quot;.&quot;+ them.obs[&quot;run&quot;]
 </code></pre></div>
 </td></tr></table>
+
 <h4 id="take-the-intersection">Take the intersection<a class="headerlink" href="#take-the-intersection" title="Permanent link">&para;</a></h4>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>final = adata[adata.obs.index.isin(them.obs.index),:]
 final = final[:,final.var.index.isin(them.var.Accession)]
 </code></pre></div>
 </td></tr></table>
+
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>final
 </code></pre></div>
 </td></tr></table>
+
 <div class="codehilite"><pre><span></span><code><span class="n">View</span> <span class="n">of</span> <span class="n">AnnData</span> <span class="n">object</span> <span class="n">with</span> <span class="n">n_obs</span> <span class="err">×</span> <span class="n">n_vars</span> <span class="o">=</span> <span class="mi">1720</span> <span class="err">×</span> <span class="mi">31029</span> 
     <span class="n">obs</span><span class="p">:</span> <span class="s1">&#39;batch&#39;</span><span class="p">,</span> <span class="s1">&#39;bcs&#39;</span><span class="p">,</span> <span class="s1">&#39;run&#39;</span>
     <span class="n">layers</span><span class="p">:</span> <span class="s1">&#39;spliced&#39;</span><span class="p">,</span> <span class="s1">&#39;unspliced&#39;</span>
 </code></pre></div>
+
 
 <p>We also add an additional <code>ambiguous</code> layer, <code>CellID</code> and <code>Clusters</code> obs and <code>Accession</code> var, all of which are required by <code>Velocyto</code>.</p>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
@@ -2210,11 +2245,13 @@ final.obs[&quot;Clusters&quot;] = final.obs.index.map(them.obs[&quot;Clusters&qu
 final.var[&quot;Accession&quot;] = final.var.index
 </code></pre></div>
 </td></tr></table>
+
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>scv.pp.show_proportions(final)
 print(final)
 </code></pre></div>
 </td></tr></table>
+
 <div class="codehilite"><pre><span></span><code><span class="n">Abundance</span> <span class="n">of</span> <span class="p">[</span><span class="s1">&#39;spliced&#39;</span><span class="p">,</span> <span class="s1">&#39;unspliced&#39;</span><span class="p">]:</span> <span class="p">[</span><span class="mf">0.61</span> <span class="mf">0.39</span><span class="p">]</span>
 <span class="n">AnnData</span> <span class="n">object</span> <span class="n">with</span> <span class="n">n_obs</span> <span class="err">×</span> <span class="n">n_vars</span> <span class="o">=</span> <span class="mi">1720</span> <span class="err">×</span> <span class="mi">31029</span> 
     <span class="n">obs</span><span class="p">:</span> <span class="s1">&#39;batch&#39;</span><span class="p">,</span> <span class="s1">&#39;bcs&#39;</span><span class="p">,</span> <span class="s1">&#39;run&#39;</span><span class="p">,</span> <span class="s1">&#39;CellID&#39;</span><span class="p">,</span> <span class="s1">&#39;Clusters&#39;</span>
@@ -2222,13 +2259,16 @@ print(final)
     <span class="n">layers</span><span class="p">:</span> <span class="s1">&#39;spliced&#39;</span><span class="p">,</span> <span class="s1">&#39;unspliced&#39;</span>
 </code></pre></div>
 
+
 <h3 id="save-the-final-anndata-as-a-loom-file">Save the final Anndata as a Loom file<a class="headerlink" href="#save-the-final-anndata-as-a-loom-file" title="Permanent link">&para;</a></h3>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>final.write_loom(&#39;final.loom&#39;)
 </code></pre></div>
 </td></tr></table>
+
 <div class="codehilite"><pre><span></span><code>CPU times: user 4.74 s, sys: 237 ms, total: 4.98 s
 Wall time: 4.98 s
 </code></pre></div>
+
 
 <h3 id="run-the-velocyto-python-pipeline">Run the <code>Velocyto</code> python pipeline<a class="headerlink" href="#run-the-velocyto-python-pipeline" title="Permanent link">&para;</a></h3>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
@@ -2330,10 +2370,12 @@ def principal_curve(X, pca=True):
     return results
 </code></pre></div>
 </td></tr></table>
+
 <h3 id="read-the-saved-loom-file-with-velocyto">Read the saved Loom file with <code>Velocyto</code><a class="headerlink" href="#read-the-saved-loom-file-with-velocyto" title="Permanent link">&para;</a></h3>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>vlm = vcy.VelocytoLoom(&quot;final.loom&quot;)
 </code></pre></div>
 </td></tr></table>
+
 <p>The rest of the notebook comes from the following notebook: https://github.com/velocyto-team/velocyto-notebooks/blob/master/python/hgForebrainGlutamatergic.ipynb</p>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span>
@@ -2350,6 +2392,7 @@ colors20 = np.vstack((plt.cm.tab20b(np.linspace(0., 1, 20))[::2], plt.cm.tab20c(
 vlm.set_clusters(clusters, cluster_colors_dict={k:colors20[v[0] % 20,:] for k,v in manual_annotation.items()})
 </code></pre></div>
 </td></tr></table>
+
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span>
 <span class="normal">3</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code># just to find the initial cell size
@@ -2357,6 +2400,7 @@ vlm.normalize(&quot;S&quot;, size=True, log=False)
 vlm.normalize(&quot;U&quot;, size=True,  log=False)
 </code></pre></div>
 </td></tr></table>
+
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span>
 <span class="normal">3</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>vlm.score_detection_levels(min_expr_counts=30, min_cells_express=20,
@@ -2364,11 +2408,13 @@ vlm.normalize(&quot;U&quot;, size=True,  log=False)
 vlm.filter_genes(by_detection_levels=True)
 </code></pre></div>
 </td></tr></table>
+
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>vlm.score_cv_vs_mean(2000, plot=True, max_expr_avg=50, winsorize=True, winsor_perc=(1,99.8), svr_gamma=0.01, min_expr_cells=50)
 vlm.filter_genes(by_cv_vs_mean=True)
 </code></pre></div>
 </td></tr></table>
+
 <p><img alt="png" src="../kb_velocity_files/kb_velocity_55_0.png" /></p>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span>
@@ -2383,6 +2429,7 @@ vlm.normalize_by_total(min_perc_U=0.5)
 vlm.adjust_totS_totU(normalize_total=True, fit_with_low_U=False, svr_C=1, svr_gamma=1e-04)
 </code></pre></div>
 </td></tr></table>
+
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span>
 <span class="normal">3</span>
@@ -2392,6 +2439,7 @@ n_comps = np.where(np.diff(np.diff(np.cumsum(vlm.pca.explained_variance_ratio_))
 vlm.pcs[:,1] *= -1 # flip for consistency with previous version
 </code></pre></div>
 </td></tr></table>
+
 <p><img alt="png" src="../kb_velocity_files/kb_velocity_57_0.png" /></p>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span>
@@ -2408,6 +2456,7 @@ VxCl = G.community_multilevel(return_levels=False, weights=&quot;weight&quot;)
 labels = np.array(VxCl.membership)
 </code></pre></div>
 </td></tr></table>
+
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span>
 <span class="normal">3</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>pc_obj = principal_curve(vlm.pcs[:,:4], False)
@@ -2415,6 +2464,7 @@ pc_obj.arclength = np.max(pc_obj.arclength) - pc_obj.arclength
 labels = np.argsort(np.argsort(aggregate_np(labels, pc_obj.arclength, func=np.median)))[labels]
 </code></pre></div>
 </td></tr></table>
+
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span>
 <span class="normal">3</span>
@@ -2426,21 +2476,25 @@ colors20 = np.vstack((plt.cm.tab20b(np.linspace(0., 1, 20))[::2], plt.cm.tab20c(
 vlm.set_clusters(clusters, cluster_colors_dict={k:colors20[v[0] % 20,:] for k,v in manual_annotation.items()})
 </code></pre></div>
 </td></tr></table>
+
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>k = 550
 vlm.knn_imputation(n_pca_dims=n_comps, k=k)
 </code></pre></div>
 </td></tr></table>
+
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>vlm.normalize_median()
 vlm.fit_gammas(maxmin_perc=[2,95], limit_gamma=True)
 </code></pre></div>
 </td></tr></table>
+
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>vlm.normalize(which=&quot;imputed&quot;, size=False, log=True)
 vlm.Pcs = np.array(vlm.pcs[:,:2], order=&quot;C&quot;)
 </code></pre></div>
 </td></tr></table>
+
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span>
 <span class="normal">3</span>
@@ -2450,21 +2504,26 @@ vlm.calculate_shift()
 vlm.extrapolate_cell_at_t(delta_t=1)
 </code></pre></div>
 </td></tr></table>
+
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>vlm.estimate_transition_prob(hidim=&quot;Sx_sz&quot;, embed=&quot;Pcs&quot;, transform=&quot;log&quot;, psc=1,
                              n_neighbors=150, knn_random=True, sampled_fraction=1)
 </code></pre></div>
 </td></tr></table>
+
 <div class="codehilite"><pre><span></span><code><span class="n">WARNING</span><span class="o">:</span><span class="n">root</span><span class="o">:</span><span class="n">Nans</span> <span class="n">encountered</span> <span class="k">in</span> <span class="n">corrcoef</span> <span class="n">and</span> <span class="n">corrected</span> <span class="n">to</span> <span class="mi">1</span><span class="n">s</span><span class="o">.</span> <span class="n">If</span> <span class="n">not</span> <span class="n">identical</span> <span class="n">cells</span> <span class="n">were</span> <span class="n">present</span> <span class="n">it</span> <span class="k">is</span> <span class="n">probably</span> <span class="n">a</span> <span class="n">small</span> <span class="n">isolated</span> <span class="n">cluster</span> <span class="n">converging</span> <span class="n">after</span> <span class="n">imputation</span><span class="o">.</span>
 <span class="n">WARNING</span><span class="o">:</span><span class="n">root</span><span class="o">:</span><span class="n">Nans</span> <span class="n">encountered</span> <span class="k">in</span> <span class="n">corrcoef_random</span> <span class="n">and</span> <span class="n">corrected</span> <span class="n">to</span> <span class="mi">1</span><span class="n">s</span><span class="o">.</span> <span class="n">If</span> <span class="n">not</span> <span class="n">identical</span> <span class="n">cells</span> <span class="n">were</span> <span class="n">present</span> <span class="n">it</span> <span class="k">is</span> <span class="n">probably</span> <span class="n">a</span> <span class="n">small</span> <span class="n">isolated</span> <span class="n">cluster</span> <span class="n">converging</span> <span class="n">after</span> <span class="n">imputation</span><span class="o">.</span>
 </code></pre></div>
 
+
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>vlm.calculate_embedding_shift(sigma_corr = 0.05, expression_scaling=False)
 </code></pre></div>
 </td></tr></table>
+
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>vlm.calculate_grid_arrows(smooth=0.9, steps=(25, 25), n_neighbors=200)
 </code></pre></div>
 </td></tr></table>
+
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
 <span class="normal"> 2</span>
 <span class="normal"> 3</span>
@@ -2486,8 +2545,10 @@ plt.axis(&quot;equal&quot;);
 #plt.savefig(&quot;kallisto_velocity_forebrain_glut.pdf&quot;)
 </code></pre></div>
 </td></tr></table>
+
 <div class="codehilite"><pre><span></span><code><span class="n">WARNING</span><span class="o">:</span><span class="n">root</span><span class="o">:</span><span class="n">The</span> <span class="n">arrow</span> <span class="n">scale</span> <span class="n">was</span> <span class="kd">set</span> <span class="n">to</span> <span class="n">be</span> <span class="s1">&#39;absolute&#39;</span> <span class="n">make</span> <span class="n">sure</span> <span class="n">you</span> <span class="n">know</span> <span class="n">how</span> <span class="n">to</span> <span class="n">properly</span> <span class="n">interpret</span> <span class="n">the</span> <span class="n">plots</span>
 </code></pre></div>
+
 
 <p><img alt="png" src="../kb_velocity_files/kb_velocity_68_1.png" /></p>
                 
@@ -2500,6 +2561,7 @@ plt.axis(&quot;equal&quot;);
             </article>
           </div>
         </div>
+        
       </main>
       
         
@@ -2586,7 +2648,7 @@ plt.axis(&quot;equal&quot;);
     <script id="__config" type="application/json">{"base": "../../../..", "features": ["search.suggest", "search.highlight"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}, "search": "../../../../assets/javascripts/workers/search.fe42c31b.min.js", "version": null}</script>
     
     
-      <script src="../../../../assets/javascripts/bundle.65ce87ac.min.js"></script>
+      <script src="../../../../assets/javascripts/bundle.d892486b.min.js"></script>
       
     
   </body>

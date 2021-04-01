@@ -8,7 +8,7 @@ repo_name: pachterlab/kallistobustools
 theme:
   name: material
   palette:
-  - scheme: default
+    scheme: default
     primary: teal
     accent: amber
   features:

@@ -14,7 +14,7 @@
       
       
       <link rel="icon" href="../../../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-7.0.7">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-7.1.0">
     
     
       
@@ -22,10 +22,14 @@
       
     
     
-      <link rel="stylesheet" href="../../../../assets/stylesheets/main.c772ddf0.min.css">
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.33e2939f.min.css">
       
         
-        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.7fa14f5b.min.css">
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.ef6f36e2.min.css">
+        
+          
+          
+          <meta name="theme-color" content="#009485">
         
       
     
@@ -55,14 +59,13 @@
   
     
     
-      
-    
     
     
     
     <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="amber">
-      
   
+    
+    <script>function __prefix(e){return new URL("../../../..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
@@ -106,9 +109,8 @@
         </div>
       </div>
     </div>
-    <div class="md-header__options">
-      
-    </div>
+    
+    
     
       <label class="md-header__button md-icon" for="__search">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
@@ -1107,8 +1109,10 @@
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>!date
 </code></pre></div>
 </td></tr></table>
+
 <div class="codehilite"><pre><span></span><code>Thu Jan 16 18:54:23 UTC 2020
 </code></pre></div>
+
 
 <h2 id="pre-processing">Pre-processing<a class="headerlink" href="#pre-processing" title="Permanent link">&para;</a></h2>
 <h3 id="download-the-data">Download the data<a class="headerlink" href="#download-the-data" title="Permanent link">&para;</a></h3>
@@ -1134,6 +1138,7 @@
 !wget https://caltech.box.com/shared/static/lpt6uzmueh1l2vx71nvsdj3pwqh8z3ak.gz -O 1k_hgmm_v3_S1_L004_R2_001.fastq.gz
 </code></pre></div>
 </td></tr></table>
+
 <div class="codehilite"><pre><span></span><code><span class="o">--</span><span class="mi">2020</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">16</span><span class="w"> </span><span class="mi">18</span><span class="err">:</span><span class="mi">54</span><span class="err">:</span><span class="mi">36</span><span class="o">--</span><span class="w">  </span><span class="nl">https</span><span class="p">:</span><span class="o">//</span><span class="n">caltech</span><span class="p">.</span><span class="n">box</span><span class="p">.</span><span class="n">com</span><span class="o">/</span><span class="n">shared</span><span class="o">/</span><span class="k">static</span><span class="o">/</span><span class="mi">8</span><span class="n">oeuskecfr9ujlufqj3b7frj74rxfzcc</span><span class="p">.</span><span class="n">txt</span><span class="w"></span>
 <span class="n">Resolving</span><span class="w"> </span><span class="n">caltech</span><span class="p">.</span><span class="n">box</span><span class="p">.</span><span class="n">com</span><span class="w"> </span><span class="p">(</span><span class="n">caltech</span><span class="p">.</span><span class="n">box</span><span class="p">.</span><span class="n">com</span><span class="p">)...</span><span class="w"> </span><span class="mf">103.116.4.197</span><span class="w"></span>
 <span class="n">Connecting</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">caltech</span><span class="p">.</span><span class="n">box</span><span class="p">.</span><span class="n">com</span><span class="w"> </span><span class="p">(</span><span class="n">caltech</span><span class="p">.</span><span class="n">box</span><span class="p">.</span><span class="n">com</span><span class="p">)</span><span class="o">|</span><span class="mf">103.116.4.197</span><span class="o">|</span><span class="err">:</span><span class="mf">443.</span><span class="p">..</span><span class="w"> </span><span class="n">connected</span><span class="p">.</span><span class="w"></span>
@@ -1363,10 +1368,12 @@
 <span class="n">Wall</span><span class="w"> </span><span class="nc">time</span><span class="err">:</span><span class="w"> </span><span class="mi">6</span><span class="nf">min</span><span class="w"> </span><span class="mi">36</span><span class="n">s</span><span class="w"></span>
 </code></pre></div>
 
+
 <p>Then, we verify the integrity of the files we downloaded to make sure they were not corrupted during the download.</p>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>!md5sum -c checksums.txt --ignore-missing
 </code></pre></div>
 </td></tr></table>
+
 <div class="codehilite"><pre><span></span><code><span class="mf">1</span><span class="n">k_hgmm_v3_S1_L001_R1_001</span><span class="mf">.</span><span class="n">fastq</span><span class="mf">.</span><span class="n">gz</span><span class="p">:</span> <span class="n">OK</span>
 <span class="mf">1</span><span class="n">k_hgmm_v3_S1_L001_R2_001</span><span class="mf">.</span><span class="n">fastq</span><span class="mf">.</span><span class="n">gz</span><span class="p">:</span> <span class="n">OK</span>
 <span class="mf">1</span><span class="n">k_hgmm_v3_S1_L002_R1_001</span><span class="mf">.</span><span class="n">fastq</span><span class="mf">.</span><span class="n">gz</span><span class="p">:</span> <span class="n">OK</span>
@@ -1377,11 +1384,13 @@
 <span class="mf">1</span><span class="n">k_hgmm_v3_S1_L004_R2_001</span><span class="mf">.</span><span class="n">fastq</span><span class="mf">.</span><span class="n">gz</span><span class="p">:</span> <span class="n">OK</span>
 </code></pre></div>
 
+
 <h3 id="install-kb">Install <code>kb</code><a class="headerlink" href="#install-kb" title="Permanent link">&para;</a></h3>
 <p>Install <code>kb</code> for running the kallisto|bustools workflow.</p>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>!pip install git+https://github.com/pachterlab/kb_python@count-kite
 </code></pre></div>
 </td></tr></table>
+
 <div class="codehilite"><pre><span></span><code><span class="n">Collecting</span> <span class="n">git</span><span class="o">+</span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">pachterlab</span><span class="o">/</span><span class="n">kb_python</span><span class="err">@</span><span class="n">count</span><span class="o">-</span><span class="n">kite</span>
   <span class="n">Cloning</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">pachterlab</span><span class="o">/</span><span class="n">kb_python</span> <span class="p">(</span><span class="n">to</span> <span class="n">revision</span> <span class="n">count</span><span class="o">-</span><span class="n">kite</span><span class="p">)</span> <span class="n">to</span> <span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">pip</span><span class="o">-</span><span class="n">req</span><span class="o">-</span><span class="n">build</span><span class="o">-</span><span class="n">a0qz7ipg</span>
   <span class="n">Running</span> <span class="n">command</span> <span class="n">git</span> <span class="n">clone</span> <span class="o">-</span><span class="n">q</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">pachterlab</span><span class="o">/</span><span class="n">kb_python</span> <span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">pip</span><span class="o">-</span><span class="n">req</span><span class="o">-</span><span class="n">build</span><span class="o">-</span><span class="n">a0qz7ipg</span>
@@ -1435,6 +1444,7 @@
 <span class="n">Successfully</span> <span class="n">installed</span> <span class="n">anndata</span><span class="o">-</span><span class="mf">0.6</span><span class="o">.</span><span class="mf">22.</span><span class="n">post1</span> <span class="n">kb</span><span class="o">-</span><span class="n">python</span><span class="o">-</span><span class="mf">0.24</span><span class="o">.</span><span class="mi">4</span> <span class="n">loompy</span><span class="o">-</span><span class="mf">3.0</span><span class="o">.</span><span class="mi">6</span> <span class="n">numpy</span><span class="o">-</span><span class="n">groupies</span><span class="o">-</span><span class="mi">0</span><span class="o">+</span><span class="n">unknown</span> <span class="n">tqdm</span><span class="o">-</span><span class="mf">4.41</span><span class="o">.</span><span class="mi">1</span>
 </code></pre></div>
 
+
 <h3 id="download-human-and-mouse-reference-files">Download human and mouse reference files<a class="headerlink" href="#download-human-and-mouse-reference-files" title="Permanent link">&para;</a></h3>
 <p>We will download the following files from Ensembl:
 * Mouse genome (FASTA)
@@ -1452,6 +1462,7 @@
 !wget ftp://ftp.ensembl.org/pub/release-98/gtf/homo_sapiens/Homo_sapiens.GRCh38.98.gtf.gz
 </code></pre></div>
 </td></tr></table>
+
 <div class="codehilite"><pre><span></span><code>--2020-01-16 19:02:01--  ftp://ftp.ensembl.org/pub/release-98/fasta/mus_musculus/dna/Mus_musculus.GRCm38.dna.primary_assembly.fa.gz
            =&gt; ‘Mus_musculus.GRCm38.dna.primary_assembly.fa.gz’
 Resolving ftp.ensembl.org (ftp.ensembl.org)... 193.62.193.8
@@ -1516,6 +1527,7 @@ CPU times: user 3.91 s, sys: 853 ms, total: 4.76 s
 Wall time: 6min 56s
 </code></pre></div>
 
+
 <h3 id="build-the-mixed-species-index">Build the mixed species index<a class="headerlink" href="#build-the-mixed-species-index" title="Permanent link">&para;</a></h3>
 <p><code>kb</code> can build a single transcriptome index with multiple references. The FASTAs and GTFs must be passed in as a comma-separated list.</p>
 <p><strong>Note</strong>: Because Google Colab offers limited RAM, we split the index into 4 parts.</p>
@@ -1528,6 +1540,7 @@ Mus_musculus.GRCm38.dna.primary_assembly.fa.gz,Homo_sapiens.GRCh38.dna.primary_a
 Mus_musculus.GRCm38.98.gtf.gz,Homo_sapiens.GRCh38.98.gtf.gz
 </code></pre></div>
 </td></tr></table>
+
 <div class="codehilite"><pre><span></span><code>[<span class="mi">2020</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">16</span> <span class="mi">19</span>:<span class="mi">09</span>:<span class="mi">00</span>,<span class="mi">016</span>]    <span class="nv">INFO</span> <span class="nv">Preparing</span> <span class="nv">Mus_musculus</span>.<span class="nv">GRCm38</span>.<span class="nv">dna</span>.<span class="nv">primary_assembly</span>.<span class="nv">fa</span>.<span class="nv">gz</span>, <span class="nv">Mus_musculus</span>.<span class="nv">GRCm38</span>.<span class="mi">98</span>.<span class="nv">gtf</span>.<span class="nv">gz</span>
 [<span class="mi">2020</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">16</span> <span class="mi">19</span>:<span class="mi">09</span>:<span class="mi">00</span>,<span class="mi">016</span>]    <span class="nv">INFO</span> <span class="nv">Decompressing</span> <span class="nv">Mus_musculus</span>.<span class="nv">GRCm38</span>.<span class="mi">98</span>.<span class="nv">gtf</span>.<span class="nv">gz</span> <span class="nv">to</span> <span class="nv">tmp</span>
 [<span class="mi">2020</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">16</span> <span class="mi">19</span>:<span class="mi">09</span>:<span class="mi">03</span>,<span class="mi">821</span>]    <span class="nv">INFO</span> <span class="nv">Creating</span> <span class="nv">transcript</span><span class="o">-</span><span class="nv">to</span><span class="o">-</span><span class="nv">gene</span> <span class="nv">mapping</span> <span class="nv">at</span> <span class="o">/</span><span class="nv">content</span><span class="o">/</span><span class="nv">tmp</span><span class="o">/</span><span class="nv">tmp_54cxwsm</span>
@@ -1557,6 +1570,7 @@ Mus_musculus.GRCm38.98.gtf.gz,Homo_sapiens.GRCh38.98.gtf.gz
 <span class="nv">Wall</span> <span class="nv">time</span>: <span class="mi">48</span><span class="nv">min</span> <span class="mi">39</span><span class="nv">s</span>
 </code></pre></div>
 
+
 <h3 id="generate-an-rna-count-matrix-in-h5ad-format">Generate an RNA count matrix in H5AD format<a class="headerlink" href="#generate-an-rna-count-matrix-in-h5ad-format" title="Permanent link">&para;</a></h3>
 <p>The following command will generate an RNA count matrix of cells (rows) by genes (columns) in H5AD format, which is a binary format used to store <a href="https://anndata.readthedocs.io/en/stable/">Anndata</a> objects. Notice we are providing the index and transcript-to-gene mapping we downloaded in the previous step to the <code>-i</code> and <code>-g</code> arguments respectively. Also, these reads were generated with the 10x Genomics Chromium Single Cell v2 Chemistry, hence the <code>-x 10xv2</code> argument. To view other supported technologies, run <code>kb --list</code>.</p>
 <p><strong>Note:</strong> If you would like a Loom file instead, replace the <code>--h5ad</code> flag with <code>--loom</code>. If you want to use the raw matrix output by <code>kb</code> instead of their H5AD or Loom converted files, omit these flags.</p>
@@ -1575,6 +1589,7 @@ Mus_musculus.GRCm38.98.gtf.gz,Homo_sapiens.GRCh38.98.gtf.gz
 1k_hgmm_v3_S1_L004_R1_001.fastq.gz 1k_hgmm_v3_S1_L004_R2_001.fastq.gz
 </code></pre></div>
 </td></tr></table>
+
 <div class="codehilite"><pre><span></span><code>[2020-01-16 19:57:50,686]    INFO Generating BUS file using 4 indices
 [2020-01-16 19:57:50,686]    INFO Generating BUS file to output/tmp/bus_part0 from
 [2020-01-16 19:57:50,686]    INFO         1k_hgmm_v3_S1_L001_R1_001.fastq.gz
@@ -1634,6 +1649,7 @@ CPU times: user 28.2 s, sys: 3.99 s, total: 32.1 s
 Wall time: 1h 27min 16s
 </code></pre></div>
 
+
 <h2 id="analysis">Analysis<a class="headerlink" href="#analysis" title="Permanent link">&para;</a></h2>
 <p>See <a href="https://github.com/pachterlab/MBGBLHGP_2019/blob/master/Supplementary_Figure_6_7/analysis/hgmm10k_v3_single_gene.Rmd">this notebook</a> for how to process and load count matrices for a species mixing experiment.</p>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>
@@ -1649,6 +1665,7 @@ Wall time: 1h 27min 16s
             </article>
           </div>
         </div>
+        
       </main>
       
         
@@ -1735,7 +1752,7 @@ Wall time: 1h 27min 16s
     <script id="__config" type="application/json">{"base": "../../../..", "features": ["search.suggest", "search.highlight"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}, "search": "../../../../assets/javascripts/workers/search.fe42c31b.min.js", "version": null}</script>
     
     
-      <script src="../../../../assets/javascripts/bundle.65ce87ac.min.js"></script>
+      <script src="../../../../assets/javascripts/bundle.d892486b.min.js"></script>
       
     
   </body>

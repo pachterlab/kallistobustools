@@ -14,7 +14,7 @@
       
       
       <link rel="icon" href="../../../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-7.0.7">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-7.1.0">
     
     
       
@@ -22,10 +22,14 @@
       
     
     
-      <link rel="stylesheet" href="../../../../assets/stylesheets/main.c772ddf0.min.css">
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.33e2939f.min.css">
       
         
-        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.7fa14f5b.min.css">
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.ef6f36e2.min.css">
+        
+          
+          
+          <meta name="theme-color" content="#009485">
         
       
     
@@ -55,14 +59,13 @@
   
     
     
-      
-    
     
     
     
     <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="amber">
-      
   
+    
+    <script>function __prefix(e){return new URL("../../../..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
@@ -106,9 +109,8 @@
         </div>
       </div>
     </div>
-    <div class="md-header__options">
-      
-    </div>
+    
+    
     
       <label class="md-header__button md-icon" for="__search">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
@@ -1455,6 +1457,7 @@ plt.rcParams.update({&#39;font.size&#39;: fsize})
 %config InlineBackend.figure_format = &#39;retina&#39;
 </code></pre></div>
 </td></tr></table>
+
 <h2 id="motivation">Motivation<a class="headerlink" href="#motivation" title="Permanent link">&para;</a></h2>
 <p>The goal of single-cell transcriptomics is to measure the transcriptional states of large numbers of cells simultaneously. The input to a scRNA-seq method is a collection of cells, possibly from intact tissue, or in dissociated form. Formally, the desired output is a <em>transcripts x cells</em> or <em>genes x cells</em>  matrix that describes, for each cell, the abundance of its constituent transcripts or genes. More generally, single-cell genomics methods seek to measure not just transcriptional state, but other modalities in cells, e.g. protein abundances, epigenetic states, cellular morphology, etc.</p>
 <p>The ideal single-cell technology should thus:</p>
@@ -1521,6 +1524,7 @@ ax.set_ylabel(&quot;Cumulative number of studies&quot;)
 plt.show()
 </code></pre></div>
 </td></tr></table>
+
 <p><img alt="png" src="../scRNA-seq_intro_files/scRNA-seq_intro_9_0.png" /></p>
 <p>There are many different scRNA-seq technologies in use and under development, but broadly they fall into a few categories
 -  well-based methods (e.g. Fluidigm SMARTer C1, Smart-seq2)
@@ -1710,9 +1714,11 @@ fig = (
 fig
 </code></pre></div>
 </td></tr></table>
+
 <p><img alt="png" src="../scRNA-seq_intro_files/scRNA-seq_intro_11_0.png" /></p>
 <div class="codehilite"><pre><span></span><code>&lt;ggplot: (-9223363288449985206)&gt;
 </code></pre></div>
+
 
 <p>We therefore restrict this exposition to droplet-based technologies.</p>
 <h2 id="droplet-based-methods">Droplet-based methods<a class="headerlink" href="#droplet-based-methods" title="Permanent link">&para;</a></h2>
@@ -1748,6 +1754,7 @@ from IPython.display import HTML
 HTML(&#39;&lt;iframe width=&quot;882&quot; height=&quot;496&quot; src=&quot;https://www.youtube.com/embed/ARozvI4AbS8&quot; frameborder=&quot;0&quot; allow=&quot;accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture&quot; allowfullscreen&gt;&lt;/iframe&gt;&#39;)
 </code></pre></div>
 </td></tr></table>
+
 <iframe width="882" height="496" src="https://www.youtube.com/embed/ARozvI4AbS8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 <h2 id="statistics-of-beads-cells-in-droplets">Statistics of beads &amp; cells in droplets<a class="headerlink" href="#statistics-of-beads-cells-in-droplets" title="Permanent link">&para;</a></h2>
@@ -1790,6 +1797,7 @@ ax.legend()
 plt.show()
 </code></pre></div>
 </td></tr></table>
+
 <p><img alt="png" src="../scRNA-seq_intro_files/scRNA-seq_intro_21_0.png" /></p>
 <p>With $n=10$ and $p=0.02$, it's quite probable that the droplet is empty, and while possible that it contains one cell, unlikely that it has 2 or more. This is a good regime for a single-cell experiment; we will see that it is problematic if two cells are captured in a single droplet. Empty droplets are not problematic in the sense that they will not lead to data, and can therefore be ignored.</p>
 <h3 id="the-poisson-distribution">The Poisson distribution<a class="headerlink" href="#the-poisson-distribution" title="Permanent link">&para;</a></h3>
@@ -1863,6 +1871,7 @@ ax[1].legend()
 plt.show()
 </code></pre></div>
 </td></tr></table>
+
 <p><img alt="png" src="../scRNA-seq_intro_files/scRNA-seq_intro_24_0.png" /></p>
 <p>We therefore posit that </p>
 <p>$$ \mathbb{P}({\mbox Droplet\ contains\ k\ cells}) = \frac{e^{-\lambda}\lambda^k}{k!}$$ and<br />
@@ -1899,6 +1908,7 @@ ax.set_ylabel(&quot;Bead overload rate&quot;)
 plt.show()
 </code></pre></div>
 </td></tr></table>
+
 <p><img alt="png" src="../scRNA-seq_intro_files/scRNA-seq_intro_28_0.png" /></p>
 <h3 id="sub-poisson-loading">Sub-Poisson loading<a class="headerlink" href="#sub-poisson-loading" title="Permanent link">&para;</a></h3>
 <p>In order to circumvent the limit posed by a Poisson process for beads in droplets, the inDrops method uses tightly packed hydrogel beads that can be injected into droplets without loss. This approach, which leads to "<a href="https://liorpachter.wordpress.com/tag/hydrogel-beads/">sub-Poisson loading</a>" is also used by 10X Genomics, and allows for increased capture rate.</p>
@@ -1908,6 +1918,7 @@ plt.show()
 HTML(&#39;&lt;iframe width=&quot;688&quot; height=&quot;387&quot; src=&quot;https://www.youtube.com/embed/usK71SG30t0?autoplay=1&amp;loop=1&amp;playlist=usK71SG30t0&quot; frameborder=&quot;0&quot; allow=&quot;accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture&quot; allowfullscreen&gt;&lt;/iframe&gt;&#39;)
 </code></pre></div>
 </td></tr></table>
+
 <iframe width="688" height="387" src="https://www.youtube.com/embed/usK71SG30t0?autoplay=1&loop=1&playlist=usK71SG30t0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 <p>The next video shows sub-Poisson loading with hydrogel beads. In this case the flow rate has been set so that exactly two beads are situated in each droplet.</p>
@@ -1916,6 +1927,7 @@ HTML(&#39;&lt;iframe width=&quot;688&quot; height=&quot;387&quot; src=&quot;http
 HTML(&#39;&lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;https://www.youtube.com/embed/2q1Lt9DWmRQ?autoplay=1&amp;loop=1&amp;playlist=2q1Lt9DWmRQ&quot; frameborder=&quot;0&quot; allow=&quot;accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture&quot; allowfullscreen&gt;&lt;/iframe&gt;&#39;)
 </code></pre></div>
 </td></tr></table>
+
 <iframe width="560" height="315" src="https://www.youtube.com/embed/2q1Lt9DWmRQ?autoplay=1&loop=1&playlist=2q1Lt9DWmRQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 <p>The following shows the types of beads used for different droplet-based scRNA-seq methods, and associated properties:</p>
@@ -2006,6 +2018,7 @@ ax.set_ylabel(&quot;Barcode collision rate&quot;)
 plt.show()
 </code></pre></div>
 </td></tr></table>
+
 <p><img alt="png" src="../scRNA-seq_intro_files/scRNA-seq_intro_35_0.png" /></p>
 <h3 id="barcode-diversity-and-length">Barcode diversity and length<a class="headerlink" href="#barcode-diversity-and-length" title="Permanent link">&para;</a></h3>
 <p>A 1% barcode collision rate requires a barcode diversity of ~1%, i.e. the number of barcodes should be 100 times the number of cells. The number of barcodes from a sequence of length $L$ is $4^L$. Therefore, to assay $n$ cells, the barcode sequence must be of length at least $log_4n+3\frac{1}{3}$. This is a minimum and does not account for the need to be robust to sequencing errors.</p>
@@ -2025,6 +2038,7 @@ plt.show()
 !tar -xvf hgmm_1k_v2_filtered_feature_bc_matrix.tar.gz
 </code></pre></div>
 </td></tr></table>
+
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
 <span class="normal"> 2</span>
 <span class="normal"> 3</span>
@@ -2078,6 +2092,7 @@ ax.yaxis.set_major_formatter(mpl.ticker.StrMethodFormatter(&#39;{x:,.0f}&#39;))
 plt.show()
 </code></pre></div>
 </td></tr></table>
+
 <p><img alt="png" src="../scRNA-seq_intro_files/scRNA-seq_intro_40_0.png" /></p>
 <p>THe plot shows that there are only 7 doublets out of 5,000 cells in this experiment. This is an unusually small number and atypical of most experiments, where doublet rates are between 5%--15% (see <a href="https://www.biorxiv.org/content/10.1101/364810v1.abstract">DePasquale et al. 2018</a>);  perhaps the 5k human mouse PBMC dataset data is articularly "clean" as it is an advertisement distributed by 10X Genomics.</p>
 <h4 id="blooms-correction">Bloom's correction<a class="headerlink" href="#blooms-correction" title="Permanent link">&para;</a></h4>
@@ -2140,6 +2155,7 @@ ax.tick_params(axis=&#39;x&#39;, rotation=45)
 plt.show()
 </code></pre></div>
 </td></tr></table>
+
 <p><img alt="png" src="../scRNA-seq_intro_files/scRNA-seq_intro_47_0.png" /></p>
 <p>In fact, the rate of growth of single-cell RNA-seq <em>tools</em> is similar to that of single-cell RNA-seq <em>studies</em>:</p>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
@@ -2213,6 +2229,7 @@ ax.legend()
 plt.show()
 </code></pre></div>
 </td></tr></table>
+
 <p><img alt="png" src="../scRNA-seq_intro_files/scRNA-seq_intro_49_0.png" /></p>
 <p>Next step: to learn how to analyze single-cell RNA-seq data, visit the <a href="https://www.kallistobus.tools/tutorials">kallistobus.tools site tutorials</a> site and explore the "Introduction 1: pre-processing and quality control" notebook in <a href="https://colab.research.google.com/github/pachterlab/kallistobustools/blob/master/notebooks/kb_intro_1_python.ipynb">Python</a> or <a href="https://colab.research.google.com/github/pachterlab/kallistobustools/blob/master/notebooks/kb_intro_1_R.ipynb">R</a>.</p>
 <p><strong>Feedback</strong>: please report any issues, or submit pull requests for improvements, in the <a href="https://github.com/pachterlab/kallistobustools/blob/master/notebooks/Introduction_single_cell_RNA_seq.ipynb">Github repository where this notebook is located</a>.</p>
@@ -2226,6 +2243,7 @@ plt.show()
             </article>
           </div>
         </div>
+        
       </main>
       
         
@@ -2312,7 +2330,7 @@ plt.show()
     <script id="__config" type="application/json">{"base": "../../../..", "features": ["search.suggest", "search.highlight"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}, "search": "../../../../assets/javascripts/workers/search.fe42c31b.min.js", "version": null}</script>
     
     
-      <script src="../../../../assets/javascripts/bundle.65ce87ac.min.js"></script>
+      <script src="../../../../assets/javascripts/bundle.d892486b.min.js"></script>
       
     
   </body>

@@ -14,7 +14,7 @@
       
       
       <link rel="icon" href="../../../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-7.0.7">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-7.1.0">
     
     
       
@@ -22,10 +22,14 @@
       
     
     
-      <link rel="stylesheet" href="../../../../assets/stylesheets/main.c772ddf0.min.css">
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.33e2939f.min.css">
       
         
-        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.7fa14f5b.min.css">
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.ef6f36e2.min.css">
+        
+          
+          
+          <meta name="theme-color" content="#009485">
         
       
     
@@ -55,14 +59,13 @@
   
     
     
-      
-    
     
     
     
     <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="amber">
-      
   
+    
+    <script>function __prefix(e){return new URL("../../../..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
@@ -106,9 +109,8 @@
         </div>
       </div>
     </div>
-    <div class="md-header__options">
-      
-    </div>
+    
+    
     
       <label class="md-header__button md-icon" for="__search">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
@@ -1264,7 +1266,7 @@
                   </a>
                 
                 
-                <p><a href="https://colab.research.google.com/github/pachterlab/kallistobustools/blob/master/notebooks/kb_intro_2_R.ipynb" target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a></p>
+                <p><a href="https://colab.research.google.com/github/pachterlab/kallistobustools/blob/master/tutorials/docs/tutorials/kb_getting_started/R/kb_intro_2_R.ipynb" target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a></p>
 <h1 id="introduction-to-single-cell-rna-seq-ii-getting-started-with-analysis">Introduction to single-cell RNA-seq II: getting started with analysis<a class="headerlink" href="#introduction-to-single-cell-rna-seq-ii-getting-started-with-analysis" title="Permanent link">&para;</a></h1>
 <p>This notebook demonstrates pre-processing and basic analysis of the <a href="https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE126783">mouse retinal cells GSE126783</a> dataset from <a href="https://doi.org/10.1016/j.immuni.2019.02.007">Koren et al., 2019</a>. Following pre-processing using kallisto and bustools and basic QC, the notebook demonstrates some initial analysis. The approximate running time of the notebook is 12 minutes.</p>
 <p>The notebook was written by Kyung Hoi (Joseph) Min, Lambda Lu, A. Sina Booeshaghi and Lior Pachter. If you use the methods in this notebook for your analysis please cite the following publications which describe the tools used in the notebook, as well as specific methods they run (these are cited inline in the notebook):</p>
@@ -1279,6 +1281,7 @@
 <span class="n">start_time</span> <span class="o">&lt;-</span> <span class="nf">Sys.time</span><span class="p">()</span>
 </code></pre></div>
 </td></tr></table>
+
 <h3 id="install-r-packages">Install R packages<a class="headerlink" href="#install-r-packages" title="Permanent link">&para;</a></h3>
 <p>There are several packages in R built for scRNA-seq data analysis. Here we use Seurat.</p>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
@@ -1294,65 +1297,39 @@
 <span class="p">})</span>
 </code></pre></div>
 </td></tr></table>
+
 <div class="codehilite"><pre><span></span><code><span class="n">Installing</span> <span class="n">package</span> <span class="n">into</span> <span class="err">‘</span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">R</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">library</span><span class="err">’</span>
 <span class="p">(</span><span class="k">as</span> <span class="err">‘</span><span class="n">lib</span><span class="err">’</span> <span class="k">is</span> <span class="n">unspecified</span><span class="p">)</span>
 
-<span class="n">Bioconductor</span> <span class="n">version</span> <span class="mf">3.10</span> <span class="p">(</span><span class="n">BiocManager</span> <span class="mf">1.30</span><span class="o">.</span><span class="mi">10</span><span class="p">),</span> <span class="n">R</span> <span class="mf">3.6</span><span class="o">.</span><span class="mi">2</span> <span class="p">(</span><span class="mi">2019</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">12</span><span class="p">)</span>
+<span class="s1">&#39;getOption(&quot;repos&quot;)&#39;</span> <span class="n">replaces</span> <span class="n">Bioconductor</span> <span class="n">standard</span> <span class="n">repositories</span><span class="p">,</span> <span class="n">see</span>
+<span class="s1">&#39;?repositories&#39;</span> <span class="k">for</span> <span class="n">details</span>
+
+<span class="n">replacement</span> <span class="n">repositories</span><span class="p">:</span>
+    <span class="n">CRAN</span><span class="p">:</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">cran</span><span class="o">.</span><span class="n">rstudio</span><span class="o">.</span><span class="n">com</span>
+
+
+<span class="n">Bioconductor</span> <span class="n">version</span> <span class="mf">3.12</span> <span class="p">(</span><span class="n">BiocManager</span> <span class="mf">1.30</span><span class="o">.</span><span class="mi">12</span><span class="p">),</span> <span class="n">R</span> <span class="mf">4.0</span><span class="o">.</span><span class="mi">4</span> <span class="p">(</span><span class="mi">2021</span><span class="o">-</span><span class="mi">02</span><span class="o">-</span><span class="mi">15</span><span class="p">)</span>
 
 <span class="n">Installing</span> <span class="n">package</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="s1">&#39;BiocVersion&#39;</span><span class="p">,</span> <span class="s1">&#39;multtest&#39;</span><span class="p">,</span> <span class="s1">&#39;DropletUtils&#39;</span>
 
-<span class="n">also</span> <span class="n">installing</span> <span class="n">the</span> <span class="n">dependencies</span> <span class="err">‘</span><span class="n">zlibbioc</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">bitops</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">XVector</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">RCurl</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">GenomeInfoDbData</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">formatR</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">GenomicRanges</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">GenomeInfoDb</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">lambda</span><span class="o">.</span><span class="n">r</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">futile</span><span class="o">.</span><span class="n">options</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">matrixStats</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">SummarizedExperiment</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">futile</span><span class="o">.</span><span class="n">logger</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">snow</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">limma</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">locfit</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">DelayedArray</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">IRanges</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">R</span><span class="o">.</span><span class="n">oo</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">R</span><span class="o">.</span><span class="n">methodsS3</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">sitmo</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">BiocGenerics</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">Biobase</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">SingleCellExperiment</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">S4Vectors</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">BiocParallel</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">edgeR</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">rhdf5</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">HDF5Array</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">R</span><span class="o">.</span><span class="n">utils</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">dqrng</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">beachmat</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">Rhdf5lib</span><span class="err">’</span>
+<span class="n">also</span> <span class="n">installing</span> <span class="n">the</span> <span class="n">dependencies</span> <span class="err">‘</span><span class="n">zlibbioc</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">bitops</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">formatR</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">matrixStats</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">XVector</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">RCurl</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">GenomeInfoDbData</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">lambda</span><span class="o">.</span><span class="n">r</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">futile</span><span class="o">.</span><span class="n">options</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">sparseMatrixStats</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">MatrixGenerics</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">GenomicRanges</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">IRanges</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">GenomeInfoDb</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">futile</span><span class="o">.</span><span class="n">logger</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">snow</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">rhdf5filters</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">limma</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">locfit</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">R</span><span class="o">.</span><span class="n">oo</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">R</span><span class="o">.</span><span class="n">methodsS3</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">sitmo</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">DelayedMatrixStats</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">BiocGenerics</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">Biobase</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">SingleCellExperiment</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">S4Vectors</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">SummarizedExperiment</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">BiocParallel</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">DelayedArray</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">HDF5Array</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">rhdf5</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">edgeR</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">R</span><span class="o">.</span><span class="n">utils</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">dqrng</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">beachmat</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">scuttle</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">Rhdf5lib</span><span class="err">’</span>
 
 
-<span class="n">Old</span> <span class="n">packages</span><span class="p">:</span> <span class="s1">&#39;curl&#39;</span><span class="p">,</span> <span class="s1">&#39;DT&#39;</span><span class="p">,</span> <span class="s1">&#39;farver&#39;</span><span class="p">,</span> <span class="s1">&#39;jsonlite&#39;</span><span class="p">,</span> <span class="s1">&#39;knitr&#39;</span><span class="p">,</span> <span class="s1">&#39;mime&#39;</span><span class="p">,</span> <span class="s1">&#39;processx&#39;</span><span class="p">,</span>
-  <span class="s1">&#39;rprojroot&#39;</span><span class="p">,</span> <span class="s1">&#39;rstudioapi&#39;</span><span class="p">,</span> <span class="s1">&#39;svglite&#39;</span><span class="p">,</span> <span class="s1">&#39;xfun&#39;</span><span class="p">,</span> <span class="s1">&#39;xtable&#39;</span><span class="p">,</span> <span class="s1">&#39;nlme&#39;</span>
-
-<span class="n">Installing</span> <span class="n">packages</span> <span class="n">into</span> <span class="err">‘</span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">R</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">library</span><span class="err">’</span>
-<span class="p">(</span><span class="k">as</span> <span class="err">‘</span><span class="n">lib</span><span class="err">’</span> <span class="k">is</span> <span class="n">unspecified</span><span class="p">)</span>
-
-<span class="n">also</span> <span class="n">installing</span> <span class="n">the</span> <span class="n">dependencies</span> <span class="err">‘</span><span class="n">mnormt</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">numDeriv</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">TH</span><span class="o">.</span><span class="n">data</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">sandwich</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">lsei</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">bibtex</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">gbRd</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">sn</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">mvtnorm</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">plotrix</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">multcomp</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">gtools</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">gdata</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">caTools</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">npsurv</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">globals</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">listenv</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">zoo</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">Rdpack</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">TFisher</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">mutoss</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">hexbin</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">data</span><span class="o">.</span><span class="n">table</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">rappdirs</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">gplots</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">gridExtra</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">RcppEigen</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">FNN</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">RSpectra</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">RcppParallel</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">RcppProgress</span><span class="err">’</span>
-
-
-<span class="n">Downloading</span> <span class="n">GitHub</span> <span class="n">repo</span> <span class="n">satijalab</span><span class="o">/</span><span class="n">Seurat</span><span class="err">@</span><span class="k">master</span>
-
-
-
-<span class="n">curl</span>     <span class="p">(</span><span class="mf">4.2</span>   <span class="o">-&gt;</span> <span class="mf">4.3</span>  <span class="p">)</span> <span class="p">[</span><span class="n">CRAN</span><span class="p">]</span>
-<span class="n">jsonlite</span> <span class="p">(</span><span class="mf">1.6</span>   <span class="o">-&gt;</span> <span class="mf">1.6</span><span class="o">.</span><span class="mi">1</span><span class="p">)</span> <span class="p">[</span><span class="n">CRAN</span><span class="p">]</span>
-<span class="n">mime</span>     <span class="p">(</span><span class="mf">0.8</span>   <span class="o">-&gt;</span> <span class="mf">0.9</span>  <span class="p">)</span> <span class="p">[</span><span class="n">CRAN</span><span class="p">]</span>
-<span class="n">farver</span>   <span class="p">(</span><span class="mf">2.0</span><span class="o">.</span><span class="mi">1</span> <span class="o">-&gt;</span> <span class="mf">2.0</span><span class="o">.</span><span class="mi">3</span><span class="p">)</span> <span class="p">[</span><span class="n">CRAN</span><span class="p">]</span>
-<span class="n">xtable</span>   <span class="p">(</span><span class="mf">1.8</span><span class="o">-</span><span class="mi">3</span> <span class="o">-&gt;</span> <span class="mf">1.8</span><span class="o">-</span><span class="mi">4</span><span class="p">)</span> <span class="p">[</span><span class="n">CRAN</span><span class="p">]</span>
-
-
-<span class="n">Skipping</span> <span class="mi">3</span> <span class="n">packages</span> <span class="n">ahead</span> <span class="n">of</span> <span class="n">CRAN</span><span class="p">:</span> <span class="n">multtest</span><span class="p">,</span> <span class="n">BiocGenerics</span><span class="p">,</span> <span class="n">Biobase</span>
-
-<span class="n">Installing</span> <span class="mi">5</span> <span class="n">packages</span><span class="p">:</span> <span class="n">curl</span><span class="p">,</span> <span class="n">jsonlite</span><span class="p">,</span> <span class="n">mime</span><span class="p">,</span> <span class="n">farver</span><span class="p">,</span> <span class="n">xtable</span>
+<span class="n">Old</span> <span class="n">packages</span><span class="p">:</span> <span class="s1">&#39;callr&#39;</span><span class="p">,</span> <span class="s1">&#39;cpp11&#39;</span><span class="p">,</span> <span class="s1">&#39;gert&#39;</span><span class="p">,</span> <span class="s1">&#39;tinytex&#39;</span><span class="p">,</span> <span class="s1">&#39;vctrs&#39;</span>
 
 <span class="n">Installing</span> <span class="n">packages</span> <span class="n">into</span> <span class="err">‘</span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">R</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">library</span><span class="err">’</span>
 <span class="p">(</span><span class="k">as</span> <span class="err">‘</span><span class="n">lib</span><span class="err">’</span> <span class="k">is</span> <span class="n">unspecified</span><span class="p">)</span>
 
+<span class="n">also</span> <span class="n">installing</span> <span class="n">the</span> <span class="n">dependencies</span> <span class="err">‘</span><span class="n">gtools</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">caTools</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">sass</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">jquerylib</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">globals</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">listenv</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">parallelly</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">plyr</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">zoo</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">data</span><span class="o">.</span><span class="n">table</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">gplots</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">reshape2</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">gridExtra</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">RcppArmadillo</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">httpuv</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">xtable</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">sourcetools</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">bslib</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">spatstat</span><span class="o">.</span><span class="n">data</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">spatstat</span><span class="o">.</span><span class="n">utils</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">spatstat</span><span class="o">.</span><span class="n">sparse</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">abind</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">tensor</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">goftest</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">deldir</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">polyclip</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">FNN</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">RSpectra</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">cowplot</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">fitdistrplus</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">future</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">future</span><span class="o">.</span><span class="n">apply</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">ggrepel</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">ggridges</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">ica</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">igraph</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">irlba</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">leiden</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">lmtest</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">miniUI</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">patchwork</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">pbapply</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">plotly</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">png</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">RANN</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">RcppAnnoy</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">reticulate</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">ROCR</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">Rtsne</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">scattermore</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">sctransform</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">SeuratObject</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">shiny</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">spatstat</span><span class="o">.</span><span class="n">core</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">spatstat</span><span class="o">.</span><span class="n">geom</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">uwot</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">RcppEigen</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">RcppProgress</span><span class="err">’</span>
 
-
-<span class="err"></span><span class="p">[</span><span class="mi">32</span><span class="n">m</span><span class="err">✔</span><span class="p">[</span><span class="mi">39</span><span class="n">m</span>  <span class="err"></span><span class="p">[</span><span class="mi">90</span><span class="n">mchecking</span> <span class="k">for</span> <span class="n">file</span> <span class="err">‘</span><span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">RtmpQxh3Et</span><span class="o">/</span><span class="n">remotes761e876bf</span><span class="o">/</span><span class="n">satijalab</span><span class="o">-</span><span class="n">seurat</span><span class="o">-</span><span class="mi">49</span><span class="n">a1be0</span><span class="o">/</span><span class="n">DESCRIPTION</span><span class="err">’</span><span class="p">[</span><span class="mi">39</span><span class="n">m</span><span class="err"></span><span class="p">[</span><span class="mi">36</span><span class="n">m</span><span class="err"></span><span class="p">[</span><span class="mi">39</span><span class="n">m</span>
-<span class="err"></span><span class="p">[</span><span class="mi">90</span><span class="n">m</span><span class="err">─</span><span class="p">[</span><span class="mi">39</span><span class="n">m</span><span class="err"></span><span class="p">[</span><span class="mi">90</span><span class="n">m</span>  <span class="err"></span><span class="p">[</span><span class="mi">39</span><span class="n">m</span><span class="err"></span><span class="p">[</span><span class="mi">90</span><span class="n">mpreparing</span> <span class="err">‘</span><span class="n">Seurat</span><span class="err">’</span><span class="p">:</span><span class="err"></span><span class="p">[</span><span class="mi">39</span><span class="n">m</span><span class="err"></span><span class="p">[</span><span class="mi">36</span><span class="n">m</span><span class="err"></span><span class="p">[</span><span class="mi">39</span><span class="n">m</span>
-<span class="err"></span><span class="p">[</span><span class="mi">32</span><span class="n">m</span><span class="err">✔</span><span class="p">[</span><span class="mi">39</span><span class="n">m</span>  <span class="err"></span><span class="p">[</span><span class="mi">90</span><span class="n">mchecking</span> <span class="n">DESCRIPTION</span> <span class="n">meta</span><span class="o">-</span><span class="n">information</span><span class="err"></span><span class="p">[</span><span class="mi">39</span><span class="n">m</span><span class="err"></span><span class="p">[</span><span class="mi">36</span><span class="n">m</span><span class="err"></span><span class="p">[</span><span class="mi">39</span><span class="n">m</span>
-<span class="err"></span><span class="p">[</span><span class="mi">90</span><span class="n">m</span><span class="err">─</span><span class="p">[</span><span class="mi">39</span><span class="n">m</span><span class="err"></span><span class="p">[</span><span class="mi">90</span><span class="n">m</span>  <span class="err"></span><span class="p">[</span><span class="mi">39</span><span class="n">m</span><span class="err"></span><span class="p">[</span><span class="mi">90</span><span class="n">mcleaning</span> <span class="n">src</span><span class="err"></span><span class="p">[</span><span class="mi">39</span><span class="n">m</span><span class="err"></span><span class="p">[</span><span class="mi">36</span><span class="n">m</span><span class="err"></span><span class="p">[</span><span class="mi">39</span><span class="n">m</span>
-<span class="err"></span><span class="p">[</span><span class="mi">90</span><span class="n">m</span><span class="err">─</span><span class="p">[</span><span class="mi">39</span><span class="n">m</span><span class="err"></span><span class="p">[</span><span class="mi">90</span><span class="n">m</span>  <span class="err"></span><span class="p">[</span><span class="mi">39</span><span class="n">m</span><span class="err"></span><span class="p">[</span><span class="mi">90</span><span class="n">mchecking</span> <span class="k">for</span> <span class="n">LF</span> <span class="n">line</span><span class="o">-</span><span class="n">endings</span> <span class="ow">in</span> <span class="n">source</span> <span class="ow">and</span> <span class="n">make</span> <span class="n">files</span> <span class="ow">and</span> <span class="n">shell</span> <span class="n">scripts</span><span class="err"></span><span class="p">[</span><span class="mi">39</span><span class="n">m</span><span class="err"></span><span class="p">[</span><span class="mi">36</span><span class="n">m</span><span class="err"></span><span class="p">[</span><span class="mi">39</span><span class="n">m</span>
-<span class="err"></span><span class="p">[</span><span class="mi">90</span><span class="n">m</span><span class="err">─</span><span class="p">[</span><span class="mi">39</span><span class="n">m</span><span class="err"></span><span class="p">[</span><span class="mi">90</span><span class="n">m</span>  <span class="err"></span><span class="p">[</span><span class="mi">39</span><span class="n">m</span><span class="err"></span><span class="p">[</span><span class="mi">90</span><span class="n">mchecking</span> <span class="k">for</span> <span class="n">empty</span> <span class="ow">or</span> <span class="n">unneeded</span> <span class="n">directories</span><span class="err"></span><span class="p">[</span><span class="mi">39</span><span class="n">m</span><span class="err"></span><span class="p">[</span><span class="mi">36</span><span class="n">m</span><span class="err"></span><span class="p">[</span><span class="mi">39</span><span class="n">m</span>
-<span class="err"></span><span class="p">[</span><span class="mi">90</span><span class="n">m</span><span class="err">─</span><span class="p">[</span><span class="mi">39</span><span class="n">m</span><span class="err"></span><span class="p">[</span><span class="mi">90</span><span class="n">m</span>  <span class="err"></span><span class="p">[</span><span class="mi">39</span><span class="n">m</span><span class="err"></span><span class="p">[</span><span class="mi">90</span><span class="n">mlooking</span> <span class="n">to</span> <span class="n">see</span> <span class="k">if</span> <span class="n">a</span> <span class="err">‘</span><span class="n">data</span><span class="o">/</span><span class="n">datalist</span><span class="err">’</span> <span class="n">file</span> <span class="n">should</span> <span class="n">be</span> <span class="n">added</span><span class="err"></span><span class="p">[</span><span class="mi">39</span><span class="n">m</span><span class="err"></span><span class="p">[</span><span class="mi">36</span><span class="n">m</span><span class="err"></span><span class="p">[</span><span class="mi">39</span><span class="n">m</span>
-<span class="err"></span><span class="p">[</span><span class="mi">90</span><span class="n">m</span><span class="err">─</span><span class="p">[</span><span class="mi">39</span><span class="n">m</span><span class="err"></span><span class="p">[</span><span class="mi">90</span><span class="n">m</span>  <span class="err"></span><span class="p">[</span><span class="mi">39</span><span class="n">m</span><span class="err"></span><span class="p">[</span><span class="mi">90</span><span class="n">mbuilding</span> <span class="err">‘</span><span class="n">Seurat_3</span><span class="o">.</span><span class="mf">1.2</span><span class="o">.</span><span class="n">tar</span><span class="o">.</span><span class="n">gz</span><span class="err">’</span><span class="p">[</span><span class="mi">39</span><span class="n">m</span><span class="err"></span><span class="p">[</span><span class="mi">36</span><span class="n">m</span><span class="err"></span><span class="p">[</span><span class="mi">39</span><span class="n">m</span>
-
-
-
-<span class="n">Installing</span> <span class="n">package</span> <span class="n">into</span> <span class="err">‘</span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">R</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">library</span><span class="err">’</span>
-<span class="p">(</span><span class="k">as</span> <span class="err">‘</span><span class="n">lib</span><span class="err">’</span> <span class="k">is</span> <span class="n">unspecified</span><span class="p">)</span>
 
 
 
 
     <span class="n">user</span>   <span class="n">system</span>  <span class="n">elapsed</span> 
-<span class="mf">2511.804</span>  <span class="mf">238.751</span> <span class="mf">1575.296</span>
+<span class="mf">2827.978</span>  <span class="mf">267.740</span> <span class="mf">1771.560</span>
 </code></pre></div>
+
 
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span>
@@ -1371,9 +1348,37 @@
 <span class="nf">theme_set</span><span class="p">(</span><span class="nf">theme_bw</span><span class="p">())</span>
 </code></pre></div>
 </td></tr></table>
+
 <div class="codehilite"><pre><span></span><code><span class="n">Loading</span> <span class="n">required</span> <span class="n">package</span><span class="p">:</span> <span class="n">SingleCellExperiment</span>
 
 <span class="n">Loading</span> <span class="n">required</span> <span class="n">package</span><span class="p">:</span> <span class="n">SummarizedExperiment</span>
+
+<span class="n">Loading</span> <span class="n">required</span> <span class="n">package</span><span class="p">:</span> <span class="n">MatrixGenerics</span>
+
+<span class="n">Loading</span> <span class="n">required</span> <span class="n">package</span><span class="p">:</span> <span class="n">matrixStats</span>
+
+
+<span class="n">Attaching</span> <span class="n">package</span><span class="p">:</span> <span class="err">‘</span><span class="n">MatrixGenerics</span><span class="err">’</span>
+
+
+<span class="n">The</span> <span class="n">following</span> <span class="n">objects</span> <span class="n">are</span> <span class="n">masked</span> <span class="n">from</span> <span class="err">‘</span><span class="n">package</span><span class="p">:</span><span class="n">matrixStats</span><span class="err">’</span><span class="p">:</span>
+
+    <span class="n">colAlls</span><span class="p">,</span> <span class="n">colAnyNAs</span><span class="p">,</span> <span class="n">colAnys</span><span class="p">,</span> <span class="n">colAvgsPerRowSet</span><span class="p">,</span> <span class="n">colCollapse</span><span class="p">,</span>
+    <span class="n">colCounts</span><span class="p">,</span> <span class="n">colCummaxs</span><span class="p">,</span> <span class="n">colCummins</span><span class="p">,</span> <span class="n">colCumprods</span><span class="p">,</span> <span class="n">colCumsums</span><span class="p">,</span>
+    <span class="n">colDiffs</span><span class="p">,</span> <span class="n">colIQRDiffs</span><span class="p">,</span> <span class="n">colIQRs</span><span class="p">,</span> <span class="n">colLogSumExps</span><span class="p">,</span> <span class="n">colMadDiffs</span><span class="p">,</span>
+    <span class="n">colMads</span><span class="p">,</span> <span class="n">colMaxs</span><span class="p">,</span> <span class="n">colMeans2</span><span class="p">,</span> <span class="n">colMedians</span><span class="p">,</span> <span class="n">colMins</span><span class="p">,</span> <span class="n">colOrderStats</span><span class="p">,</span>
+    <span class="n">colProds</span><span class="p">,</span> <span class="n">colQuantiles</span><span class="p">,</span> <span class="n">colRanges</span><span class="p">,</span> <span class="n">colRanks</span><span class="p">,</span> <span class="n">colSdDiffs</span><span class="p">,</span> <span class="n">colSds</span><span class="p">,</span>
+    <span class="n">colSums2</span><span class="p">,</span> <span class="n">colTabulates</span><span class="p">,</span> <span class="n">colVarDiffs</span><span class="p">,</span> <span class="n">colVars</span><span class="p">,</span> <span class="n">colWeightedMads</span><span class="p">,</span>
+    <span class="n">colWeightedMeans</span><span class="p">,</span> <span class="n">colWeightedMedians</span><span class="p">,</span> <span class="n">colWeightedSds</span><span class="p">,</span>
+    <span class="n">colWeightedVars</span><span class="p">,</span> <span class="n">rowAlls</span><span class="p">,</span> <span class="n">rowAnyNAs</span><span class="p">,</span> <span class="n">rowAnys</span><span class="p">,</span> <span class="n">rowAvgsPerColSet</span><span class="p">,</span>
+    <span class="n">rowCollapse</span><span class="p">,</span> <span class="n">rowCounts</span><span class="p">,</span> <span class="n">rowCummaxs</span><span class="p">,</span> <span class="n">rowCummins</span><span class="p">,</span> <span class="n">rowCumprods</span><span class="p">,</span>
+    <span class="n">rowCumsums</span><span class="p">,</span> <span class="n">rowDiffs</span><span class="p">,</span> <span class="n">rowIQRDiffs</span><span class="p">,</span> <span class="n">rowIQRs</span><span class="p">,</span> <span class="n">rowLogSumExps</span><span class="p">,</span>
+    <span class="n">rowMadDiffs</span><span class="p">,</span> <span class="n">rowMads</span><span class="p">,</span> <span class="n">rowMaxs</span><span class="p">,</span> <span class="n">rowMeans2</span><span class="p">,</span> <span class="n">rowMedians</span><span class="p">,</span> <span class="n">rowMins</span><span class="p">,</span>
+    <span class="n">rowOrderStats</span><span class="p">,</span> <span class="n">rowProds</span><span class="p">,</span> <span class="n">rowQuantiles</span><span class="p">,</span> <span class="n">rowRanges</span><span class="p">,</span> <span class="n">rowRanks</span><span class="p">,</span>
+    <span class="n">rowSdDiffs</span><span class="p">,</span> <span class="n">rowSds</span><span class="p">,</span> <span class="n">rowSums2</span><span class="p">,</span> <span class="n">rowTabulates</span><span class="p">,</span> <span class="n">rowVarDiffs</span><span class="p">,</span> <span class="n">rowVars</span><span class="p">,</span>
+    <span class="n">rowWeightedMads</span><span class="p">,</span> <span class="n">rowWeightedMeans</span><span class="p">,</span> <span class="n">rowWeightedMedians</span><span class="p">,</span>
+    <span class="n">rowWeightedSds</span><span class="p">,</span> <span class="n">rowWeightedVars</span>
+
 
 <span class="n">Loading</span> <span class="n">required</span> <span class="n">package</span><span class="p">:</span> <span class="n">GenomicRanges</span>
 
@@ -1406,7 +1411,7 @@
     <span class="n">grepl</span><span class="p">,</span> <span class="n">intersect</span><span class="p">,</span> <span class="k">is</span><span class="o">.</span><span class="n">unsorted</span><span class="p">,</span> <span class="n">lapply</span><span class="p">,</span> <span class="n">Map</span><span class="p">,</span> <span class="n">mapply</span><span class="p">,</span> <span class="k">match</span><span class="p">,</span> <span class="n">mget</span><span class="p">,</span>
     <span class="n">order</span><span class="p">,</span> <span class="n">paste</span><span class="p">,</span> <span class="n">pmax</span><span class="p">,</span> <span class="n">pmax</span><span class="o">.</span><span class="n">int</span><span class="p">,</span> <span class="n">pmin</span><span class="p">,</span> <span class="n">pmin</span><span class="o">.</span><span class="n">int</span><span class="p">,</span> <span class="n">Position</span><span class="p">,</span> <span class="n">rank</span><span class="p">,</span>
     <span class="n">rbind</span><span class="p">,</span> <span class="n">Reduce</span><span class="p">,</span> <span class="n">rownames</span><span class="p">,</span> <span class="n">sapply</span><span class="p">,</span> <span class="n">setdiff</span><span class="p">,</span> <span class="n">sort</span><span class="p">,</span> <span class="n">table</span><span class="p">,</span> <span class="n">tapply</span><span class="p">,</span>
-    <span class="n">union</span><span class="p">,</span> <span class="n">unique</span><span class="p">,</span> <span class="n">unsplit</span><span class="p">,</span> <span class="n">which</span><span class="p">,</span> <span class="n">which</span><span class="o">.</span><span class="n">max</span><span class="p">,</span> <span class="n">which</span><span class="o">.</span><span class="n">min</span>
+    <span class="n">union</span><span class="p">,</span> <span class="n">unique</span><span class="p">,</span> <span class="n">unsplit</span><span class="p">,</span> <span class="n">which</span><span class="o">.</span><span class="n">max</span><span class="p">,</span> <span class="n">which</span><span class="o">.</span><span class="n">min</span>
 
 
 <span class="n">Loading</span> <span class="n">required</span> <span class="n">package</span><span class="p">:</span> <span class="n">S4Vectors</span>
@@ -1433,33 +1438,18 @@
     <span class="s1">&#39;citation(&quot;Biobase&quot;)&#39;</span><span class="p">,</span> <span class="ow">and</span> <span class="k">for</span> <span class="n">packages</span> <span class="s1">&#39;citation(&quot;pkgname&quot;)&#39;</span><span class="o">.</span>
 
 
-<span class="n">Loading</span> <span class="n">required</span> <span class="n">package</span><span class="p">:</span> <span class="n">DelayedArray</span>
 
-<span class="n">Loading</span> <span class="n">required</span> <span class="n">package</span><span class="p">:</span> <span class="n">matrixStats</span>
-
-
-<span class="n">Attaching</span> <span class="n">package</span><span class="p">:</span> <span class="err">‘</span><span class="n">matrixStats</span><span class="err">’</span>
+<span class="n">Attaching</span> <span class="n">package</span><span class="p">:</span> <span class="err">‘</span><span class="n">Biobase</span><span class="err">’</span>
 
 
-<span class="n">The</span> <span class="n">following</span> <span class="n">objects</span> <span class="n">are</span> <span class="n">masked</span> <span class="n">from</span> <span class="err">‘</span><span class="n">package</span><span class="p">:</span><span class="n">Biobase</span><span class="err">’</span><span class="p">:</span>
+<span class="n">The</span> <span class="n">following</span> <span class="n">object</span> <span class="k">is</span> <span class="n">masked</span> <span class="n">from</span> <span class="err">‘</span><span class="n">package</span><span class="p">:</span><span class="n">MatrixGenerics</span><span class="err">’</span><span class="p">:</span>
 
-    <span class="n">anyMissing</span><span class="p">,</span> <span class="n">rowMedians</span>
-
-
-<span class="n">Loading</span> <span class="n">required</span> <span class="n">package</span><span class="p">:</span> <span class="n">BiocParallel</span>
-
-
-<span class="n">Attaching</span> <span class="n">package</span><span class="p">:</span> <span class="err">‘</span><span class="n">DelayedArray</span><span class="err">’</span>
+    <span class="n">rowMedians</span>
 
 
 <span class="n">The</span> <span class="n">following</span> <span class="n">objects</span> <span class="n">are</span> <span class="n">masked</span> <span class="n">from</span> <span class="err">‘</span><span class="n">package</span><span class="p">:</span><span class="n">matrixStats</span><span class="err">’</span><span class="p">:</span>
 
-    <span class="n">colMaxs</span><span class="p">,</span> <span class="n">colMins</span><span class="p">,</span> <span class="n">colRanges</span><span class="p">,</span> <span class="n">rowMaxs</span><span class="p">,</span> <span class="n">rowMins</span><span class="p">,</span> <span class="n">rowRanges</span>
-
-
-<span class="n">The</span> <span class="n">following</span> <span class="n">objects</span> <span class="n">are</span> <span class="n">masked</span> <span class="n">from</span> <span class="err">‘</span><span class="n">package</span><span class="p">:</span><span class="n">base</span><span class="err">’</span><span class="p">:</span>
-
-    <span class="n">aperm</span><span class="p">,</span> <span class="n">apply</span><span class="p">,</span> <span class="n">rowsum</span>
+    <span class="n">anyMissing</span><span class="p">,</span> <span class="n">rowMedians</span>
 
 
 
@@ -1471,12 +1461,14 @@
     <span class="n">expand</span>
 
 
+<span class="n">Warning</span> <span class="n">message</span> <span class="ow">in</span> <span class="n">system</span><span class="p">(</span><span class="s2">&quot;timedatectl&quot;</span><span class="p">,</span> <span class="n">intern</span> <span class="o">=</span> <span class="n">TRUE</span><span class="p">):</span>
+<span class="err">“</span><span class="n">running</span> <span class="n">command</span> <span class="s1">&#39;timedatectl&#39;</span> <span class="n">had</span> <span class="n">status</span> <span class="mi">1</span><span class="err">”</span>
 <span class="err">──</span> <span class="err"></span><span class="p">[</span><span class="mi">1</span><span class="n">mAttaching</span> <span class="n">packages</span><span class="err"></span><span class="p">[</span><span class="mi">22</span><span class="n">m</span> <span class="err">───────────────────────────────────────</span> <span class="n">tidyverse</span> <span class="mf">1.3</span><span class="o">.</span><span class="mi">0</span> <span class="err">──</span>
 
-<span class="err"></span><span class="p">[</span><span class="mi">32</span><span class="n">m</span><span class="err">✔</span><span class="p">[</span><span class="mi">39</span><span class="n">m</span> <span class="err"></span><span class="p">[</span><span class="mi">34</span><span class="n">mggplot2</span><span class="err"></span><span class="p">[</span><span class="mi">39</span><span class="n">m</span> <span class="mf">3.2</span><span class="o">.</span><span class="mi">1</span>     <span class="err"></span><span class="p">[</span><span class="mi">32</span><span class="n">m</span><span class="err">✔</span><span class="p">[</span><span class="mi">39</span><span class="n">m</span> <span class="err"></span><span class="p">[</span><span class="mi">34</span><span class="n">mpurrr</span>  <span class="err"></span><span class="p">[</span><span class="mi">39</span><span class="n">m</span> <span class="mf">0.3</span><span class="o">.</span><span class="mi">3</span>
-<span class="err"></span><span class="p">[</span><span class="mi">32</span><span class="n">m</span><span class="err">✔</span><span class="p">[</span><span class="mi">39</span><span class="n">m</span> <span class="err"></span><span class="p">[</span><span class="mi">34</span><span class="n">mtibble</span> <span class="err"></span><span class="p">[</span><span class="mi">39</span><span class="n">m</span> <span class="mf">2.1</span><span class="o">.</span><span class="mi">3</span>     <span class="err"></span><span class="p">[</span><span class="mi">32</span><span class="n">m</span><span class="err">✔</span><span class="p">[</span><span class="mi">39</span><span class="n">m</span> <span class="err"></span><span class="p">[</span><span class="mi">34</span><span class="n">mdplyr</span>  <span class="err"></span><span class="p">[</span><span class="mi">39</span><span class="n">m</span> <span class="mf">0.8</span><span class="o">.</span><span class="mi">4</span>
-<span class="err"></span><span class="p">[</span><span class="mi">32</span><span class="n">m</span><span class="err">✔</span><span class="p">[</span><span class="mi">39</span><span class="n">m</span> <span class="err"></span><span class="p">[</span><span class="mi">34</span><span class="n">mtidyr</span>  <span class="err"></span><span class="p">[</span><span class="mi">39</span><span class="n">m</span> <span class="mf">1.0</span><span class="o">.</span><span class="mi">2</span>     <span class="err"></span><span class="p">[</span><span class="mi">32</span><span class="n">m</span><span class="err">✔</span><span class="p">[</span><span class="mi">39</span><span class="n">m</span> <span class="err"></span><span class="p">[</span><span class="mi">34</span><span class="n">mstringr</span><span class="err"></span><span class="p">[</span><span class="mi">39</span><span class="n">m</span> <span class="mf">1.4</span><span class="o">.</span><span class="mi">0</span>
-<span class="err"></span><span class="p">[</span><span class="mi">32</span><span class="n">m</span><span class="err">✔</span><span class="p">[</span><span class="mi">39</span><span class="n">m</span> <span class="err"></span><span class="p">[</span><span class="mi">34</span><span class="n">mreadr</span>  <span class="err"></span><span class="p">[</span><span class="mi">39</span><span class="n">m</span> <span class="mf">1.3</span><span class="o">.</span><span class="mi">1</span>     <span class="err"></span><span class="p">[</span><span class="mi">32</span><span class="n">m</span><span class="err">✔</span><span class="p">[</span><span class="mi">39</span><span class="n">m</span> <span class="err"></span><span class="p">[</span><span class="mi">34</span><span class="n">mforcats</span><span class="err"></span><span class="p">[</span><span class="mi">39</span><span class="n">m</span> <span class="mf">0.4</span><span class="o">.</span><span class="mi">0</span>
+<span class="err"></span><span class="p">[</span><span class="mi">32</span><span class="n">m</span><span class="err">✔</span><span class="p">[</span><span class="mi">39</span><span class="n">m</span> <span class="err"></span><span class="p">[</span><span class="mi">34</span><span class="n">mggplot2</span><span class="err"></span><span class="p">[</span><span class="mi">39</span><span class="n">m</span> <span class="mf">3.3</span><span class="o">.</span><span class="mi">3</span>     <span class="err"></span><span class="p">[</span><span class="mi">32</span><span class="n">m</span><span class="err">✔</span><span class="p">[</span><span class="mi">39</span><span class="n">m</span> <span class="err"></span><span class="p">[</span><span class="mi">34</span><span class="n">mpurrr</span>  <span class="err"></span><span class="p">[</span><span class="mi">39</span><span class="n">m</span> <span class="mf">0.3</span><span class="o">.</span><span class="mi">4</span>
+<span class="err"></span><span class="p">[</span><span class="mi">32</span><span class="n">m</span><span class="err">✔</span><span class="p">[</span><span class="mi">39</span><span class="n">m</span> <span class="err"></span><span class="p">[</span><span class="mi">34</span><span class="n">mtibble</span> <span class="err"></span><span class="p">[</span><span class="mi">39</span><span class="n">m</span> <span class="mf">3.1</span><span class="o">.</span><span class="mi">0</span>     <span class="err"></span><span class="p">[</span><span class="mi">32</span><span class="n">m</span><span class="err">✔</span><span class="p">[</span><span class="mi">39</span><span class="n">m</span> <span class="err"></span><span class="p">[</span><span class="mi">34</span><span class="n">mdplyr</span>  <span class="err"></span><span class="p">[</span><span class="mi">39</span><span class="n">m</span> <span class="mf">1.0</span><span class="o">.</span><span class="mi">5</span>
+<span class="err"></span><span class="p">[</span><span class="mi">32</span><span class="n">m</span><span class="err">✔</span><span class="p">[</span><span class="mi">39</span><span class="n">m</span> <span class="err"></span><span class="p">[</span><span class="mi">34</span><span class="n">mtidyr</span>  <span class="err"></span><span class="p">[</span><span class="mi">39</span><span class="n">m</span> <span class="mf">1.1</span><span class="o">.</span><span class="mi">3</span>     <span class="err"></span><span class="p">[</span><span class="mi">32</span><span class="n">m</span><span class="err">✔</span><span class="p">[</span><span class="mi">39</span><span class="n">m</span> <span class="err"></span><span class="p">[</span><span class="mi">34</span><span class="n">mstringr</span><span class="err"></span><span class="p">[</span><span class="mi">39</span><span class="n">m</span> <span class="mf">1.4</span><span class="o">.</span><span class="mi">0</span>
+<span class="err"></span><span class="p">[</span><span class="mi">32</span><span class="n">m</span><span class="err">✔</span><span class="p">[</span><span class="mi">39</span><span class="n">m</span> <span class="err"></span><span class="p">[</span><span class="mi">34</span><span class="n">mreadr</span>  <span class="err"></span><span class="p">[</span><span class="mi">39</span><span class="n">m</span> <span class="mf">1.4</span><span class="o">.</span><span class="mi">0</span>     <span class="err"></span><span class="p">[</span><span class="mi">32</span><span class="n">m</span><span class="err">✔</span><span class="p">[</span><span class="mi">39</span><span class="n">m</span> <span class="err"></span><span class="p">[</span><span class="mi">34</span><span class="n">mforcats</span><span class="err"></span><span class="p">[</span><span class="mi">39</span><span class="n">m</span> <span class="mf">0.5</span><span class="o">.</span><span class="mi">1</span>
 
 <span class="err">──</span> <span class="err"></span><span class="p">[</span><span class="mi">1</span><span class="n">mConflicts</span><span class="err"></span><span class="p">[</span><span class="mi">22</span><span class="n">m</span> <span class="err">──────────────────────────────────────────</span> <span class="n">tidyverse_conflicts</span><span class="p">()</span> <span class="err">──</span>
 <span class="err"></span><span class="p">[</span><span class="mi">31</span><span class="n">m</span><span class="err">✖</span><span class="p">[</span><span class="mi">39</span><span class="n">m</span> <span class="err"></span><span class="p">[</span><span class="mi">34</span><span class="n">mdplyr</span><span class="err"></span><span class="p">[</span><span class="mi">39</span><span class="n">m</span><span class="p">::</span><span class="err"></span><span class="p">[</span><span class="mi">32</span><span class="n">mcollapse</span><span class="p">()</span><span class="err"></span><span class="p">[</span><span class="mi">39</span><span class="n">m</span>   <span class="n">masks</span> <span class="err"></span><span class="p">[</span><span class="mi">34</span><span class="n">mIRanges</span><span class="err"></span><span class="p">[</span><span class="mi">39</span><span class="n">m</span><span class="p">::</span><span class="n">collapse</span><span class="p">()</span>
@@ -1491,9 +1483,14 @@
 <span class="err"></span><span class="p">[</span><span class="mi">31</span><span class="n">m</span><span class="err">✖</span><span class="p">[</span><span class="mi">39</span><span class="n">m</span> <span class="err"></span><span class="p">[</span><span class="mi">34</span><span class="n">mggplot2</span><span class="err"></span><span class="p">[</span><span class="mi">39</span><span class="n">m</span><span class="p">::</span><span class="err"></span><span class="p">[</span><span class="mi">32</span><span class="n">mPosition</span><span class="p">()</span><span class="err"></span><span class="p">[</span><span class="mi">39</span><span class="n">m</span> <span class="n">masks</span> <span class="err"></span><span class="p">[</span><span class="mi">34</span><span class="n">mBiocGenerics</span><span class="err"></span><span class="p">[</span><span class="mi">39</span><span class="n">m</span><span class="p">::</span><span class="n">Position</span><span class="p">(),</span> <span class="err"></span><span class="p">[</span><span class="mi">34</span><span class="n">mbase</span><span class="err"></span><span class="p">[</span><span class="mi">39</span><span class="n">m</span><span class="p">::</span><span class="n">Position</span><span class="p">()</span>
 <span class="err"></span><span class="p">[</span><span class="mi">31</span><span class="n">m</span><span class="err">✖</span><span class="p">[</span><span class="mi">39</span><span class="n">m</span> <span class="err"></span><span class="p">[</span><span class="mi">34</span><span class="n">mpurrr</span><span class="err"></span><span class="p">[</span><span class="mi">39</span><span class="n">m</span><span class="p">::</span><span class="err"></span><span class="p">[</span><span class="mi">32</span><span class="n">mreduce</span><span class="p">()</span><span class="err"></span><span class="p">[</span><span class="mi">39</span><span class="n">m</span>     <span class="n">masks</span> <span class="err"></span><span class="p">[</span><span class="mi">34</span><span class="n">mGenomicRanges</span><span class="err"></span><span class="p">[</span><span class="mi">39</span><span class="n">m</span><span class="p">::</span><span class="n">reduce</span><span class="p">(),</span> <span class="err"></span><span class="p">[</span><span class="mi">34</span><span class="n">mIRanges</span><span class="err"></span><span class="p">[</span><span class="mi">39</span><span class="n">m</span><span class="p">::</span><span class="n">reduce</span><span class="p">()</span>
 <span class="err"></span><span class="p">[</span><span class="mi">31</span><span class="n">m</span><span class="err">✖</span><span class="p">[</span><span class="mi">39</span><span class="n">m</span> <span class="err"></span><span class="p">[</span><span class="mi">34</span><span class="n">mdplyr</span><span class="err"></span><span class="p">[</span><span class="mi">39</span><span class="n">m</span><span class="p">::</span><span class="err"></span><span class="p">[</span><span class="mi">32</span><span class="n">mrename</span><span class="p">()</span><span class="err"></span><span class="p">[</span><span class="mi">39</span><span class="n">m</span>     <span class="n">masks</span> <span class="err"></span><span class="p">[</span><span class="mi">34</span><span class="n">mS4Vectors</span><span class="err"></span><span class="p">[</span><span class="mi">39</span><span class="n">m</span><span class="p">::</span><span class="n">rename</span><span class="p">()</span>
-<span class="err"></span><span class="p">[</span><span class="mi">31</span><span class="n">m</span><span class="err">✖</span><span class="p">[</span><span class="mi">39</span><span class="n">m</span> <span class="err"></span><span class="p">[</span><span class="mi">34</span><span class="n">mpurrr</span><span class="err"></span><span class="p">[</span><span class="mi">39</span><span class="n">m</span><span class="p">::</span><span class="err"></span><span class="p">[</span><span class="mi">32</span><span class="n">msimplify</span><span class="p">()</span><span class="err"></span><span class="p">[</span><span class="mi">39</span><span class="n">m</span>   <span class="n">masks</span> <span class="err"></span><span class="p">[</span><span class="mi">34</span><span class="n">mDelayedArray</span><span class="err"></span><span class="p">[</span><span class="mi">39</span><span class="n">m</span><span class="p">::</span><span class="n">simplify</span><span class="p">()</span>
 <span class="err"></span><span class="p">[</span><span class="mi">31</span><span class="n">m</span><span class="err">✖</span><span class="p">[</span><span class="mi">39</span><span class="n">m</span> <span class="err"></span><span class="p">[</span><span class="mi">34</span><span class="n">mdplyr</span><span class="err"></span><span class="p">[</span><span class="mi">39</span><span class="n">m</span><span class="p">::</span><span class="err"></span><span class="p">[</span><span class="mi">32</span><span class="n">mslice</span><span class="p">()</span><span class="err"></span><span class="p">[</span><span class="mi">39</span><span class="n">m</span>      <span class="n">masks</span> <span class="err"></span><span class="p">[</span><span class="mi">34</span><span class="n">mIRanges</span><span class="err"></span><span class="p">[</span><span class="mi">39</span><span class="n">m</span><span class="p">::</span><span class="n">slice</span><span class="p">()</span>
 <span class="err"></span><span class="p">[</span><span class="mi">31</span><span class="n">m</span><span class="err">✖</span><span class="p">[</span><span class="mi">39</span><span class="n">m</span> <span class="err"></span><span class="p">[</span><span class="mi">34</span><span class="n">mtidyr</span><span class="err"></span><span class="p">[</span><span class="mi">39</span><span class="n">m</span><span class="p">::</span><span class="err"></span><span class="p">[</span><span class="mi">32</span><span class="n">munpack</span><span class="p">()</span><span class="err"></span><span class="p">[</span><span class="mi">39</span><span class="n">m</span>     <span class="n">masks</span> <span class="err"></span><span class="p">[</span><span class="mi">34</span><span class="n">mMatrix</span><span class="err"></span><span class="p">[</span><span class="mi">39</span><span class="n">m</span><span class="p">::</span><span class="n">unpack</span><span class="p">()</span>
+
+<span class="n">Registered</span> <span class="n">S3</span> <span class="n">method</span> <span class="n">overwritten</span> <span class="n">by</span> <span class="s1">&#39;spatstat.geom&#39;</span><span class="p">:</span>
+  <span class="n">method</span>     <span class="n">from</span>
+  <span class="nb">print</span><span class="o">.</span><span class="n">boxx</span> <span class="n">cli</span>
+
+<span class="n">Attaching</span> <span class="n">SeuratObject</span>
 
 
 <span class="n">Attaching</span> <span class="n">package</span><span class="p">:</span> <span class="err">‘</span><span class="n">Seurat</span><span class="err">’</span>
@@ -1517,6 +1514,7 @@
 
     <span class="n">col_factor</span>
 </code></pre></div>
+
 
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
 <span class="normal"> 2</span>
@@ -1547,10 +1545,12 @@
 <span class="p">}</span>
 </code></pre></div>
 </td></tr></table>
+
 <h3 id="install-kb-python">Install kb-python<a class="headerlink" href="#install-kb-python" title="Permanent link">&para;</a></h3>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="nf">system</span><span class="p">(</span><span class="s">&quot;pip3 install kb-python&quot;</span><span class="p">)</span>
 </code></pre></div>
 </td></tr></table>
+
 <h3 id="download-the-data">Download the data<a class="headerlink" href="#download-the-data" title="Permanent link">&para;</a></h3>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span>
@@ -1561,42 +1561,50 @@
 <span class="n">destfile</span> <span class="o">=</span> <span class="s">&quot;SRR8599150_S1_L001_R2_001.fastq.gz&quot;</span><span class="p">)</span>
 </code></pre></div>
 </td></tr></table>
+
 <p>Download an index</p>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="nf">system</span><span class="p">(</span><span class="s">&quot;kb ref -d mouse -i index.idx -g t2g.txt&quot;</span><span class="p">)</span>
 </code></pre></div>
 </td></tr></table>
+
 <h2 id="pseudoalignment-and-counting">Pseudoalignment and counting<a class="headerlink" href="#pseudoalignment-and-counting" title="Permanent link">&para;</a></h2>
 <h3 id="run-kallisto-and-bustools">Run kallisto and bustools<a class="headerlink" href="#run-kallisto-and-bustools" title="Permanent link">&para;</a></h3>
 <p>The following command will generate an RNA count matrix of cells (rows) by genes (columns) in H5AD format, which is a binary format used to store <a href="https://anndata.readthedocs.io/en/stable/">Anndata</a> objects. Notice that this requires providing the index and transcript-to-gene mapping downloaded in the previous step to the <code>-i</code> and <code>-g</code> arguments respectively. Also, since the reads were generated with the 10x Genomics Chromium Single Cell v2 Chemistry, the <code>-x 10xv2</code> argument is used. To view other supported technologies, run <code>kb --list</code>.</p>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="nf">system</span><span class="p">(</span><span class="s">&quot;kb count -i index.idx -g t2g.txt -x 10xv2 -t2 -o . SRR8599150_S1_L001_R1_001.fastq.gz SRR8599150_S1_L001_R2_001.fastq.gz&quot;</span><span class="p">)</span>
 </code></pre></div>
 </td></tr></table>
+
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="nf">list.files</span><span class="p">(</span><span class="s">&quot;.&quot;</span><span class="p">,</span> <span class="n">recursive</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">)</span>
 </code></pre></div>
 </td></tr></table>
+
 <style>
 .list-inline {list-style: none; margin:0; padding: 0}
 .list-inline>li {display: inline-block}
 .list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
 </style>
-<ol class=list-inline><li>'10xv2_whitelist.txt'</li><li>'counts_unfiltered/cells_x_genes.barcodes.txt'</li><li>'counts_unfiltered/cells_x_genes.genes.txt'</li><li>'counts_unfiltered/cells_x_genes.mtx'</li><li>'index.idx'</li><li>'inspect.json'</li><li>'matrix.ec'</li><li>'output.bus'</li><li>'output.unfiltered.bus'</li><li>'run_info.json'</li><li>'sample_data/anscombe.json'</li><li>'sample_data/california_housing_test.csv'</li><li>'sample_data/california_housing_train.csv'</li><li>'sample_data/mnist_test.csv'</li><li>'sample_data/mnist_train_small.csv'</li><li>'sample_data/README.md'</li><li>'SRR8599150_S1_L001_R1_001.fastq.gz'</li><li>'SRR8599150_S1_L001_R2_001.fastq.gz'</li><li>'t2g.txt'</li><li>'transcripts.txt'</li></ol>
+
+<ol class=list-inline><li>'10xv2_whitelist.txt'</li><li>'counts_unfiltered/cells_x_genes.barcodes.txt'</li><li>'counts_unfiltered/cells_x_genes.genes.txt'</li><li>'counts_unfiltered/cells_x_genes.mtx'</li><li>'index.idx'</li><li>'inspect.json'</li><li>'kb_info.json'</li><li>'matrix.ec'</li><li>'output.bus'</li><li>'output.unfiltered.bus'</li><li>'run_info.json'</li><li>'sample_data/anscombe.json'</li><li>'sample_data/california_housing_test.csv'</li><li>'sample_data/california_housing_train.csv'</li><li>'sample_data/mnist_test.csv'</li><li>'sample_data/mnist_train_small.csv'</li><li>'sample_data/README.md'</li><li>'SRR8599150_S1_L001_R1_001.fastq.gz'</li><li>'SRR8599150_S1_L001_R2_001.fastq.gz'</li><li>'t2g.txt'</li><li>'transcripts.txt'</li></ol>
 
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="c1"># Read matrix into R</span>
 <span class="n">res_mat</span> <span class="o">&lt;-</span> <span class="nf">read_count_output</span><span class="p">(</span><span class="s">&quot;counts_unfiltered&quot;</span><span class="p">,</span> <span class="n">name</span> <span class="o">=</span> <span class="s">&quot;cells_x_genes&quot;</span><span class="p">)</span>
 </code></pre></div>
 </td></tr></table>
+
 <h2 id="basic-qc">Basic QC<a class="headerlink" href="#basic-qc" title="Permanent link">&para;</a></h2>
 <h3 id="filter-empty-droplets">Filter empty droplets<a class="headerlink" href="#filter-empty-droplets" title="Permanent link">&para;</a></h3>
 <p>Most barcodes in the matrix correspond to empty droplets. A common way to determine which barcodes are empty droplets and which are real cells is to plot the rank of total UMI counts of each barcode against the total UMI count itself, which is commonly called knee plot. The inflection point in that plot, signifying a change in state, is used as a cutoff for total UMI counts; barcodes below that cutoff are deemed empty droplets and removed. </p>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="nf">dim</span><span class="p">(</span><span class="n">res_mat</span><span class="p">)</span>
 </code></pre></div>
 </td></tr></table>
+
 <style>
 .list-inline {list-style: none; margin:0; padding: 0}
 .list-inline>li {display: inline-block}
 .list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
 </style>
+
 <ol class=list-inline><li>55421</li><li>96775</li></ol>
 
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
@@ -1604,13 +1612,16 @@
 <span class="nf">summary</span><span class="p">(</span><span class="n">tot_counts</span><span class="p">)</span>
 </code></pre></div>
 </td></tr></table>
+
 <div class="codehilite"><pre><span></span><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
    0.00    1.00    1.00   25.74    3.00 2753.00
 </code></pre></div>
 
+
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="n">bc_rank</span> <span class="o">&lt;-</span> <span class="nf">barcodeRanks</span><span class="p">(</span><span class="n">res_mat</span><span class="p">,</span> <span class="n">lower</span> <span class="o">=</span> <span class="m">10</span><span class="p">)</span>
 </code></pre></div>
 </td></tr></table>
+
 <h3 id="examine-the-knee-plot">Examine the knee plot<a class="headerlink" href="#examine-the-knee-plot" title="Permanent link">&para;</a></h3>
 <p>The "knee plot" was introduced in the Drop-seq paper: 
 - Macosko et al., <a href="https://www.cell.com/fulltext/S0092-8674(15)00549-8">Highly parallel genome-wide expression profiling of individual cells using nanoliter droplets</a>, 2015. DOI:10.1016/j.cell.2015.05.002</p>
@@ -1668,11 +1679,13 @@
 <span class="p">}</span>
 </code></pre></div>
 </td></tr></table>
+
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="nf">options</span><span class="p">(</span><span class="n">repr.plot.width</span><span class="o">=</span><span class="m">9</span><span class="p">,</span> <span class="n">repr.plot.height</span><span class="o">=</span><span class="m">6</span><span class="p">)</span>
 <span class="nf">knee_plot</span><span class="p">(</span><span class="n">bc_rank</span><span class="p">)</span>
 </code></pre></div>
 </td></tr></table>
+
 <p><img alt="png" src="../kb_intro_2_R_files/kb_intro_2_R_27_0.png" /></p>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span>
@@ -1681,11 +1694,13 @@
 <span class="nf">dim</span><span class="p">(</span><span class="n">res_mat</span><span class="p">)</span>
 </code></pre></div>
 </td></tr></table>
+
 <style>
 .list-inline {list-style: none; margin:0; padding: 0}
 .list-inline>li {display: inline-block}
 .list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
 </style>
+
 <ol class=list-inline><li>21574</li><li>3655</li></ol>
 
 <h3 id="visualizing-count-distributions">Visualizing count distributions<a class="headerlink" href="#visualizing-count-distributions" title="Permanent link">&para;</a></h3>
@@ -1697,7 +1712,8 @@
   <span class="nf">distinct</span><span class="p">()</span>
 </code></pre></div>
 </td></tr></table>
-<div class="codehilite"><pre><span></span><code>Parsed with column specification:
+
+<div class="codehilite"><pre><span></span><code>[36m──[39m [1m[1mColumn specification[1m[22m [36m────────────────────────────────────────────────────────[39m
 cols(
   transcript = [31mcol_character()[39m,
   gene = [31mcol_character()[39m,
@@ -1705,21 +1721,26 @@ cols(
 )
 </code></pre></div>
 
+
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="c1"># Convert from Ensembl gene ID to gene symbol</span>
 <span class="nf">rownames</span><span class="p">(</span><span class="n">res_mat</span><span class="p">)</span> <span class="o">&lt;-</span> <span class="n">tr2g</span><span class="o">$</span><span class="n">gene_symbol</span><span class="p">[</span><span class="nf">match</span><span class="p">(</span><span class="nf">rownames</span><span class="p">(</span><span class="n">res_mat</span><span class="p">),</span> <span class="n">tr2g</span><span class="o">$</span><span class="n">gene</span><span class="p">)]</span>
 </code></pre></div>
 </td></tr></table>
+
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="n">seu</span> <span class="o">&lt;-</span> <span class="nf">CreateSeuratObject</span><span class="p">(</span><span class="n">res_mat</span><span class="p">,</span> <span class="n">min.cells</span> <span class="o">=</span> <span class="m">3</span><span class="p">,</span> <span class="n">min.features</span> <span class="o">=</span> <span class="m">200</span><span class="p">)</span>
 </code></pre></div>
 </td></tr></table>
+
 <div class="codehilite"><pre><span></span><code>Warning message:
 “Non-unique features (rownames) present in the input matrix, making unique”
 </code></pre></div>
 
+
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="n">seu</span><span class="p">[[</span><span class="s">&quot;percent.mt&quot;</span><span class="p">]]</span> <span class="o">&lt;-</span> <span class="nf">PercentageFeatureSet</span><span class="p">(</span><span class="n">seu</span><span class="p">,</span> <span class="n">pattern</span> <span class="o">=</span> <span class="s">&quot;^mt-&quot;</span><span class="p">)</span>
 </code></pre></div>
 </td></tr></table>
+
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span>
 <span class="normal">3</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="c1"># Visualize QC metrics as a violin plot</span>
@@ -1727,6 +1748,7 @@ cols(
 <span class="nf">VlnPlot</span><span class="p">(</span><span class="n">seu</span><span class="p">,</span> <span class="n">features</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="s">&quot;nFeature_RNA&quot;</span><span class="p">,</span> <span class="s">&quot;nCount_RNA&quot;</span><span class="p">,</span> <span class="s">&quot;percent.mt&quot;</span><span class="p">),</span> <span class="n">ncol</span> <span class="o">=</span> <span class="m">3</span><span class="p">,</span> <span class="n">pt.size</span> <span class="o">=</span> <span class="m">0.1</span><span class="p">)</span>
 </code></pre></div>
 </td></tr></table>
+
 <p><img alt="png" src="../kb_intro_2_R_files/kb_intro_2_R_35_0.png" /></p>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span>
@@ -1745,7 +1767,15 @@ cols(
   <span class="nf">theme</span><span class="p">(</span><span class="n">panel.grid.minor</span> <span class="o">=</span> <span class="nf">element_blank</span><span class="p">())</span>
 </code></pre></div>
 </td></tr></table>
-<p><img alt="png" src="../kb_intro_2_R_files/kb_intro_2_R_36_0.png" /></p>
+
+<div class="codehilite"><pre><span></span><code><span class="n">Warning</span> <span class="n">message</span><span class="o">:</span>
+<span class="n">“Computation</span> <span class="n">failed</span> <span class="k">in</span> <span class="n n-Quoted">`stat_binhex()`</span><span class="o">:</span>
+  <span class="n">Package</span> <span class="n n-Quoted">`hexbin`</span> <span class="n">required</span> <span class="k">for</span> <span class="n n-Quoted">`stat_binhex`</span><span class="p">.</span>
+  <span class="n">Please</span> <span class="k">install</span> <span class="k">and</span> <span class="n">try</span> <span class="n">again</span><span class="p">.</span><span class="n">”</span>
+</code></pre></div>
+
+
+<p><img alt="png" src="../kb_intro_2_R_files/kb_intro_2_R_36_1.png" /></p>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span>
 <span class="normal">3</span>
@@ -1755,17 +1785,21 @@ cols(
   <span class="nf">labs</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="s">&quot;Total UMI counts&quot;</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="s">&quot;Percentage mitochondrial&quot;</span><span class="p">)</span>
 </code></pre></div>
 </td></tr></table>
+
 <p><img alt="png" src="../kb_intro_2_R_files/kb_intro_2_R_37_0.png" /></p>
 <p>The color shows density of points, as the density is not apparent when many points are stacked on top of each other. Cells with high percentage of mitochondrially encoded transcripts are often removed in QC, as those are likely to be low quality cells. If a cell is lysed in sample preparation, transcripts in the mitochondria are less likely to be lost than transcripts in the cytoplasm due to the double membrane of the mitochondria, so cells that lysed tend to have a higher percentage of mitochondrially encoded transcripts.</p>
 <p>We filter cells with more than 3% mitochondrial content based on the plot above.</p>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="n">seu</span> <span class="o">&lt;-</span> <span class="nf">subset</span><span class="p">(</span><span class="n">seu</span><span class="p">,</span> <span class="n">subset</span> <span class="o">=</span> <span class="n">percent.mt</span> <span class="o">&lt;</span> <span class="m">3</span><span class="p">)</span>
 </code></pre></div>
 </td></tr></table>
+
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="n">seu</span> <span class="o">&lt;-</span> <span class="nf">NormalizeData</span><span class="p">(</span><span class="n">seu</span><span class="p">)</span> <span class="o">%&gt;%</span> <span class="nf">ScaleData</span><span class="p">()</span>
 </code></pre></div>
 </td></tr></table>
+
 <div class="codehilite"><pre><span></span><code>Centering and scaling data matrix
 </code></pre></div>
+
 
 <h2 id="analysis">Analysis<a class="headerlink" href="#analysis" title="Permanent link">&para;</a></h2>
 <h3 id="identify-highly-variable-genes">Identify highly variable genes<a class="headerlink" href="#identify-highly-variable-genes" title="Permanent link">&para;</a></h3>
@@ -1778,12 +1812,10 @@ cols(
 <span class="nf">LabelPoints</span><span class="p">(</span><span class="n">plot</span> <span class="o">=</span> <span class="n">plot1</span><span class="p">,</span> <span class="n">points</span> <span class="o">=</span> <span class="n">top10</span><span class="p">,</span> <span class="n">repel</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">)</span>
 </code></pre></div>
 </td></tr></table>
-<div class="codehilite"><pre><span></span><code><span class="nv">Warning</span> <span class="nv">message</span>:
-“<span class="nv">Using</span> `<span class="nv">as</span>.<span class="nv">character</span><span class="ss">()</span>` <span class="nv">on</span> <span class="nv">a</span> <span class="nv">quosure</span> <span class="nv">is</span> <span class="nv">deprecated</span> <span class="nv">as</span> <span class="nv">of</span> <span class="nv">rlang</span> <span class="mi">0</span>.<span class="mi">3</span>.<span class="mi">0</span>.
-<span class="nv">Please</span> <span class="nv">use</span> `<span class="nv">as_label</span><span class="ss">()</span>` <span class="nv">or</span> `<span class="nv">as_name</span><span class="ss">()</span>` <span class="nv">instead</span>.
-[<span class="mi">90</span><span class="nv">mThis</span> <span class="nv">warning</span> <span class="nv">is</span> <span class="nv">displayed</span> <span class="nv">once</span> <span class="nv">per</span> <span class="nv">session</span>.[<span class="mi">39</span><span class="nv">m</span>”
-<span class="nv">When</span> <span class="nv">using</span> <span class="nv">repel</span>, <span class="nv">set</span> <span class="nv">xnudge</span> <span class="nv">and</span> <span class="nv">ynudge</span> <span class="nv">to</span> <span class="mi">0</span> <span class="k">for</span> <span class="nv">optimal</span> <span class="nv">results</span>
+
+<div class="codehilite"><pre><span></span><code><span class="nv">When</span> <span class="nv">using</span> <span class="nv">repel</span>, <span class="nv">set</span> <span class="nv">xnudge</span> <span class="nv">and</span> <span class="nv">ynudge</span> <span class="nv">to</span> <span class="mi">0</span> <span class="k">for</span> <span class="nv">optimal</span> <span class="nv">results</span>
 </code></pre></div>
+
 
 <p><img alt="png" src="../kb_intro_2_R_files/kb_intro_2_R_44_1.png" /></p>
 <h3 id="pca">PCA<a class="headerlink" href="#pca" title="Permanent link">&para;</a></h3>
@@ -1792,10 +1824,12 @@ cols(
 <span class="nf">ElbowPlot</span><span class="p">(</span><span class="n">seu</span><span class="p">,</span> <span class="n">ndims</span> <span class="o">=</span> <span class="m">20</span><span class="p">)</span>
 </code></pre></div>
 </td></tr></table>
+
 <p><img alt="png" src="../kb_intro_2_R_files/kb_intro_2_R_46_0.png" /></p>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="nf">PCAPlot</span><span class="p">(</span><span class="n">seu</span><span class="p">)</span>
 </code></pre></div>
 </td></tr></table>
+
 <p><img alt="png" src="../kb_intro_2_R_files/kb_intro_2_R_47_0.png" /></p>
 <h3 id="clustering-and-visualization">Clustering and visualization<a class="headerlink" href="#clustering-and-visualization" title="Permanent link">&para;</a></h3>
 <p>There are many algorithms for clustering cells, and while they have been compared in detail in various benchmarks (see e.g., <a href="https://f1000research.com/articles/7-1141/v2">Duo et al. 2018</a>), there is no univerally agreed upon method. Here we demonstrate clustering using <a href="https://en.wikipedia.org/wiki/Louvain_modularity">Louvain clustering</a>, which is a popular method for clustering single-cell RNA-seq data. The method was published in </p>
@@ -1807,6 +1841,7 @@ cols(
 <span class="n">seu</span> <span class="o">&lt;-</span> <span class="nf">FindClusters</span><span class="p">(</span><span class="n">seu</span><span class="p">)</span>
 </code></pre></div>
 </td></tr></table>
+
 <div class="codehilite"><pre><span></span><code><span class="nv">Computing</span> <span class="nv">nearest</span> <span class="nv">neighbor</span> <span class="nv">graph</span>
 
 <span class="nv">Computing</span> <span class="nv">SNN</span>
@@ -1816,17 +1851,19 @@ cols(
 <span class="nv">Modularity</span> <span class="nv">Optimizer</span> <span class="nv">version</span> <span class="mi">1</span>.<span class="mi">3</span>.<span class="mi">0</span> <span class="nv">by</span> <span class="nv">Ludo</span> <span class="nv">Waltman</span> <span class="nv">and</span> <span class="nv">Nees</span> <span class="nv">Jan</span> <span class="nv">van</span> <span class="nv">Eck</span>
 
 <span class="nv">Number</span> <span class="nv">of</span> <span class="nv">nodes</span>: <span class="mi">3507</span>
-<span class="nv">Number</span> <span class="nv">of</span> <span class="nv">edges</span>: <span class="mi">112345</span>
+<span class="nv">Number</span> <span class="nv">of</span> <span class="nv">edges</span>: <span class="mi">112378</span>
 
 <span class="nv">Running</span> <span class="nv">Louvain</span> <span class="nv">algorithm</span>...
-<span class="nv">Maximum</span> <span class="nv">modularity</span> <span class="nv">in</span> <span class="mi">10</span> <span class="k">random</span> <span class="nv">starts</span>: <span class="mi">0</span>.<span class="mi">7194</span>
+<span class="nv">Maximum</span> <span class="nv">modularity</span> <span class="nv">in</span> <span class="mi">10</span> <span class="k">random</span> <span class="nv">starts</span>: <span class="mi">0</span>.<span class="mi">7206</span>
 <span class="nv">Number</span> <span class="nv">of</span> <span class="nv">communities</span>: <span class="mi">8</span>
 <span class="nv">Elapsed</span> <span class="nv">time</span>: <span class="mi">0</span> <span class="nv">seconds</span>
 </code></pre></div>
 
+
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="nf">PCAPlot</span><span class="p">(</span><span class="n">seu</span><span class="p">)</span>
 </code></pre></div>
 </td></tr></table>
+
 <p><img alt="png" src="../kb_intro_2_R_files/kb_intro_2_R_50_0.png" /></p>
 <h3 id="tsne">tSNE<a class="headerlink" href="#tsne" title="Permanent link">&para;</a></h3>
 <p><a href="https://en.wikipedia.org/wiki/T-distributed_stochastic_neighbor_embedding">t-SNE</a> is a non-linear dimensionality reduction technique described in:</p>
@@ -1839,6 +1876,7 @@ cols(
 <span class="nf">TSNEPlot</span><span class="p">(</span><span class="n">seu</span><span class="p">)</span>
 </code></pre></div>
 </td></tr></table>
+
 <p><img alt="png" src="../kb_intro_2_R_files/kb_intro_2_R_52_0.png" /></p>
 <h3 id="umap">UMAP<a class="headerlink" href="#umap" title="Permanent link">&para;</a></h3>
 <p>UMAP (UMAP: Uniform Manifold Approximation and Projection for Dimension Reduction) is a manifold learning technique that can also be used to visualize cells. It was published in:</p>
@@ -1850,11 +1888,13 @@ cols(
 <span class="nf">UMAPPlot</span><span class="p">(</span><span class="n">seu</span><span class="p">)</span>
 </code></pre></div>
 </td></tr></table>
+
 <div class="codehilite"><pre><span></span><code><span class="nv">Warning</span> <span class="nv">message</span>:
 “<span class="nv">The</span> <span class="nv">default</span> <span class="nv">method</span> <span class="k">for</span> <span class="nv">RunUMAP</span> <span class="nv">has</span> <span class="nv">changed</span> <span class="nv">from</span> <span class="nv">calling</span> <span class="nv">Python</span> <span class="nv">UMAP</span> <span class="nv">via</span> <span class="nv">reticulate</span> <span class="nv">to</span> <span class="nv">the</span> <span class="nv">R</span><span class="o">-</span><span class="nv">native</span> <span class="nv">UWOT</span> <span class="nv">using</span> <span class="nv">the</span> <span class="nv">cosine</span> <span class="nv">metric</span>
 <span class="nv">To</span> <span class="nv">use</span> <span class="nv">Python</span> <span class="nv">UMAP</span> <span class="nv">via</span> <span class="nv">reticulate</span>, <span class="nv">set</span> <span class="nv">umap</span>.<span class="nv">method</span> <span class="nv">to</span> <span class="s1">&#39;</span><span class="s">umap-learn</span><span class="s1">&#39;</span> <span class="nv">and</span> <span class="nv">metric</span> <span class="nv">to</span> <span class="s1">&#39;</span><span class="s">correlation</span><span class="s1">&#39;</span>
 <span class="nv">This</span> <span class="nv">message</span> <span class="nv">will</span> <span class="nv">be</span> <span class="nv">shown</span> <span class="nv">once</span> <span class="nv">per</span> <span class="nv">session</span>”
 </code></pre></div>
+
 
 <p><img alt="png" src="../kb_intro_2_R_files/kb_intro_2_R_54_1.png" /></p>
 <h1 id="discussion">Discussion<a class="headerlink" href="#discussion" title="Permanent link">&para;</a></h1>
@@ -1862,11 +1902,16 @@ cols(
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="nf">Sys.time</span><span class="p">()</span> <span class="o">-</span> <span class="n">start_time</span>
 </code></pre></div>
 </td></tr></table>
-<div class="codehilite"><pre><span></span><code>Time difference of 34.70659 mins
+
+<div class="codehilite"><pre><span></span><code>Time difference of 38.41409 mins
 </code></pre></div>
 
+
 <p>Installing packages took about 26 minutes, which is a drawback of Rcpp. The QC and  analysis post-installation takes about 10 minutes from reads to results. This includes downloading the data, filtering, clustering and visualization.</p>
-<p><strong>Feedback</strong>: please report any issues, or submit pull requests for improvements, in the <a href="https://github.com/pachterlab/kallistobustools/blob/master/notebooks/kb_intro_2_R.ipynb">Github repository where this notebook is located</a>.</p>
+<p><strong>Feedback</strong>: please report any issues, or submit pull requests for improvements, in the <a href="https://github.com/pachterlab/kallistobustools/">Github repository where this notebook is located</a>.</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>
+</code></pre></div>
+</td></tr></table>
                 
               
               
@@ -1877,6 +1922,7 @@ cols(
             </article>
           </div>
         </div>
+        
       </main>
       
         
@@ -1963,7 +2009,7 @@ cols(
     <script id="__config" type="application/json">{"base": "../../../..", "features": ["search.suggest", "search.highlight"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}, "search": "../../../../assets/javascripts/workers/search.fe42c31b.min.js", "version": null}</script>
     
     
-      <script src="../../../../assets/javascripts/bundle.65ce87ac.min.js"></script>
+      <script src="../../../../assets/javascripts/bundle.d892486b.min.js"></script>
       
     
   </body>

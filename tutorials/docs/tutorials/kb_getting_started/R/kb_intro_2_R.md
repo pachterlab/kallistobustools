@@ -1,4 +1,4 @@
-<a href="https://colab.research.google.com/github/pachterlab/kallistobustools/blob/master/notebooks/kb_intro_2_R.ipynb" target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
+<a href="https://colab.research.google.com/github/pachterlab/kallistobustools/blob/master/tutorials/docs/tutorials/kb_getting_started/R/kb_intro_2_R.ipynb" target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
 
 # Introduction to single-cell RNA-seq II: getting started with analysis
 
@@ -36,61 +36,33 @@ if (!requireNamespace("BiocManager", quietly = TRUE))
     Installing package into ‘/usr/local/lib/R/site-library’
     (as ‘lib’ is unspecified)
     
-    Bioconductor version 3.10 (BiocManager 1.30.10), R 3.6.2 (2019-12-12)
+    'getOption("repos")' replaces Bioconductor standard repositories, see
+    '?repositories' for details
+    
+    replacement repositories:
+        CRAN: https://cran.rstudio.com
+    
+    
+    Bioconductor version 3.12 (BiocManager 1.30.12), R 4.0.4 (2021-02-15)
     
     Installing package(s) 'BiocVersion', 'multtest', 'DropletUtils'
     
-    also installing the dependencies ‘zlibbioc’, ‘bitops’, ‘XVector’, ‘RCurl’, ‘GenomeInfoDbData’, ‘formatR’, ‘GenomicRanges’, ‘GenomeInfoDb’, ‘lambda.r’, ‘futile.options’, ‘matrixStats’, ‘SummarizedExperiment’, ‘futile.logger’, ‘snow’, ‘limma’, ‘locfit’, ‘DelayedArray’, ‘IRanges’, ‘R.oo’, ‘R.methodsS3’, ‘sitmo’, ‘BiocGenerics’, ‘Biobase’, ‘SingleCellExperiment’, ‘S4Vectors’, ‘BiocParallel’, ‘edgeR’, ‘rhdf5’, ‘HDF5Array’, ‘R.utils’, ‘dqrng’, ‘beachmat’, ‘Rhdf5lib’
+    also installing the dependencies ‘zlibbioc’, ‘bitops’, ‘formatR’, ‘matrixStats’, ‘XVector’, ‘RCurl’, ‘GenomeInfoDbData’, ‘lambda.r’, ‘futile.options’, ‘sparseMatrixStats’, ‘MatrixGenerics’, ‘GenomicRanges’, ‘IRanges’, ‘GenomeInfoDb’, ‘futile.logger’, ‘snow’, ‘rhdf5filters’, ‘limma’, ‘locfit’, ‘R.oo’, ‘R.methodsS3’, ‘sitmo’, ‘DelayedMatrixStats’, ‘BiocGenerics’, ‘Biobase’, ‘SingleCellExperiment’, ‘S4Vectors’, ‘SummarizedExperiment’, ‘BiocParallel’, ‘DelayedArray’, ‘HDF5Array’, ‘rhdf5’, ‘edgeR’, ‘R.utils’, ‘dqrng’, ‘beachmat’, ‘scuttle’, ‘Rhdf5lib’
     
     
-    Old packages: 'curl', 'DT', 'farver', 'jsonlite', 'knitr', 'mime', 'processx',
-      'rprojroot', 'rstudioapi', 'svglite', 'xfun', 'xtable', 'nlme'
-    
-    Installing packages into ‘/usr/local/lib/R/site-library’
-    (as ‘lib’ is unspecified)
-    
-    also installing the dependencies ‘mnormt’, ‘numDeriv’, ‘TH.data’, ‘sandwich’, ‘lsei’, ‘bibtex’, ‘gbRd’, ‘sn’, ‘mvtnorm’, ‘plotrix’, ‘multcomp’, ‘gtools’, ‘gdata’, ‘caTools’, ‘npsurv’, ‘globals’, ‘listenv’, ‘zoo’, ‘Rdpack’, ‘TFisher’, ‘mutoss’, ‘hexbin’, ‘data.table’, ‘rappdirs’, ‘gplots’, ‘gridExtra’, ‘RcppEigen’, ‘FNN’, ‘RSpectra’, ‘RcppParallel’, ‘RcppProgress’
-    
-    
-    Downloading GitHub repo satijalab/Seurat@master
-    
-
-
-    curl     (4.2   -> 4.3  ) [CRAN]
-    jsonlite (1.6   -> 1.6.1) [CRAN]
-    mime     (0.8   -> 0.9  ) [CRAN]
-    farver   (2.0.1 -> 2.0.3) [CRAN]
-    xtable   (1.8-3 -> 1.8-4) [CRAN]
-
-
-    Skipping 3 packages ahead of CRAN: multtest, BiocGenerics, Biobase
-    
-    Installing 5 packages: curl, jsonlite, mime, farver, xtable
+    Old packages: 'callr', 'cpp11', 'gert', 'tinytex', 'vctrs'
     
     Installing packages into ‘/usr/local/lib/R/site-library’
     (as ‘lib’ is unspecified)
     
-
-
-    [32m✔[39m  [90mchecking for file ‘/tmp/RtmpQxh3Et/remotes761e876bf/satijalab-seurat-49a1be0/DESCRIPTION’[39m[36m[39m
-    [90m─[39m[90m  [39m[90mpreparing ‘Seurat’:[39m[36m[39m
-    [32m✔[39m  [90mchecking DESCRIPTION meta-information[39m[36m[39m
-    [90m─[39m[90m  [39m[90mcleaning src[39m[36m[39m
-    [90m─[39m[90m  [39m[90mchecking for LF line-endings in source and make files and shell scripts[39m[36m[39m
-    [90m─[39m[90m  [39m[90mchecking for empty or unneeded directories[39m[36m[39m
-    [90m─[39m[90m  [39m[90mlooking to see if a ‘data/datalist’ file should be added[39m[36m[39m
-    [90m─[39m[90m  [39m[90mbuilding ‘Seurat_3.1.2.tar.gz’[39m[36m[39m
-       
-
-
-    Installing package into ‘/usr/local/lib/R/site-library’
-    (as ‘lib’ is unspecified)
+    also installing the dependencies ‘gtools’, ‘caTools’, ‘sass’, ‘jquerylib’, ‘globals’, ‘listenv’, ‘parallelly’, ‘plyr’, ‘zoo’, ‘data.table’, ‘gplots’, ‘reshape2’, ‘gridExtra’, ‘RcppArmadillo’, ‘httpuv’, ‘xtable’, ‘sourcetools’, ‘bslib’, ‘spatstat.data’, ‘spatstat.utils’, ‘spatstat.sparse’, ‘abind’, ‘tensor’, ‘goftest’, ‘deldir’, ‘polyclip’, ‘FNN’, ‘RSpectra’, ‘cowplot’, ‘fitdistrplus’, ‘future’, ‘future.apply’, ‘ggrepel’, ‘ggridges’, ‘ica’, ‘igraph’, ‘irlba’, ‘leiden’, ‘lmtest’, ‘miniUI’, ‘patchwork’, ‘pbapply’, ‘plotly’, ‘png’, ‘RANN’, ‘RcppAnnoy’, ‘reticulate’, ‘ROCR’, ‘Rtsne’, ‘scattermore’, ‘sctransform’, ‘SeuratObject’, ‘shiny’, ‘spatstat.core’, ‘spatstat.geom’, ‘uwot’, ‘RcppEigen’, ‘RcppProgress’
+    
     
 
 
 
         user   system  elapsed 
-    2511.804  238.751 1575.296 
+    2827.978  267.740 1771.560 
 
 
 
@@ -108,6 +80,33 @@ theme_set(theme_bw())
     Loading required package: SingleCellExperiment
     
     Loading required package: SummarizedExperiment
+    
+    Loading required package: MatrixGenerics
+    
+    Loading required package: matrixStats
+    
+    
+    Attaching package: ‘MatrixGenerics’
+    
+    
+    The following objects are masked from ‘package:matrixStats’:
+    
+        colAlls, colAnyNAs, colAnys, colAvgsPerRowSet, colCollapse,
+        colCounts, colCummaxs, colCummins, colCumprods, colCumsums,
+        colDiffs, colIQRDiffs, colIQRs, colLogSumExps, colMadDiffs,
+        colMads, colMaxs, colMeans2, colMedians, colMins, colOrderStats,
+        colProds, colQuantiles, colRanges, colRanks, colSdDiffs, colSds,
+        colSums2, colTabulates, colVarDiffs, colVars, colWeightedMads,
+        colWeightedMeans, colWeightedMedians, colWeightedSds,
+        colWeightedVars, rowAlls, rowAnyNAs, rowAnys, rowAvgsPerColSet,
+        rowCollapse, rowCounts, rowCummaxs, rowCummins, rowCumprods,
+        rowCumsums, rowDiffs, rowIQRDiffs, rowIQRs, rowLogSumExps,
+        rowMadDiffs, rowMads, rowMaxs, rowMeans2, rowMedians, rowMins,
+        rowOrderStats, rowProds, rowQuantiles, rowRanges, rowRanks,
+        rowSdDiffs, rowSds, rowSums2, rowTabulates, rowVarDiffs, rowVars,
+        rowWeightedMads, rowWeightedMeans, rowWeightedMedians,
+        rowWeightedSds, rowWeightedVars
+    
     
     Loading required package: GenomicRanges
     
@@ -140,7 +139,7 @@ theme_set(theme_bw())
         grepl, intersect, is.unsorted, lapply, Map, mapply, match, mget,
         order, paste, pmax, pmax.int, pmin, pmin.int, Position, rank,
         rbind, Reduce, rownames, sapply, setdiff, sort, table, tapply,
-        union, unique, unsplit, which, which.max, which.min
+        union, unique, unsplit, which.max, which.min
     
     
     Loading required package: S4Vectors
@@ -167,33 +166,18 @@ theme_set(theme_bw())
         'citation("Biobase")', and for packages 'citation("pkgname")'.
     
     
-    Loading required package: DelayedArray
     
-    Loading required package: matrixStats
-    
-    
-    Attaching package: ‘matrixStats’
+    Attaching package: ‘Biobase’
     
     
-    The following objects are masked from ‘package:Biobase’:
+    The following object is masked from ‘package:MatrixGenerics’:
     
-        anyMissing, rowMedians
-    
-    
-    Loading required package: BiocParallel
-    
-    
-    Attaching package: ‘DelayedArray’
+        rowMedians
     
     
     The following objects are masked from ‘package:matrixStats’:
     
-        colMaxs, colMins, colRanges, rowMaxs, rowMins, rowRanges
-    
-    
-    The following objects are masked from ‘package:base’:
-    
-        aperm, apply, rowsum
+        anyMissing, rowMedians
     
     
     
@@ -205,12 +189,14 @@ theme_set(theme_bw())
         expand
     
     
+    Warning message in system("timedatectl", intern = TRUE):
+    “running command 'timedatectl' had status 1”
     ── [1mAttaching packages[22m ─────────────────────────────────────── tidyverse 1.3.0 ──
     
-    [32m✔[39m [34mggplot2[39m 3.2.1     [32m✔[39m [34mpurrr  [39m 0.3.3
-    [32m✔[39m [34mtibble [39m 2.1.3     [32m✔[39m [34mdplyr  [39m 0.8.4
-    [32m✔[39m [34mtidyr  [39m 1.0.2     [32m✔[39m [34mstringr[39m 1.4.0
-    [32m✔[39m [34mreadr  [39m 1.3.1     [32m✔[39m [34mforcats[39m 0.4.0
+    [32m✔[39m [34mggplot2[39m 3.3.3     [32m✔[39m [34mpurrr  [39m 0.3.4
+    [32m✔[39m [34mtibble [39m 3.1.0     [32m✔[39m [34mdplyr  [39m 1.0.5
+    [32m✔[39m [34mtidyr  [39m 1.1.3     [32m✔[39m [34mstringr[39m 1.4.0
+    [32m✔[39m [34mreadr  [39m 1.4.0     [32m✔[39m [34mforcats[39m 0.5.1
     
     ── [1mConflicts[22m ────────────────────────────────────────── tidyverse_conflicts() ──
     [31m✖[39m [34mdplyr[39m::[32mcollapse()[39m   masks [34mIRanges[39m::collapse()
@@ -225,9 +211,14 @@ theme_set(theme_bw())
     [31m✖[39m [34mggplot2[39m::[32mPosition()[39m masks [34mBiocGenerics[39m::Position(), [34mbase[39m::Position()
     [31m✖[39m [34mpurrr[39m::[32mreduce()[39m     masks [34mGenomicRanges[39m::reduce(), [34mIRanges[39m::reduce()
     [31m✖[39m [34mdplyr[39m::[32mrename()[39m     masks [34mS4Vectors[39m::rename()
-    [31m✖[39m [34mpurrr[39m::[32msimplify()[39m   masks [34mDelayedArray[39m::simplify()
     [31m✖[39m [34mdplyr[39m::[32mslice()[39m      masks [34mIRanges[39m::slice()
     [31m✖[39m [34mtidyr[39m::[32munpack()[39m     masks [34mMatrix[39m::unpack()
+    
+    Registered S3 method overwritten by 'spatstat.geom':
+      method     from
+      print.boxx cli 
+    
+    Attaching SeuratObject
     
     
     Attaching package: ‘Seurat’
@@ -318,7 +309,7 @@ list.files(".", recursive = TRUE)
 .list-inline>li {display: inline-block}
 .list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
 </style>
-<ol class=list-inline><li>'10xv2_whitelist.txt'</li><li>'counts_unfiltered/cells_x_genes.barcodes.txt'</li><li>'counts_unfiltered/cells_x_genes.genes.txt'</li><li>'counts_unfiltered/cells_x_genes.mtx'</li><li>'index.idx'</li><li>'inspect.json'</li><li>'matrix.ec'</li><li>'output.bus'</li><li>'output.unfiltered.bus'</li><li>'run_info.json'</li><li>'sample_data/anscombe.json'</li><li>'sample_data/california_housing_test.csv'</li><li>'sample_data/california_housing_train.csv'</li><li>'sample_data/mnist_test.csv'</li><li>'sample_data/mnist_train_small.csv'</li><li>'sample_data/README.md'</li><li>'SRR8599150_S1_L001_R1_001.fastq.gz'</li><li>'SRR8599150_S1_L001_R2_001.fastq.gz'</li><li>'t2g.txt'</li><li>'transcripts.txt'</li></ol>
+<ol class=list-inline><li>'10xv2_whitelist.txt'</li><li>'counts_unfiltered/cells_x_genes.barcodes.txt'</li><li>'counts_unfiltered/cells_x_genes.genes.txt'</li><li>'counts_unfiltered/cells_x_genes.mtx'</li><li>'index.idx'</li><li>'inspect.json'</li><li>'kb_info.json'</li><li>'matrix.ec'</li><li>'output.bus'</li><li>'output.unfiltered.bus'</li><li>'run_info.json'</li><li>'sample_data/anscombe.json'</li><li>'sample_data/california_housing_test.csv'</li><li>'sample_data/california_housing_train.csv'</li><li>'sample_data/mnist_test.csv'</li><li>'sample_data/mnist_train_small.csv'</li><li>'sample_data/README.md'</li><li>'SRR8599150_S1_L001_R1_001.fastq.gz'</li><li>'SRR8599150_S1_L001_R2_001.fastq.gz'</li><li>'t2g.txt'</li><li>'transcripts.txt'</li></ol>
 
 
 
@@ -440,12 +431,14 @@ tr2g <- read_tsv("t2g.txt", col_names = c("transcript", "gene", "gene_symbol")) 
   distinct()
 ```
 
-    Parsed with column specification:
+    
+    [36m──[39m [1m[1mColumn specification[1m[22m [36m────────────────────────────────────────────────────────[39m
     cols(
       transcript = [31mcol_character()[39m,
       gene = [31mcol_character()[39m,
       gene_symbol = [31mcol_character()[39m
     )
+    
     
 
 
@@ -492,8 +485,14 @@ ggplot(seu@meta.data, aes(nCount_RNA, nFeature_RNA)) +
   theme(panel.grid.minor = element_blank())
 ```
 
+    Warning message:
+    “Computation failed in `stat_binhex()`:
+      Package `hexbin` required for `stat_binhex`.
+      Please install and try again.”
 
-![png](kb_intro_2_R_files/kb_intro_2_R_36_0.png)
+
+
+![png](kb_intro_2_R_files/kb_intro_2_R_36_1.png)
 
 
 
@@ -538,10 +537,6 @@ plot1 <- VariableFeaturePlot(seu, log = FALSE)
 LabelPoints(plot = plot1, points = top10, repel = TRUE)
 ```
 
-    Warning message:
-    “Using `as.character()` on a quosure is deprecated as of rlang 0.3.0.
-    Please use `as_label()` or `as_name()` instead.
-    [90mThis warning is displayed once per session.[39m”
     When using repel, set xnudge and ynudge to 0 for optimal results
     
 
@@ -592,10 +587,10 @@ seu <- FindClusters(seu)
     Modularity Optimizer version 1.3.0 by Ludo Waltman and Nees Jan van Eck
     
     Number of nodes: 3507
-    Number of edges: 112345
+    Number of edges: 112378
     
     Running Louvain algorithm...
-    Maximum modularity in 10 random starts: 0.7194
+    Maximum modularity in 10 random starts: 0.7206
     Number of communities: 8
     Elapsed time: 0 seconds
 
@@ -661,9 +656,14 @@ Sys.time() - start_time
 ```
 
 
-    Time difference of 34.70659 mins
+    Time difference of 38.41409 mins
 
 
 Installing packages took about 26 minutes, which is a drawback of Rcpp. The QC and  analysis post-installation takes about 10 minutes from reads to results. This includes downloading the data, filtering, clustering and visualization.
 
-**Feedback**: please report any issues, or submit pull requests for improvements, in the [Github repository where this notebook is located](https://github.com/pachterlab/kallistobustools/blob/master/notebooks/kb_intro_2_R.ipynb).
+**Feedback**: please report any issues, or submit pull requests for improvements, in the [Github repository where this notebook is located](https://github.com/pachterlab/kallistobustools/).
+
+
+```R
+
+```

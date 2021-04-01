@@ -1,10 +1,12 @@
+<a href="https://colab.research.google.com/github/pachterlab/kallistobustools/blob/master/tutorials/docs/tutorials/download_data/data_download.ipynb" target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
+
 # Data downloading
 
 This tutorial provides information on where to find single-cell RNA-seq data, and how to download it for processing with the **kallisto | bustools** workflow.
 
 ## Databases
 
-There are four databases that are important repositories for sequencing data and metadata, and that are relevant for obtaining single-cell RNA-seq data. For each archive we provide an example of how the data is organized and how to download it.
+There are multiple databases that are important repositories for sequencing data and metadata, and that are relevant for obtaining single-cell RNA-seq data. For each archive we provide an example of how the data is organized and how to download it.
 
 * **[Biological Project Library](https://bigd.big.ac.cn/bioproject/)** (BioProject): The Biological Project Library organizes metadata for research projects involving genomic data types. This repository, which was started in 2016, is similar to the Gene Expression Omnibus. As an example, the data from the paper [Peng et al. 2019](https://www.nature.com/articles/s41422-019-0195-y) is organized under project accession [PRJCA001063](https://bigd.big.ac.cn/bioproject/browse/PRJCA001063). Each single-cell RNA-seq dataset has a “BioSample accession”, e.g. [SAMC047103](https://bigd.big.ac.cn/biosample/browse/SAMC047103). A further link to the Genome Sequencing Archive provides access to FASTQ files.
 
@@ -30,43 +32,24 @@ __Note__: Streaming is not supported on Windows.
 
 
 ```
-!pip install kb-python
+!pip install --quiet kb-python
 ```
 
-    Collecting kb-python
-    [?25l  Downloading https://files.pythonhosted.org/packages/62/c9/2e5b8fa2cd873a23ae1aeb128b33165d6a9387a2f56ea1fafec1d6d32477/kb_python-0.24.4-py3-none-any.whl (35.4MB)
-    [K     |████████████████████████████████| 35.4MB 124kB/s 
-    [?25hCollecting loompy>=3.0.6
-    [?25l  Downloading https://files.pythonhosted.org/packages/36/52/74ed37ae5988522fbf87b856c67c4f80700e6452410b4cd80498c5f416f9/loompy-3.0.6.tar.gz (41kB)
-    [K     |████████████████████████████████| 51kB 8.2MB/s 
-    [?25hCollecting anndata>=0.6.22.post1
-    [?25l  Downloading https://files.pythonhosted.org/packages/2b/72/87196c15f68d9865c31a43a10cf7c50bcbcedd5607d09f9aada0b3963103/anndata-0.6.22.post1-py3-none-any.whl (47kB)
-    [K     |████████████████████████████████| 51kB 8.5MB/s 
-    [?25hRequirement already satisfied: h5py in /usr/local/lib/python3.6/dist-packages (from loompy>=3.0.6->kb-python) (2.8.0)
-    Requirement already satisfied: numpy in /usr/local/lib/python3.6/dist-packages (from loompy>=3.0.6->kb-python) (1.17.5)
-    Requirement already satisfied: scipy in /usr/local/lib/python3.6/dist-packages (from loompy>=3.0.6->kb-python) (1.4.1)
-    Requirement already satisfied: setuptools in /usr/local/lib/python3.6/dist-packages (from loompy>=3.0.6->kb-python) (42.0.2)
-    Requirement already satisfied: numba in /usr/local/lib/python3.6/dist-packages (from loompy>=3.0.6->kb-python) (0.47.0)
-    Requirement already satisfied: click in /usr/local/lib/python3.6/dist-packages (from loompy>=3.0.6->kb-python) (7.0)
-    Collecting numpy-groupies
-    [?25l  Downloading https://files.pythonhosted.org/packages/57/ae/18217b57ba3e4bb8a44ecbfc161ed065f6d1b90c75d404bd6ba8d6f024e2/numpy_groupies-0.9.10.tar.gz (43kB)
-    [K     |████████████████████████████████| 51kB 8.9MB/s 
-    [?25hRequirement already satisfied: pandas>=0.23.0 in /usr/local/lib/python3.6/dist-packages (from anndata>=0.6.22.post1->kb-python) (0.25.3)
-    Requirement already satisfied: natsort in /usr/local/lib/python3.6/dist-packages (from anndata>=0.6.22.post1->kb-python) (5.5.0)
-    Requirement already satisfied: six in /usr/local/lib/python3.6/dist-packages (from h5py->loompy>=3.0.6->kb-python) (1.12.0)
-    Requirement already satisfied: llvmlite>=0.31.0dev0 in /usr/local/lib/python3.6/dist-packages (from numba->loompy>=3.0.6->kb-python) (0.31.0)
-    Requirement already satisfied: pytz>=2017.2 in /usr/local/lib/python3.6/dist-packages (from pandas>=0.23.0->anndata>=0.6.22.post1->kb-python) (2018.9)
-    Requirement already satisfied: python-dateutil>=2.6.1 in /usr/local/lib/python3.6/dist-packages (from pandas>=0.23.0->anndata>=0.6.22.post1->kb-python) (2.6.1)
-    Building wheels for collected packages: loompy, numpy-groupies
-      Building wheel for loompy (setup.py) ... [?25l[?25hdone
-      Created wheel for loompy: filename=loompy-3.0.6-cp36-none-any.whl size=47896 sha256=b4583c69463e8d433e513784273fd2c82a98415cca57c9b732877b018d860909
-      Stored in directory: /root/.cache/pip/wheels/f9/a4/90/5a98ad83419732b0fba533b81a2a52ba3dbe230a936ca4cdc9
+    [K     |████████████████████████████████| 59.1MB 76kB/s 
+    [K     |████████████████████████████████| 51kB 4.6MB/s 
+    [K     |████████████████████████████████| 122kB 55.2MB/s 
+    [K     |████████████████████████████████| 10.3MB 47.7MB/s 
+    [K     |████████████████████████████████| 13.2MB 347kB/s 
+    [K     |████████████████████████████████| 112kB 39.0MB/s 
+    [K     |████████████████████████████████| 81kB 7.0MB/s 
+    [K     |████████████████████████████████| 51kB 3.9MB/s 
+    [K     |████████████████████████████████| 71kB 7.1MB/s 
+    [K     |████████████████████████████████| 1.2MB 49.7MB/s 
+    [?25h  Building wheel for loompy (setup.py) ... [?25l[?25hdone
       Building wheel for numpy-groupies (setup.py) ... [?25l[?25hdone
-      Created wheel for numpy-groupies: filename=numpy_groupies-0+unknown-cp36-none-any.whl size=28044 sha256=01158d0fd3640057dc39fdbbbeaebc47c415aef3d55b09394bc19205410b8f03
-      Stored in directory: /root/.cache/pip/wheels/30/ac/83/64d5f9293aeaec63f9539142fc629a41af064cae1b3d8d94aa
-    Successfully built loompy numpy-groupies
-    Installing collected packages: numpy-groupies, loompy, anndata, kb-python
-    Successfully installed anndata-0.6.22.post1 kb-python-0.24.4 loompy-3.0.6 numpy-groupies-0+unknown
+      Building wheel for sinfo (setup.py) ... [?25l[?25hdone
+      Building wheel for umap-learn (setup.py) ... [?25l[?25hdone
+      Building wheel for pynndescent (setup.py) ... [?25l[?25hdone
 
 
 ### Download a pre-built mouse index
@@ -79,10 +62,11 @@ The only required file that must be locally stored on disk prior to pre-processi
 !kb ref -d mouse -i index.idx -g t2g.txt
 ```
 
-    [2020-01-13 22:10:41,612]    INFO Downloading files for mouse from https://caltech.box.com/shared/static/vcaz6cujop0xuapdmz0pplp3aoqc41si.gz to tmp/vcaz6cujop0xuapdmz0pplp3aoqc41si.gz
-    [2020-01-13 22:13:24,857]    INFO Extracting files from tmp/vcaz6cujop0xuapdmz0pplp3aoqc41si.gz
-    CPU times: user 664 ms, sys: 123 ms, total: 787 ms
-    Wall time: 3min 16s
+    [2021-03-31 19:33:26,151]    INFO Downloading files for mouse from https://caltech.box.com/shared/static/vcaz6cujop0xuapdmz0pplp3aoqc41si.gz to tmp/vcaz6cujop0xuapdmz0pplp3aoqc41si.gz
+    100% 1.89G/1.89G [01:30<00:00, 22.4MB/s]
+    [2021-03-31 19:34:58,426]    INFO Extracting files from tmp/vcaz6cujop0xuapdmz0pplp3aoqc41si.gz
+    CPU times: user 1.28 s, sys: 218 ms, total: 1.5 s
+    Wall time: 2min 6s
 
 
 
@@ -93,21 +77,22 @@ https://caltech.box.com/shared/static/w9ww8et5o029s2e3usjzpbq8lpot29rh.gz \
 https://caltech.box.com/shared/static/ql00zyvqnpy7bf8ogdoe9zfy907guzy9.gz
 ```
 
-    [2020-01-13 22:14:01,325]    INFO Piping https://caltech.box.com/shared/static/w9ww8et5o029s2e3usjzpbq8lpot29rh.gz to tmp/w9ww8et5o029s2e3usjzpbq8lpot29rh.gz
-    [2020-01-13 22:14:01,327]    INFO Piping https://caltech.box.com/shared/static/ql00zyvqnpy7bf8ogdoe9zfy907guzy9.gz to tmp/ql00zyvqnpy7bf8ogdoe9zfy907guzy9.gz
-    [2020-01-13 22:14:01,327]    INFO Generating BUS file from
-    [2020-01-13 22:14:01,327]    INFO         tmp/w9ww8et5o029s2e3usjzpbq8lpot29rh.gz
-    [2020-01-13 22:14:01,327]    INFO         tmp/ql00zyvqnpy7bf8ogdoe9zfy907guzy9.gz
-    [2020-01-13 22:16:39,231]    INFO Sorting BUS file ./output.bus to tmp/output.s.bus
-    [2020-01-13 22:16:42,864]    INFO Whitelist not provided
-    [2020-01-13 22:16:42,864]    INFO Copying pre-packaged 10XV2 whitelist to .
-    [2020-01-13 22:16:42,983]    INFO Inspecting BUS file tmp/output.s.bus
-    [2020-01-13 22:16:44,697]    INFO Correcting BUS records in tmp/output.s.bus to tmp/output.s.c.bus with whitelist ./10xv2_whitelist.txt
-    [2020-01-13 22:17:01,096]    INFO Sorting BUS file tmp/output.s.c.bus to ./output.unfiltered.bus
-    [2020-01-13 22:17:04,468]    INFO Generating count matrix ./counts_unfiltered/cells_x_genes from BUS file ./output.unfiltered.bus
-    [2020-01-13 22:17:06,930]    INFO Converting matrix ./counts_unfiltered/cells_x_genes.mtx to h5ad ./counts_unfiltered/adata.h5ad
-    CPU times: user 828 ms, sys: 85.2 ms, total: 913 ms
-    Wall time: 3min 10s
+    [2021-03-31 19:35:32,311]    INFO Piping https://caltech.box.com/shared/static/w9ww8et5o029s2e3usjzpbq8lpot29rh.gz to ./tmp/w9ww8et5o029s2e3usjzpbq8lpot29rh.gz
+    [2021-03-31 19:35:32,313]    INFO Piping https://caltech.box.com/shared/static/ql00zyvqnpy7bf8ogdoe9zfy907guzy9.gz to ./tmp/ql00zyvqnpy7bf8ogdoe9zfy907guzy9.gz
+    [2021-03-31 19:35:32,314]    INFO Using index index.idx to generate BUS file to . from
+    [2021-03-31 19:35:32,314]    INFO         ./tmp/w9ww8et5o029s2e3usjzpbq8lpot29rh.gz
+    [2021-03-31 19:35:32,314]    INFO         ./tmp/ql00zyvqnpy7bf8ogdoe9zfy907guzy9.gz
+    [2021-03-31 19:38:44,775]    INFO Sorting BUS file ./output.bus to ./tmp/output.s.bus
+    [2021-03-31 19:38:50,622]    INFO Whitelist not provided
+    [2021-03-31 19:38:50,622]    INFO Copying pre-packaged 10XV2 whitelist to .
+    [2021-03-31 19:38:50,752]    INFO Inspecting BUS file ./tmp/output.s.bus
+    [2021-03-31 19:38:53,602]    INFO Correcting BUS records in ./tmp/output.s.bus to ./tmp/output.s.c.bus with whitelist ./10xv2_whitelist.txt
+    [2021-03-31 19:38:55,827]    INFO Sorting BUS file ./tmp/output.s.c.bus to ./output.unfiltered.bus
+    [2021-03-31 19:39:00,448]    INFO Generating count matrix ./counts_unfiltered/cells_x_genes from BUS file ./output.unfiltered.bus
+    [2021-03-31 19:39:06,425]    INFO Reading matrix ./counts_unfiltered/cells_x_genes.mtx
+    [2021-03-31 19:39:09,811]    INFO Writing matrix to h5ad ./counts_unfiltered/adata.h5ad
+    CPU times: user 1.41 s, sys: 188 ms, total: 1.6 s
+    Wall time: 3min 39s
 
 
 

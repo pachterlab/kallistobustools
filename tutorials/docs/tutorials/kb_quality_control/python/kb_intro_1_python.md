@@ -1,4 +1,4 @@
-<a href="https://colab.research.google.com/github/pachterlab/kallistobustools/blob/master/notebooks/kb_intro_1_python.ipynb" target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
+<a href="https://colab.research.google.com/github/pachterlab/kallistobustools/blob/master/tutorials/docs/tutorials/kb_quality_control/python/kb_intro_1_python.ipynb" target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
 
 # Introduction to single-cell RNA-seq I: pre-processing and quality control
 
@@ -68,8 +68,8 @@ matplotlib.rcParams.update({'font.size': 22})
 !pip install kb-python==0.24.1
 ```
 
-    CPU times: user 25 ms, sys: 8.17 ms, total: 33.1 ms
-    Wall time: 2.74 s
+    CPU times: user 71.8 ms, sys: 20.8 ms, total: 92.6 ms
+    Wall time: 9.89 s
 
 
 ### Download required files
@@ -85,58 +85,58 @@ matplotlib.rcParams.update({'font.size': 22})
 !wget -O t2g.txt https://caltech.box.com/shared/static/cflxji16171skf3syzm8scoxkcvbl97x.txt
 ```
 
-    --2020-02-07 07:17:43--  https://caltech.box.com/shared/static/82yv415pkbdixhzi55qac1htiaph9ng4.idx
-    Resolving caltech.box.com (caltech.box.com)... 107.152.27.197, 107.152.26.197
+    --2021-03-31 23:35:57--  https://caltech.box.com/shared/static/82yv415pkbdixhzi55qac1htiaph9ng4.idx
+    Resolving caltech.box.com (caltech.box.com)... 107.152.27.197
     Connecting to caltech.box.com (caltech.box.com)|107.152.27.197|:443... connected.
     HTTP request sent, awaiting response... 301 Moved Permanently
     Location: /public/static/82yv415pkbdixhzi55qac1htiaph9ng4.idx [following]
-    --2020-02-07 07:17:43--  https://caltech.box.com/public/static/82yv415pkbdixhzi55qac1htiaph9ng4.idx
+    --2021-03-31 23:35:57--  https://caltech.box.com/public/static/82yv415pkbdixhzi55qac1htiaph9ng4.idx
     Reusing existing connection to caltech.box.com:443.
     HTTP request sent, awaiting response... 301 Moved Permanently
     Location: https://caltech.app.box.com/public/static/82yv415pkbdixhzi55qac1htiaph9ng4.idx [following]
-    --2020-02-07 07:17:44--  https://caltech.app.box.com/public/static/82yv415pkbdixhzi55qac1htiaph9ng4.idx
-    Resolving caltech.app.box.com (caltech.app.box.com)... 107.152.27.199, 107.152.26.199
-    Connecting to caltech.app.box.com (caltech.app.box.com)|107.152.27.199|:443... connected.
+    --2021-03-31 23:35:57--  https://caltech.app.box.com/public/static/82yv415pkbdixhzi55qac1htiaph9ng4.idx
+    Resolving caltech.app.box.com (caltech.app.box.com)... 107.152.27.201
+    Connecting to caltech.app.box.com (caltech.app.box.com)|107.152.27.201|:443... connected.
     HTTP request sent, awaiting response... 302 Found
-    Location: https://public.boxcloud.com/d/1/b1!M0KAIlTyf1RI0Jsisv4c9VJNoKuspjIk7BTT1SvIvkE-OXW19zKEPQB6ATsSDVynKOVpwh6-4XaE8wNkf8MM6G66oVxJIZba7HfA3WVgEewMKmkDEAbsu-T_iA7uC5HAXOo4N0a1Gc2P0fcDl1r2GdHpXTy-KuC-GW7EB2nAXqi-RKYWzYL-ktkDQJi5TrPUeVC2LaXLyQb2tHTOWvlQ8C_NPV4EoSudJ3yUvrq1HjjfrbUs8dgIO7pYEmVOODw7-crXCxdUhzEOqzjm13Ng0RdcdA7KXIXHxRNAgwksuRQTzreXjlEvh3ib0bF2IFI1zOIDnzdFN-eysCTn_L_UfQ36p1r0Whj3oWC0l37xDjSC1FkJ7DPA-haJkxBRj_5wfS5dvZR69exK3r0FXVife29s_s45LPa6CFEYIfoHhcM42qyv0jIzIvD5yRPIeZiP6T8X61hB90ITEgZB_HkY7pexn73OdWBS6DQzJLd3WbiDhr6Wj_StRW8WLrxPPgFz-rlRyTPuMrI3_84Fw4KdpJ1uvBoks7x6KSag8Uc6da1zq6Y8sMRctgo5YGYmkLk6ENJ4Lb5IiGcLy5nGHtoB71DsPvey6K66ZHjJUGSC5WlN43LvEoLqwuXg46TMvUUX2euOIw3Odis8uYTXBhoajgSKZA9AAYWuN68wt4jWQVKCd-_iCQtgQOGAlVhPmNAVlWikQF6sJA_E09_AvRPyXQLrdbAM-vjaNC7qNR3Cis6leywhZXrtziLYNNZws3z33kRImovMHknl8ohp4Dk3KAnAEcfrCgF3qt2Ol2Qk62oxtZsrImzaaNed1la3K-RkzKfQC1Y2TN_fcoRfpG8LXDdlMeFg-fLSp7RkxjeuRQLd7_q4YiRLlyJryKMDkpy8EoQsfbanCMuD_RD2YVAfGbrkc03tI-BHyFKnEkEK_yaaILjJb1lBO561tGYCqNKqfw5sWE-1-HL0uhObo-auvnpqDetx7cYRCC51orxbwSp5aNocRkUssyv65nfQbufOuRWGSxW7SWhWWz1XZxLmypeRSeA-IqV9z6a2hcaoOuGkN6C_alrfwF-qFEH_JYKwpbok3fwpfuMJ-c0uBX1b9hAIJWHh667-TDv72miNETLNxYn5cnlEFinYNDCigz36nT2rq_lOnqzUq0IafzM7ASCsxCTrklWmKjxp5Wz5WnTl8sUIZQtelOk9rW2voF0UvI_vKY_MYmn12Ain8U77MJ_vuFzSTRJd3aZPNg8M5qrOeZA-Gt7cZ5qEA5RTyKFg-FCJCqFmBDu5o_wgtuVvgZ8lJlJSrlIVc3vrhRoocMXDiPCoBhTr7cAQVySbDdFk6uUUxiWl6fUWqyD2c8ziyRwmiFtYATNu1mfmx6eeJWtCJBRMxn3XIi91bEjluUfkB5hY/download [following]
-    --2020-02-07 07:17:44--  https://public.boxcloud.com/d/1/b1!M0KAIlTyf1RI0Jsisv4c9VJNoKuspjIk7BTT1SvIvkE-OXW19zKEPQB6ATsSDVynKOVpwh6-4XaE8wNkf8MM6G66oVxJIZba7HfA3WVgEewMKmkDEAbsu-T_iA7uC5HAXOo4N0a1Gc2P0fcDl1r2GdHpXTy-KuC-GW7EB2nAXqi-RKYWzYL-ktkDQJi5TrPUeVC2LaXLyQb2tHTOWvlQ8C_NPV4EoSudJ3yUvrq1HjjfrbUs8dgIO7pYEmVOODw7-crXCxdUhzEOqzjm13Ng0RdcdA7KXIXHxRNAgwksuRQTzreXjlEvh3ib0bF2IFI1zOIDnzdFN-eysCTn_L_UfQ36p1r0Whj3oWC0l37xDjSC1FkJ7DPA-haJkxBRj_5wfS5dvZR69exK3r0FXVife29s_s45LPa6CFEYIfoHhcM42qyv0jIzIvD5yRPIeZiP6T8X61hB90ITEgZB_HkY7pexn73OdWBS6DQzJLd3WbiDhr6Wj_StRW8WLrxPPgFz-rlRyTPuMrI3_84Fw4KdpJ1uvBoks7x6KSag8Uc6da1zq6Y8sMRctgo5YGYmkLk6ENJ4Lb5IiGcLy5nGHtoB71DsPvey6K66ZHjJUGSC5WlN43LvEoLqwuXg46TMvUUX2euOIw3Odis8uYTXBhoajgSKZA9AAYWuN68wt4jWQVKCd-_iCQtgQOGAlVhPmNAVlWikQF6sJA_E09_AvRPyXQLrdbAM-vjaNC7qNR3Cis6leywhZXrtziLYNNZws3z33kRImovMHknl8ohp4Dk3KAnAEcfrCgF3qt2Ol2Qk62oxtZsrImzaaNed1la3K-RkzKfQC1Y2TN_fcoRfpG8LXDdlMeFg-fLSp7RkxjeuRQLd7_q4YiRLlyJryKMDkpy8EoQsfbanCMuD_RD2YVAfGbrkc03tI-BHyFKnEkEK_yaaILjJb1lBO561tGYCqNKqfw5sWE-1-HL0uhObo-auvnpqDetx7cYRCC51orxbwSp5aNocRkUssyv65nfQbufOuRWGSxW7SWhWWz1XZxLmypeRSeA-IqV9z6a2hcaoOuGkN6C_alrfwF-qFEH_JYKwpbok3fwpfuMJ-c0uBX1b9hAIJWHh667-TDv72miNETLNxYn5cnlEFinYNDCigz36nT2rq_lOnqzUq0IafzM7ASCsxCTrklWmKjxp5Wz5WnTl8sUIZQtelOk9rW2voF0UvI_vKY_MYmn12Ain8U77MJ_vuFzSTRJd3aZPNg8M5qrOeZA-Gt7cZ5qEA5RTyKFg-FCJCqFmBDu5o_wgtuVvgZ8lJlJSrlIVc3vrhRoocMXDiPCoBhTr7cAQVySbDdFk6uUUxiWl6fUWqyD2c8ziyRwmiFtYATNu1mfmx6eeJWtCJBRMxn3XIi91bEjluUfkB5hY/download
-    Resolving public.boxcloud.com (public.boxcloud.com)... 107.152.26.200
-    Connecting to public.boxcloud.com (public.boxcloud.com)|107.152.26.200|:443... connected.
+    Location: https://public.boxcloud.com/d/1/b1!TOjZC9YauQsUJ1QtiQcyl9nECELYGh_7GOcHslcOkuFjCXsoUakhYeEEEaN9FG0stqv7Uk-S8CQ9zwZqkbZT8yKcMu4qp9rDiMk9mPGdyAAt7wlMt5fGe8-ayhgpbUaa7JOrIUmD42YWwC8RVxtbw0wov8BcRoj9EHbA5HH9j4XQGFOxgVSP91uupfMciKBleiGzWCa4lHF7tEjYNHCkMPCKETj25x3X9VvLI8Tjp5IDsu_qoNHqpv53-owbBaaShO-DZGZwcVkhwqmz4iygFE1cjWaQxLGa46o1z48Yl2OBGo9VixhvEnoRAzMb0No9D5DZay6TiAPixZOV17GPzE793QTK0DGeTjjDEdxgwrZs6f5EBIPrZymUG7rj1HPEnXiAvqEpeZFj9IUvU6WovhB-V0QbFD-E4eSHZbcWK9T7CPE1Lv3gC1bhuYNULThU-bD9eb-qghz8-5qAjwfuEV4TsO7wMtbIUpsGQiMwhaaiO95Pwe5__pJNay9ErF16gA3V3vTvwwk8jUQsL0E1LMO4hX1pYGZ1gC1MTlAUfN1qzaKIm7gdmVtTlMlTOw1h5Jk3hQOOITeOYQeehRwE4X4kyZcXMvzK_8N59TKs7NZP_9PxXmG1r_jxWgfEbXxdaAOUQaaPfvZ1l-AlUZcMmO7snBIRT2oah0fe6VvAnz3Pl3IQ6dX1VKAsd0XPcfANf3NCj0ukSaT7Lj3gJNd82ReIEnYXFjkmHmB-eY84uXqjupKoSUXtX4YddjePPNqm6HPgoJPRSZnBcOyfACOTONkq4ppy6nujoqJviKOM3FYBXo7ng6HXf-mNeQSiqBR2ooAzgNKy6B3emVDdCX9kzZu7P-74doan52Z0BTs6qHQmriBDqO53HSOTswDluiYzOOneHRq73wgBJFBHh9GPELx0x1OGv0Anh59qn9M8gNtebnbqnChR2UonBBUg0qmK-MFWrwk3wJIOrlSl0mEcRKWIQqM6xIbLSX6AvJ-0MnZ0jBtHaCjfpSbZluXYSTDqMg6BLCpcDEhWk8WlPszIF4pOXHTrWhBDUY9L7typSxvmbj5IKL_imHwGxlFX3w9fshr7Z9PP-T30X8h8pQTJwrtI9Qtl_M6chYS235sM1QjiKUk3BcaYjtwUrJ6KoR2UVNJqoDtq8MOp386KHhvyAsuRanj_O_4BwDPhSog9gBwvdF5DPe8XrfSw7zNX2OXERLLbE61wDrjigDSeboYbT-ZwF4dkKKXFw9do4iPu6avsuDhv8t157NqmtWOV-31hai_N8EjueCaROPzlOBUglX09yWewZgAj-kvEfhPQtdmjdKcTl-Qv6V1yyhiEm-XJy9euoi0Sja-20BjguinCmBvodDopu-DJRkPBxYIGchtBQURBkK1GjkBD97eXHCQlYY0p4zpn_Q../download [following]
+    --2021-03-31 23:35:57--  https://public.boxcloud.com/d/1/b1!TOjZC9YauQsUJ1QtiQcyl9nECELYGh_7GOcHslcOkuFjCXsoUakhYeEEEaN9FG0stqv7Uk-S8CQ9zwZqkbZT8yKcMu4qp9rDiMk9mPGdyAAt7wlMt5fGe8-ayhgpbUaa7JOrIUmD42YWwC8RVxtbw0wov8BcRoj9EHbA5HH9j4XQGFOxgVSP91uupfMciKBleiGzWCa4lHF7tEjYNHCkMPCKETj25x3X9VvLI8Tjp5IDsu_qoNHqpv53-owbBaaShO-DZGZwcVkhwqmz4iygFE1cjWaQxLGa46o1z48Yl2OBGo9VixhvEnoRAzMb0No9D5DZay6TiAPixZOV17GPzE793QTK0DGeTjjDEdxgwrZs6f5EBIPrZymUG7rj1HPEnXiAvqEpeZFj9IUvU6WovhB-V0QbFD-E4eSHZbcWK9T7CPE1Lv3gC1bhuYNULThU-bD9eb-qghz8-5qAjwfuEV4TsO7wMtbIUpsGQiMwhaaiO95Pwe5__pJNay9ErF16gA3V3vTvwwk8jUQsL0E1LMO4hX1pYGZ1gC1MTlAUfN1qzaKIm7gdmVtTlMlTOw1h5Jk3hQOOITeOYQeehRwE4X4kyZcXMvzK_8N59TKs7NZP_9PxXmG1r_jxWgfEbXxdaAOUQaaPfvZ1l-AlUZcMmO7snBIRT2oah0fe6VvAnz3Pl3IQ6dX1VKAsd0XPcfANf3NCj0ukSaT7Lj3gJNd82ReIEnYXFjkmHmB-eY84uXqjupKoSUXtX4YddjePPNqm6HPgoJPRSZnBcOyfACOTONkq4ppy6nujoqJviKOM3FYBXo7ng6HXf-mNeQSiqBR2ooAzgNKy6B3emVDdCX9kzZu7P-74doan52Z0BTs6qHQmriBDqO53HSOTswDluiYzOOneHRq73wgBJFBHh9GPELx0x1OGv0Anh59qn9M8gNtebnbqnChR2UonBBUg0qmK-MFWrwk3wJIOrlSl0mEcRKWIQqM6xIbLSX6AvJ-0MnZ0jBtHaCjfpSbZluXYSTDqMg6BLCpcDEhWk8WlPszIF4pOXHTrWhBDUY9L7typSxvmbj5IKL_imHwGxlFX3w9fshr7Z9PP-T30X8h8pQTJwrtI9Qtl_M6chYS235sM1QjiKUk3BcaYjtwUrJ6KoR2UVNJqoDtq8MOp386KHhvyAsuRanj_O_4BwDPhSog9gBwvdF5DPe8XrfSw7zNX2OXERLLbE61wDrjigDSeboYbT-ZwF4dkKKXFw9do4iPu6avsuDhv8t157NqmtWOV-31hai_N8EjueCaROPzlOBUglX09yWewZgAj-kvEfhPQtdmjdKcTl-Qv6V1yyhiEm-XJy9euoi0Sja-20BjguinCmBvodDopu-DJRkPBxYIGchtBQURBkK1GjkBD97eXHCQlYY0p4zpn_Q../download
+    Resolving public.boxcloud.com (public.boxcloud.com)... 107.152.27.200
+    Connecting to public.boxcloud.com (public.boxcloud.com)|107.152.27.200|:443... connected.
     HTTP request sent, awaiting response... 200 OK
     Length: 625579580 (597M) [application/octet-stream]
     Saving to: ‘idx.idx’
     
-    idx.idx             100%[===================>] 596.60M  25.6MB/s    in 24s     
+    idx.idx             100%[===================>] 596.60M  16.6MB/s    in 29s     
     
-    2020-02-07 07:18:08 (25.3 MB/s) - ‘idx.idx’ saved [625579580/625579580]
+    2021-03-31 23:36:27 (20.7 MB/s) - ‘idx.idx’ saved [625579580/625579580]
     
-    --2020-02-07 07:18:09--  https://caltech.box.com/shared/static/cflxji16171skf3syzm8scoxkcvbl97x.txt
-    Resolving caltech.box.com (caltech.box.com)... 107.152.27.197, 107.152.26.197
+    --2021-03-31 23:36:27--  https://caltech.box.com/shared/static/cflxji16171skf3syzm8scoxkcvbl97x.txt
+    Resolving caltech.box.com (caltech.box.com)... 107.152.27.197
     Connecting to caltech.box.com (caltech.box.com)|107.152.27.197|:443... connected.
     HTTP request sent, awaiting response... 301 Moved Permanently
     Location: /public/static/cflxji16171skf3syzm8scoxkcvbl97x.txt [following]
-    --2020-02-07 07:18:09--  https://caltech.box.com/public/static/cflxji16171skf3syzm8scoxkcvbl97x.txt
+    --2021-03-31 23:36:27--  https://caltech.box.com/public/static/cflxji16171skf3syzm8scoxkcvbl97x.txt
     Reusing existing connection to caltech.box.com:443.
     HTTP request sent, awaiting response... 301 Moved Permanently
     Location: https://caltech.app.box.com/public/static/cflxji16171skf3syzm8scoxkcvbl97x.txt [following]
-    --2020-02-07 07:18:09--  https://caltech.app.box.com/public/static/cflxji16171skf3syzm8scoxkcvbl97x.txt
-    Resolving caltech.app.box.com (caltech.app.box.com)... 107.152.27.199, 107.152.26.199
-    Connecting to caltech.app.box.com (caltech.app.box.com)|107.152.27.199|:443... connected.
+    --2021-03-31 23:36:27--  https://caltech.app.box.com/public/static/cflxji16171skf3syzm8scoxkcvbl97x.txt
+    Resolving caltech.app.box.com (caltech.app.box.com)... 107.152.27.201
+    Connecting to caltech.app.box.com (caltech.app.box.com)|107.152.27.201|:443... connected.
     HTTP request sent, awaiting response... 302 Found
-    Location: https://public.boxcloud.com/d/1/b1!94zGZn5zfQ_8p5LwrL-a54X05RWUWQLPKrXr_E5uknK9JDuDGTql1BEKIlOeal3m4g6SqPxhwZfdKKC-o4W23rOi6j6jb2m5E4LQ4A3RD42RjMmKhfz8NYNqNNX-gS7zCdZWSreKmekAGBzxkQDFPwyk4qI5OQ-AZdY8q6vcuIEMes2NVX3IIwqHQp9nBra-kj0SnsXWCMx3l4GEfCQljSGq7wkCMKTsz-Y_GTNfH6pwRbLT1n38GGrYmgmOrw7II3dgUrirNVbK_jUJdReU13ziUsRUDXkmGX7_LSByKhlSzIlfpR0NJJLzXYboB8xjM7SD8oiPAGC03MqlTroKW6FRkxGXwef8JErzjJ8nvAHYjMfPDZT1EVC1YhOTuj8GCB_2uYi7kqXzSpuOBbG9PfDYsSOGuKDVI79zhESHLeG6q2khJymMtXXlcczuI_TBCoz573AY5MBjQFsy9kJffCXbzfRExV4qaCpyVW5fzjdDWDG2KT70OJmkeAPXxYcgW6GRyssQ6ExFcPuXcGBEJnbo5RUbeiLaK6QA41Qs3wb-weGXW0Ny6tXmHpHyk-wTn0oRN_JA6C1-SHvt2cIE7Y_6QOH5cC82geO1hbaZp1r9TnKL3I3bH-EVfNzxzO5VsGUxsSa-xNUsqQqqbz215B3ph1vl-NbID71CNuANspEH2_4cVc1JzPqNpiQrBdAiDutO4QAAmXw3j0jrtJsr1Fn2bc5b4kv_rZRikzwOmea2RuacNx1HvV-E3Q04sIgomb__GRNMz9MJTJms-9CAAPQ6F54qjxV9WiMRj6yTVWPBGx5-0uFIWm8WguhoFqWW96Vkx7j4Nv4JYPK_lY3ihGISXWUWfTgtZgZsBUAIlpuXEWt8Z0AAsK6Fuk26TXO185Gnoct70S2yRBiPKH0vKhedzFWrRZ8RWfuitagcq9lEUVPV5SG7ZbRHi2VMLCIM0hakwyEU-qh5ArYlGL9DmjMz4h54lPKbZsiP-ZOFekG72SgnHprKCrIbku89c2KgROZ80AvtATnHpog0dEkBYjVBtq3Xo1sFyQYCtY2vmJ7kWIQ1Xt-DUVfEjS3ajcrRYHmT_bhmV9uL3Nm4HxwQaJ6KdtW5rLpI2_4V8-Ttl0FKDKRcCJxN3ECmxneih7J6qaRDEu4n3uWkSdZKtL8qAMLopFCz9KsoOgK7N-YRBrucTzEnPHb7owgX_phkY68_f8unbLkN1Tn7tfIxyE2vfUr2y51jBmBnEnY0vvD9pM2AzB7WlN4j7v4wF0-hD5FQVHd52HmvooUFkVBCAkLfk4fb5tW4dBWovYkQhAUcTQBPDNOFAlAj8XwJSpMS0aPBWaj95HPnFVvbt2HyiV11Yq4IMjidrpQG/download [following]
-    --2020-02-07 07:18:10--  https://public.boxcloud.com/d/1/b1!94zGZn5zfQ_8p5LwrL-a54X05RWUWQLPKrXr_E5uknK9JDuDGTql1BEKIlOeal3m4g6SqPxhwZfdKKC-o4W23rOi6j6jb2m5E4LQ4A3RD42RjMmKhfz8NYNqNNX-gS7zCdZWSreKmekAGBzxkQDFPwyk4qI5OQ-AZdY8q6vcuIEMes2NVX3IIwqHQp9nBra-kj0SnsXWCMx3l4GEfCQljSGq7wkCMKTsz-Y_GTNfH6pwRbLT1n38GGrYmgmOrw7II3dgUrirNVbK_jUJdReU13ziUsRUDXkmGX7_LSByKhlSzIlfpR0NJJLzXYboB8xjM7SD8oiPAGC03MqlTroKW6FRkxGXwef8JErzjJ8nvAHYjMfPDZT1EVC1YhOTuj8GCB_2uYi7kqXzSpuOBbG9PfDYsSOGuKDVI79zhESHLeG6q2khJymMtXXlcczuI_TBCoz573AY5MBjQFsy9kJffCXbzfRExV4qaCpyVW5fzjdDWDG2KT70OJmkeAPXxYcgW6GRyssQ6ExFcPuXcGBEJnbo5RUbeiLaK6QA41Qs3wb-weGXW0Ny6tXmHpHyk-wTn0oRN_JA6C1-SHvt2cIE7Y_6QOH5cC82geO1hbaZp1r9TnKL3I3bH-EVfNzxzO5VsGUxsSa-xNUsqQqqbz215B3ph1vl-NbID71CNuANspEH2_4cVc1JzPqNpiQrBdAiDutO4QAAmXw3j0jrtJsr1Fn2bc5b4kv_rZRikzwOmea2RuacNx1HvV-E3Q04sIgomb__GRNMz9MJTJms-9CAAPQ6F54qjxV9WiMRj6yTVWPBGx5-0uFIWm8WguhoFqWW96Vkx7j4Nv4JYPK_lY3ihGISXWUWfTgtZgZsBUAIlpuXEWt8Z0AAsK6Fuk26TXO185Gnoct70S2yRBiPKH0vKhedzFWrRZ8RWfuitagcq9lEUVPV5SG7ZbRHi2VMLCIM0hakwyEU-qh5ArYlGL9DmjMz4h54lPKbZsiP-ZOFekG72SgnHprKCrIbku89c2KgROZ80AvtATnHpog0dEkBYjVBtq3Xo1sFyQYCtY2vmJ7kWIQ1Xt-DUVfEjS3ajcrRYHmT_bhmV9uL3Nm4HxwQaJ6KdtW5rLpI2_4V8-Ttl0FKDKRcCJxN3ECmxneih7J6qaRDEu4n3uWkSdZKtL8qAMLopFCz9KsoOgK7N-YRBrucTzEnPHb7owgX_phkY68_f8unbLkN1Tn7tfIxyE2vfUr2y51jBmBnEnY0vvD9pM2AzB7WlN4j7v4wF0-hD5FQVHd52HmvooUFkVBCAkLfk4fb5tW4dBWovYkQhAUcTQBPDNOFAlAj8XwJSpMS0aPBWaj95HPnFVvbt2HyiV11Yq4IMjidrpQG/download
-    Resolving public.boxcloud.com (public.boxcloud.com)... 107.152.26.200
-    Connecting to public.boxcloud.com (public.boxcloud.com)|107.152.26.200|:443... connected.
+    Location: https://public.boxcloud.com/d/1/b1!gWbsrvnYAgYXxnB8WTrshtz_ZRR1ZUSrew8lXt473jS8-q72mE2fJN3i3uKWzqAO9s76XhRxjtXyRvHVa_zgHrCqbSzCTu0e7bB_YpGrmN_rSyEsHsFXKhZoSScPrTVeJsgIV_9ghOrIBIp3MJd44R83oTG9Ve3NqXm9-dqMtZw0RHK60ZrBt0JJW0vkTlBnqwUapw2QEKgGLgiJBYC0ia4KEwdVp_L3kUilD7Q_Iln6PxoZWsNVTj6j1pTpx_LfQFU-YPwVDwTB4HIapelPSYMVxkDmlrcxzxZpB9PoQFh0KkhP14XXhewMUzm_7RvmH9ElybOvT2KeHhd0X84Ppx-2w_IQOePXCFwspJPzutXE60JX5WtCSRtSQTxAjcmIppjJ-wn7s5JkhWda17KWwyZweoCHEuH3DJVTsH_tYtydKlnil0tGxiwvUkxpuds3zWBx19Z9bM3cQ5zKno1bZj0NkAXyxIvVPf0NftkSr-wYCTxW3mO3L4lvTrV9gCatnSXGtFqhOe1QRdZYsy34rnGcoa5ztcDbdf38mB2ordUH0ZOCo8ML11DfWssAmkVuAhk-9AI6gO-nCOPVXM54oDvPYLyFOmw185kPnMK4WZWCPMteL-qmACHF49MR7pvUxxCuiNBoQq43nZUYiMw1gB-kEjzJhSM4u1E1Gq4iQqmmp95FWIaXBELLoo7JIHqvKHkVRvNy3sgvMn_pWOfa8oN1mXTPoq8BmH5mgj6th2scwnnJJVAU8V_eWzfELyB71_gWT7tk16cum9d6hh3Ex8W7BGo1X8jEtK4i6LvvwYtng1ufaxBECUS_GecmuuOMJodxUPaj_cADwABylJxPwLVlyHAfxcCNBo8hrgHSE0t5m3juwzJb1qNO-UqHXUw_omUlnvNeN6gmPR-aGjLFzXpkPf45_i-diX9v8f8IVrOV5m-MCEVZLyRdyx5Zlte0-AYvt1IXOvwPYxaaQvo5RaCfnXu7javy1IP0LMU_Z_VFKKbCOFZC7Ote6vUTLQFHdM-I3reaPW-ZQAcqeF5v_UkefYvaRgR6KaY2SUCjzczOh7E_hM-aJn2fSMZBpWS7ywpXIPm3Q5oHBUKO9Q5Mbge6zUmbBo7Os6hzahJ5Y1IazhBpHfD1wR9aZY-Cl7C6cPvFN2-ZJsOuYI7lKmG4fa7UpXdIDjN7SUQWG_9oUtkkfXOlpokRkFbmrXD_fiUCbOkWFwhqxaSJMKyHG3__sHhv_esrnCPMi_i5Dpfk9bll251hO074910bq77Hap0svlqQcItAalRZ5jVfxB72EGOG3qYfNKzxfvU91t339Bhc-TIDc2XxI8wkp994UjcsB61MCcIQnxyhXni0rvfw_8KTV288JdgxkymGJBE./download [following]
+    --2021-03-31 23:36:28--  https://public.boxcloud.com/d/1/b1!gWbsrvnYAgYXxnB8WTrshtz_ZRR1ZUSrew8lXt473jS8-q72mE2fJN3i3uKWzqAO9s76XhRxjtXyRvHVa_zgHrCqbSzCTu0e7bB_YpGrmN_rSyEsHsFXKhZoSScPrTVeJsgIV_9ghOrIBIp3MJd44R83oTG9Ve3NqXm9-dqMtZw0RHK60ZrBt0JJW0vkTlBnqwUapw2QEKgGLgiJBYC0ia4KEwdVp_L3kUilD7Q_Iln6PxoZWsNVTj6j1pTpx_LfQFU-YPwVDwTB4HIapelPSYMVxkDmlrcxzxZpB9PoQFh0KkhP14XXhewMUzm_7RvmH9ElybOvT2KeHhd0X84Ppx-2w_IQOePXCFwspJPzutXE60JX5WtCSRtSQTxAjcmIppjJ-wn7s5JkhWda17KWwyZweoCHEuH3DJVTsH_tYtydKlnil0tGxiwvUkxpuds3zWBx19Z9bM3cQ5zKno1bZj0NkAXyxIvVPf0NftkSr-wYCTxW3mO3L4lvTrV9gCatnSXGtFqhOe1QRdZYsy34rnGcoa5ztcDbdf38mB2ordUH0ZOCo8ML11DfWssAmkVuAhk-9AI6gO-nCOPVXM54oDvPYLyFOmw185kPnMK4WZWCPMteL-qmACHF49MR7pvUxxCuiNBoQq43nZUYiMw1gB-kEjzJhSM4u1E1Gq4iQqmmp95FWIaXBELLoo7JIHqvKHkVRvNy3sgvMn_pWOfa8oN1mXTPoq8BmH5mgj6th2scwnnJJVAU8V_eWzfELyB71_gWT7tk16cum9d6hh3Ex8W7BGo1X8jEtK4i6LvvwYtng1ufaxBECUS_GecmuuOMJodxUPaj_cADwABylJxPwLVlyHAfxcCNBo8hrgHSE0t5m3juwzJb1qNO-UqHXUw_omUlnvNeN6gmPR-aGjLFzXpkPf45_i-diX9v8f8IVrOV5m-MCEVZLyRdyx5Zlte0-AYvt1IXOvwPYxaaQvo5RaCfnXu7javy1IP0LMU_Z_VFKKbCOFZC7Ote6vUTLQFHdM-I3reaPW-ZQAcqeF5v_UkefYvaRgR6KaY2SUCjzczOh7E_hM-aJn2fSMZBpWS7ywpXIPm3Q5oHBUKO9Q5Mbge6zUmbBo7Os6hzahJ5Y1IazhBpHfD1wR9aZY-Cl7C6cPvFN2-ZJsOuYI7lKmG4fa7UpXdIDjN7SUQWG_9oUtkkfXOlpokRkFbmrXD_fiUCbOkWFwhqxaSJMKyHG3__sHhv_esrnCPMi_i5Dpfk9bll251hO074910bq77Hap0svlqQcItAalRZ5jVfxB72EGOG3qYfNKzxfvU91t339Bhc-TIDc2XxI8wkp994UjcsB61MCcIQnxyhXni0rvfw_8KTV288JdgxkymGJBE./download
+    Resolving public.boxcloud.com (public.boxcloud.com)... 107.152.27.200
+    Connecting to public.boxcloud.com (public.boxcloud.com)|107.152.27.200|:443... connected.
     HTTP request sent, awaiting response... 200 OK
     Length: 1010392 (987K) [text/plain]
     Saving to: ‘t2g.txt’
     
-    t2g.txt             100%[===================>] 986.71K  4.64MB/s    in 0.2s    
+    t2g.txt             100%[===================>] 986.71K  4.08MB/s    in 0.2s    
     
-    2020-02-07 07:18:10 (4.64 MB/s) - ‘t2g.txt’ saved [1010392/1010392]
+    2021-03-31 23:36:30 (4.08 MB/s) - ‘t2g.txt’ saved [1010392/1010392]
     
-    CPU times: user 273 ms, sys: 37 ms, total: 310 ms
-    Wall time: 27.7 s
+    CPU times: user 302 ms, sys: 65.9 ms, total: 368 ms
+    Wall time: 33.1 s
 
 
 ## Pseudoalignment and counting
@@ -160,20 +160,20 @@ The data consists of a subset of reads from [GSE126954](https://www.ncbi.nlm.nih
 !kb count -i idx.idx -g t2g.txt --overwrite -t 2 -x 10xv2 https://caltech.box.com/shared/static/fh81mkceb8ydwma3tlrqfgq22z4kc4nt.gz https://caltech.box.com/shared/static/ycxkluj5my7g3wiwhyq3vhv71mw5gmj5.gz
 ```
 
-    [2020-02-07 07:18:12,549]    INFO Piping https://caltech.box.com/shared/static/fh81mkceb8ydwma3tlrqfgq22z4kc4nt.gz to tmp/fh81mkceb8ydwma3tlrqfgq22z4kc4nt.gz
-    [2020-02-07 07:18:12,551]    INFO Piping https://caltech.box.com/shared/static/ycxkluj5my7g3wiwhyq3vhv71mw5gmj5.gz to tmp/ycxkluj5my7g3wiwhyq3vhv71mw5gmj5.gz
-    [2020-02-07 07:18:12,552]    INFO Generating BUS file from
-    [2020-02-07 07:18:12,552]    INFO         tmp/fh81mkceb8ydwma3tlrqfgq22z4kc4nt.gz
-    [2020-02-07 07:18:12,552]    INFO         tmp/ycxkluj5my7g3wiwhyq3vhv71mw5gmj5.gz
-    [2020-02-07 07:18:26,802]    INFO Sorting BUS file ./output.bus to tmp/output.s.bus
-    [2020-02-07 07:18:29,819]    INFO Whitelist not provided
-    [2020-02-07 07:18:29,819]    INFO Copying pre-packaged 10XV2 whitelist to .
-    [2020-02-07 07:18:29,933]    INFO Inspecting BUS file tmp/output.s.bus
-    [2020-02-07 07:18:30,758]    INFO Correcting BUS records in tmp/output.s.bus to tmp/output.s.c.bus with whitelist ./10xv2_whitelist.txt
-    [2020-02-07 07:18:50,086]    INFO Sorting BUS file tmp/output.s.c.bus to ./output.unfiltered.bus
-    [2020-02-07 07:18:52,884]    INFO Generating count matrix ./counts_unfiltered/cells_x_genes from BUS file ./output.unfiltered.bus
-    CPU times: user 217 ms, sys: 20.6 ms, total: 238 ms
-    Wall time: 42.8 s
+    [2021-03-31 23:36:30,948]    INFO Piping https://caltech.box.com/shared/static/fh81mkceb8ydwma3tlrqfgq22z4kc4nt.gz to tmp/fh81mkceb8ydwma3tlrqfgq22z4kc4nt.gz
+    [2021-03-31 23:36:30,951]    INFO Piping https://caltech.box.com/shared/static/ycxkluj5my7g3wiwhyq3vhv71mw5gmj5.gz to tmp/ycxkluj5my7g3wiwhyq3vhv71mw5gmj5.gz
+    [2021-03-31 23:36:30,954]    INFO Generating BUS file from
+    [2021-03-31 23:36:30,954]    INFO         tmp/fh81mkceb8ydwma3tlrqfgq22z4kc4nt.gz
+    [2021-03-31 23:36:30,954]    INFO         tmp/ycxkluj5my7g3wiwhyq3vhv71mw5gmj5.gz
+    [2021-03-31 23:36:46,788]    INFO Sorting BUS file ./output.bus to tmp/output.s.bus
+    [2021-03-31 23:36:49,288]    INFO Whitelist not provided
+    [2021-03-31 23:36:49,288]    INFO Copying pre-packaged 10XV2 whitelist to .
+    [2021-03-31 23:36:49,382]    INFO Inspecting BUS file tmp/output.s.bus
+    [2021-03-31 23:36:49,827]    INFO Correcting BUS records in tmp/output.s.bus to tmp/output.s.c.bus with whitelist ./10xv2_whitelist.txt
+    [2021-03-31 23:37:04,223]    INFO Sorting BUS file tmp/output.s.c.bus to ./output.unfiltered.bus
+    [2021-03-31 23:37:06,631]    INFO Generating count matrix ./counts_unfiltered/cells_x_genes from BUS file ./output.unfiltered.bus
+    CPU times: user 194 ms, sys: 30 ms, total: 224 ms
+    Wall time: 37 s
 
 
 ### Exercises
@@ -402,7 +402,12 @@ This notebook has demonstrated the pre-processing required for single-cell RNA-s
 print("{:.2f} seconds".format((time.time()-start_time)))
 ```
 
-    95.20 seconds
+    96.95 seconds
 
 
-**Feedback**: please report any issues, or submit pull requests for improvements, in the [Github repository where this notebook is located](https://github.com/pachterlab/kallistobustools/blob/master/notebooks/kb_intro_1_python.ipynb).
+**Feedback**: please report any issues, or submit pull requests for improvements, in the [Github repository where this notebook is located](https://github.com/pachterlab/kallistobustools/).
+
+
+```python
+
+```
