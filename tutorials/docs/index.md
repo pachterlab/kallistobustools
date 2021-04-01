@@ -1,4 +1,4 @@
-# kallisto bustools for single-cell RNA-seq pre-processing
+# kallisto | bustools for single-cell RNA-seq pre-processing
 
 ---
 
