@@ -47,6 +47,7 @@ extra_css:
 
 nav:
 - Home: index.md
+- Applications: applications.md
 - Using kb:
   - Introduction: kb_usage/kb_usage.md
   - Building a reference: kb_usage/kb_ref.md
