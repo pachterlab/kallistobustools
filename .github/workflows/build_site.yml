@@ -7,8 +7,6 @@ on:
   # Triggers the workflow on push or pull request events but only for the main branch
   push:
     paths:
-      - 'tutorials/docs/*.md'
-      - 'tutorials/docs/**/*.md'
       - 'tutorials/mkdocs.yml'
 
   # Allows you to run this workflow manually from the Actions tab
@@ -40,6 +38,7 @@ jobs:
           python -m pip install mkdocs markdown mkdocs-material
       - name: build site
         run: |
+          pip install jupyterlab
           find . -name \*.ipynb -print | xargs -I {} jupyter nbconvert --to markdown {}
           mkdocs build -d site -f mkdocs.yml
           
