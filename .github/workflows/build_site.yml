@@ -40,18 +40,11 @@ jobs:
           python -m pip install mkdocs markdown mkdocs-material
       - name: build site
         run: |
-          mkdocs build -d site -f tutorials/mkdocs.yml
-          rm -rf ./docs
-          mv tutorials/site/ ./
-          mv ./site ./docs
-        
-      - name: Commit and push if it changed
-        run: |-
-          git config user.name "Automated"
-          git config user.email "actions@users.noreply.github.com"
-          # git checkout -b gh-pages
-          git add docs/
-          timestamp=$(date -u)
-          git commit -m "Rebuilt site: ${timestamp}" || exit 0
-
-          git push # -f origin gh-pages
+          find . -name \*.ipynb -print | xargs -I {} jupyter nbconvert --to markdown {}
+          mkdocs build -d site -f mkdocs.yml
+          
+      - name: Deploy 🚀
+        uses: JamesIves/github-pages-deploy-action@4.1.4
+        with:
+          branch: gh-pages # The branch the action should deploy to.
+          folder: site # The folder the action should deploy.
