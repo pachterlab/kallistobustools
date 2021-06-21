@@ -1,0 +1,2075 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Short and simple bioinformatics tutorials">
+      
+      
+      
+        <meta name="author" content="A. Sina Booeshaghi">
+      
+      
+      <link rel="icon" href="../../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.2.1, mkdocs-material-7.1.8">
+    
+    
+      
+        <title>R - kallisto | bustools</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.ca7ac06f.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.f1a3b89f.min.css">
+        
+          
+          
+          <meta name="theme-color" content="#009485">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+      
+    
+    
+    
+      <link rel="stylesheet" href="../../../../css/custom.css">
+    
+    
+      
+  
+
+
+
+  
+  
+
+
+
+  <script>window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)},ga.l=+new Date,ga("create","UA-142178789-1","auto"),ga("set","anonymizeIp",!0),ga("send","pageview"),document.addEventListener("DOMContentLoaded",function(){document.forms.search&&document.forms.search.query.addEventListener("blur",function(){var e;this.value&&(e=document.location.pathname,ga("send","pageview",e+"?q="+this.value))}),"undefined"!=typeof location$&&location$.subscribe(function(e){ga("send","pageview",e.pathname)})})</script>
+  <script async src="https://www.google-analytics.com/analytics.js"></script>
+
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="amber">
+  
+    
+    <script>function __prefix(e){return new URL("../../../..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#qc" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../../../index.html" title="kallisto | bustools" class="md-header__button md-logo" aria-label="kallisto | bustools" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            kallisto | bustools
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              R
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        
+<a href="https://github.com/pachterlab/kallistobustools/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    pachterlab/kallistobustools
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../../index.html" title="kallisto | bustools" class="md-nav__button md-logo" aria-label="kallisto | bustools" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    kallisto | bustools
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/pachterlab/kallistobustools/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    pachterlab/kallistobustools
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../index.html" class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../applications.html" class="md-nav__link">
+        Applications
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
+      
+      <label class="md-nav__link" for="__nav_3">
+        Using kb
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Using kb" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          Using kb
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../kb_usage/kb_usage.html" class="md-nav__link">
+        Introduction
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../kb_usage/kb_ref.html" class="md-nav__link">
+        Building a reference
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../kb_usage/kb_count.html" class="md-nav__link">
+        Quantifying a dataset
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" checked>
+      
+      <label class="md-nav__link" for="__nav_4">
+        Tutorials
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Tutorials" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          Tutorials
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_1" type="checkbox" id="__nav_4_1" >
+      
+      <label class="md-nav__link" for="__nav_4_1">
+        Introduction to single-cell RNA-seq
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Introduction to single-cell RNA-seq" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_1">
+          <span class="md-nav__icon md-icon"></span>
+          Introduction to single-cell RNA-seq
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../scRNA-seq_intro/python/scRNA-seq_intro.html" class="md-nav__link">
+        Python
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_2" type="checkbox" id="__nav_4_2" >
+      
+      <label class="md-nav__link" for="__nav_4_2">
+        Preprocessing & Quality Control
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Preprocessing & Quality Control" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_2">
+          <span class="md-nav__icon md-icon"></span>
+          Preprocessing & Quality Control
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../kb_quality_control/python/kb_intro_1_python.html" class="md-nav__link">
+        Python
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../kb_quality_control/R/kb_intro_1_R.html" class="md-nav__link">
+        R
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_3" type="checkbox" id="__nav_4_3" >
+      
+      <label class="md-nav__link" for="__nav_4_3">
+        Getting started with analysis
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Getting started with analysis" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_3">
+          <span class="md-nav__icon md-icon"></span>
+          Getting started with analysis
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../kb_getting_started/python/kb_intro_2_python.html" class="md-nav__link">
+        Python
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../kb_getting_started/R/kb_intro_2_R.html" class="md-nav__link">
+        R
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_4" type="checkbox" id="__nav_4_4" >
+      
+      <label class="md-nav__link" for="__nav_4_4">
+        Building & annotating an atlas
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Building & annotating an atlas" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_4">
+          <span class="md-nav__icon md-icon"></span>
+          Building & annotating an atlas
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../kb_building_atlas/python/kb_analysis_0_python.html" class="md-nav__link">
+        Python
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../kb_building_atlas/R/kb_analysis_0_R.html" class="md-nav__link">
+        R
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_5" type="checkbox" id="__nav_4_5" checked>
+      
+      <label class="md-nav__link" for="__nav_4_5">
+        Pseudotime analysis
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Pseudotime analysis" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_5">
+          <span class="md-nav__icon md-icon"></span>
+          Pseudotime analysis
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          R
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="kb_slingshot.html" class="md-nav__link md-nav__link--active">
+        R
+      </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#dimension-reduction" class="md-nav__link">
+    Dimension reduction
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_6" type="checkbox" id="__nav_4_6" >
+      
+      <label class="md-nav__link" for="__nav_4_6">
+        Single-nuclei RNA-seq
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Single-nuclei RNA-seq" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_6">
+          <span class="md-nav__icon md-icon"></span>
+          Single-nuclei RNA-seq
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../kb_nucleus/python/kb_single_nucleus.html" class="md-nav__link">
+        Python
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_7" type="checkbox" id="__nav_4_7" >
+      
+      <label class="md-nav__link" for="__nav_4_7">
+        RNA Velocity
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="RNA Velocity" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_7">
+          <span class="md-nav__icon md-icon"></span>
+          RNA Velocity
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../kb_velocity/python/kb_velocity.html" class="md-nav__link">
+        Python
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_8" type="checkbox" id="__nav_4_8" >
+      
+      <label class="md-nav__link" for="__nav_4_8">
+        Feature barcode & multimodal data
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Feature barcode & multimodal data" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_8">
+          <span class="md-nav__icon md-icon"></span>
+          Feature barcode & multimodal data
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../kb_kite/python/kb_kite.html" class="md-nav__link">
+        Python
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../download_data/data_download.html" class="md-nav__link">
+        Find & download data
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_10" type="checkbox" id="__nav_4_10" >
+      
+      <label class="md-nav__link" for="__nav_4_10">
+        Build custom index
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Build custom index" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_10">
+          <span class="md-nav__icon md-icon"></span>
+          Build custom index
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../kb_custom_index/python/kb_transcriptome_index.html" class="md-nav__link">
+        Python
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_11" type="checkbox" id="__nav_4_11" >
+      
+      <label class="md-nav__link" for="__nav_4_11">
+        Build RNA velocity index
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Build RNA velocity index" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_11">
+          <span class="md-nav__icon md-icon"></span>
+          Build RNA velocity index
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../kb_velocity_index/python/kb_velocity_index.html" class="md-nav__link">
+        Python
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_12" type="checkbox" id="__nav_4_12" >
+      
+      <label class="md-nav__link" for="__nav_4_12">
+        Aggregate multiple matrices
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Aggregate multiple matrices" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_12">
+          <span class="md-nav__icon md-icon"></span>
+          Aggregate multiple matrices
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../kb_aggregate/python/kb_aggregating_count_matrices.html" class="md-nav__link">
+        Python
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_13" type="checkbox" id="__nav_4_13" >
+      
+      <label class="md-nav__link" for="__nav_4_13">
+        Process multiple FASTQs
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Process multiple FASTQs" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_13">
+          <span class="md-nav__icon md-icon"></span>
+          Process multiple FASTQs
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../kb_multiple_fastqs/python/kb_multiple_files.html" class="md-nav__link">
+        Python
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_14" type="checkbox" id="__nav_4_14" >
+      
+      <label class="md-nav__link" for="__nav_4_14">
+        Processing multi-species data
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Processing multi-species data" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_14">
+          <span class="md-nav__icon md-icon"></span>
+          Processing multi-species data
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../kb_species_mixing/python/kb_species_mixing.html" class="md-nav__link">
+        Python
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../kb_species_mixing/R/kb_mixed_species_10x_v2.html" class="md-nav__link">
+        R
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_15" type="checkbox" id="__nav_4_15" >
+      
+      <label class="md-nav__link" for="__nav_4_15">
+        Pseudotime analysis (Monocle2)
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Pseudotime analysis (Monocle2)" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_15">
+          <span class="md-nav__icon md-icon"></span>
+          Pseudotime analysis (Monocle2)
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../monocle2/kb_monocle2.html" class="md-nav__link">
+        R
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#dimension-reduction" class="md-nav__link">
+    Dimension reduction
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/pachterlab/kallistobustools/tree/master/tutorials/docs/tutorials/kb_pseudotime/R/slingshot/kb_slingshot.md" title="Edit this page" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                <p><a href="https://colab.research.google.com/github/pachterlab/kallistobustools/blob/master/notebooks/kb_slingshot.ipynb" target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a></p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="nf">system.time</span><span class="p">({</span>
+<span class="nf">install.packages</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;BiocManager&quot;</span><span class="p">,</span> <span class="s">&quot;scales&quot;</span><span class="p">,</span> <span class="s">&quot;viridis&quot;</span><span class="p">,</span> <span class="s">&quot;ggsci&quot;</span><span class="p">))</span>
+<span class="n">BiocManager</span><span class="o">::</span><span class="nf">install</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;slingshot&quot;</span><span class="p">,</span> <span class="s">&quot;BUSpaRse&quot;</span><span class="p">,</span> <span class="s">&quot;SingleR&quot;</span><span class="p">,</span> 
+<span class="s">&quot;DropletUtils&quot;</span><span class="p">,</span> <span class="s">&quot;scater&quot;</span><span class="p">,</span> <span class="s">&quot;scran&quot;</span><span class="p">,</span> <span class="s">&quot;tradeSeq&quot;</span><span class="p">),</span> <span class="n">Ncpus</span> <span class="o">=</span> <span class="m">2</span><span class="p">)</span>
+<span class="p">})</span>
+</code></pre></div>
+</td></tr></table>
+<div class="codehilite"><pre><span></span><code><span class="n">Installing</span> <span class="n">packages</span> <span class="n">into</span> <span class="err">‘</span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">R</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">library</span><span class="err">’</span>
+<span class="p">(</span><span class="k">as</span> <span class="err">‘</span><span class="n">lib</span><span class="err">’</span> <span class="k">is</span> <span class="n">unspecified</span><span class="p">)</span>
+
+<span class="n">also</span> <span class="n">installing</span> <span class="n">the</span> <span class="n">dependency</span> <span class="err">‘</span><span class="n">gridExtra</span><span class="err">’</span>
+
+
+<span class="n">Bioconductor</span> <span class="n">version</span> <span class="mf">3.10</span> <span class="p">(</span><span class="n">BiocManager</span> <span class="mf">1.30</span><span class="o">.</span><span class="mi">10</span><span class="p">),</span> <span class="n">R</span> <span class="mf">3.6</span><span class="o">.</span><span class="mi">2</span> <span class="p">(</span><span class="mi">2019</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">12</span><span class="p">)</span>
+
+<span class="n">Installing</span> <span class="n">package</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="s1">&#39;BiocVersion&#39;</span><span class="p">,</span> <span class="s1">&#39;slingshot&#39;</span><span class="p">,</span> <span class="s1">&#39;BUSpaRse&#39;</span><span class="p">,</span> <span class="s1">&#39;SingleR&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;DropletUtils&#39;</span><span class="p">,</span> <span class="s1">&#39;scater&#39;</span><span class="p">,</span> <span class="s1">&#39;scran&#39;</span><span class="p">,</span> <span class="s1">&#39;tradeSeq&#39;</span>
+
+<span class="n">also</span> <span class="n">installing</span> <span class="n">the</span> <span class="n">dependencies</span> <span class="err">‘</span><span class="n">bit</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">formatR</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">bibtex</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">iterators</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">annotate</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">bit64</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">blob</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">zlibbioc</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">bitops</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">Rhtslib</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">lambda</span><span class="o">.</span><span class="n">r</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">futile</span><span class="o">.</span><span class="n">options</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">interactiveDisplayBase</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">pkgmaker</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">registry</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">rngtools</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">gridBase</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">foreach</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">doParallel</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">RcppEigen</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">softImpute</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">genefilter</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">ade4</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">rncl</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">RNeXML</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">Biobase</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">IRanges</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">RSQLite</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">XML</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">BiocFileCache</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">rappdirs</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">XVector</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">rtracklayer</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">Rsamtools</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">ProtGenerics</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">RCurl</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">GenomeInfoDbData</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">GenomicAlignments</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">RcppAnnoy</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">RcppHNSW</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">futile</span><span class="o">.</span><span class="n">logger</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">snow</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">AnnotationHub</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">locfit</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">R</span><span class="o">.</span><span class="n">oo</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">R</span><span class="o">.</span><span class="n">methodsS3</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">sitmo</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">beeswarm</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">vipor</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">irlba</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">rsvd</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">NMF</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">howmany</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">locfdr</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">RSpectra</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">kernlab</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">zinbwave</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">phylobase</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">pracma</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">princurve</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">ape</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">igraph</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">matrixStats</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">SingleCellExperiment</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">SummarizedExperiment</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">AnnotationDbi</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">AnnotationFilter</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">biomaRt</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">Biostrings</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">BSgenome</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">data</span><span class="o">.</span><span class="n">table</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">ensembldb</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">GenomeInfoDb</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">GenomicFeatures</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">GenomicRanges</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">plyranges</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">RcppParallel</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">S4Vectors</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">zeallot</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">RcppArmadillo</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">RcppProgress</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">DelayedArray</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">DelayedMatrixStats</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">BiocNeighbors</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">BiocParallel</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">ExperimentHub</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">beachmat</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">edgeR</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">rhdf5</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">HDF5Array</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">R</span><span class="o">.</span><span class="n">utils</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">dqrng</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">Rhdf5lib</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">BiocGenerics</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">ggbeeswarm</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">BiocSingular</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">limma</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">statmod</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">clusterExperiment</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">pbapply</span><span class="err">’</span>
+
+
+<span class="n">Old</span> <span class="n">packages</span><span class="p">:</span> <span class="s1">&#39;curl&#39;</span><span class="p">,</span> <span class="s1">&#39;dplyr&#39;</span><span class="p">,</span> <span class="s1">&#39;DT&#39;</span><span class="p">,</span> <span class="s1">&#39;farver&#39;</span><span class="p">,</span> <span class="s1">&#39;jsonlite&#39;</span><span class="p">,</span> <span class="s1">&#39;mime&#39;</span><span class="p">,</span> <span class="s1">&#39;rlang&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;rprojroot&#39;</span><span class="p">,</span> <span class="s1">&#39;xfun&#39;</span><span class="p">,</span> <span class="s1">&#39;xtable&#39;</span><span class="p">,</span> <span class="s1">&#39;yaml&#39;</span>
+
+
+
+
+    <span class="n">user</span>   <span class="n">system</span>  <span class="n">elapsed</span> 
+<span class="mf">3927.901</span>  <span class="mf">271.269</span> <span class="mf">2157.764</span>
+</code></pre></div>
+
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="n">devtools</span><span class="o">::</span><span class="nf">install_github</span><span class="p">(</span><span class="s">&#39;cole-trapnell-lab/leidenbase&#39;</span><span class="p">)</span>
+</code></pre></div>
+</td></tr></table>
+<div class="codehilite"><pre><span></span><code><span class="n">Downloading</span> <span class="n">GitHub</span> <span class="n">repo</span> <span class="n">cole</span><span class="o">-</span><span class="n">trapnell</span><span class="o">-</span><span class="n">lab</span><span class="o">/</span><span class="n">leidenbase</span><span class="err">@</span><span class="k">master</span>
+
+
+
+
+<span class="err"></span><span class="p">[</span><span class="mi">32</span><span class="n">m</span><span class="err">✔</span><span class="p">[</span><span class="mi">39</span><span class="n">m</span>  <span class="err"></span><span class="p">[</span><span class="mi">90</span><span class="n">mchecking</span> <span class="k">for</span> <span class="n">file</span> <span class="err">‘</span><span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">Rtmp3ZgCkF</span><span class="o">/</span><span class="n">remotes82750bfffa</span><span class="o">/</span><span class="n">cole</span><span class="o">-</span><span class="n">trapnell</span><span class="o">-</span><span class="n">lab</span><span class="o">-</span><span class="n">leidenbase</span><span class="o">-</span><span class="n">c22a7d0</span><span class="o">/</span><span class="n">DESCRIPTION</span><span class="err">’</span><span class="p">[</span><span class="mi">39</span><span class="n">m</span><span class="err"></span><span class="p">[</span><span class="mi">36</span><span class="n">m</span><span class="err"></span><span class="p">[</span><span class="mi">36</span><span class="n">m</span> <span class="p">(</span><span class="mi">345</span><span class="n">ms</span><span class="p">)</span><span class="err"></span><span class="p">[</span><span class="mi">36</span><span class="n">m</span><span class="err"></span><span class="p">[</span><span class="mi">39</span><span class="n">m</span>
+<span class="err"></span><span class="p">[</span><span class="mi">90</span><span class="n">m</span><span class="err">─</span><span class="p">[</span><span class="mi">39</span><span class="n">m</span><span class="err"></span><span class="p">[</span><span class="mi">90</span><span class="n">m</span>  <span class="err"></span><span class="p">[</span><span class="mi">39</span><span class="n">m</span><span class="err"></span><span class="p">[</span><span class="mi">90</span><span class="n">mpreparing</span> <span class="err">‘</span><span class="n">leidenbase</span><span class="err">’</span><span class="p">:</span><span class="err"></span><span class="p">[</span><span class="mi">39</span><span class="n">m</span><span class="err"></span><span class="p">[</span><span class="mi">36</span><span class="n">m</span><span class="err"></span><span class="p">[</span><span class="mi">39</span><span class="n">m</span>
+<span class="err"></span><span class="p">[</span><span class="mi">32</span><span class="n">m</span><span class="err">✔</span><span class="p">[</span><span class="mi">39</span><span class="n">m</span>  <span class="err"></span><span class="p">[</span><span class="mi">90</span><span class="n">mchecking</span> <span class="n">DESCRIPTION</span> <span class="n">meta</span><span class="o">-</span><span class="n">information</span><span class="err"></span><span class="p">[</span><span class="mi">39</span><span class="n">m</span><span class="err"></span><span class="p">[</span><span class="mi">36</span><span class="n">m</span><span class="err"></span><span class="p">[</span><span class="mi">39</span><span class="n">m</span>
+<span class="err"></span><span class="p">[</span><span class="mi">90</span><span class="n">m</span><span class="err">─</span><span class="p">[</span><span class="mi">39</span><span class="n">m</span><span class="err"></span><span class="p">[</span><span class="mi">90</span><span class="n">m</span>  <span class="err"></span><span class="p">[</span><span class="mi">39</span><span class="n">m</span><span class="err"></span><span class="p">[</span><span class="mi">90</span><span class="n">mcleaning</span> <span class="n">src</span><span class="err"></span><span class="p">[</span><span class="mi">39</span><span class="n">m</span><span class="err"></span><span class="p">[</span><span class="mi">36</span><span class="n">m</span><span class="err"></span><span class="p">[</span><span class="mi">39</span><span class="n">m</span>
+<span class="err"></span><span class="p">[</span><span class="mi">90</span><span class="n">m</span><span class="err">─</span><span class="p">[</span><span class="mi">39</span><span class="n">m</span><span class="err"></span><span class="p">[</span><span class="mi">90</span><span class="n">m</span>  <span class="err"></span><span class="p">[</span><span class="mi">39</span><span class="n">m</span><span class="err"></span><span class="p">[</span><span class="mi">90</span><span class="n">mchecking</span> <span class="k">for</span> <span class="n">LF</span> <span class="n">line</span><span class="o">-</span><span class="n">endings</span> <span class="ow">in</span> <span class="n">source</span> <span class="ow">and</span> <span class="n">make</span> <span class="n">files</span> <span class="ow">and</span> <span class="n">shell</span> <span class="n">scripts</span><span class="err"></span><span class="p">[</span><span class="mi">39</span><span class="n">m</span><span class="err"></span><span class="p">[</span><span class="mi">36</span><span class="n">m</span><span class="err"></span><span class="p">[</span><span class="mi">39</span><span class="n">m</span>
+<span class="err"></span><span class="p">[</span><span class="mi">90</span><span class="n">m</span><span class="err">─</span><span class="p">[</span><span class="mi">39</span><span class="n">m</span><span class="err"></span><span class="p">[</span><span class="mi">90</span><span class="n">m</span>  <span class="err"></span><span class="p">[</span><span class="mi">39</span><span class="n">m</span><span class="err"></span><span class="p">[</span><span class="mi">90</span><span class="n">mchecking</span> <span class="k">for</span> <span class="n">empty</span> <span class="ow">or</span> <span class="n">unneeded</span> <span class="n">directories</span><span class="err"></span><span class="p">[</span><span class="mi">39</span><span class="n">m</span><span class="err"></span><span class="p">[</span><span class="mi">36</span><span class="n">m</span><span class="err"></span><span class="p">[</span><span class="mi">36</span><span class="n">m</span> <span class="p">(</span><span class="mi">578</span><span class="n">ms</span><span class="p">)</span><span class="err"></span><span class="p">[</span><span class="mi">36</span><span class="n">m</span><span class="err"></span><span class="p">[</span><span class="mi">39</span><span class="n">m</span>
+<span class="err"></span><span class="p">[</span><span class="mi">90</span><span class="n">m</span><span class="err">─</span><span class="p">[</span><span class="mi">39</span><span class="n">m</span><span class="err"></span><span class="p">[</span><span class="mi">90</span><span class="n">m</span>  <span class="err"></span><span class="p">[</span><span class="mi">39</span><span class="n">m</span><span class="err"></span><span class="p">[</span><span class="mi">90</span><span class="n">mbuilding</span> <span class="err">‘</span><span class="n">leidenbase_0</span><span class="o">.</span><span class="mf">1.0</span><span class="o">.</span><span class="n">tar</span><span class="o">.</span><span class="n">gz</span><span class="err">’</span><span class="p">[</span><span class="mi">39</span><span class="n">m</span><span class="err"></span><span class="p">[</span><span class="mi">36</span><span class="n">m</span><span class="err"></span><span class="p">[</span><span class="mi">39</span><span class="n">m</span>
+
+
+
+<span class="n">Installing</span> <span class="n">package</span> <span class="n">into</span> <span class="s1">&#39;/usr/local/lib/R/site-library&#39;</span>
+<span class="p">(</span><span class="k">as</span> <span class="s1">&#39;lib&#39;</span> <span class="k">is</span> <span class="n">unspecified</span><span class="p">)</span>
+</code></pre></div>
+
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="nf">system</span><span class="p">(</span><span class="s">&quot;pip3 install kb-python&quot;</span><span class="p">)</span>
+</code></pre></div>
+</td></tr></table>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="nf">library</span><span class="p">(</span><span class="n">slingshot</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">BUSpaRse</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">DropletUtils</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">SingleR</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">tidyverse</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">Seurat</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">ggsci</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">viridis</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">Matrix</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">scater</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">scran</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">tradeSeq</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">BiocParallel</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">clusterExperiment</span><span class="p">)</span>
+<span class="nf">theme_set</span><span class="p">(</span><span class="nf">theme_bw</span><span class="p">())</span>
+</code></pre></div>
+</td></tr></table>
+<div class="codehilite"><pre><span></span><code><span class="nv">tradeSeq</span> <span class="nv">has</span> <span class="nv">been</span> <span class="nv">updated</span> <span class="nv">to</span> <span class="nv">accommodate</span> <span class="nv">singleCellExperiment</span> <span class="nv">objects</span> <span class="nv">as</span> <span class="nv">output</span>, <span class="nv">making</span> <span class="nv">it</span> <span class="nv">much</span> <span class="nv">more</span> <span class="nv">memory</span> <span class="nv">efficient</span>. <span class="nv">Please</span> <span class="nv">check</span> <span class="nv">the</span> <span class="nv">news</span> <span class="nv">file</span> <span class="nv">and</span> <span class="nv">the</span> <span class="nv">updated</span> <span class="nv">vignette</span> <span class="k">for</span> <span class="nv">details</span>.
+</code></pre></div>
+
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="c1"># Download data</span>
+<span class="nf">if </span><span class="p">(</span><span class="o">!</span><span class="nf">dir.exists</span><span class="p">(</span><span class="s">&quot;./data&quot;</span><span class="p">))</span> <span class="nf">dir.create</span><span class="p">(</span><span class="s">&quot;./data&quot;</span><span class="p">)</span>
+<span class="nf">if </span><span class="p">(</span><span class="o">!</span><span class="nf">file.exists</span><span class="p">(</span><span class="s">&quot;./data/neuron_1k_v3_fastqs.tar&quot;</span><span class="p">))</span> <span class="p">{</span>
+  <span class="nf">download.file</span><span class="p">(</span><span class="s">&quot;http://cf.10xgenomics.com/samples/cell-exp/3.0.0/neuron_1k_v3/neuron_1k_v3_fastqs.tar&quot;</span><span class="p">,</span> 
+      <span class="s">&quot;./data/neuron_1k_v3_fastqs.tar&quot;</span><span class="p">,</span> <span class="n">method</span> <span class="o">=</span> <span class="s">&quot;wget&quot;</span><span class="p">,</span> <span class="n">quiet</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div>
+</td></tr></table>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="nf">untar</span><span class="p">(</span><span class="s">&quot;./data/neuron_1k_v3_fastqs.tar&quot;</span><span class="p">,</span> <span class="n">exdir</span> <span class="o">=</span> <span class="s">&quot;./data&quot;</span><span class="p">)</span>
+</code></pre></div>
+</td></tr></table>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="nf">system</span><span class="p">(</span><span class="s">&quot;kb ref -d human -i index.idx -g t2g.txt -f1 transcriptome.fasta&quot;</span><span class="p">,</span><span class="n">intern</span><span class="o">=</span><span class="kc">TRUE</span><span class="p">)</span>
+</code></pre></div>
+</td></tr></table>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="nf">system</span><span class="p">(</span><span class="s">&quot;chmod -R 777 data/&quot;</span><span class="p">)</span>
+</code></pre></div>
+</td></tr></table>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="n">fn</span> <span class="o">&lt;-</span> <span class="nf">list.files</span><span class="p">(</span><span class="s">&quot;data/neuron_1k_v3_fastqs&quot;</span><span class="p">,</span> <span class="n">full.names</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">)</span>
+<span class="n">fn</span> <span class="o">&lt;-</span> <span class="n">fn</span><span class="p">[</span><span class="nf">str_detect</span><span class="p">(</span><span class="n">fn</span><span class="p">,</span> <span class="s">&quot;R\\d_&quot;</span><span class="p">)]</span>
+<span class="n">fn</span>
+</code></pre></div>
+</td></tr></table>
+<style>
+.list-inline {list-style: none; margin:0; padding: 0}
+.list-inline>li {display: inline-block}
+.list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
+</style>
+<ol class=list-inline><li>'data/neuron_1k_v3_fastqs/neuron_1k_v3_S1_L001_R1_001.fastq.gz'</li><li>'data/neuron_1k_v3_fastqs/neuron_1k_v3_S1_L001_R2_001.fastq.gz'</li><li>'data/neuron_1k_v3_fastqs/neuron_1k_v3_S1_L002_R1_001.fastq.gz'</li><li>'data/neuron_1k_v3_fastqs/neuron_1k_v3_S1_L002_R2_001.fastq.gz'</li></ol>
+
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="nf">system</span><span class="p">(</span><span class="nf">paste</span><span class="p">(</span><span class="s">&quot;kb count -i reference/mm_tr_index99.idx -g reference/tr2g_mm99.tsv -x 10xv3 -o output&quot;</span><span class="p">,</span>
+<span class="nf">paste</span><span class="p">(</span><span class="n">fn</span><span class="p">,</span> <span class="n">collapse</span> <span class="o">=</span> <span class="s">&quot; &quot;</span><span class="p">)),</span> <span class="n">intern</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">)</span>
+</code></pre></div>
+</td></tr></table>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="n">res_mat</span> <span class="o">&lt;-</span> <span class="nf">read_count_output</span><span class="p">(</span><span class="s">&quot;./output/counts_unfiltered&quot;</span><span class="p">,</span> <span class="n">name</span> <span class="o">=</span> <span class="s">&quot;cells_x_genes&quot;</span><span class="p">,</span> <span class="n">tcc</span> <span class="o">=</span> <span class="kc">FALSE</span><span class="p">)</span>
+</code></pre></div>
+</td></tr></table>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="nf">dim</span><span class="p">(</span><span class="n">res_mat</span><span class="p">)</span>
+</code></pre></div>
+</td></tr></table>
+<style>
+.list-inline {list-style: none; margin:0; padding: 0}
+.list-inline>li {display: inline-block}
+.list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
+</style>
+<ol class=list-inline><li>36711</li><li>399524</li></ol>
+
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="n">tot_counts</span> <span class="o">&lt;-</span> <span class="n">Matrix</span><span class="o">::</span><span class="nf">colSums</span><span class="p">(</span><span class="n">res_mat</span><span class="p">)</span>
+<span class="nf">summary</span><span class="p">(</span><span class="n">tot_counts</span><span class="p">)</span>
+</code></pre></div>
+</td></tr></table>
+<div class="codehilite"><pre><span></span><code>     Min.   1st Qu.    Median      Mean   3rd Qu.      Max. 
+     0.00      1.00      1.00     40.47      5.00 154216.00
+</code></pre></div>
+
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="c1"># Compute barcode rank</span>
+<span class="n">bc_rank</span> <span class="o">&lt;-</span> <span class="nf">barcodeRanks</span><span class="p">(</span><span class="n">res_mat</span><span class="p">,</span> <span class="n">lower</span> <span class="o">=</span> <span class="m">1000</span><span class="p">)</span>
+</code></pre></div>
+</td></tr></table>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="c1">#&#39; Knee plot for filtering empty droplets</span>
+<span class="c1">#&#39; </span>
+<span class="c1">#&#39; Visualizes the inflection point to filter empty droplets. This function plots </span>
+<span class="c1">#&#39; different datasets with a different color. Facets can be added after calling</span>
+<span class="c1">#&#39; this function with `facet_*` functions.</span>
+<span class="c1">#&#39; </span>
+<span class="c1">#&#39; @param bc_rank A `DataFrame` output from `DropletUtil::barcodeRanks`.</span>
+<span class="c1">#&#39; @return A ggplot2 object.</span>
+<span class="n">knee_plot</span> <span class="o">&lt;-</span> <span class="nf">function</span><span class="p">(</span><span class="n">bc_rank</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">knee_plt</span> <span class="o">&lt;-</span> <span class="nf">tibble</span><span class="p">(</span><span class="n">rank</span> <span class="o">=</span> <span class="n">bc_rank</span><span class="p">[[</span><span class="s">&quot;rank&quot;</span><span class="p">]],</span>
+                     <span class="n">total</span> <span class="o">=</span> <span class="n">bc_rank</span><span class="p">[[</span><span class="s">&quot;total&quot;</span><span class="p">]])</span> <span class="o">%&gt;%</span> 
+    <span class="nf">distinct</span><span class="p">()</span> <span class="o">%&gt;%</span> 
+    <span class="n">dplyr</span><span class="o">::</span><span class="nf">filter</span><span class="p">(</span><span class="n">total</span> <span class="o">&gt;</span> <span class="m">0</span><span class="p">)</span>
+  <span class="n">annot</span> <span class="o">&lt;-</span> <span class="nf">tibble</span><span class="p">(</span><span class="n">inflection</span> <span class="o">=</span> <span class="nf">metadata</span><span class="p">(</span><span class="n">bc_rank</span><span class="p">)[[</span><span class="s">&quot;inflection&quot;</span><span class="p">]],</span>
+                  <span class="n">rank_cutoff</span> <span class="o">=</span> <span class="nf">max</span><span class="p">(</span><span class="n">bc_rank</span><span class="o">$</span><span class="n">rank</span><span class="p">[</span><span class="n">bc_rank</span><span class="o">$</span><span class="n">total</span> <span class="o">&gt;</span> <span class="nf">metadata</span><span class="p">(</span><span class="n">bc_rank</span><span class="p">)[[</span><span class="s">&quot;inflection&quot;</span><span class="p">]]]))</span>
+  <span class="n">p</span> <span class="o">&lt;-</span> <span class="nf">ggplot</span><span class="p">(</span><span class="n">knee_plt</span><span class="p">,</span> <span class="nf">aes</span><span class="p">(</span><span class="n">rank</span><span class="p">,</span> <span class="n">total</span><span class="p">))</span> <span class="o">+</span>
+    <span class="nf">geom_line</span><span class="p">()</span> <span class="o">+</span>
+    <span class="nf">geom_hline</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">yintercept</span> <span class="o">=</span> <span class="n">inflection</span><span class="p">),</span> <span class="n">data</span> <span class="o">=</span> <span class="n">annot</span><span class="p">,</span> <span class="n">linetype</span> <span class="o">=</span> <span class="m">2</span><span class="p">)</span> <span class="o">+</span>
+    <span class="nf">geom_vline</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">xintercept</span> <span class="o">=</span> <span class="n">rank_cutoff</span><span class="p">),</span> <span class="n">data</span> <span class="o">=</span> <span class="n">annot</span><span class="p">,</span> <span class="n">linetype</span> <span class="o">=</span> <span class="m">2</span><span class="p">)</span> <span class="o">+</span>
+    <span class="nf">scale_x_log10</span><span class="p">()</span> <span class="o">+</span>
+    <span class="nf">scale_y_log10</span><span class="p">()</span> <span class="o">+</span>
+    <span class="nf">annotation_logticks</span><span class="p">()</span> <span class="o">+</span>
+    <span class="nf">labs</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="s">&quot;Rank&quot;</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="s">&quot;Total UMIs&quot;</span><span class="p">)</span>
+  <span class="nf">return</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div>
+</td></tr></table>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="nf">options</span><span class="p">(</span><span class="n">repr.plot.width</span><span class="o">=</span><span class="m">9</span><span class="p">,</span> <span class="n">repr.plot.height</span><span class="o">=</span><span class="m">6</span><span class="p">)</span>
+<span class="nf">knee_plot</span><span class="p">(</span><span class="n">bc_rank</span><span class="p">)</span>
+</code></pre></div>
+</td></tr></table>
+<p><img alt="png" src="kb_slingshot_files/kb_slingshot_16_0.png" /></p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="c1"># Filter the matrix</span>
+<span class="n">res_mat</span> <span class="o">&lt;-</span> <span class="n">res_mat</span><span class="p">[,</span> <span class="n">tot_counts</span> <span class="o">&gt;</span> <span class="nf">metadata</span><span class="p">(</span><span class="n">bc_rank</span><span class="p">)</span><span class="o">$</span><span class="n">inflection</span><span class="p">]</span>
+<span class="n">res_mat</span> <span class="o">&lt;-</span> <span class="n">res_mat</span><span class="p">[</span><span class="n">Matrix</span><span class="o">::</span><span class="nf">rowSums</span><span class="p">(</span><span class="n">res_mat</span><span class="p">)</span> <span class="o">&gt;</span> <span class="m">0</span><span class="p">,]</span>
+<span class="nf">dim</span><span class="p">(</span><span class="n">res_mat</span><span class="p">)</span>
+</code></pre></div>
+</td></tr></table>
+<style>
+.list-inline {list-style: none; margin:0; padding: 0}
+.list-inline>li {display: inline-block}
+.list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
+</style>
+<ol class=list-inline><li>20198</li><li>1210</li></ol>
+
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="nf">rownames</span><span class="p">(</span><span class="n">res_mat</span><span class="p">)</span> <span class="o">&lt;-</span> <span class="nf">str_remove</span><span class="p">(</span><span class="nf">rownames</span><span class="p">(</span><span class="n">res_mat</span><span class="p">),</span> <span class="s">&quot;\\.\\d+&quot;</span><span class="p">)</span>
+</code></pre></div>
+</td></tr></table>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="n">mouse.rnaseq</span> <span class="o">&lt;-</span> <span class="nf">MouseRNAseqData</span><span class="p">(</span><span class="n">ensembl</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">)</span>
+<span class="n">sce</span> <span class="o">&lt;-</span> <span class="nf">SingleCellExperiment</span><span class="p">(</span><span class="n">assays</span> <span class="o">=</span> <span class="nf">list</span><span class="p">(</span><span class="n">counts</span> <span class="o">=</span> <span class="n">res_mat</span><span class="p">))</span>
+<span class="n">sce</span> <span class="o">&lt;-</span> <span class="nf">logNormCounts</span><span class="p">(</span><span class="n">sce</span><span class="p">)</span>
+</code></pre></div>
+</td></tr></table>
+<div class="codehilite"><pre><span></span><code><span class="n">Using</span> <span class="n">temporary</span> <span class="n">cache</span> <span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">Rtmp3ZgCkF</span><span class="o">/</span><span class="n">BiocFileCache</span>
+
+<span class="n">snapshotDate</span><span class="p">():</span> <span class="mi">2019</span><span class="o">-</span><span class="mi">10</span><span class="o">-</span><span class="mi">22</span>
+
+<span class="n">Using</span> <span class="n">temporary</span> <span class="n">cache</span> <span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">Rtmp3ZgCkF</span><span class="o">/</span><span class="n">BiocFileCache</span>
+
+<span class="n">see</span> <span class="err">?</span><span class="n">SingleR</span> <span class="ow">and</span> <span class="n">browseVignettes</span><span class="p">(</span><span class="s1">&#39;SingleR&#39;</span><span class="p">)</span> <span class="k">for</span> <span class="n">documentation</span>
+
+<span class="n">Using</span> <span class="n">temporary</span> <span class="n">cache</span> <span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">Rtmp3ZgCkF</span><span class="o">/</span><span class="n">BiocFileCache</span>
+
+<span class="n">Using</span> <span class="n">temporary</span> <span class="n">cache</span> <span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">Rtmp3ZgCkF</span><span class="o">/</span><span class="n">BiocFileCache</span>
+
+<span class="n">Using</span> <span class="n">temporary</span> <span class="n">cache</span> <span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">Rtmp3ZgCkF</span><span class="o">/</span><span class="n">BiocFileCache</span>
+
+<span class="n">loading</span> <span class="n">from</span> <span class="n">cache</span>
+
+<span class="n">Using</span> <span class="n">temporary</span> <span class="n">cache</span> <span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">Rtmp3ZgCkF</span><span class="o">/</span><span class="n">BiocFileCache</span>
+
+<span class="n">Using</span> <span class="n">temporary</span> <span class="n">cache</span> <span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">Rtmp3ZgCkF</span><span class="o">/</span><span class="n">BiocFileCache</span>
+
+<span class="n">Using</span> <span class="n">temporary</span> <span class="n">cache</span> <span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">Rtmp3ZgCkF</span><span class="o">/</span><span class="n">BiocFileCache</span>
+
+<span class="n">see</span> <span class="err">?</span><span class="n">SingleR</span> <span class="ow">and</span> <span class="n">browseVignettes</span><span class="p">(</span><span class="s1">&#39;SingleR&#39;</span><span class="p">)</span> <span class="k">for</span> <span class="n">documentation</span>
+
+<span class="n">Using</span> <span class="n">temporary</span> <span class="n">cache</span> <span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">Rtmp3ZgCkF</span><span class="o">/</span><span class="n">BiocFileCache</span>
+
+<span class="n">Using</span> <span class="n">temporary</span> <span class="n">cache</span> <span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">Rtmp3ZgCkF</span><span class="o">/</span><span class="n">BiocFileCache</span>
+
+<span class="n">Using</span> <span class="n">temporary</span> <span class="n">cache</span> <span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">Rtmp3ZgCkF</span><span class="o">/</span><span class="n">BiocFileCache</span>
+
+<span class="n">loading</span> <span class="n">from</span> <span class="n">cache</span>
+
+<span class="n">Using</span> <span class="n">temporary</span> <span class="n">cache</span> <span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">Rtmp3ZgCkF</span><span class="o">/</span><span class="n">BiocFileCache</span>
+
+<span class="n">Using</span> <span class="n">temporary</span> <span class="n">cache</span> <span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">Rtmp3ZgCkF</span><span class="o">/</span><span class="n">BiocFileCache</span>
+
+<span class="n">Using</span> <span class="n">temporary</span> <span class="n">cache</span> <span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">Rtmp3ZgCkF</span><span class="o">/</span><span class="n">BiocFileCache</span>
+
+<span class="n">Using</span> <span class="n">temporary</span> <span class="n">cache</span> <span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">Rtmp3ZgCkF</span><span class="o">/</span><span class="n">BiocFileCache</span>
+
+<span class="n">snapshotDate</span><span class="p">():</span> <span class="mi">2019</span><span class="o">-</span><span class="mi">10</span><span class="o">-</span><span class="mi">29</span>
+
+<span class="n">Using</span> <span class="n">temporary</span> <span class="n">cache</span> <span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">Rtmp3ZgCkF</span><span class="o">/</span><span class="n">BiocFileCache</span>
+
+<span class="n">Using</span> <span class="n">temporary</span> <span class="n">cache</span> <span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">Rtmp3ZgCkF</span><span class="o">/</span><span class="n">BiocFileCache</span>
+
+<span class="n">Using</span> <span class="n">temporary</span> <span class="n">cache</span> <span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">Rtmp3ZgCkF</span><span class="o">/</span><span class="n">BiocFileCache</span>
+
+<span class="n">Using</span> <span class="n">temporary</span> <span class="n">cache</span> <span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">Rtmp3ZgCkF</span><span class="o">/</span><span class="n">BiocFileCache</span>
+
+<span class="n">loading</span> <span class="n">from</span> <span class="n">cache</span>
+
+<span class="n">Using</span> <span class="n">temporary</span> <span class="n">cache</span> <span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">Rtmp3ZgCkF</span><span class="o">/</span><span class="n">BiocFileCache</span>
+
+<span class="n">Using</span> <span class="n">temporary</span> <span class="n">cache</span> <span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">Rtmp3ZgCkF</span><span class="o">/</span><span class="n">BiocFileCache</span>
+
+<span class="n">Using</span> <span class="n">temporary</span> <span class="n">cache</span> <span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">Rtmp3ZgCkF</span><span class="o">/</span><span class="n">BiocFileCache</span>
+
+<span class="n">Warning</span> <span class="n">message</span><span class="p">:</span>
+<span class="s2">&quot;Unable to map 2180 of 21214 requested IDs.&quot;</span>
+</code></pre></div>
+
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="n">annots</span> <span class="o">&lt;-</span> <span class="nf">SingleR</span><span class="p">(</span><span class="n">sce</span><span class="p">,</span> <span class="n">ref</span> <span class="o">=</span> <span class="n">mouse.rnaseq</span><span class="p">,</span> <span class="n">labels</span> <span class="o">=</span> <span class="nf">colData</span><span class="p">(</span><span class="n">mouse.rnaseq</span><span class="p">)</span><span class="o">$</span><span class="n">label.fine</span><span class="p">,</span>
+<span class="n">de.method</span> <span class="o">=</span> <span class="s">&quot;wilcox&quot;</span><span class="p">,</span> <span class="n">method</span> <span class="o">=</span> <span class="s">&quot;single&quot;</span><span class="p">,</span> <span class="n">BPPARAM</span> <span class="o">=</span> <span class="nf">MulticoreParam</span><span class="p">(</span><span class="m">2</span><span class="p">))</span>
+</code></pre></div>
+</td></tr></table>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="n">annots</span>
+</code></pre></div>
+</td></tr></table>
+<div class="codehilite"><pre><span></span><code><span class="nv">DataFrame</span> <span class="s s-Atom">with</span> <span class="mi">1210</span> <span class="s s-Atom">rows</span> <span class="s s-Atom">and</span> <span class="mi">5</span> <span class="s s-Atom">columns</span>
+                                                                        <span class="s s-Atom">scores</span>
+                                                                      <span class="o">&lt;</span><span class="s s-Atom">matrix</span><span class="o">&gt;</span>
+<span class="nv">AAACGCTGTAATGTGA</span>    <span class="mf">0.0601901483760862</span><span class="s s-Atom">:</span><span class="mf">0.242986808015721</span><span class="s s-Atom">:</span><span class="mf">0.177660752587073</span><span class="s s-Atom">:...</span>
+<span class="nv">AAACGCTGTCCTGGGT</span>      <span class="mf">0.11153546550616</span><span class="s s-Atom">:</span><span class="mf">0.321858508786419</span><span class="s s-Atom">:</span><span class="mf">0.206383027494298</span><span class="s s-Atom">:...</span>
+<span class="nv">AAAGAACCAGGACATG</span>    <span class="mf">0.0585569289411892</span><span class="s s-Atom">:</span><span class="mf">0.225038532259566</span><span class="s s-Atom">:</span><span class="mf">0.177381655702582</span><span class="s s-Atom">:...</span>
+<span class="nv">AAAGGTACACACGGTC</span>       <span class="mf">0.137923692580242</span><span class="s s-Atom">:</span><span class="mf">0.3506611435018</span><span class="s s-Atom">:</span><span class="mf">0.281933499704427</span><span class="s s-Atom">:...</span>
+<span class="nv">AAAGGTATCACCATAG</span> <span class="o">-</span><span class="mf">0.00511350381259525</span><span class="s s-Atom">:</span><span class="mf">0.166880227412372</span><span class="s s-Atom">:</span><span class="mf">0.0975899954539976</span><span class="s s-Atom">:...</span>
+<span class="p">...</span>                                                                        <span class="p">...</span>
+<span class="nv">TTTGACTTCGTTCAGA</span>     <span class="mf">0.100933655338997</span><span class="s s-Atom">:</span><span class="mf">0.327948884202836</span><span class="s s-Atom">:</span><span class="mf">0.262011719832591</span><span class="s s-Atom">:...</span>
+<span class="nv">TTTGATCTCCATAGGT</span>     <span class="mf">0.0656536744266451</span><span class="s s-Atom">:</span><span class="mf">0.280702755051776</span><span class="s s-Atom">:</span><span class="mf">0.23375860874247</span><span class="s s-Atom">:...</span>
+<span class="nv">TTTGGAGAGGCTAACG</span>    <span class="mf">0.0681422805975054</span><span class="s s-Atom">:</span><span class="mf">0.234772340818692</span><span class="s s-Atom">:</span><span class="mf">0.176292333613646</span><span class="s s-Atom">:...</span>
+<span class="nv">TTTGGTTAGTAATCCC</span>     <span class="mf">0.125780004617712</span><span class="s s-Atom">:</span><span class="mf">0.315213344287222</span><span class="s s-Atom">:</span><span class="mf">0.258722018820061</span><span class="s s-Atom">:...</span>
+<span class="nv">TTTGTTGGTATGGAAT</span>    <span class="mf">0.0512710432754663</span><span class="s s-Atom">:</span><span class="mf">0.231028330364938</span><span class="s s-Atom">:</span><span class="mf">0.177598025280379</span><span class="s s-Atom">:...</span>
+                 <span class="s s-Atom">first</span><span class="p">.</span><span class="s s-Atom">labels</span>                        <span class="s s-Atom">tuning</span><span class="p">.</span><span class="s s-Atom">scores</span>      <span class="s s-Atom">labels</span>
+                  <span class="o">&lt;</span><span class="s s-Atom">character</span><span class="o">&gt;</span>                          <span class="o">&lt;</span><span class="nv">DataFrame</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="s s-Atom">character</span><span class="o">&gt;</span>
+<span class="nv">AAACGCTGTAATGTGA</span>        <span class="s s-Atom">aNSCs</span>  <span class="mf">0.233804530306167</span><span class="s s-Atom">:</span><span class="mf">0.219682141602258</span>       <span class="s s-Atom">aNSCs</span>
+<span class="nv">AAACGCTGTCCTGGGT</span>         <span class="nv">NPCs</span>                                  <span class="mi">1</span><span class="s s-Atom">:</span><span class="mi">1</span>       <span class="s s-Atom">aNSCs</span>
+<span class="nv">AAAGAACCAGGACATG</span>      <span class="nv">Neurons</span>                                  <span class="mi">1</span><span class="s s-Atom">:</span><span class="mi">1</span>       <span class="s s-Atom">aNSCs</span>
+<span class="nv">AAAGGTACACACGGTC</span>         <span class="nv">NPCs</span>                                  <span class="mi">1</span><span class="s s-Atom">:</span><span class="mi">1</span>       <span class="s s-Atom">aNSCs</span>
+<span class="nv">AAAGGTATCACCATAG</span>         <span class="nv">NPCs</span>                              <span class="mf">0.5</span><span class="s s-Atom">:</span><span class="mf">0.5</span>       <span class="s s-Atom">aNSCs</span>
+<span class="p">...</span>                       <span class="p">...</span>                                  <span class="p">...</span>         <span class="p">...</span>
+<span class="nv">TTTGACTTCGTTCAGA</span>      <span class="nv">Neurons</span>                                  <span class="mi">1</span><span class="s s-Atom">:</span><span class="mi">1</span>       <span class="s s-Atom">aNSCs</span>
+<span class="nv">TTTGATCTCCATAGGT</span>      <span class="nv">Neurons</span>                              <span class="mf">0.5</span><span class="s s-Atom">:</span><span class="mf">0.5</span>       <span class="s s-Atom">aNSCs</span>
+<span class="nv">TTTGGAGAGGCTAACG</span>        <span class="s s-Atom">aNSCs</span> <span class="mf">0.209611614011623</span><span class="s s-Atom">:</span><span class="mf">0.0580258853185659</span>     <span class="nv">Neurons</span>
+<span class="nv">TTTGGTTAGTAATCCC</span>      <span class="nv">Neurons</span> <span class="mf">0.187703782257732</span><span class="p">:-</span><span class="mf">0.195976600339204</span>     <span class="nv">Neurons</span>
+<span class="nv">TTTGTTGGTATGGAAT</span>         <span class="nv">OPCs</span> <span class="mf">0.299839391397521</span><span class="p">:-</span><span class="mf">0.199361864824359</span>     <span class="nv">Neurons</span>
+                 <span class="s s-Atom">pruned</span><span class="p">.</span><span class="s s-Atom">labels</span>
+                   <span class="o">&lt;</span><span class="s s-Atom">character</span><span class="o">&gt;</span>
+<span class="nv">AAACGCTGTAATGTGA</span>         <span class="s s-Atom">aNSCs</span>
+<span class="nv">AAACGCTGTCCTGGGT</span>         <span class="s s-Atom">aNSCs</span>
+<span class="nv">AAAGAACCAGGACATG</span>         <span class="s s-Atom">aNSCs</span>
+<span class="nv">AAAGGTACACACGGTC</span>         <span class="s s-Atom">aNSCs</span>
+<span class="nv">AAAGGTATCACCATAG</span>         <span class="s s-Atom">aNSCs</span>
+<span class="p">...</span>                        <span class="p">...</span>
+<span class="nv">TTTGACTTCGTTCAGA</span>         <span class="s s-Atom">aNSCs</span>
+<span class="nv">TTTGATCTCCATAGGT</span>         <span class="s s-Atom">aNSCs</span>
+<span class="nv">TTTGGAGAGGCTAACG</span>       <span class="nv">Neurons</span>
+<span class="nv">TTTGGTTAGTAATCCC</span>       <span class="nv">Neurons</span>
+<span class="nv">TTTGTTGGTATGGAAT</span>       <span class="nv">Neurons</span>
+</code></pre></div>
+
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="n">inds</span> <span class="o">&lt;-</span> <span class="n">annots</span><span class="o">$</span><span class="n">pruned.labels</span> <span class="o">%in%</span> <span class="nf">c</span><span class="p">(</span><span class="s">&quot;NPCs&quot;</span><span class="p">,</span> <span class="s">&quot;Neurons&quot;</span><span class="p">,</span> <span class="s">&quot;OPCs&quot;</span><span class="p">,</span> <span class="s">&quot;Oligodendrocytes&quot;</span><span class="p">,</span> 
+                                    <span class="s">&quot;qNSCs&quot;</span><span class="p">,</span> <span class="s">&quot;aNSCs&quot;</span><span class="p">,</span> <span class="s">&quot;Astrocytes&quot;</span><span class="p">,</span> <span class="s">&quot;Ependymal&quot;</span><span class="p">)</span>
+<span class="c1"># Only keep these cell types</span>
+<span class="n">cells_use</span> <span class="o">&lt;-</span> <span class="nf">row.names</span><span class="p">(</span><span class="n">annots</span><span class="p">)[</span><span class="n">inds</span><span class="p">]</span>
+<span class="n">sce</span> <span class="o">&lt;-</span> <span class="n">sce</span><span class="p">[,</span> <span class="n">cells_use</span><span class="p">]</span>
+<span class="n">sce</span><span class="o">$</span><span class="n">cell_type</span> <span class="o">&lt;-</span> <span class="n">annots</span><span class="o">$</span><span class="n">pruned.labels</span><span class="p">[</span><span class="n">inds</span><span class="p">]</span>
+</code></pre></div>
+</td></tr></table>
+<h1 id="qc">QC<a class="headerlink" href="#qc" title="Permanent link">&para;</a></h1>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="n">df</span> <span class="o">&lt;-</span> <span class="nf">perCellQCMetrics</span><span class="p">(</span><span class="n">sce</span><span class="p">)</span>
+<span class="nf">colData</span><span class="p">(</span><span class="n">sce</span><span class="p">)</span> <span class="o">&lt;-</span> <span class="nf">cbind</span><span class="p">(</span><span class="nf">colData</span><span class="p">(</span><span class="n">sce</span><span class="p">),</span> <span class="n">df</span><span class="p">)</span>
+<span class="nf">colData</span><span class="p">(</span><span class="n">sce</span><span class="p">)</span>
+</code></pre></div>
+</td></tr></table>
+<div class="codehilite"><pre><span></span><code>DataFrame with 1146 rows and 8 columns
+                   cell_type       sum  detected   percent_top_50
+                 &lt;character&gt; &lt;numeric&gt; &lt;integer&gt;        &lt;numeric&gt;
+AAACGCTGTAATGTGA       aNSCs      7072      3256 19.0328054298643
+AAACGCTGTCCTGGGT       aNSCs      9458      4101 12.8991330090928
+AAAGAACCAGGACATG       aNSCs      5338      2577 20.7006369426752
+AAAGGTACACACGGTC       aNSCs     16892      5111 18.2098034572579
+AAAGGTATCACCATAG       aNSCs      1397       882 24.9105225483178
+...                      ...       ...       ...              ...
+TTTGACTTCGTTCAGA       aNSCs     26203      6091 21.4021295271534
+TTTGATCTCCATAGGT       aNSCs      8120      3625 16.7980295566502
+TTTGGAGAGGCTAACG     Neurons      5483      2737 21.8675907349991
+TTTGGTTAGTAATCCC     Neurons     24381      5927 20.2288667404946
+TTTGTTGGTATGGAAT     Neurons      3718      2324 14.6046261430877
+                  percent_top_100  percent_top_200  percent_top_500     total
+                        &lt;numeric&gt;        &lt;numeric&gt;        &lt;numeric&gt; &lt;numeric&gt;
+AAACGCTGTAATGTGA 25.8484162895928 34.1911764705882  49.335407239819      7072
+AAACGCTGTCCTGGGT  19.221822795517 27.6485514908014 42.5882850496934      9458
+AAAGAACCAGGACATG 27.5196702884976 36.2495316597977 52.6227051330086      5338
+AAAGGTACACACGGTC 26.5095903386218 35.6973715368222 49.5204830689084     16892
+AAAGGTATCACCATAG 35.5762347888332 49.8926270579814  72.655690765927      1397
+...                           ...              ...              ...       ...
+TTTGACTTCGTTCAGA 28.4814715872228  37.358317749876 50.7422814181582     26203
+TTTGATCTCCATAGGT 23.5098522167488 32.0320197044335 47.2044334975369      8120
+TTTGGAGAGGCTAACG  28.269195695787 36.6405252598942 52.0335582710195      5483
+TTTGGTTAGTAATCCC 27.7183052376851 36.2659447930766 49.9733398958205     24381
+TTTGTTGGTATGGAAT 20.6293706293706 29.4513179128564 46.9338353953739      3718
+</code></pre></div>
+
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="nf">plotColData</span><span class="p">(</span><span class="n">sce</span><span class="p">,</span> <span class="n">x</span> <span class="o">=</span> <span class="s">&quot;cell_type&quot;</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="s">&quot;sum&quot;</span><span class="p">)</span>
+</code></pre></div>
+</td></tr></table>
+<p><img alt="png" src="kb_slingshot_files/kb_slingshot_25_0.png" /></p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="nf">plotColData</span><span class="p">(</span><span class="n">sce</span><span class="p">,</span> <span class="n">x</span> <span class="o">=</span> <span class="s">&quot;cell_type&quot;</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="s">&quot;detected&quot;</span><span class="p">)</span>
+</code></pre></div>
+</td></tr></table>
+<p><img alt="png" src="kb_slingshot_files/kb_slingshot_26_0.png" /></p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="nf">plotColData</span><span class="p">(</span><span class="n">sce</span><span class="p">,</span> <span class="n">x</span> <span class="o">=</span> <span class="s">&quot;sum&quot;</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="s">&quot;detected&quot;</span><span class="p">,</span> <span class="n">colour_by</span> <span class="o">=</span> <span class="s">&quot;cell_type&quot;</span><span class="p">)</span> <span class="o">+</span>
+  <span class="nf">scale_x_log10</span><span class="p">()</span> <span class="o">+</span>
+  <span class="nf">scale_y_log10</span><span class="p">()</span> <span class="o">+</span>
+  <span class="nf">annotation_logticks</span><span class="p">()</span>
+</code></pre></div>
+</td></tr></table>
+<p><img alt="png" src="kb_slingshot_files/kb_slingshot_27_0.png" /></p>
+<h2 id="dimension-reduction">Dimension reduction<a class="headerlink" href="#dimension-reduction" title="Permanent link">&para;</a></h2>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="n">dec_sce</span> <span class="o">&lt;-</span> <span class="nf">modelGeneVar</span><span class="p">(</span><span class="n">sce</span><span class="p">)</span>
+<span class="n">fit_pbmc</span> <span class="o">&lt;-</span> <span class="nf">metadata</span><span class="p">(</span><span class="n">dec_sce</span><span class="p">)</span>
+</code></pre></div>
+</td></tr></table>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="c1"># Adapted from https://osca.bioconductor.org/feature-selection.html#feature-selection</span>
+<span class="nf">plot</span><span class="p">(</span><span class="n">fit_pbmc</span><span class="o">$</span><span class="n">mean</span><span class="p">,</span> <span class="n">fit_pbmc</span><span class="o">$</span><span class="n">var</span><span class="p">,</span> <span class="n">xlab</span><span class="o">=</span><span class="s">&quot;Mean of log-expression&quot;</span><span class="p">,</span>
+    <span class="n">ylab</span><span class="o">=</span><span class="s">&quot;Variance of log-expression&quot;</span><span class="p">)</span>
+<span class="nf">curve</span><span class="p">(</span><span class="n">fit_pbmc</span><span class="o">$</span><span class="nf">trend</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">col</span><span class="o">=</span><span class="s">&quot;dodgerblue&quot;</span><span class="p">,</span> <span class="n">add</span><span class="o">=</span><span class="kc">TRUE</span><span class="p">,</span> <span class="n">lwd</span><span class="o">=</span><span class="m">2</span><span class="p">)</span>
+</code></pre></div>
+</td></tr></table>
+<p><img alt="png" src="kb_slingshot_files/kb_slingshot_30_0.png" /></p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="n">hvgs</span> <span class="o">&lt;-</span> <span class="nf">getTopHVGs</span><span class="p">(</span><span class="n">dec_sce</span><span class="p">,</span> <span class="n">n</span> <span class="o">=</span> <span class="m">3000</span><span class="p">)</span>
+<span class="n">sce</span> <span class="o">&lt;-</span> <span class="nf">runPCA</span><span class="p">(</span><span class="n">sce</span><span class="p">,</span> <span class="n">subset_row</span> <span class="o">=</span> <span class="n">hvgs</span><span class="p">)</span>
+</code></pre></div>
+</td></tr></table>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="c1"># Percentage of variance explained is tucked away in the attributes.</span>
+<span class="n">percent.var</span> <span class="o">&lt;-</span> <span class="nf">attr</span><span class="p">(</span><span class="nf">reducedDim</span><span class="p">(</span><span class="n">sce</span><span class="p">),</span> <span class="s">&quot;percentVar&quot;</span><span class="p">)</span>
+<span class="nf">plot</span><span class="p">(</span><span class="n">percent.var</span><span class="p">,</span> <span class="n">xlab</span><span class="o">=</span><span class="s">&quot;PC&quot;</span><span class="p">,</span> <span class="n">ylab</span><span class="o">=</span><span class="s">&quot;Variance explained (%)&quot;</span><span class="p">)</span>
+</code></pre></div>
+</td></tr></table>
+<p><img alt="png" src="kb_slingshot_files/kb_slingshot_32_0.png" /></p>
+<p>The y axis is percentage of variance explained by the PC, or the eigenvalues of the covariance matrix.</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="nf">options</span><span class="p">(</span><span class="n">repr.plot.width</span><span class="o">=</span><span class="m">12</span><span class="p">,</span> <span class="n">repr.plot.height</span><span class="o">=</span><span class="m">12</span><span class="p">)</span>
+<span class="nf">plotPCA</span><span class="p">(</span><span class="n">sce</span><span class="p">,</span> <span class="n">colour_by</span> <span class="o">=</span> <span class="s">&quot;cell_type&quot;</span><span class="p">,</span> <span class="n">ncomponents</span> <span class="o">=</span> <span class="m">4</span><span class="p">)</span>
+</code></pre></div>
+</td></tr></table>
+<p><img alt="png" src="kb_slingshot_files/kb_slingshot_34_0.png" /></p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="nf">options</span><span class="p">(</span><span class="n">repr.plot.width</span><span class="o">=</span><span class="m">9</span><span class="p">,</span> <span class="n">repr.plot.height</span><span class="o">=</span><span class="m">6</span><span class="p">)</span>
+<span class="n">sce</span> <span class="o">&lt;-</span> <span class="nf">runTSNE</span><span class="p">(</span><span class="n">sce</span><span class="p">,</span> <span class="n">dimred</span> <span class="o">=</span> <span class="s">&quot;PCA&quot;</span><span class="p">)</span>
+<span class="nf">plotTSNE</span><span class="p">(</span><span class="n">sce</span><span class="p">,</span> <span class="n">colour_by</span> <span class="o">=</span> <span class="s">&quot;cell_type&quot;</span><span class="p">)</span>
+</code></pre></div>
+</td></tr></table>
+<p><img alt="png" src="kb_slingshot_files/kb_slingshot_35_0.png" /></p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="nf">set.seed</span><span class="p">(</span><span class="m">1</span><span class="p">)</span>
+<span class="n">sce</span> <span class="o">&lt;-</span> <span class="nf">runUMAP</span><span class="p">(</span><span class="n">sce</span><span class="p">,</span> <span class="n">dimred</span> <span class="o">=</span> <span class="s">&quot;PCA&quot;</span><span class="p">,</span> <span class="n">n_neighbors</span> <span class="o">=</span> <span class="m">30</span><span class="p">)</span>
+<span class="nf">plotUMAP</span><span class="p">(</span><span class="n">sce</span><span class="p">,</span> <span class="n">colour_by</span> <span class="o">=</span> <span class="s">&quot;cell_type&quot;</span><span class="p">)</span>
+</code></pre></div>
+</td></tr></table>
+<p><img alt="png" src="kb_slingshot_files/kb_slingshot_36_0.png" /></p>
+<p>UMAP can better preserve pairwise distance of cells than tSNE and can better separate cell populations than the first 2 PCs of PCA (<a href="https://doi.org/10.1038/nbt.4314">Becht et al. 2018</a>), so the TI will be visualized on UMAP rather than tSNE or PCA. </p>
+<p>Cell type annotation with <code>SingleR</code> requires a reference with bulk RNA seq data for isolated known cell types. The reference used for cell type annotation here does not differentiate between different types of neural progenitor cells; clustering can further partition the neural progenitor cells. Furthermore, <code>slingshot</code> is based on cluster-wise minimum spanning tree, so finding a good clustering is important to good trajectory inference with <code>slingshot</code>. The clustering algorithm used here is <a href="https://www.nature.com/articles/s41598-019-41695-z">Leiden</a>, which is an improvement over the commonly used Louvain; Leiden communities are guaranteed to be well-connected, while Louvain can lead to poorly connected communities.</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="n">g</span> <span class="o">&lt;-</span> <span class="nf">buildSNNGraph</span><span class="p">(</span><span class="n">sce</span><span class="p">,</span> <span class="n">k</span> <span class="o">=</span> <span class="m">15</span><span class="p">,</span> <span class="n">use.dimred</span> <span class="o">=</span> <span class="s">&quot;PCA&quot;</span><span class="p">)</span>
+</code></pre></div>
+</td></tr></table>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="n">sce</span><span class="o">$</span><span class="n">cluster</span> <span class="o">&lt;-</span> <span class="n">leidenbase</span><span class="o">::</span><span class="nf">leiden_find_partition</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="n">resolution_parameter</span> <span class="o">=</span> <span class="m">1.2</span><span class="p">,</span> 
+  <span class="n">partition_type</span> <span class="o">=</span> <span class="s">&quot;RBConfigurationVertexPartition&quot;</span><span class="p">,</span>
+  <span class="n">num_iter</span> <span class="o">=</span> <span class="m">10</span><span class="p">,</span> <span class="n">seed</span> <span class="o">=</span> <span class="m">1</span><span class="p">)</span><span class="o">$</span><span class="n">membership</span> <span class="o">%&gt;%</span> <span class="nf">factor</span><span class="p">()</span>
+</code></pre></div>
+</td></tr></table>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="nf">plotUMAP</span><span class="p">(</span><span class="n">sce</span><span class="p">,</span> <span class="n">colour_by</span> <span class="o">=</span> <span class="s">&quot;cluster&quot;</span><span class="p">)</span>
+</code></pre></div>
+</td></tr></table>
+<p><img alt="png" src="kb_slingshot_files/kb_slingshot_41_0.png" /></p>
+<h1 id="slingshot">Slingshot<a class="headerlink" href="#slingshot" title="Permanent link">&para;</a></h1>
+<h2 id="trajectory-inference">Trajectory inference<a class="headerlink" href="#trajectory-inference" title="Permanent link">&para;</a></h2>
+<p>While the <code>slingshot</code> vignette uses <code>SingleCellExperiment</code>, <code>slingshot</code> can also take a matrix of cell embeddings in reduced dimension as input. We can optionally specify the cluster to start or end the trajectory based on biological knowledge. Here, since quiescent neural stem cells are in cluster 4, the starting cluster would be 4 near the top left of the previous plot.</p>
+<p><strong>I no longer consider doing trajectory inference on UMAP a good idea</strong>, due to distortions introduced by UMAP. See <a href="https://www.biorxiv.org/content/10.1101/689851v3">this paper</a> for the extent non-linear dimension reduction methods distort the data. The latent dimension of the data is most likely far more than 2 or 3 dimensions, so forcing it down to 2 or 3 dimensions are bound to introduce distortions, just like how projecting the spherical surface of the Earth to 2 dimensions in maps introduces distortions. Furthermore, after the projection, some trajectories are no longer topologically feasible. For instance, imagine a stream coming out of the hole of a doughnut in 3D. This is not possible in 2D, so when that structure is projected to 2D, part of the stream may become buried in the middle of the doughnut, or the doughnut may be broken to allow the stream through, or part of the steam will be intermixed with part of the doughnut though they shouldn't. I recommend using a larger number of principal components instead, but in that case, the lineages and principal curves can't be visualized (we can plot the curves within a 2 dimensional subspace, such as the first 2 PCs, but that usually looks like abstract art and isn't informative about the lineages).</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="n">sds</span> <span class="o">&lt;-</span> <span class="nf">slingshot</span><span class="p">(</span><span class="nf">reducedDim</span><span class="p">(</span><span class="n">sce</span><span class="p">,</span> <span class="s">&quot;PCA&quot;</span><span class="p">)[,</span><span class="m">1</span><span class="o">:</span><span class="m">20</span><span class="p">],</span> <span class="n">clusterLabels</span> <span class="o">=</span> <span class="n">sce</span><span class="o">$</span><span class="n">cluster</span><span class="p">,</span> 
+                 <span class="n">start.clus</span> <span class="o">=</span> <span class="m">2</span><span class="p">,</span> <span class="n">stretch</span> <span class="o">=</span> <span class="m">0</span><span class="p">)</span>
+</code></pre></div>
+</td></tr></table>
+<div class="codehilite"><pre><span></span><code><span class="n">Using</span> <span class="n">full</span> <span class="n">covariance</span> <span class="n">matrix</span>
+</code></pre></div>
+
+<p>Unfortunately, <code>slingshot</code> does not natively support <code>ggplot2</code>. So this is a function that assigns colors to each cell in base R graphics.</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="c1">#&#39; Assign a color to each cell based on some value</span>
+<span class="c1">#&#39; </span>
+<span class="c1">#&#39; @param cell_vars Vector indicating the value of a variable associated with cells.</span>
+<span class="c1">#&#39; @param pal_fun Palette function that returns a vector of hex colors, whose</span>
+<span class="c1">#&#39; argument is the length of such a vector.</span>
+<span class="c1">#&#39; @param ... Extra arguments for pal_fun.</span>
+<span class="c1">#&#39; @return A vector of hex colors with one entry for each cell.</span>
+<span class="n">cell_pal</span> <span class="o">&lt;-</span> <span class="nf">function</span><span class="p">(</span><span class="n">cell_vars</span><span class="p">,</span> <span class="n">pal_fun</span><span class="p">,</span><span class="kc">...</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nf">if </span><span class="p">(</span><span class="nf">is.numeric</span><span class="p">(</span><span class="n">cell_vars</span><span class="p">))</span> <span class="p">{</span>
+    <span class="n">pal</span> <span class="o">&lt;-</span> <span class="nf">pal_fun</span><span class="p">(</span><span class="m">100</span><span class="p">,</span> <span class="kc">...</span><span class="p">)</span>
+    <span class="nf">return</span><span class="p">(</span><span class="n">pal</span><span class="p">[</span><span class="nf">cut</span><span class="p">(</span><span class="n">cell_vars</span><span class="p">,</span> <span class="n">breaks</span> <span class="o">=</span> <span class="m">100</span><span class="p">)])</span>
+  <span class="p">}</span> <span class="n">else</span> <span class="p">{</span>
+    <span class="n">categories</span> <span class="o">&lt;-</span> <span class="nf">sort</span><span class="p">(</span><span class="nf">unique</span><span class="p">(</span><span class="n">cell_vars</span><span class="p">))</span>
+    <span class="n">pal</span> <span class="o">&lt;-</span> <span class="nf">setNames</span><span class="p">(</span><span class="nf">pal_fun</span><span class="p">(</span><span class="nf">length</span><span class="p">(</span><span class="n">categories</span><span class="p">),</span> <span class="kc">...</span><span class="p">),</span> <span class="n">categories</span><span class="p">)</span>
+    <span class="nf">return</span><span class="p">(</span><span class="n">pal</span><span class="p">[</span><span class="n">cell_vars</span><span class="p">])</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+</td></tr></table>
+<p>We need color palettes for both cell types and Leiden clusters. These would be the same colors seen in the Seurat plots.</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="n">cell_colors</span> <span class="o">&lt;-</span> <span class="nf">cell_pal</span><span class="p">(</span><span class="n">sce</span><span class="o">$</span><span class="n">cell_type</span><span class="p">,</span> <span class="nf">pal_d3</span><span class="p">(</span><span class="n">alpha</span> <span class="o">=</span> <span class="m">0.5</span><span class="p">))</span>
+<span class="n">cell_colors_clust</span> <span class="o">&lt;-</span> <span class="nf">cell_pal</span><span class="p">(</span><span class="n">sce</span><span class="o">$</span><span class="n">cluster</span><span class="p">,</span> <span class="nf">pal_d3</span><span class="p">(</span><span class="n">alpha</span> <span class="o">=</span> <span class="m">0.5</span><span class="p">))</span>
+</code></pre></div>
+</td></tr></table>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="nf">par</span><span class="p">(</span><span class="n">mar</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">5.1</span><span class="p">,</span> <span class="m">4.1</span><span class="p">,</span> <span class="m">4.1</span><span class="p">,</span> <span class="m">14</span><span class="p">),</span> <span class="n">xpd</span><span class="o">=</span><span class="kc">TRUE</span><span class="p">)</span>
+<span class="nf">plot</span><span class="p">(</span><span class="nf">reducedDim</span><span class="p">(</span><span class="n">sds</span><span class="p">,</span> <span class="s">&quot;PCA&quot;</span><span class="p">)[,</span><span class="m">1</span><span class="o">:</span><span class="m">2</span><span class="p">],</span> <span class="n">col</span> <span class="o">=</span> <span class="n">cell_colors</span><span class="p">,</span> <span class="n">pch</span> <span class="o">=</span> <span class="m">16</span><span class="p">,</span> <span class="n">cex</span> <span class="o">=</span> <span class="m">1</span><span class="p">,</span> <span class="n">xlab</span> <span class="o">=</span> <span class="s">&quot;PC 1&quot;</span><span class="p">,</span> <span class="n">ylab</span> <span class="o">=</span> <span class="s">&quot;PC 2&quot;</span><span class="p">)</span>
+<span class="nf">lines</span><span class="p">(</span><span class="n">sds</span><span class="p">,</span> <span class="n">lwd</span> <span class="o">=</span> <span class="m">2</span><span class="p">,</span> <span class="n">type</span> <span class="o">=</span> <span class="s">&#39;lineages&#39;</span><span class="p">,</span> <span class="n">col</span> <span class="o">=</span> <span class="s">&#39;black&#39;</span><span class="p">)</span>
+<span class="nf">legend</span><span class="p">(</span><span class="s">&quot;right&quot;</span><span class="p">,</span> <span class="n">inset</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">-0.6</span><span class="p">,</span> <span class="m">0</span><span class="p">),</span> <span class="n">legend</span> <span class="o">=</span> <span class="nf">unique</span><span class="p">(</span><span class="n">sce</span><span class="o">$</span><span class="n">cell_type</span><span class="p">),</span> 
+       <span class="n">col</span> <span class="o">=</span> <span class="nf">unique</span><span class="p">(</span><span class="n">cell_colors</span><span class="p">),</span> <span class="n">pch</span> <span class="o">=</span> <span class="m">16</span><span class="p">,</span> <span class="n">box.lwd</span> <span class="o">=</span> <span class="m">0</span><span class="p">)</span>
+</code></pre></div>
+</td></tr></table>
+<p><img alt="png" src="kb_slingshot_files/kb_slingshot_48_0.png" /></p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="n">ord</span> <span class="o">&lt;-</span> <span class="nf">order</span><span class="p">(</span><span class="nf">unique</span><span class="p">(</span><span class="n">sce</span><span class="o">$</span><span class="n">cluster</span><span class="p">))</span>
+<span class="nf">par</span><span class="p">(</span><span class="n">mar</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">5.1</span><span class="p">,</span> <span class="m">4.1</span><span class="p">,</span> <span class="m">4.1</span><span class="p">,</span> <span class="m">14</span><span class="p">),</span> <span class="n">xpd</span><span class="o">=</span><span class="kc">TRUE</span><span class="p">)</span>
+<span class="nf">plot</span><span class="p">(</span><span class="nf">reducedDim</span><span class="p">(</span><span class="n">sds</span><span class="p">,</span> <span class="s">&quot;PCA&quot;</span><span class="p">)[,</span><span class="m">1</span><span class="o">:</span><span class="m">2</span><span class="p">],</span> <span class="n">col</span> <span class="o">=</span> <span class="n">cell_colors_clust</span><span class="p">,</span> <span class="n">pch</span> <span class="o">=</span> <span class="m">16</span><span class="p">,</span> <span class="n">cex</span> <span class="o">=</span> <span class="m">1</span><span class="p">,</span> <span class="n">xlab</span> <span class="o">=</span> <span class="s">&quot;PC 1&quot;</span><span class="p">,</span> <span class="n">ylab</span> <span class="o">=</span> <span class="s">&quot;PC 2&quot;</span><span class="p">)</span>
+<span class="nf">lines</span><span class="p">(</span><span class="n">sds</span><span class="p">,</span> <span class="n">lwd</span> <span class="o">=</span> <span class="m">2</span><span class="p">,</span> <span class="n">type</span> <span class="o">=</span> <span class="s">&#39;lineages&#39;</span><span class="p">,</span> <span class="n">col</span> <span class="o">=</span> <span class="s">&#39;black&#39;</span><span class="p">)</span>
+<span class="nf">legend</span><span class="p">(</span><span class="s">&quot;right&quot;</span><span class="p">,</span> <span class="n">inset</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">-0.2</span><span class="p">,</span> <span class="m">0</span><span class="p">),</span> <span class="n">legend</span> <span class="o">=</span> <span class="nf">unique</span><span class="p">(</span><span class="n">sce</span><span class="o">$</span><span class="n">cluster</span><span class="p">)[</span><span class="n">ord</span><span class="p">],</span> 
+       <span class="n">col</span> <span class="o">=</span> <span class="nf">unique</span><span class="p">(</span><span class="n">cell_colors_clust</span><span class="p">)[</span><span class="n">ord</span><span class="p">],</span> <span class="n">pch</span> <span class="o">=</span> <span class="m">16</span><span class="p">,</span> <span class="n">box.lwd</span> <span class="o">=</span> <span class="m">0</span><span class="p">)</span>
+</code></pre></div>
+</td></tr></table>
+<p><img alt="png" src="kb_slingshot_files/kb_slingshot_49_0.png" /></p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="nf">par</span><span class="p">(</span><span class="n">mar</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">5.1</span><span class="p">,</span> <span class="m">4.1</span><span class="p">,</span> <span class="m">4.1</span><span class="p">,</span> <span class="m">14</span><span class="p">),</span> <span class="n">xpd</span><span class="o">=</span><span class="kc">TRUE</span><span class="p">)</span>
+<span class="nf">plot</span><span class="p">(</span><span class="nf">reducedDim</span><span class="p">(</span><span class="n">sds</span><span class="p">,</span> <span class="s">&quot;PCA&quot;</span><span class="p">)[,</span><span class="m">1</span><span class="o">:</span><span class="m">2</span><span class="p">],</span> <span class="n">col</span> <span class="o">=</span> <span class="n">cell_colors</span><span class="p">,</span> <span class="n">pch</span> <span class="o">=</span> <span class="m">16</span><span class="p">,</span> <span class="n">cex</span> <span class="o">=</span> <span class="m">1</span><span class="p">,</span> <span class="n">xlab</span> <span class="o">=</span> <span class="s">&quot;PC 1&quot;</span><span class="p">,</span> <span class="n">ylab</span> <span class="o">=</span> <span class="s">&quot;PC 2&quot;</span><span class="p">)</span>
+<span class="nf">lines</span><span class="p">(</span><span class="n">sds</span><span class="p">,</span> <span class="n">lwd</span> <span class="o">=</span> <span class="m">2</span><span class="p">,</span> <span class="n">col</span> <span class="o">=</span> <span class="s">&#39;black&#39;</span><span class="p">)</span>
+<span class="nf">legend</span><span class="p">(</span><span class="s">&quot;right&quot;</span><span class="p">,</span> <span class="n">inset</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">-0.6</span><span class="p">,</span> <span class="m">0</span><span class="p">),</span> <span class="n">legend</span> <span class="o">=</span> <span class="nf">unique</span><span class="p">(</span><span class="n">sce</span><span class="o">$</span><span class="n">cell_type</span><span class="p">),</span> 
+       <span class="n">col</span> <span class="o">=</span> <span class="nf">unique</span><span class="p">(</span><span class="n">cell_colors</span><span class="p">),</span> <span class="n">pch</span> <span class="o">=</span> <span class="m">16</span><span class="p">,</span> <span class="n">box.lwd</span> <span class="o">=</span> <span class="m">0</span><span class="p">)</span>
+</code></pre></div>
+</td></tr></table>
+<p><img alt="png" src="kb_slingshot_files/kb_slingshot_50_0.png" /></p>
+<p>Which cells are in which lineage? Here we plot the pseudotime values for each lineage.</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="nf">options</span><span class="p">(</span><span class="n">repr.plot.width</span><span class="o">=</span><span class="m">15</span><span class="p">,</span> <span class="n">repr.plot.height</span><span class="o">=</span><span class="m">6</span><span class="p">)</span>
+<span class="n">nc</span> <span class="o">&lt;-</span> <span class="m">3</span>
+<span class="n">pt</span> <span class="o">&lt;-</span> <span class="nf">slingPseudotime</span><span class="p">(</span><span class="n">sds</span><span class="p">)</span>
+<span class="n">nms</span> <span class="o">&lt;-</span> <span class="nf">colnames</span><span class="p">(</span><span class="n">pt</span><span class="p">)</span>
+<span class="n">nr</span> <span class="o">&lt;-</span> <span class="nf">ceiling</span><span class="p">(</span><span class="nf">length</span><span class="p">(</span><span class="n">nms</span><span class="p">)</span><span class="o">/</span><span class="n">nc</span><span class="p">)</span>
+<span class="n">pal</span> <span class="o">&lt;-</span> <span class="nf">viridis</span><span class="p">(</span><span class="m">100</span><span class="p">,</span> <span class="n">end</span> <span class="o">=</span> <span class="m">0.95</span><span class="p">)</span>
+<span class="nf">par</span><span class="p">(</span><span class="n">mfrow</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="n">nr</span><span class="p">,</span> <span class="n">nc</span><span class="p">))</span>
+<span class="nf">for </span><span class="p">(</span><span class="n">i</span> <span class="n">in</span> <span class="n">nms</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">colors</span> <span class="o">&lt;-</span> <span class="n">pal</span><span class="p">[</span><span class="nf">cut</span><span class="p">(</span><span class="n">pt</span><span class="p">[,</span><span class="n">i</span><span class="p">],</span> <span class="n">breaks</span> <span class="o">=</span> <span class="m">100</span><span class="p">)]</span>
+  <span class="nf">plot</span><span class="p">(</span><span class="nf">reducedDim</span><span class="p">(</span><span class="n">sds</span><span class="p">),</span> <span class="n">col</span> <span class="o">=</span> <span class="n">colors</span><span class="p">,</span> <span class="n">pch</span> <span class="o">=</span> <span class="m">16</span><span class="p">,</span> <span class="n">main</span> <span class="o">=</span> <span class="n">i</span><span class="p">)</span>
+  <span class="nf">lines</span><span class="p">(</span><span class="n">sds</span><span class="p">,</span> <span class="n">lwd</span> <span class="o">=</span> <span class="m">2</span><span class="p">,</span> <span class="n">col</span> <span class="o">=</span> <span class="s">&#39;black&#39;</span><span class="p">,</span> <span class="n">type</span> <span class="o">=</span> <span class="s">&#39;lineages&#39;</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div>
+</td></tr></table>
+<p><img alt="png" src="kb_slingshot_files/kb_slingshot_52_0.png" /></p>
+<p>Or on UMAP, though can't plot the lineages here</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="nf">par</span><span class="p">(</span><span class="n">mfrow</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="n">nr</span><span class="p">,</span> <span class="n">nc</span><span class="p">))</span>
+<span class="nf">options</span><span class="p">(</span><span class="n">repr.plot.width</span><span class="o">=</span><span class="m">15</span><span class="p">,</span> <span class="n">repr.plot.height</span><span class="o">=</span><span class="m">6</span><span class="p">)</span>
+<span class="nf">for </span><span class="p">(</span><span class="n">i</span> <span class="n">in</span> <span class="n">nms</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">colors</span> <span class="o">&lt;-</span> <span class="n">pal</span><span class="p">[</span><span class="nf">cut</span><span class="p">(</span><span class="n">pt</span><span class="p">[,</span><span class="n">i</span><span class="p">],</span> <span class="n">breaks</span> <span class="o">=</span> <span class="m">100</span><span class="p">)]</span>
+  <span class="nf">plot</span><span class="p">(</span><span class="nf">reducedDim</span><span class="p">(</span><span class="n">sce</span><span class="p">,</span> <span class="s">&quot;UMAP&quot;</span><span class="p">),</span> <span class="n">col</span> <span class="o">=</span> <span class="n">colors</span><span class="p">,</span> <span class="n">pch</span> <span class="o">=</span> <span class="m">16</span><span class="p">,</span> <span class="n">main</span> <span class="o">=</span> <span class="n">i</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div>
+</td></tr></table>
+<p><img alt="png" src="kb_slingshot_files/kb_slingshot_54_0.png" /></p>
+<h1 id="differential-expression">Differential expression<a class="headerlink" href="#differential-expression" title="Permanent link">&para;</a></h1>
+<p>Here we use the package <code>tradeSeq</code>, presented in <a href="https://www.biorxiv.org/content/10.1101/623397v1">this paper</a>. This section was adapted from the vignette of <code>tradeSeq</code>.</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="n">control</span> <span class="o">&lt;-</span> <span class="n">mgcv</span><span class="o">::</span><span class="nf">gam.control</span><span class="p">()</span>
+<span class="n">control</span><span class="o">$</span><span class="n">maxit</span> <span class="o">&lt;-</span> <span class="m">1000</span>
+<span class="n">cts</span> <span class="o">&lt;-</span> <span class="nf">as.matrix</span><span class="p">(</span><span class="nf">counts</span><span class="p">(</span><span class="n">sce</span><span class="p">))</span>
+<span class="n">icMat</span> <span class="o">&lt;-</span> <span class="nf">evaluateK</span><span class="p">(</span><span class="n">counts</span> <span class="o">=</span> <span class="n">cts</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="m">3</span><span class="o">:</span><span class="m">10</span><span class="p">,</span> <span class="n">nGenes</span> <span class="o">=</span> <span class="m">50</span><span class="p">,</span>
+                   <span class="n">pseudotime</span> <span class="o">=</span> <span class="nf">slingPseudotime</span><span class="p">(</span><span class="n">sds</span><span class="p">,</span> <span class="n">na</span> <span class="o">=</span> <span class="kc">FALSE</span><span class="p">),</span>
+                   <span class="n">cellWeights</span> <span class="o">=</span> <span class="nf">slingCurveWeights</span><span class="p">(</span><span class="n">sds</span><span class="p">),</span> <span class="n">control</span> <span class="o">=</span> <span class="n">control</span><span class="p">)</span>
+</code></pre></div>
+</td></tr></table>
+<div class="codehilite"><pre><span></span><code>Warning message in newton(lsp = lsp, X = G$X, y = G$y, Eb = G$Eb, UrS = G$UrS, L = G$L, :
+&quot;Fitting terminated with step failure - check results carefully&quot;
+Warning message in newton(lsp = lsp, X = G$X, y = G$y, Eb = G$Eb, UrS = G$UrS, L = G$L, :
+&quot;Iteration limit reached without full convergence - check carefully&quot;
+Warning message in newton(lsp = lsp, X = G$X, y = G$y, Eb = G$Eb, UrS = G$UrS, L = G$L, :
+&quot;Fitting terminated with step failure - check results carefully&quot;
+Warning message in newton(lsp = lsp, X = G$X, y = G$y, Eb = G$Eb, UrS = G$UrS, L = G$L, :
+&quot;Fitting terminated with step failure - check results carefully&quot;
+Warning message in newton(lsp = lsp, X = G$X, y = G$y, Eb = G$Eb, UrS = G$UrS, L = G$L, :
+&quot;Iteration limit reached without full convergence - check carefully&quot;
+Warning message in newton(lsp = lsp, X = G$X, y = G$y, Eb = G$Eb, UrS = G$UrS, L = G$L, :
+&quot;Fitting terminated with step failure - check results carefully&quot;
+Warning message in newton(lsp = lsp, X = G$X, y = G$y, Eb = G$Eb, UrS = G$UrS, L = G$L, :
+&quot;Fitting terminated with step failure - check results carefully&quot;
+Warning message in newton(lsp = lsp, X = G$X, y = G$y, Eb = G$Eb, UrS = G$UrS, L = G$L, :
+&quot;Fitting terminated with step failure - check results carefully&quot;
+Warning message in newton(lsp = lsp, X = G$X, y = G$y, Eb = G$Eb, UrS = G$UrS, L = G$L, :
+&quot;Fitting terminated with step failure - check results carefully&quot;
+Warning message in newton(lsp = lsp, X = G$X, y = G$y, Eb = G$Eb, UrS = G$UrS, L = G$L, :
+&quot;Fitting terminated with step failure - check results carefully&quot;
+Warning message in newton(lsp = lsp, X = G$X, y = G$y, Eb = G$Eb, UrS = G$UrS, L = G$L, :
+&quot;Fitting terminated with step failure - check results carefully&quot;
+Warning message in newton(lsp = lsp, X = G$X, y = G$y, Eb = G$Eb, UrS = G$UrS, L = G$L, :
+&quot;Fitting terminated with step failure - check results carefully&quot;
+Warning message in newton(lsp = lsp, X = G$X, y = G$y, Eb = G$Eb, UrS = G$UrS, L = G$L, :
+&quot;Fitting terminated with step failure - check results carefully&quot;
+Warning message in newton(lsp = lsp, X = G$X, y = G$y, Eb = G$Eb, UrS = G$UrS, L = G$L, :
+&quot;Fitting terminated with step failure - check results carefully&quot;
+Warning message in newton(lsp = lsp, X = G$X, y = G$y, Eb = G$Eb, UrS = G$UrS, L = G$L, :
+&quot;Iteration limit reached without full convergence - check carefully&quot;
+Warning message in newton(lsp = lsp, X = G$X, y = G$y, Eb = G$Eb, UrS = G$UrS, L = G$L, :
+&quot;Fitting terminated with step failure - check results carefully&quot;
+Warning message in newton(lsp = lsp, X = G$X, y = G$y, Eb = G$Eb, UrS = G$UrS, L = G$L, :
+&quot;Fitting terminated with step failure - check results carefully&quot;
+Warning message in newton(lsp = lsp, X = G$X, y = G$y, Eb = G$Eb, UrS = G$UrS, L = G$L, :
+&quot;Fitting terminated with step failure - check results carefully&quot;
+Warning message in newton(lsp = lsp, X = G$X, y = G$y, Eb = G$Eb, UrS = G$UrS, L = G$L, :
+&quot;Fitting terminated with step failure - check results carefully&quot;
+Warning message in newton(lsp = lsp, X = G$X, y = G$y, Eb = G$Eb, UrS = G$UrS, L = G$L, :
+&quot;Iteration limit reached without full convergence - check carefully&quot;
+Warning message in newton(lsp = lsp, X = G$X, y = G$y, Eb = G$Eb, UrS = G$UrS, L = G$L, :
+&quot;Iteration limit reached without full convergence - check carefully&quot;
+Warning message in newton(lsp = lsp, X = G$X, y = G$y, Eb = G$Eb, UrS = G$UrS, L = G$L, :
+&quot;Iteration limit reached without full convergence - check carefully&quot;
+Warning message in newton(lsp = lsp, X = G$X, y = G$y, Eb = G$Eb, UrS = G$UrS, L = G$L, :
+&quot;Iteration limit reached without full convergence - check carefully&quot;
+Warning message in newton(lsp = lsp, X = G$X, y = G$y, Eb = G$Eb, UrS = G$UrS, L = G$L, :
+&quot;Iteration limit reached without full convergence - check carefully&quot;
+Warning message in newton(lsp = lsp, X = G$X, y = G$y, Eb = G$Eb, UrS = G$UrS, L = G$L, :
+&quot;Fitting terminated with step failure - check results carefully&quot;
+Warning message in newton(lsp = lsp, X = G$X, y = G$y, Eb = G$Eb, UrS = G$UrS, L = G$L, :
+&quot;Iteration limit reached without full convergence - check carefully&quot;
+Warning message in newton(lsp = lsp, X = G$X, y = G$y, Eb = G$Eb, UrS = G$UrS, L = G$L, :
+&quot;Iteration limit reached without full convergence - check carefully&quot;
+Warning message in newton(lsp = lsp, X = G$X, y = G$y, Eb = G$Eb, UrS = G$UrS, L = G$L, :
+&quot;Iteration limit reached without full convergence - check carefully&quot;
+Warning message in newton(lsp = lsp, X = G$X, y = G$y, Eb = G$Eb, UrS = G$UrS, L = G$L, :
+&quot;Fitting terminated with step failure - check results carefully&quot;
+Warning message in newton(lsp = lsp, X = G$X, y = G$y, Eb = G$Eb, UrS = G$UrS, L = G$L, :
+&quot;Fitting terminated with step failure - check results carefully&quot;
+Warning message in newton(lsp = lsp, X = G$X, y = G$y, Eb = G$Eb, UrS = G$UrS, L = G$L, :
+&quot;Iteration limit reached without full convergence - check carefully&quot;
+Warning message in newton(lsp = lsp, X = G$X, y = G$y, Eb = G$Eb, UrS = G$UrS, L = G$L, :
+&quot;Iteration limit reached without full convergence - check carefully&quot;
+Warning message in newton(lsp = lsp, X = G$X, y = G$y, Eb = G$Eb, UrS = G$UrS, L = G$L, :
+&quot;Iteration limit reached without full convergence - check carefully&quot;
+Warning message in newton(lsp = lsp, X = G$X, y = G$y, Eb = G$Eb, UrS = G$UrS, L = G$L, :
+&quot;Iteration limit reached without full convergence - check carefully&quot;
+Warning message in newton(lsp = lsp, X = G$X, y = G$y, Eb = G$Eb, UrS = G$UrS, L = G$L, :
+&quot;Fitting terminated with step failure - check results carefully&quot;
+Warning message in newton(lsp = lsp, X = G$X, y = G$y, Eb = G$Eb, UrS = G$UrS, L = G$L, :
+&quot;Iteration limit reached without full convergence - check carefully&quot;
+Warning message in newton(lsp = lsp, X = G$X, y = G$y, Eb = G$Eb, UrS = G$UrS, L = G$L, :
+&quot;Iteration limit reached without full convergence - check carefully&quot;
+Warning message in newton(lsp = lsp, X = G$X, y = G$y, Eb = G$Eb, UrS = G$UrS, L = G$L, :
+&quot;Iteration limit reached without full convergence - check carefully&quot;
+Warning message in newton(lsp = lsp, X = G$X, y = G$y, Eb = G$Eb, UrS = G$UrS, L = G$L, :
+&quot;Iteration limit reached without full convergence - check carefully&quot;
+Warning message in newton(lsp = lsp, X = G$X, y = G$y, Eb = G$Eb, UrS = G$UrS, L = G$L, :
+&quot;Iteration limit reached without full convergence - check carefully&quot;
+Warning message in newton(lsp = lsp, X = G$X, y = G$y, Eb = G$Eb, UrS = G$UrS, L = G$L, :
+&quot;Iteration limit reached without full convergence - check carefully&quot;
+Warning message in newton(lsp = lsp, X = G$X, y = G$y, Eb = G$Eb, UrS = G$UrS, L = G$L, :
+&quot;Iteration limit reached without full convergence - check carefully&quot;
+Warning message in newton(lsp = lsp, X = G$X, y = G$y, Eb = G$Eb, UrS = G$UrS, L = G$L, :
+&quot;Iteration limit reached without full convergence - check carefully&quot;
+Warning message in newton(lsp = lsp, X = G$X, y = G$y, Eb = G$Eb, UrS = G$UrS, L = G$L, :
+&quot;Iteration limit reached without full convergence - check carefully&quot;
+Warning message in newton(lsp = lsp, X = G$X, y = G$y, Eb = G$Eb, UrS = G$UrS, L = G$L, :
+&quot;Iteration limit reached without full convergence - check carefully&quot;
+Warning message in newton(lsp = lsp, X = G$X, y = G$y, Eb = G$Eb, UrS = G$UrS, L = G$L, :
+&quot;Iteration limit reached without full convergence - check carefully&quot;
+Warning message in newton(lsp = lsp, X = G$X, y = G$y, Eb = G$Eb, UrS = G$UrS, L = G$L, :
+&quot;Iteration limit reached without full convergence - check carefully&quot;
+Warning message in newton(lsp = lsp, X = G$X, y = G$y, Eb = G$Eb, UrS = G$UrS, L = G$L, :
+&quot;Iteration limit reached without full convergence - check carefully&quot;
+Warning message in newton(lsp = lsp, X = G$X, y = G$y, Eb = G$Eb, UrS = G$UrS, L = G$L, :
+&quot;Iteration limit reached without full convergence - check carefully&quot;
+Warning message in newton(lsp = lsp, X = G$X, y = G$y, Eb = G$Eb, UrS = G$UrS, L = G$L, :
+&quot;Iteration limit reached without full convergence - check carefully&quot;
+Warning message in newton(lsp = lsp, X = G$X, y = G$y, Eb = G$Eb, UrS = G$UrS, L = G$L, :
+&quot;Fitting terminated with step failure - check results carefully&quot;
+Warning message in newton(lsp = lsp, X = G$X, y = G$y, Eb = G$Eb, UrS = G$UrS, L = G$L, :
+&quot;Iteration limit reached without full convergence - check carefully&quot;
+Warning message in newton(lsp = lsp, X = G$X, y = G$y, Eb = G$Eb, UrS = G$UrS, L = G$L, :
+&quot;Iteration limit reached without full convergence - check carefully&quot;
+Warning message in newton(lsp = lsp, X = G$X, y = G$y, Eb = G$Eb, UrS = G$UrS, L = G$L, :
+&quot;Iteration limit reached without full convergence - check carefully&quot;
+Warning message in newton(lsp = lsp, X = G$X, y = G$y, Eb = G$Eb, UrS = G$UrS, L = G$L, :
+&quot;Fitting terminated with step failure - check results carefully&quot;
+Warning message in newton(lsp = lsp, X = G$X, y = G$y, Eb = G$Eb, UrS = G$UrS, L = G$L, :
+&quot;Iteration limit reached without full convergence - check carefully&quot;
+Warning message in newton(lsp = lsp, X = G$X, y = G$y, Eb = G$Eb, UrS = G$UrS, L = G$L, :
+&quot;Iteration limit reached without full convergence - check carefully&quot;
+Warning message in newton(lsp = lsp, X = G$X, y = G$y, Eb = G$Eb, UrS = G$UrS, L = G$L, :
+&quot;Iteration limit reached without full convergence - check carefully&quot;
+Warning message in newton(lsp = lsp, X = G$X, y = G$y, Eb = G$Eb, UrS = G$UrS, L = G$L, :
+&quot;Iteration limit reached without full convergence - check carefully&quot;
+Warning message in newton(lsp = lsp, X = G$X, y = G$y, Eb = G$Eb, UrS = G$UrS, L = G$L, :
+&quot;Fitting terminated with step failure - check results carefully&quot;
+Warning message in newton(lsp = lsp, X = G$X, y = G$y, Eb = G$Eb, UrS = G$UrS, L = G$L, :
+&quot;Fitting terminated with step failure - check results carefully&quot;
+Warning message in newton(lsp = lsp, X = G$X, y = G$y, Eb = G$Eb, UrS = G$UrS, L = G$L, :
+&quot;Fitting terminated with step failure - check results carefully&quot;
+Warning message in newton(lsp = lsp, X = G$X, y = G$y, Eb = G$Eb, UrS = G$UrS, L = G$L, :
+&quot;Iteration limit reached without full convergence - check carefully&quot;
+Warning message in newton(lsp = lsp, X = G$X, y = G$y, Eb = G$Eb, UrS = G$UrS, L = G$L, :
+&quot;Iteration limit reached without full convergence - check carefully&quot;
+</code></pre></div>
+
+<p><img alt="png" src="kb_slingshot_files/kb_slingshot_56_1.png" /></p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="nf">register</span><span class="p">(</span><span class="nf">MulticoreParam</span><span class="p">(</span><span class="m">2</span><span class="p">))</span>
+<span class="n">sce2</span> <span class="o">&lt;-</span> <span class="nf">fitGAM</span><span class="p">(</span><span class="n">counts</span> <span class="o">=</span> <span class="n">cts</span><span class="p">[</span><span class="n">hvgs</span><span class="p">[</span><span class="m">1</span><span class="o">:</span><span class="m">50</span><span class="p">],],</span> <span class="n">sds</span> <span class="o">=</span> <span class="n">sds</span><span class="p">,</span> <span class="n">nknots</span> <span class="o">=</span> <span class="m">5</span><span class="p">,</span> <span class="n">control</span> <span class="o">=</span> <span class="n">control</span><span class="p">)</span>
+</code></pre></div>
+</td></tr></table>
+<p>See where the knots are</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="nf">plotGeneCount</span><span class="p">(</span><span class="n">curve</span> <span class="o">=</span> <span class="n">sds</span><span class="p">,</span> <span class="n">clusters</span> <span class="o">=</span> <span class="n">sce</span><span class="o">$</span><span class="n">cluster</span><span class="p">,</span>
+              <span class="n">models</span> <span class="o">=</span> <span class="n">sce2</span><span class="p">)</span>
+</code></pre></div>
+</td></tr></table>
+<p><img alt="png" src="kb_slingshot_files/kb_slingshot_59_0.png" /></p>
+<h2 id="within-linenage-comparisons">Within linenage comparisons<a class="headerlink" href="#within-linenage-comparisons" title="Permanent link">&para;</a></h2>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="n">assoRes</span> <span class="o">&lt;-</span> <span class="nf">associationTest</span><span class="p">(</span><span class="n">sce2</span><span class="p">)</span>
+<span class="nf">head</span><span class="p">(</span><span class="n">assoRes</span><span class="p">)</span>
+</code></pre></div>
+</td></tr></table>
+<table>
+<caption>A data.frame: 6 × 3</caption>
+<thead>
+    <tr><th></th><th scope=col>waldStat</th><th scope=col>df</th><th scope=col>pvalue</th></tr>
+    <tr><th></th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
+</thead>
+<tbody>
+    <tr><th scope=row>ENSMUSG00000027500</th><td> 749.6209</td><td>7</td><td>0</td></tr>
+    <tr><th scope=row>ENSMUSG00000019874</th><td>1765.8955</td><td>7</td><td>0</td></tr>
+    <tr><th scope=row>ENSMUSG00000005583</th><td> 579.4966</td><td>7</td><td>0</td></tr>
+    <tr><th scope=row>ENSMUSG00000029838</th><td> 504.3415</td><td>7</td><td>0</td></tr>
+    <tr><th scope=row>ENSMUSG00000027210</th><td> 492.3774</td><td>7</td><td>0</td></tr>
+    <tr><th scope=row>ENSMUSG00000026728</th><td>1072.9275</td><td>7</td><td>0</td></tr>
+</tbody>
+</table>
+
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="n">startRes</span> <span class="o">&lt;-</span> <span class="nf">startVsEndTest</span><span class="p">(</span><span class="n">sce2</span><span class="p">)</span>
+</code></pre></div>
+</td></tr></table>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="n">oStart</span> <span class="o">&lt;-</span> <span class="nf">order</span><span class="p">(</span><span class="n">startRes</span><span class="o">$</span><span class="n">waldStat</span><span class="p">,</span> <span class="n">decreasing</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">)</span>
+<span class="n">sigGeneStart</span> <span class="o">&lt;-</span> <span class="nf">names</span><span class="p">(</span><span class="n">sce2</span><span class="p">)[</span><span class="n">oStart</span><span class="p">[</span><span class="m">1</span><span class="p">]]</span>
+<span class="nf">plotSmoothers</span><span class="p">(</span><span class="n">sce2</span><span class="p">,</span> <span class="n">cts</span><span class="p">,</span> <span class="n">gene</span> <span class="o">=</span> <span class="n">sigGeneStart</span><span class="p">)</span>
+</code></pre></div>
+</td></tr></table>
+<p><img alt="png" src="kb_slingshot_files/kb_slingshot_63_0.png" /></p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="nf">plotUMAP</span><span class="p">(</span><span class="n">sce</span><span class="p">,</span> <span class="n">colour_by</span> <span class="o">=</span> <span class="n">sigGeneStart</span><span class="p">)</span>
+</code></pre></div>
+</td></tr></table>
+<p><img alt="png" src="kb_slingshot_files/kb_slingshot_64_0.png" /></p>
+<h2 id="between-lineage-comparisons">Between lineage comparisons<a class="headerlink" href="#between-lineage-comparisons" title="Permanent link">&para;</a></h2>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="n">endRes</span> <span class="o">&lt;-</span> <span class="nf">diffEndTest</span><span class="p">(</span><span class="n">sce2</span><span class="p">)</span>
+</code></pre></div>
+</td></tr></table>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="n">o</span> <span class="o">&lt;-</span> <span class="nf">order</span><span class="p">(</span><span class="n">endRes</span><span class="o">$</span><span class="n">waldStat</span><span class="p">,</span> <span class="n">decreasing</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">)</span>
+<span class="n">sigGene</span> <span class="o">&lt;-</span> <span class="nf">names</span><span class="p">(</span><span class="n">sce2</span><span class="p">)[</span><span class="n">o</span><span class="p">[</span><span class="m">1</span><span class="p">]]</span>
+<span class="nf">plotSmoothers</span><span class="p">(</span><span class="n">sce2</span><span class="p">,</span> <span class="n">cts</span><span class="p">,</span> <span class="n">sigGene</span><span class="p">)</span>
+</code></pre></div>
+</td></tr></table>
+<p><img alt="png" src="kb_slingshot_files/kb_slingshot_67_0.png" /></p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="nf">plotUMAP</span><span class="p">(</span><span class="n">sce</span><span class="p">,</span> <span class="n">colour_by</span> <span class="o">=</span> <span class="n">sigGene</span><span class="p">)</span>
+</code></pre></div>
+</td></tr></table>
+<p><img alt="png" src="kb_slingshot_files/kb_slingshot_68_0.png" /></p>
+<h2 id="different-patterns">Different patterns<a class="headerlink" href="#different-patterns" title="Permanent link">&para;</a></h2>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="n">patternRes</span> <span class="o">&lt;-</span> <span class="nf">patternTest</span><span class="p">(</span><span class="n">sce2</span><span class="p">)</span>
+<span class="n">oPat</span> <span class="o">&lt;-</span> <span class="nf">order</span><span class="p">(</span><span class="n">patternRes</span><span class="o">$</span><span class="n">waldStat</span><span class="p">,</span> <span class="n">decreasing</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">)</span>
+<span class="nf">head</span><span class="p">(</span><span class="nf">rownames</span><span class="p">(</span><span class="n">patternRes</span><span class="p">)[</span><span class="n">oPat</span><span class="p">])</span>
+</code></pre></div>
+</td></tr></table>
+<style>
+.list-inline {list-style: none; margin:0; padding: 0}
+.list-inline>li {display: inline-block}
+.list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
+</style>
+<ol class=list-inline><li>'ENSMUSG00000035551'</li><li>'ENSMUSG00000027239'</li><li>'ENSMUSG00000018411'</li><li>'ENSMUSG00000067786'</li><li>'ENSMUSG00000052727'</li><li>'ENSMUSG00000058672'</li></ol>
+
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="nf">plotSmoothers</span><span class="p">(</span><span class="n">sce2</span><span class="p">,</span> <span class="n">cts</span><span class="p">,</span> <span class="n">gene</span> <span class="o">=</span> <span class="nf">rownames</span><span class="p">(</span><span class="n">patternRes</span><span class="p">)[</span><span class="n">oPat</span><span class="p">][</span><span class="m">1</span><span class="p">])</span>
+</code></pre></div>
+</td></tr></table>
+<p><img alt="png" src="kb_slingshot_files/kb_slingshot_71_0.png" /></p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="nf">plotUMAP</span><span class="p">(</span><span class="n">sce</span><span class="p">,</span> <span class="n">colour_by</span> <span class="o">=</span> <span class="nf">rownames</span><span class="p">(</span><span class="n">patternRes</span><span class="p">)[</span><span class="n">oPat</span><span class="p">][</span><span class="m">1</span><span class="p">])</span>
+</code></pre></div>
+</td></tr></table>
+<p><img alt="png" src="kb_slingshot_files/kb_slingshot_72_0.png" /></p>
+<h2 id="clustering-patterns">Clustering patterns<a class="headerlink" href="#clustering-patterns" title="Permanent link">&para;</a></h2>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="n">nPointsClus</span> <span class="o">&lt;-</span> <span class="m">10</span>
+<span class="n">clusPat</span> <span class="o">&lt;-</span> <span class="nf">clusterExpressionPatterns</span><span class="p">(</span><span class="n">sce2</span><span class="p">,</span> <span class="n">nPoints</span> <span class="o">=</span> <span class="n">nPointsClus</span><span class="p">,</span>
+                                     <span class="n">genes</span> <span class="o">=</span> <span class="nf">rownames</span><span class="p">(</span><span class="n">sce2</span><span class="p">))</span>
+</code></pre></div>
+</td></tr></table>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="n">clusterLabels</span> <span class="o">&lt;-</span> <span class="nf">primaryCluster</span><span class="p">(</span><span class="n">clusPat</span><span class="o">$</span><span class="n">rsec</span><span class="p">)</span>
+</code></pre></div>
+</td></tr></table>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="n">cUniq</span> <span class="o">&lt;-</span> <span class="nf">unique</span><span class="p">(</span><span class="n">clusterLabels</span><span class="p">)</span>
+<span class="n">cUniq</span> <span class="o">&lt;-</span> <span class="n">cUniq</span><span class="p">[</span><span class="o">!</span><span class="n">cUniq</span> <span class="o">==</span> <span class="m">-1</span><span class="p">]</span> <span class="c1"># remove unclustered genes</span>
+
+<span class="n">plots</span> <span class="o">&lt;-</span> <span class="nf">list</span><span class="p">()</span>
+<span class="nf">for </span><span class="p">(</span><span class="n">xx</span> <span class="n">in</span> <span class="n">cUniq</span><span class="p">[</span><span class="m">1</span><span class="o">:</span><span class="m">4</span><span class="p">])</span> <span class="p">{</span>
+  <span class="n">cId</span> <span class="o">&lt;-</span> <span class="nf">which</span><span class="p">(</span><span class="n">clusterLabels</span> <span class="o">==</span> <span class="n">xx</span><span class="p">)</span>
+  <span class="n">p</span> <span class="o">&lt;-</span> <span class="nf">ggplot</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="nf">data.frame</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="m">1</span><span class="o">:</span><span class="n">nPointsClus</span><span class="p">,</span>
+                                <span class="n">y</span> <span class="o">=</span> <span class="nf">rep</span><span class="p">(</span><span class="nf">range</span><span class="p">(</span><span class="n">clusPat</span><span class="o">$</span><span class="n">yhatScaled</span><span class="p">[</span><span class="n">cId</span><span class="p">,</span> <span class="p">]),</span>
+                                        <span class="n">nPointsClus</span> <span class="o">/</span> <span class="m">2</span><span class="p">)),</span>
+              <span class="nf">aes</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">y</span><span class="p">))</span> <span class="o">+</span>
+    <span class="nf">geom_point</span><span class="p">(</span><span class="n">alpha</span> <span class="o">=</span> <span class="m">0</span><span class="p">)</span> <span class="o">+</span>
+    <span class="nf">labs</span><span class="p">(</span><span class="n">title</span> <span class="o">=</span> <span class="nf">paste0</span><span class="p">(</span><span class="s">&quot;Cluster &quot;</span><span class="p">,</span> <span class="n">xx</span><span class="p">),</span>  <span class="n">x</span> <span class="o">=</span> <span class="s">&quot;Pseudotime&quot;</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="s">&quot;Normalized expression&quot;</span><span class="p">)</span> <span class="o">+</span>
+    <span class="nf">theme_classic</span><span class="p">()</span>
+  <span class="nf">for </span><span class="p">(</span><span class="n">ii</span> <span class="n">in</span> <span class="m">1</span><span class="o">:</span><span class="nf">length</span><span class="p">(</span><span class="n">cId</span><span class="p">))</span> <span class="p">{</span>
+    <span class="n">geneId</span> <span class="o">&lt;-</span> <span class="nf">rownames</span><span class="p">(</span><span class="n">clusPat</span><span class="o">$</span><span class="n">yhatScaled</span><span class="p">)[</span><span class="n">cId</span><span class="p">[</span><span class="n">ii</span><span class="p">]]</span>
+    <span class="n">p</span> <span class="o">&lt;-</span> <span class="n">p</span> <span class="o">+</span>
+      <span class="nf">geom_line</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="nf">data.frame</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="nf">rep</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="n">nPointsClus</span><span class="p">,</span> <span class="m">2</span><span class="p">),</span>
+                                  <span class="n">y</span> <span class="o">=</span> <span class="n">clusPat</span><span class="o">$</span><span class="n">yhatScaled</span><span class="p">[</span><span class="n">geneId</span><span class="p">,</span> <span class="p">],</span>
+                                  <span class="n">lineage</span> <span class="o">=</span> <span class="nf">rep</span><span class="p">(</span><span class="m">0</span><span class="o">:</span><span class="m">1</span><span class="p">,</span> <span class="n">each</span> <span class="o">=</span> <span class="n">nPointsClus</span><span class="p">)),</span>
+                <span class="nf">aes</span><span class="p">(</span><span class="n">col</span> <span class="o">=</span> <span class="nf">as.character</span><span class="p">(</span><span class="n">lineage</span><span class="p">),</span> <span class="n">group</span> <span class="o">=</span> <span class="n">lineage</span><span class="p">),</span> <span class="n">lwd</span> <span class="o">=</span> <span class="m">1.5</span><span class="p">)</span>
+  <span class="p">}</span>
+  <span class="n">p</span> <span class="o">&lt;-</span> <span class="n">p</span> <span class="o">+</span> <span class="nf">guides</span><span class="p">(</span><span class="n">color</span> <span class="o">=</span> <span class="kc">FALSE</span><span class="p">)</span> <span class="o">+</span>
+    <span class="nf">scale_color_manual</span><span class="p">(</span><span class="n">values</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="s">&quot;orange&quot;</span><span class="p">,</span> <span class="s">&quot;darkseagreen3&quot;</span><span class="p">),</span>
+                       <span class="n">breaks</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="s">&quot;0&quot;</span><span class="p">,</span> <span class="s">&quot;1&quot;</span><span class="p">))</span>  
+  <span class="n">plots</span><span class="p">[[</span><span class="nf">as.character</span><span class="p">(</span><span class="n">xx</span><span class="p">)]]</span> <span class="o">&lt;-</span> <span class="n">p</span>
+<span class="p">}</span>
+<span class="n">plots</span><span class="o">$</span><span class="n">ncol</span> <span class="o">&lt;-</span> <span class="m">2</span>
+<span class="nf">do.call</span><span class="p">(</span><span class="n">cowplot</span><span class="o">::</span><span class="n">plot_grid</span><span class="p">,</span> <span class="n">plots</span><span class="p">)</span>
+</code></pre></div>
+</td></tr></table>
+<p><img alt="png" src="kb_slingshot_files/kb_slingshot_76_0.png" /></p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>
+</code></pre></div>
+</td></tr></table>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        
+        <a href="../../../kb_building_atlas/R/kb_analysis_0_R.html" class="md-footer__link md-footer__link--prev" aria-label="Previous: R" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              R
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../../../kb_nucleus/python/kb_single_nucleus.html" class="md-footer__link md-footer__link--next" aria-label="Next: Python" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Python
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            Copyright &copy; 2021 - 2021 Pachterlab
+          </div>
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+        
+      </div>
+      
+  <div class="md-footer-social">
+    
+      
+      
+        
+        
+      
+      <a href="https://github.com/pachterlab" target="_blank" rel="noopener" title="github.com" class="md-footer-social__link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+      </a>
+    
+      
+      
+        
+        
+      
+      <a href="https://twitter.com/sinabooeshaghi" target="_blank" rel="noopener" title="twitter.com" class="md-footer-social__link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg>
+      </a>
+    
+  </div>
+
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../../../..", "features": ["search.suggest", "search.highlight"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../../../assets/javascripts/workers/search.b0710199.min.js", "version": null}</script>
+    
+    
+      <script src="../../../../assets/javascripts/bundle.76f349be.min.js"></script>
+      
+    
+  </body>
+</html>
