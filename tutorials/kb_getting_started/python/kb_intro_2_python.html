@@ -14,7 +14,7 @@
       
       
       <link rel="icon" href="../../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.2.1, mkdocs-material-7.1.8">
+      <meta name="generator" content="mkdocs-1.2.1, mkdocs-material-7.1.9">
     
     
       
@@ -1403,7 +1403,7 @@
                   </a>
                 
                 
-                <p><a href="https://colab.research.google.com/github/pachterlab/kallistobustools/blob/master/tutorials/docs/tutorials/kb_getting_started/python/kb_intro_2_python.ipynb" target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a></p>
+                <p><a href="https://colab.research.google.com/github/pachterlab/kallistobustools/blob/master/docs/tutorials/kb_getting_started/python/kb_intro_2_python.ipynb" target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a></p>
 <h1 id="introduction-to-single-cell-rna-seq-ii-getting-started-with-analysis">Introduction to single-cell RNA-seq II: getting started with analysis<a class="headerlink" href="#introduction-to-single-cell-rna-seq-ii-getting-started-with-analysis" title="Permanent link">&para;</a></h1>
 <p>This notebook demonstrates pre-processing and basic analysis of the <a href="https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE126783">mouse retinal cells GSE126783</a> dataset from <a href="https://doi.org/10.1016/j.immuni.2019.02.007">Koren et al., 2019</a>. Following pre-processing using kallisto and bustools and basic QC, the notebook demonstrates some initial analysis. The approximate running time of the notebook is about 13 minutes.</p>
 <p>The notebook was written by Kyung Hoi (Joseph) Min, A. Sina Booeshaghi and Lior Pachter. If you use the methods in this notebook for your analysis please cite the following publications which describe the tools used in the notebook, as well as specific methods they run (these are cited inline in the notebook):</p>
@@ -1439,14 +1439,14 @@ start_time = time.time()
 !pip install --quiet kb-python==0.24.1
 </code></pre></div>
 </td></tr></table>
-<div class="codehilite"><pre><span></span><code>[<span class="nv">K</span>     <span class="o">|</span>████████████████████████████████<span class="o">|</span> <span class="mi">35</span>.<span class="mi">4</span><span class="nv">MB</span> <span class="mi">85</span><span class="nv">kB</span><span class="o">/</span><span class="nv">s</span> 
-[<span class="nv">K</span>     <span class="o">|</span>████████████████████████████████<span class="o">|</span> <span class="mi">51</span><span class="nv">kB</span> <span class="mi">7</span>.<span class="mi">5</span><span class="nv">MB</span><span class="o">/</span><span class="nv">s</span> 
-[<span class="nv">K</span>     <span class="o">|</span>████████████████████████████████<span class="o">|</span> <span class="mi">122</span><span class="nv">kB</span> <span class="mi">53</span>.<span class="mi">5</span><span class="nv">MB</span><span class="o">/</span><span class="nv">s</span> 
-[<span class="nv">K</span>     <span class="o">|</span>████████████████████████████████<span class="o">|</span> <span class="mi">112</span><span class="nv">kB</span> <span class="mi">55</span>.<span class="mi">5</span><span class="nv">MB</span><span class="o">/</span><span class="nv">s</span> 
+<div class="codehilite"><pre><span></span><code>[<span class="nv">K</span>     <span class="o">|</span>████████████████████████████████<span class="o">|</span> <span class="mi">35</span>.<span class="mi">4</span><span class="nv">MB</span> <span class="mi">82</span><span class="nv">kB</span><span class="o">/</span><span class="nv">s</span> 
+[<span class="nv">K</span>     <span class="o">|</span>████████████████████████████████<span class="o">|</span> <span class="mi">133</span><span class="nv">kB</span> <span class="mi">39</span>.<span class="mi">6</span><span class="nv">MB</span><span class="o">/</span><span class="nv">s</span> 
+[<span class="nv">K</span>     <span class="o">|</span>████████████████████████████████<span class="o">|</span> <span class="mi">51</span><span class="nv">kB</span> <span class="mi">8</span>.<span class="mi">3</span><span class="nv">MB</span><span class="o">/</span><span class="nv">s</span> 
+[<span class="nv">K</span>     <span class="o">|</span>████████████████████████████████<span class="o">|</span> <span class="mi">112</span><span class="nv">kB</span> <span class="mi">45</span>.<span class="mi">3</span><span class="nv">MB</span><span class="o">/</span><span class="nv">s</span> 
 [?<span class="mi">25</span><span class="nv">h</span>  <span class="nv">Building</span> <span class="nv">wheel</span> <span class="k">for</span> <span class="nv">loompy</span> <span class="ss">(</span><span class="nv">setup</span>.<span class="nv">py</span><span class="ss">)</span> ... [?<span class="mi">25</span><span class="nv">l</span>[?<span class="mi">25</span><span class="nv">hdone</span>
   <span class="nv">Building</span> <span class="nv">wheel</span> <span class="k">for</span> <span class="nv">numpy</span><span class="o">-</span><span class="nv">groupies</span> <span class="ss">(</span><span class="nv">setup</span>.<span class="nv">py</span><span class="ss">)</span> ... [?<span class="mi">25</span><span class="nv">l</span>[?<span class="mi">25</span><span class="nv">hdone</span>
-<span class="nv">CPU</span> <span class="nv">times</span>: <span class="nv">user</span> <span class="mi">102</span> <span class="nv">ms</span>, <span class="nv">sys</span>: <span class="mi">14</span>.<span class="mi">3</span> <span class="nv">ms</span>, <span class="nv">total</span>: <span class="mi">117</span> <span class="nv">ms</span>
-<span class="nv">Wall</span> <span class="nv">time</span>: <span class="mi">9</span>.<span class="mi">38</span> <span class="nv">s</span>
+<span class="nv">CPU</span> <span class="nv">times</span>: <span class="nv">user</span> <span class="mi">107</span> <span class="nv">ms</span>, <span class="nv">sys</span>: <span class="mi">25</span>.<span class="mi">2</span> <span class="nv">ms</span>, <span class="nv">total</span>: <span class="mi">133</span> <span class="nv">ms</span>
+<span class="nv">Wall</span> <span class="nv">time</span>: <span class="mi">10</span>.<span class="mi">2</span> <span class="nv">s</span>
 </code></pre></div>
 
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
@@ -1456,19 +1456,18 @@ start_time = time.time()
 !pip install --quiet scanpy python-igraph louvain MulticoreTSNE pybiomart
 </code></pre></div>
 </td></tr></table>
-<div class="codehilite"><pre><span></span><code>[<span class="nv">K</span>     <span class="o">|</span>████████████████████████████████<span class="o">|</span> <span class="mi">10</span>.<span class="mi">3</span><span class="nv">MB</span> <span class="mi">17</span>.<span class="mi">3</span><span class="nv">MB</span><span class="o">/</span><span class="nv">s</span> 
-[<span class="nv">K</span>     <span class="o">|</span>████████████████████████████████<span class="o">|</span> <span class="mi">3</span>.<span class="mi">2</span><span class="nv">MB</span> <span class="mi">48</span>.<span class="mi">3</span><span class="nv">MB</span><span class="o">/</span><span class="nv">s</span> 
-[<span class="nv">K</span>     <span class="o">|</span>████████████████████████████████<span class="o">|</span> <span class="mi">2</span>.<span class="mi">2</span><span class="nv">MB</span> <span class="mi">52</span>.<span class="mi">2</span><span class="nv">MB</span><span class="o">/</span><span class="nv">s</span> 
-[<span class="nv">K</span>     <span class="o">|</span>████████████████████████████████<span class="o">|</span> <span class="mi">81</span><span class="nv">kB</span> <span class="mi">11</span>.<span class="mi">6</span><span class="nv">MB</span><span class="o">/</span><span class="nv">s</span> 
-[<span class="nv">K</span>     <span class="o">|</span>████████████████████████████████<span class="o">|</span> <span class="mi">1</span>.<span class="mi">2</span><span class="nv">MB</span> <span class="mi">33</span>.<span class="mi">4</span><span class="nv">MB</span><span class="o">/</span><span class="nv">s</span> 
-[<span class="nv">K</span>     <span class="o">|</span>████████████████████████████████<span class="o">|</span> <span class="mi">51</span><span class="nv">kB</span> <span class="mi">7</span>.<span class="mi">4</span><span class="nv">MB</span><span class="o">/</span><span class="nv">s</span> 
+<div class="codehilite"><pre><span></span><code>[<span class="nv">K</span>     <span class="o">|</span>████████████████████████████████<span class="o">|</span> <span class="mi">2</span>.<span class="mi">0</span><span class="nv">MB</span> <span class="mi">8</span>.<span class="mi">2</span><span class="nv">MB</span><span class="o">/</span><span class="nv">s</span> 
+[<span class="nv">K</span>     <span class="o">|</span>████████████████████████████████<span class="o">|</span> <span class="mi">3</span>.<span class="mi">2</span><span class="nv">MB</span> <span class="mi">50</span>.<span class="mi">3</span><span class="nv">MB</span><span class="o">/</span><span class="nv">s</span> 
+[<span class="nv">K</span>     <span class="o">|</span>████████████████████████████████<span class="o">|</span> <span class="mi">2</span>.<span class="mi">2</span><span class="nv">MB</span> <span class="mi">44</span>.<span class="mi">0</span><span class="nv">MB</span><span class="o">/</span><span class="nv">s</span> 
+[<span class="nv">K</span>     <span class="o">|</span>████████████████████████████████<span class="o">|</span> <span class="mi">81</span><span class="nv">kB</span> <span class="mi">11</span>.<span class="mi">1</span><span class="nv">MB</span><span class="o">/</span><span class="nv">s</span> 
+[<span class="nv">K</span>     <span class="o">|</span>████████████████████████████████<span class="o">|</span> <span class="mi">1</span>.<span class="mi">1</span><span class="nv">MB</span> <span class="mi">48</span>.<span class="mi">9</span><span class="nv">MB</span><span class="o">/</span><span class="nv">s</span> 
 [<span class="nv">K</span>     <span class="o">|</span>████████████████████████████████<span class="o">|</span> <span class="mi">71</span><span class="nv">kB</span> <span class="mi">10</span>.<span class="mi">0</span><span class="nv">MB</span><span class="o">/</span><span class="nv">s</span> 
 [?<span class="mi">25</span><span class="nv">h</span>  <span class="nv">Building</span> <span class="nv">wheel</span> <span class="k">for</span> <span class="nv">MulticoreTSNE</span> <span class="ss">(</span><span class="nv">setup</span>.<span class="nv">py</span><span class="ss">)</span> ... [?<span class="mi">25</span><span class="nv">l</span>[?<span class="mi">25</span><span class="nv">hdone</span>
   <span class="nv">Building</span> <span class="nv">wheel</span> <span class="k">for</span> <span class="nv">umap</span><span class="o">-</span><span class="nv">learn</span> <span class="ss">(</span><span class="nv">setup</span>.<span class="nv">py</span><span class="ss">)</span> ... [?<span class="mi">25</span><span class="nv">l</span>[?<span class="mi">25</span><span class="nv">hdone</span>
   <span class="nv">Building</span> <span class="nv">wheel</span> <span class="k">for</span> <span class="nv">sinfo</span> <span class="ss">(</span><span class="nv">setup</span>.<span class="nv">py</span><span class="ss">)</span> ... [?<span class="mi">25</span><span class="nv">l</span>[?<span class="mi">25</span><span class="nv">hdone</span>
   <span class="nv">Building</span> <span class="nv">wheel</span> <span class="k">for</span> <span class="nv">pynndescent</span> <span class="ss">(</span><span class="nv">setup</span>.<span class="nv">py</span><span class="ss">)</span> ... [?<span class="mi">25</span><span class="nv">l</span>[?<span class="mi">25</span><span class="nv">hdone</span>
-<span class="nv">CPU</span> <span class="nv">times</span>: <span class="nv">user</span> <span class="mi">108</span> <span class="nv">ms</span>, <span class="nv">sys</span>: <span class="mi">17</span>.<span class="mi">5</span> <span class="nv">ms</span>, <span class="nv">total</span>: <span class="mi">125</span> <span class="nv">ms</span>
-<span class="nv">Wall</span> <span class="nv">time</span>: <span class="mi">15</span>.<span class="mi">1</span> <span class="nv">s</span>
+<span class="nv">CPU</span> <span class="nv">times</span>: <span class="nv">user</span> <span class="mi">108</span> <span class="nv">ms</span>, <span class="nv">sys</span>: <span class="mi">23</span>.<span class="mi">3</span> <span class="nv">ms</span>, <span class="nv">total</span>: <span class="mi">132</span> <span class="nv">ms</span>
+<span class="nv">Wall</span> <span class="nv">time</span>: <span class="mi">14</span>.<span class="mi">8</span> <span class="nv">s</span>
 </code></pre></div>
 
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
@@ -1508,8 +1507,8 @@ matplotlib.rcParams.update({&#39;font.size&#39;: 12})
 !wget -q https://caltech.box.com/shared/static/ql00zyvqnpy7bf8ogdoe9zfy907guzy9.gz -O SRR8599150_S1_L001_R2_001.fastq.gz
 </code></pre></div>
 </td></tr></table>
-<div class="codehilite"><pre><span></span><code>CPU times: user 163 ms, sys: 56.6 ms, total: 220 ms
-Wall time: 49.7 s
+<div class="codehilite"><pre><span></span><code>CPU times: user 229 ms, sys: 67.9 ms, total: 297 ms
+Wall time: 52.9 s
 </code></pre></div>
 
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code># This is formatted as code
@@ -1532,10 +1531,10 @@ SRR8599150_S1_L001_R2_001.fastq.gz: OK
 !kb ref -d mouse -i index.idx -g t2g.txt
 </code></pre></div>
 </td></tr></table>
-<div class="codehilite"><pre><span></span><code><span class="p">[</span><span class="mi">2021</span><span class="o">-</span><span class="mi">03</span><span class="o">-</span><span class="mi">31</span> <span class="mi">21</span><span class="p">:</span><span class="mi">50</span><span class="p">:</span><span class="mi">23</span><span class="p">,</span><span class="mi">293</span><span class="p">]</span>    <span class="n">INFO</span> <span class="n">Downloading</span> <span class="n">files</span> <span class="k">for</span> <span class="n">mouse</span> <span class="n">from</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">caltech</span><span class="o">.</span><span class="n">box</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">shared</span><span class="o">/</span><span class="k">static</span><span class="o">/</span><span class="n">vcaz6cujop0xuapdmz0pplp3aoqc41si</span><span class="o">.</span><span class="n">gz</span> <span class="n">to</span> <span class="n">tmp</span><span class="o">/</span><span class="n">vcaz6cujop0xuapdmz0pplp3aoqc41si</span><span class="o">.</span><span class="n">gz</span>
-<span class="p">[</span><span class="mi">2021</span><span class="o">-</span><span class="mi">03</span><span class="o">-</span><span class="mi">31</span> <span class="mi">21</span><span class="p">:</span><span class="mi">52</span><span class="p">:</span><span class="mi">03</span><span class="p">,</span><span class="mi">259</span><span class="p">]</span>    <span class="n">INFO</span> <span class="n">Extracting</span> <span class="n">files</span> <span class="n">from</span> <span class="n">tmp</span><span class="o">/</span><span class="n">vcaz6cujop0xuapdmz0pplp3aoqc41si</span><span class="o">.</span><span class="n">gz</span>
-<span class="n">CPU</span> <span class="n">times</span><span class="p">:</span> <span class="n">user</span> <span class="mi">449</span> <span class="n">ms</span><span class="p">,</span> <span class="n">sys</span><span class="p">:</span> <span class="mf">89.4</span> <span class="n">ms</span><span class="p">,</span> <span class="n">total</span><span class="p">:</span> <span class="mi">539</span> <span class="n">ms</span>
-<span class="n">Wall</span> <span class="n">time</span><span class="p">:</span> <span class="mi">2</span><span class="nb">min</span> <span class="mi">16</span><span class="n">s</span>
+<div class="codehilite"><pre><span></span><code><span class="p">[</span><span class="mi">2021</span><span class="o">-</span><span class="mi">07</span><span class="o">-</span><span class="mi">07</span> <span class="mi">18</span><span class="p">:</span><span class="mi">15</span><span class="p">:</span><span class="mi">23</span><span class="p">,</span><span class="mi">071</span><span class="p">]</span>    <span class="n">INFO</span> <span class="n">Downloading</span> <span class="n">files</span> <span class="k">for</span> <span class="n">mouse</span> <span class="n">from</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">caltech</span><span class="o">.</span><span class="n">box</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">shared</span><span class="o">/</span><span class="k">static</span><span class="o">/</span><span class="n">vcaz6cujop0xuapdmz0pplp3aoqc41si</span><span class="o">.</span><span class="n">gz</span> <span class="n">to</span> <span class="n">tmp</span><span class="o">/</span><span class="n">vcaz6cujop0xuapdmz0pplp3aoqc41si</span><span class="o">.</span><span class="n">gz</span>
+<span class="p">[</span><span class="mi">2021</span><span class="o">-</span><span class="mi">07</span><span class="o">-</span><span class="mi">07</span> <span class="mi">18</span><span class="p">:</span><span class="mi">16</span><span class="p">:</span><span class="mi">52</span><span class="p">,</span><span class="mi">467</span><span class="p">]</span>    <span class="n">INFO</span> <span class="n">Extracting</span> <span class="n">files</span> <span class="n">from</span> <span class="n">tmp</span><span class="o">/</span><span class="n">vcaz6cujop0xuapdmz0pplp3aoqc41si</span><span class="o">.</span><span class="n">gz</span>
+<span class="n">CPU</span> <span class="n">times</span><span class="p">:</span> <span class="n">user</span> <span class="mi">584</span> <span class="n">ms</span><span class="p">,</span> <span class="n">sys</span><span class="p">:</span> <span class="mi">114</span> <span class="n">ms</span><span class="p">,</span> <span class="n">total</span><span class="p">:</span> <span class="mi">698</span> <span class="n">ms</span>
+<span class="n">Wall</span> <span class="n">time</span><span class="p">:</span> <span class="mi">2</span><span class="nb">min</span> <span class="mi">12</span><span class="n">s</span>
 </code></pre></div>
 
 <h2 id="pseudoalignment-and-counting">Pseudoalignment and counting<a class="headerlink" href="#pseudoalignment-and-counting" title="Permanent link">&para;</a></h2>
@@ -1551,19 +1550,19 @@ SRR8599150_S1_L001_R2_001.fastq.gz: OK
 SRR8599150_S1_L001_R1_001.fastq.gz SRR8599150_S1_L001_R2_001.fastq.gz
 </code></pre></div>
 </td></tr></table>
-<div class="codehilite"><pre><span></span><code>[2021-03-31 21:52:45,896]    INFO Generating BUS file from
-[2021-03-31 21:52:45,896]    INFO         SRR8599150_S1_L001_R1_001.fastq.gz
-[2021-03-31 21:52:45,897]    INFO         SRR8599150_S1_L001_R2_001.fastq.gz
-[2021-03-31 21:55:04,845]    INFO Sorting BUS file ./output.bus to tmp/output.s.bus
-[2021-03-31 21:55:08,125]    INFO Whitelist not provided
-[2021-03-31 21:55:08,125]    INFO Copying pre-packaged 10XV2 whitelist to .
-[2021-03-31 21:55:08,226]    INFO Inspecting BUS file tmp/output.s.bus
-[2021-03-31 21:55:09,648]    INFO Correcting BUS records in tmp/output.s.bus to tmp/output.s.c.bus with whitelist ./10xv2_whitelist.txt
-[2021-03-31 21:55:24,007]    INFO Sorting BUS file tmp/output.s.c.bus to ./output.unfiltered.bus
-[2021-03-31 21:55:26,998]    INFO Generating count matrix ./counts_unfiltered/cells_x_genes from BUS file ./output.unfiltered.bus
-[2021-03-31 21:55:29,092]    INFO Converting matrix ./counts_unfiltered/cells_x_genes.mtx to h5ad ./counts_unfiltered/adata.h5ad
-CPU times: user 852 ms, sys: 103 ms, total: 955 ms
-Wall time: 2min 52s
+<div class="codehilite"><pre><span></span><code>[2021-07-07 18:17:35,074]    INFO Generating BUS file from
+[2021-07-07 18:17:35,074]    INFO         SRR8599150_S1_L001_R1_001.fastq.gz
+[2021-07-07 18:17:35,074]    INFO         SRR8599150_S1_L001_R2_001.fastq.gz
+[2021-07-07 18:19:52,582]    INFO Sorting BUS file ./output.bus to tmp/output.s.bus
+[2021-07-07 18:19:55,911]    INFO Whitelist not provided
+[2021-07-07 18:19:55,912]    INFO Copying pre-packaged 10XV2 whitelist to .
+[2021-07-07 18:19:56,015]    INFO Inspecting BUS file tmp/output.s.bus
+[2021-07-07 18:19:57,425]    INFO Correcting BUS records in tmp/output.s.bus to tmp/output.s.c.bus with whitelist ./10xv2_whitelist.txt
+[2021-07-07 18:20:11,880]    INFO Sorting BUS file tmp/output.s.c.bus to ./output.unfiltered.bus
+[2021-07-07 18:20:14,882]    INFO Generating count matrix ./counts_unfiltered/cells_x_genes from BUS file ./output.unfiltered.bus
+[2021-07-07 18:20:16,944]    INFO Converting matrix ./counts_unfiltered/cells_x_genes.mtx to h5ad ./counts_unfiltered/adata.h5ad
+CPU times: user 1.05 s, sys: 159 ms, total: 1.2 s
+Wall time: 2min 45s
 </code></pre></div>
 
 <h3 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h3>
@@ -1579,8 +1578,8 @@ Wall time: 2min 52s
 # SRR8599150_S1_L001_R1_001.fastq.gz SRR8599150_S1_L001_R2_001.fastq.gz
 </code></pre></div>
 </td></tr></table>
-<div class="codehilite"><pre><span></span><code>CPU times: user 2 µs, sys: 1 µs, total: 3 µs
-Wall time: 4.53 µs
+<div class="codehilite"><pre><span></span><code>CPU times: user 2 µs, sys: 0 ns, total: 2 µs
+Wall time: 3.58 µs
 </code></pre></div>
 
 <h2 id="basic-qc">Basic QC<a class="headerlink" href="#basic-qc" title="Permanent link">&para;</a></h2>
@@ -1596,6 +1595,7 @@ adata
 </code></pre></div>
 
 <p>Represent the cells in 2D with PCA</p>
+<p>This is one type of embedding in which cells in higher dimensional gene expression space are represented in two dimensions.</p>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
 <span class="normal"> 2</span>
 <span class="normal"> 3</span>
@@ -1621,8 +1621,9 @@ plt.axis(&#39;off&#39;)
 plt.show()
 </code></pre></div>
 </td></tr></table>
-<p><img alt="png" src="kb_intro_2_python_files/kb_intro_2_python_25_0.png" /></p>
+<p><img alt="png" src="kb_intro_2_python_files/kb_intro_2_python_26_0.png" /></p>
 <h3 id="test-for-library-saturation">Test for library saturation<a class="headerlink" href="#test-for-library-saturation" title="Permanent link">&para;</a></h3>
+<p>For each cell we ask how many genes did we detect (or see non-zero expression). The idea is that if we have "saturated" our sequencing library then increasing the number of UMI counts (x-axis) will not yield an appreciable increase in the number of genes detected (y-axis).</p>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
 <span class="normal"> 2</span>
 <span class="normal"> 3</span>
@@ -1658,11 +1659,11 @@ ax.set_ylim((0.5,2000))
 plt.show()
 </code></pre></div>
 </td></tr></table>
-<p><img alt="png" src="kb_intro_2_python_files/kb_intro_2_python_27_0.png" /></p>
+<p><img alt="png" src="kb_intro_2_python_files/kb_intro_2_python_29_0.png" /></p>
 <h3 id="examine-the-knee-plot">Examine the knee plot<a class="headerlink" href="#examine-the-knee-plot" title="Permanent link">&para;</a></h3>
 <p>The "knee plot" was introduced in the Drop-seq paper: 
 - Macosko et al., <a href="https://www.cell.com/fulltext/S0092-8674(15)00549-8">Highly parallel genome-wide expression profiling of individual cells using nanoliter droplets</a>, 2015. DOI:10.1016/j.cell.2015.05.002</p>
-<p>In this plot cells are ordered by the number of UMI counts associated to them (shown on the <em>x</em>-axis), and the fraction of droplets with at least that number of cells is shown on the <em>y</em>-axis:</p>
+<p>In this plot cells are ordered by the number of UMI counts associated to them (shown on the <em>x</em>-axis), and the fraction of droplets with at least that number of cells is shown on the <em>y</em>-axis. The idea is that "real" cells have a certain number of UMI counts and that a threshold on the UMI counts filters those cells. </p>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
 <span class="normal"> 2</span>
 <span class="normal"> 3</span>
@@ -1677,15 +1678,25 @@ plt.show()
 <span class="normal">12</span>
 <span class="normal">13</span>
 <span class="normal">14</span>
-<span class="normal">15</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>#@title Threshold cells according to knee plot { run: &quot;auto&quot;, vertical-output: true }
-expected_num_cells =  3655#@param {type:&quot;integer&quot;}
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>#@title Threshold cells according to knee plot { run: &quot;auto&quot;, vertical-output: true }
+cutoff =  200#@param {type:&quot;integer&quot;}
 knee = np.sort((np.array(adata.X.sum(axis=1))).flatten())[::-1]
+cell_set = np.arange(len(knee))
+num_cells = cell_set[knee &gt; cutoff][::-1][0]
 
 fig, ax = plt.subplots(figsize=(10, 7))
 
-ax.loglog(knee, range(len(knee)), linewidth=5, color=&quot;g&quot;)
-ax.axvline(x=knee[expected_num_cells], linewidth=3, color=&quot;k&quot;)
-ax.axhline(y=expected_num_cells, linewidth=3, color=&quot;k&quot;)
+
+ax.loglog(knee, cell_set, linewidth=5, color=&quot;g&quot;)
+ax.axvline(x=cutoff, linewidth=3, color=&quot;k&quot;)
+
+
+ax.axhline(y=num_cells, linewidth=3, color=&quot;k&quot;)
 
 ax.set_xlabel(&quot;UMI Counts&quot;)
 ax.set_ylabel(&quot;Set of Barcodes&quot;)
@@ -1694,7 +1705,13 @@ plt.grid(True, which=&quot;both&quot;)
 plt.show()
 </code></pre></div>
 </td></tr></table>
-<p><img alt="png" src="kb_intro_2_python_files/kb_intro_2_python_29_0.png" /></p>
+<p><img alt="png" src="kb_intro_2_python_files/kb_intro_2_python_31_0.png" /></p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>print(f&quot;{num_cells:,.0f} cells passed the {cutoff} UMI threshold&quot;)
+</code></pre></div>
+</td></tr></table>
+<div class="codehilite"><pre><span></span><code><span class="mf">3</span><span class="p">,</span><span class="mf">791</span> <span class="n">cells</span> <span class="n">passed</span> <span class="n">the</span> <span class="mf">200</span> <span class="n">UMI</span> <span class="n">threshold</span>
+</code></pre></div>
+
 <p>The knee plot can be used to threshold cells based on the number of UMI counts they contain. The threshold is applied at the "knee", where there is a sharp dropoff in the number of UMIs per cell. In this example we use the nunber 3979 based on the publication describing the data.</p>
 <h3 id="filter-empty-droplets">Filter empty droplets<a class="headerlink" href="#filter-empty-droplets" title="Permanent link">&para;</a></h3>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>adata
@@ -1739,7 +1756,7 @@ adata.obs[&#39;n_counts&#39;] = adata.X.sum(axis=1).A1
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>sc.pl.scatter(adata, x=&#39;n_counts&#39;, y=&#39;percent_mito&#39;)
 </code></pre></div>
 </td></tr></table>
-<p><img alt="png" src="kb_intro_2_python_files/kb_intro_2_python_38_0.png" /></p>
+<p><img alt="png" src="kb_intro_2_python_files/kb_intro_2_python_41_0.png" /></p>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>adata = adata[adata.obs.percent_mito &lt; 0.03]
 </code></pre></div>
 </td></tr></table>
@@ -1763,7 +1780,7 @@ adata.obs[&#39;n_counts&#39;] = adata.X.sum(axis=1).A1
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>sc.pl.violin(adata, [&#39;n_genes&#39;, &#39;n_counts&#39;, &#39;percent_mito&#39;], jitter=0.4, multi_panel=True)
 </code></pre></div>
 </td></tr></table>
-<p><img alt="png" src="kb_intro_2_python_files/kb_intro_2_python_45_0.png" /></p>
+<p><img alt="png" src="kb_intro_2_python_files/kb_intro_2_python_48_0.png" /></p>
 <h2 id="analysis">Analysis<a class="headerlink" href="#analysis" title="Permanent link">&para;</a></h2>
 <p>In this part of the tutorial, the cells are clustered by <a href="https://en.wikipedia.org/wiki/Louvain_modularity">Louvain community detection</a>.</p>
 <h3 id="normalize-the-counts">Normalize the counts<a class="headerlink" href="#normalize-the-counts" title="Permanent link">&para;</a></h3>
@@ -1780,7 +1797,7 @@ sc.pp.highly_variable_genes(adata, min_mean=0.01, max_mean=8, min_disp=1, n_top_
 sc.pl.highly_variable_genes(adata)
 </code></pre></div>
 </td></tr></table>
-<p><img alt="png" src="kb_intro_2_python_files/kb_intro_2_python_50_0.png" /></p>
+<p><img alt="png" src="kb_intro_2_python_files/kb_intro_2_python_53_0.png" /></p>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>sc.pp.scale(adata, max_value=10)
 </code></pre></div>
 </td></tr></table>
@@ -1800,8 +1817,12 @@ sc.pp.neighbors(adata, n_neighbors=30, n_pcs=10, knn=True)
 sc.tl.louvain(adata)
 </code></pre></div>
 </td></tr></table>
-<div class="codehilite"><pre><span></span><code>CPU times: user 18 s, sys: 738 ms, total: 18.7 s
-Wall time: 18.5 s
+<div class="codehilite"><pre><span></span><code>/usr/local/lib/python3.7/dist-packages/numba/np/ufunc/parallel.py:363: NumbaWarning: The TBB threading layer requires TBB version 2019.5 or later i.e., TBB_INTERFACE_VERSION &gt;= 11005. Found TBB_INTERFACE_VERSION = 9107. The TBB threading layer is disabled.
+  warnings.warn(problem)
+
+
+CPU times: user 18.2 s, sys: 804 ms, total: 19 s
+Wall time: 18.8 s
 </code></pre></div>
 
 <p>It is useful to revisit the PCA project with points colored by cluster. Previously we computed the PCA projection directly; here we use a function in ScanPy which does the same.</p>
@@ -1813,7 +1834,7 @@ fig, ax = plt.subplots(figsize=(10, 7))
 sc.pl.pca(adata, color=&#39;louvain&#39;, ax=ax)
 </code></pre></div>
 </td></tr></table>
-<p><img alt="png" src="kb_intro_2_python_files/kb_intro_2_python_57_0.png" /></p>
+<p><img alt="png" src="kb_intro_2_python_files/kb_intro_2_python_60_0.png" /></p>
 <p>The PCA representation is the result a <em>linear</em> map of the data from its ambient dimension, to low dimension (in the case above 2D). While such projections are useful, there are <em>non-linear</em> methods that can capture non-linear geometry in the data.</p>
 <h3 id="tsne">tSNE<a class="headerlink" href="#tsne" title="Permanent link">&para;</a></h3>
 <p><a href="https://en.wikipedia.org/wiki/T-distributed_stochastic_neighbor_embedding">t-SNE</a> is a non-linear dimensionality reduction technique described in:</p>
@@ -1830,8 +1851,8 @@ sc.pl.pca(adata, color=&#39;louvain&#39;, ax=ax)
 sc.tl.tsne(adata, n_pcs=10)
 </code></pre></div>
 </td></tr></table>
-<div class="codehilite"><pre><span></span><code>CPU times: user 19.7 s, sys: 7 ms, total: 19.7 s
-Wall time: 19.7 s
+<div class="codehilite"><pre><span></span><code>CPU times: user 49.6 s, sys: 109 ms, total: 49.7 s
+Wall time: 25.4 s
 </code></pre></div>
 
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
@@ -1839,7 +1860,7 @@ Wall time: 19.7 s
 sc.pl.tsne(adata, color=&#39;louvain&#39;, ax=ax)
 </code></pre></div>
 </td></tr></table>
-<p><img alt="png" src="kb_intro_2_python_files/kb_intro_2_python_61_0.png" /></p>
+<p><img alt="png" src="kb_intro_2_python_files/kb_intro_2_python_64_0.png" /></p>
 <h2 id="umap">UMAP<a class="headerlink" href="#umap" title="Permanent link">&para;</a></h2>
 <p>UMAP stands for Uniform Manifold Approximation and Projection is a non-linear dimensionality reduction techinque described in </p>
 <ul>
@@ -1854,8 +1875,8 @@ sc.pl.tsne(adata, color=&#39;louvain&#39;, ax=ax)
 sc.tl.umap(adata)
 </code></pre></div>
 </td></tr></table>
-<div class="codehilite"><pre><span></span><code>CPU times: user 11.6 s, sys: 185 ms, total: 11.8 s
-Wall time: 11.7 s
+<div class="codehilite"><pre><span></span><code>CPU times: user 13 s, sys: 132 ms, total: 13.2 s
+Wall time: 12.6 s
 </code></pre></div>
 
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
@@ -1863,7 +1884,7 @@ Wall time: 11.7 s
 sc.pl.umap(adata, color=&#39;louvain&#39;, ax=ax)
 </code></pre></div>
 </td></tr></table>
-<p><img alt="png" src="kb_intro_2_python_files/kb_intro_2_python_64_0.png" /></p>
+<p><img alt="png" src="kb_intro_2_python_files/kb_intro_2_python_67_0.png" /></p>
 <h3 id="exercises">Exercises<a class="headerlink" href="#exercises" title="Permanent link">&para;</a></h3>
 <ul>
 <li>The variance explained by each principal component is a measure of how well a projection to that component represents the data. Compute the variance explained by each component.</li>
@@ -1951,7 +1972,7 @@ sc.pl.umap(adata, color=&#39;louvain&#39;, ax=ax)
 print(&quot;{:.2f} minutes&quot;.format((time.time()-start_time)/60))
 </code></pre></div>
 </td></tr></table>
-<div class="codehilite"><pre><span></span><code><span class="mf">7.97</span> <span class="n">minutes</span>
+<div class="codehilite"><pre><span></span><code><span class="mf">7.70</span> <span class="n">minutes</span>
 </code></pre></div>
 
 <p><strong>Feedback</strong>: please report any issues, or submit pull requests for improvements, in the <a href="https://github.com/pachterlab/kallistobustools/blob/master/notebooks/kb_intro_2_python.ipynb">Github repository where this notebook is located</a>.</p>
@@ -2051,10 +2072,10 @@ print(&quot;{:.2f} minutes&quot;.format((time.time()-start_time)/60))
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": "../../..", "features": ["search.suggest", "search.highlight"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../../assets/javascripts/workers/search.b0710199.min.js", "version": null}</script>
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["search.suggest", "search.highlight"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../../assets/javascripts/workers/search.477d984a.min.js", "version": null}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.76f349be.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.82b56eb2.min.js"></script>
       
     
   </body>
