@@ -13,19 +13,19 @@
         <meta name="author" content="A. Sina Booeshaghi">
       
       
-      <link rel="icon" href="/assets/images/favicon.png">
+      <link rel="icon" href="../../../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.2.2, mkdocs-material-7.3.0">
     
     
       
-        <title>kallisto | bustools</title>
+        <title>Python - kallisto | bustools</title>
       
     
     
-      <link rel="stylesheet" href="/assets/stylesheets/main.8b42a75e.min.css">
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.8b42a75e.min.css">
       
         
-        <link rel="stylesheet" href="/assets/stylesheets/palette.3f5d1f46.min.css">
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.3f5d1f46.min.css">
         
           
           
@@ -44,7 +44,7 @@
     
     
     
-      <link rel="stylesheet" href="/css/custom.css">
+      <link rel="stylesheet" href="../../../../css/custom.css">
     
     
       
@@ -74,12 +74,17 @@
     <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="amber">
   
     
-    <script>function __prefix(e){return new URL("/",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+    <script>function __prefix(e){return new URL("../../../..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
+      
+        
+        <a href="#constructing-a-transcriptome-index-with-kb" class="md-skip">
+          Skip to content
+        </a>
       
     </div>
     <div data-md-component="announce">
@@ -90,7 +95,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="/." title="kallisto | bustools" class="md-header__button md-logo" aria-label="kallisto | bustools" data-md-component="logo">
+    <a href="../../../.." title="kallisto | bustools" class="md-header__button md-logo" aria-label="kallisto | bustools" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
@@ -109,7 +114,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              
+              Python
             
           </span>
         </div>
@@ -192,7 +197,7 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="/." title="kallisto | bustools" class="md-nav__button md-logo" aria-label="kallisto | bustools" data-md-component="logo">
+    <a href="../../../.." title="kallisto | bustools" class="md-nav__button md-logo" aria-label="kallisto | bustools" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
@@ -224,7 +229,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/." class="md-nav__link">
+      <a href="../../../.." class="md-nav__link">
         Home
       </a>
     </li>
@@ -239,7 +244,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/applications/" class="md-nav__link">
+      <a href="../../../../applications/" class="md-nav__link">
         Applications
       </a>
     </li>
@@ -280,7 +285,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/kb_usage/kb_usage/" class="md-nav__link">
+      <a href="../../../../kb_usage/kb_usage/" class="md-nav__link">
         Introduction
       </a>
     </li>
@@ -294,7 +299,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/kb_usage/kb_ref/" class="md-nav__link">
+      <a href="../../../../kb_usage/kb_ref/" class="md-nav__link">
         Building a reference
       </a>
     </li>
@@ -308,7 +313,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/kb_usage/kb_count/" class="md-nav__link">
+      <a href="../../../../kb_usage/kb_count/" class="md-nav__link">
         Quantifying a dataset
       </a>
     </li>
@@ -328,12 +333,14 @@
 
   
   
+    
+  
   
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" checked>
       
       
       
@@ -382,7 +389,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/tutorials/scRNA-seq_intro/python/scRNA-seq_intro/" class="md-nav__link">
+      <a href="../../../scRNA-seq_intro/python/scRNA-seq_intro/" class="md-nav__link">
         Python
       </a>
     </li>
@@ -429,7 +436,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/tutorials/kb_quality_control/python/kb_intro_1_python/" class="md-nav__link">
+      <a href="../../../kb_quality_control/python/kb_intro_1_python/" class="md-nav__link">
         Python
       </a>
     </li>
@@ -443,7 +450,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/tutorials/kb_quality_control/R/kb_intro_1_R/" class="md-nav__link">
+      <a href="../../../kb_quality_control/R/kb_intro_1_R/" class="md-nav__link">
         R
       </a>
     </li>
@@ -490,7 +497,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/tutorials/kb_getting_started/python/kb_intro_2_python/" class="md-nav__link">
+      <a href="../../../kb_getting_started/python/kb_intro_2_python/" class="md-nav__link">
         Python
       </a>
     </li>
@@ -504,7 +511,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/tutorials/kb_getting_started/R/kb_intro_2_R/" class="md-nav__link">
+      <a href="../../../kb_getting_started/R/kb_intro_2_R/" class="md-nav__link">
         R
       </a>
     </li>
@@ -551,7 +558,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/tutorials/kb_building_atlas/python/kb_analysis_0_python/" class="md-nav__link">
+      <a href="../../../kb_building_atlas/python/kb_analysis_0_python/" class="md-nav__link">
         Python
       </a>
     </li>
@@ -565,7 +572,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/tutorials/kb_building_atlas/R/kb_analysis_0_R/" class="md-nav__link">
+      <a href="../../../kb_building_atlas/R/kb_analysis_0_R/" class="md-nav__link">
         R
       </a>
     </li>
@@ -612,7 +619,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/tutorials/kb_pseudotime/R/slingshot/kb_slingshot/" class="md-nav__link">
+      <a href="../../../kb_pseudotime/R/slingshot/kb_slingshot/" class="md-nav__link">
         R
       </a>
     </li>
@@ -659,7 +666,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/tutorials/kb_nucleus/python/kb_single_nucleus/" class="md-nav__link">
+      <a href="../../../kb_nucleus/python/kb_single_nucleus/" class="md-nav__link">
         Python
       </a>
     </li>
@@ -706,7 +713,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/tutorials/kb_velocity/python/kb_velocity/" class="md-nav__link">
+      <a href="../../../kb_velocity/python/kb_velocity/" class="md-nav__link">
         Python
       </a>
     </li>
@@ -753,7 +760,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/tutorials/kb_kite/python/kb_kite/" class="md-nav__link">
+      <a href="../../../kb_kite/python/kb_kite/" class="md-nav__link">
         Python
       </a>
     </li>
@@ -774,7 +781,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/tutorials/download_data/data_download/" class="md-nav__link">
+      <a href="../../../download_data/data_download/" class="md-nav__link">
         Find & download data
       </a>
     </li>
@@ -786,12 +793,14 @@
               
   
   
+    
+  
   
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_10" type="checkbox" id="__nav_4_10" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_10" type="checkbox" id="__nav_4_10" checked>
       
       
       
@@ -812,11 +821,65 @@
               
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="/tutorials/kb_custom_index/python/kb_transcriptome_index/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Python
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         Python
       </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#download-reference-files" class="md-nav__link">
+    Download reference files
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#install-kb" class="md-nav__link">
+    Install kb
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#build-the-index" class="md-nav__link">
+    Build the index
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -861,7 +924,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/tutorials/kb_velocity_index/python/kb_velocity_index/" class="md-nav__link">
+      <a href="../../../kb_velocity_index/python/kb_velocity_index/" class="md-nav__link">
         Python
       </a>
     </li>
@@ -908,7 +971,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/tutorials/kb_aggregate/python/kb_aggregating_count_matrices/" class="md-nav__link">
+      <a href="../../../kb_aggregate/python/kb_aggregating_count_matrices/" class="md-nav__link">
         Python
       </a>
     </li>
@@ -955,7 +1018,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/tutorials/kb_multiple_fastqs/python/kb_multiple_files/" class="md-nav__link">
+      <a href="../../../kb_multiple_fastqs/python/kb_multiple_files/" class="md-nav__link">
         Python
       </a>
     </li>
@@ -1002,7 +1065,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/tutorials/kb_species_mixing/python/kb_species_mixing/" class="md-nav__link">
+      <a href="../../../kb_species_mixing/python/kb_species_mixing/" class="md-nav__link">
         Python
       </a>
     </li>
@@ -1016,7 +1079,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/tutorials/kb_species_mixing/R/kb_mixed_species_10x_v2/" class="md-nav__link">
+      <a href="../../../kb_species_mixing/R/kb_mixed_species_10x_v2/" class="md-nav__link">
         R
       </a>
     </li>
@@ -1063,7 +1126,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/tutorials/kb_pseudotime/R/monocle2/kb_monocle2/" class="md-nav__link">
+      <a href="../../../kb_pseudotime/R/monocle2/kb_monocle2/" class="md-nav__link">
         R
       </a>
     </li>
@@ -1091,11 +1154,134 @@
               </div>
             
             
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#download-reference-files" class="md-nav__link">
+    Download reference files
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#install-kb" class="md-nav__link">
+    Install kb
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#build-the-index" class="md-nav__link">
+    Build the index
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
           
           <div class="md-content" data-md-component="content">
             <article class="md-content__inner md-typeset">
               
-  <h1>404 - Not found</h1>
+                
+                  <a href="https://github.com/pachterlab/kallistobustools/tree/master/tutorials/docs/tutorials/kb_custom_index/python/kb_transcriptome_index.md" title="Edit this page" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                <p><a href="https://colab.research.google.com/github/pachterlab/kallistobustools/blob/master/tutorials/docs/tutorials/kb_custom_index/python/kb_transcriptome_index.ipynb" target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a></p>
+<h1 id="constructing-a-transcriptome-index-with-kb">Constructing a transcriptome index with <code>kb</code><a class="headerlink" href="#constructing-a-transcriptome-index-with-kb" title="Permanent link">&para;</a></h1>
+<p>This tutorial provides instructions for how to generate a transcriptome index to use with <strong>kallisto | bustools</strong> using <code>kb</code>.</p>
+<h2 id="download-reference-files">Download reference files<a class="headerlink" href="#download-reference-files" title="Permanent link">&para;</a></h2>
+<p>Download the genomic (DNA) FASTA and GTF annotations for your desired organism from the database of your choice. This tutorial uses mouse reference files downloaded from <a href="https://uswest.ensembl.org/info/data/ftp/index.html">Ensembl</a>.</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>%%time
+!wget -q ftp://ftp.ensembl.org/pub/release-98/fasta/mus_musculus/dna/Mus_musculus.GRCm38.dna.primary_assembly.fa.gz
+!wget -q ftp://ftp.ensembl.org/pub/release-98/gtf/mus_musculus/Mus_musculus.GRCm38.98.gtf.gz
+</code></pre></div>
+</td></tr></table>
+<div class="codehilite"><pre><span></span><code>CPU times: user 173 ms, sys: 37.3 ms, total: 211 ms
+Wall time: 28.8 s
+</code></pre></div>
+
+<h2 id="install-kb">Install <code>kb</code><a class="headerlink" href="#install-kb" title="Permanent link">&para;</a></h2>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>!pip install --quiet kb-python
+</code></pre></div>
+</td></tr></table>
+<div class="codehilite"><pre><span></span><code>[<span class="nv">K</span>     <span class="o">|</span>████████████████████████████████<span class="o">|</span> <span class="mi">59</span>.<span class="mi">1</span><span class="nv">MB</span> <span class="mi">71</span><span class="nv">kB</span><span class="o">/</span><span class="nv">s</span> 
+[<span class="nv">K</span>     <span class="o">|</span>████████████████████████████████<span class="o">|</span> <span class="mi">51</span><span class="nv">kB</span> <span class="mi">4</span>.<span class="mi">9</span><span class="nv">MB</span><span class="o">/</span><span class="nv">s</span> 
+[<span class="nv">K</span>     <span class="o">|</span>████████████████████████████████<span class="o">|</span> <span class="mi">122</span><span class="nv">kB</span> <span class="mi">46</span>.<span class="mi">5</span><span class="nv">MB</span><span class="o">/</span><span class="nv">s</span> 
+[<span class="nv">K</span>     <span class="o">|</span>████████████████████████████████<span class="o">|</span> <span class="mi">13</span>.<span class="mi">2</span><span class="nv">MB</span> <span class="mi">42</span>.<span class="mi">9</span><span class="nv">MB</span><span class="o">/</span><span class="nv">s</span> 
+[<span class="nv">K</span>     <span class="o">|</span>████████████████████████████████<span class="o">|</span> <span class="mi">10</span>.<span class="mi">3</span><span class="nv">MB</span> <span class="mi">30</span>.<span class="mi">2</span><span class="nv">MB</span><span class="o">/</span><span class="nv">s</span> 
+[<span class="nv">K</span>     <span class="o">|</span>████████████████████████████████<span class="o">|</span> <span class="mi">112</span><span class="nv">kB</span> <span class="mi">61</span>.<span class="mi">3</span><span class="nv">MB</span><span class="o">/</span><span class="nv">s</span> 
+[<span class="nv">K</span>     <span class="o">|</span>████████████████████████████████<span class="o">|</span> <span class="mi">81</span><span class="nv">kB</span> <span class="mi">7</span>.<span class="mi">9</span><span class="nv">MB</span><span class="o">/</span><span class="nv">s</span> 
+[<span class="nv">K</span>     <span class="o">|</span>████████████████████████████████<span class="o">|</span> <span class="mi">1</span>.<span class="mi">2</span><span class="nv">MB</span> <span class="mi">42</span>.<span class="mi">2</span><span class="nv">MB</span><span class="o">/</span><span class="nv">s</span> 
+[<span class="nv">K</span>     <span class="o">|</span>████████████████████████████████<span class="o">|</span> <span class="mi">51</span><span class="nv">kB</span> <span class="mi">3</span>.<span class="mi">8</span><span class="nv">MB</span><span class="o">/</span><span class="nv">s</span> 
+[<span class="nv">K</span>     <span class="o">|</span>████████████████████████████████<span class="o">|</span> <span class="mi">71</span><span class="nv">kB</span> <span class="mi">5</span>.<span class="mi">2</span><span class="nv">MB</span><span class="o">/</span><span class="nv">s</span> 
+[?<span class="mi">25</span><span class="nv">h</span>  <span class="nv">Building</span> <span class="nv">wheel</span> <span class="k">for</span> <span class="nv">loompy</span> <span class="ss">(</span><span class="nv">setup</span>.<span class="nv">py</span><span class="ss">)</span> ... [?<span class="mi">25</span><span class="nv">l</span>[?<span class="mi">25</span><span class="nv">hdone</span>
+  <span class="nv">Building</span> <span class="nv">wheel</span> <span class="k">for</span> <span class="nv">numpy</span><span class="o">-</span><span class="nv">groupies</span> <span class="ss">(</span><span class="nv">setup</span>.<span class="nv">py</span><span class="ss">)</span> ... [?<span class="mi">25</span><span class="nv">l</span>[?<span class="mi">25</span><span class="nv">hdone</span>
+  <span class="nv">Building</span> <span class="nv">wheel</span> <span class="k">for</span> <span class="nv">umap</span><span class="o">-</span><span class="nv">learn</span> <span class="ss">(</span><span class="nv">setup</span>.<span class="nv">py</span><span class="ss">)</span> ... [?<span class="mi">25</span><span class="nv">l</span>[?<span class="mi">25</span><span class="nv">hdone</span>
+  <span class="nv">Building</span> <span class="nv">wheel</span> <span class="k">for</span> <span class="nv">sinfo</span> <span class="ss">(</span><span class="nv">setup</span>.<span class="nv">py</span><span class="ss">)</span> ... [?<span class="mi">25</span><span class="nv">l</span>[?<span class="mi">25</span><span class="nv">hdone</span>
+  <span class="nv">Building</span> <span class="nv">wheel</span> <span class="k">for</span> <span class="nv">pynndescent</span> <span class="ss">(</span><span class="nv">setup</span>.<span class="nv">py</span><span class="ss">)</span> ... [?<span class="mi">25</span><span class="nv">l</span>[?<span class="mi">25</span><span class="nv">hdone</span>
+</code></pre></div>
+
+<h2 id="build-the-index">Build the index<a class="headerlink" href="#build-the-index" title="Permanent link">&para;</a></h2>
+<p><code>kb</code> automatically splits the genome into a cDNA FASTA file and uses that to build a kallisto index.</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>%%time
+!kb ref -i transcriptome.idx -g transcripts_to_genes.txt -f1 cdna.fa \
+Mus_musculus.GRCm38.dna.primary_assembly.fa.gz \
+Mus_musculus.GRCm38.98.gtf.gz
+</code></pre></div>
+</td></tr></table>
+<div class="codehilite"><pre><span></span><code>[<span class="mi">2021</span><span class="o">-</span><span class="mi">03</span><span class="o">-</span><span class="mi">31</span> <span class="mi">19</span>:<span class="mi">42</span>:<span class="mi">16</span>,<span class="mi">748</span>]    <span class="nv">INFO</span> <span class="nv">Preparing</span> <span class="nv">Mus_musculus</span>.<span class="nv">GRCm38</span>.<span class="nv">dna</span>.<span class="nv">primary_assembly</span>.<span class="nv">fa</span>.<span class="nv">gz</span>, <span class="nv">Mus_musculus</span>.<span class="nv">GRCm38</span>.<span class="mi">98</span>.<span class="nv">gtf</span>.<span class="nv">gz</span>
+[<span class="mi">2021</span><span class="o">-</span><span class="mi">03</span><span class="o">-</span><span class="mi">31</span> <span class="mi">19</span>:<span class="mi">42</span>:<span class="mi">16</span>,<span class="mi">748</span>]    <span class="nv">INFO</span> <span class="nv">Decompressing</span> <span class="nv">Mus_musculus</span>.<span class="nv">GRCm38</span>.<span class="mi">98</span>.<span class="nv">gtf</span>.<span class="nv">gz</span> <span class="nv">to</span> <span class="nv">tmp</span>
+[<span class="mi">2021</span><span class="o">-</span><span class="mi">03</span><span class="o">-</span><span class="mi">31</span> <span class="mi">19</span>:<span class="mi">42</span>:<span class="mi">20</span>,<span class="mi">207</span>]    <span class="nv">INFO</span> <span class="nv">Creating</span> <span class="nv">transcript</span><span class="o">-</span><span class="nv">to</span><span class="o">-</span><span class="nv">gene</span> <span class="nv">mapping</span> <span class="nv">at</span> <span class="o">/</span><span class="nv">content</span><span class="o">/</span><span class="nv">tmp</span><span class="o">/</span><span class="nv">tmp8orgc74k</span>
+[<span class="mi">2021</span><span class="o">-</span><span class="mi">03</span><span class="o">-</span><span class="mi">31</span> <span class="mi">19</span>:<span class="mi">43</span>:<span class="mi">01</span>,<span class="mi">135</span>]    <span class="nv">INFO</span> <span class="nv">Decompressing</span> <span class="nv">Mus_musculus</span>.<span class="nv">GRCm38</span>.<span class="nv">dna</span>.<span class="nv">primary_assembly</span>.<span class="nv">fa</span>.<span class="nv">gz</span> <span class="nv">to</span> <span class="nv">tmp</span>
+[<span class="mi">2021</span><span class="o">-</span><span class="mi">03</span><span class="o">-</span><span class="mi">31</span> <span class="mi">19</span>:<span class="mi">43</span>:<span class="mi">25</span>,<span class="mi">710</span>]    <span class="nv">INFO</span> <span class="nv">Sorting</span> <span class="nv">tmp</span><span class="o">/</span><span class="nv">Mus_musculus</span>.<span class="nv">GRCm38</span>.<span class="nv">dna</span>.<span class="nv">primary_assembly</span>.<span class="nv">fa</span> <span class="nv">to</span> <span class="o">/</span><span class="nv">content</span><span class="o">/</span><span class="nv">tmp</span><span class="o">/</span><span class="nv">tmpees_4ry7</span>
+[<span class="mi">2021</span><span class="o">-</span><span class="mi">03</span><span class="o">-</span><span class="mi">31</span> <span class="mi">19</span>:<span class="mi">50</span>:<span class="mi">50</span>,<span class="mi">364</span>]    <span class="nv">INFO</span> <span class="nv">Sorting</span> <span class="nv">tmp</span><span class="o">/</span><span class="nv">Mus_musculus</span>.<span class="nv">GRCm38</span>.<span class="mi">98</span>.<span class="nv">gtf</span> <span class="nv">to</span> <span class="o">/</span><span class="nv">content</span><span class="o">/</span><span class="nv">tmp</span><span class="o">/</span><span class="nv">tmpssw7nu7e</span>
+[<span class="mi">2021</span><span class="o">-</span><span class="mi">03</span><span class="o">-</span><span class="mi">31</span> <span class="mi">19</span>:<span class="mi">51</span>:<span class="mi">51</span>,<span class="mi">290</span>]    <span class="nv">INFO</span> <span class="nv">Splitting</span> <span class="nv">genome</span> <span class="nv">tmp</span><span class="o">/</span><span class="nv">Mus_musculus</span>.<span class="nv">GRCm38</span>.<span class="nv">dna</span>.<span class="nv">primary_assembly</span>.<span class="nv">fa</span> <span class="nv">into</span> <span class="nv">cDNA</span> <span class="nv">at</span> <span class="o">/</span><span class="nv">content</span><span class="o">/</span><span class="nv">tmp</span><span class="o">/</span><span class="nv">tmpg65jndu0</span>
+[<span class="mi">2021</span><span class="o">-</span><span class="mi">03</span><span class="o">-</span><span class="mi">31</span> <span class="mi">19</span>:<span class="mi">51</span>:<span class="mi">51</span>,<span class="mi">290</span>] <span class="nv">WARNING</span> <span class="nv">The</span> <span class="nv">following</span> <span class="nv">chromosomes</span> <span class="nv">were</span> <span class="nv">found</span> <span class="nv">in</span> <span class="nv">the</span> <span class="nv">FASTA</span> <span class="nv">but</span> <span class="nv">does</span> <span class="nv">not</span> <span class="nv">have</span> <span class="nv">any</span> <span class="s2">&quot;</span><span class="s">transcript</span><span class="s2">&quot;</span> <span class="nv">features</span> <span class="nv">in</span> <span class="nv">the</span> <span class="nv">GTF</span>: <span class="nv">JH584302</span>.<span class="mi">1</span>, <span class="nv">GL456387</span>.<span class="mi">1</span>, <span class="nv">GL456396</span>.<span class="mi">1</span>, <span class="nv">GL456367</span>.<span class="mi">1</span>, <span class="nv">GL456366</span>.<span class="mi">1</span>, <span class="nv">GL456394</span>.<span class="mi">1</span>, <span class="nv">GL456383</span>.<span class="mi">1</span>, <span class="nv">GL456382</span>.<span class="mi">1</span>, <span class="nv">GL456393</span>.<span class="mi">1</span>, <span class="nv">GL456368</span>.<span class="mi">1</span>, <span class="nv">GL456379</span>.<span class="mi">1</span>, <span class="nv">GL456390</span>.<span class="mi">1</span>, <span class="nv">GL456378</span>.<span class="mi">1</span>, <span class="nv">GL456360</span>.<span class="mi">1</span>, <span class="nv">GL456389</span>.<span class="mi">1</span>, <span class="nv">JH584301</span>.<span class="mi">1</span>, <span class="nv">JH584300</span>.<span class="mi">1</span>, <span class="nv">GL456392</span>.<span class="mi">1</span>, <span class="nv">GL456370</span>.<span class="mi">1</span>, <span class="nv">GL456359</span>.<span class="mi">1</span>, <span class="nv">GL456213</span>.<span class="mi">1</span>. <span class="nv">No</span> <span class="nv">sequences</span> <span class="nv">will</span> <span class="nv">be</span> <span class="nv">generated</span> <span class="k">for</span> <span class="nv">these</span> <span class="nv">chromosomes</span>.
+[<span class="mi">2021</span><span class="o">-</span><span class="mi">03</span><span class="o">-</span><span class="mi">31</span> <span class="mi">19</span>:<span class="mi">53</span>:<span class="mi">04</span>,<span class="mi">043</span>]    <span class="nv">INFO</span> <span class="nv">Wrote</span> <span class="mi">142446</span> <span class="nv">cDNA</span> <span class="nv">transcripts</span>
+[<span class="mi">2021</span><span class="o">-</span><span class="mi">03</span><span class="o">-</span><span class="mi">31</span> <span class="mi">19</span>:<span class="mi">53</span>:<span class="mi">04</span>,<span class="mi">047</span>]    <span class="nv">INFO</span> <span class="nv">Concatenating</span> <span class="mi">1</span> <span class="nv">transcript</span><span class="o">-</span><span class="nv">to</span><span class="o">-</span><span class="nv">gene</span> <span class="nv">mappings</span> <span class="nv">to</span> <span class="nv">transcripts_to_genes</span>.<span class="nv">txt</span>
+[<span class="mi">2021</span><span class="o">-</span><span class="mi">03</span><span class="o">-</span><span class="mi">31</span> <span class="mi">19</span>:<span class="mi">53</span>:<span class="mi">04</span>,<span class="mi">264</span>]    <span class="nv">INFO</span> <span class="nv">Concatenating</span> <span class="mi">1</span> <span class="nv">cDNAs</span> <span class="nv">to</span> <span class="nv">cdna</span>.<span class="nv">fa</span>
+[<span class="mi">2021</span><span class="o">-</span><span class="mi">03</span><span class="o">-</span><span class="mi">31</span> <span class="mi">19</span>:<span class="mi">53</span>:<span class="mi">05</span>,<span class="mi">204</span>]    <span class="nv">INFO</span> <span class="nv">Indexing</span> <span class="nv">cdna</span>.<span class="nv">fa</span> <span class="nv">to</span> <span class="nv">transcriptome</span>.<span class="nv">idx</span>
+<span class="nv">CPU</span> <span class="nv">times</span>: <span class="nv">user</span> <span class="mi">7</span>.<span class="mi">92</span> <span class="nv">s</span>, <span class="nv">sys</span>: <span class="mi">1</span>.<span class="mi">04</span> <span class="nv">s</span>, <span class="nv">total</span>: <span class="mi">8</span>.<span class="mi">96</span> <span class="nv">s</span>
+<span class="nv">Wall</span> <span class="nv">time</span>: <span class="mi">21</span><span class="nv">min</span> <span class="mi">57</span><span class="nv">s</span>
+</code></pre></div>
+
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>
+</code></pre></div>
+</td></tr></table>
+                
+              
+              
+                
+
 
               
             </article>
@@ -1106,6 +1292,41 @@
       
         
 <footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        
+        <a href="../../../download_data/data_download/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Find &amp; download data" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Find & download data
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../../../kb_velocity_index/python/kb_velocity_index/" class="md-footer__link md-footer__link--next" aria-label="Next: Python" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Python
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
@@ -1154,10 +1375,10 @@
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": "/", "features": ["search.suggest", "search.highlight"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "/assets/javascripts/workers/search.f8263e09.min.js", "version": null}</script>
+    <script id="__config" type="application/json">{"base": "../../../..", "features": ["search.suggest", "search.highlight"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../../../assets/javascripts/workers/search.f8263e09.min.js", "version": null}</script>
     
     
-      <script src="/assets/javascripts/bundle.4fc53ad4.min.js"></script>
+      <script src="../../../../assets/javascripts/bundle.4fc53ad4.min.js"></script>
       
     
   </body>
